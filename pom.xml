@@ -111,7 +111,7 @@
 		<commons-codec.version>1.3</commons-codec.version>
 		<commons-digester.version>1.8</commons-digester.version>
 		<org.graniteds.version>1.1.0</org.graniteds.version>
-		<dom4j.version>1.6.1</dom4j.version>
+		<dom4j.version>2.1.3</dom4j.version>
 		<groovy-all.version>2.4.6</groovy-all.version>
 		<jasperreports.version>6.0.0</jasperreports.version>
 		<jasperreports-fonts.version>6.0.0</jasperreports-fonts.version>
