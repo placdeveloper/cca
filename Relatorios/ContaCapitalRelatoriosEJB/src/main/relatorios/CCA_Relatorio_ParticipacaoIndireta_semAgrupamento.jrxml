@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelParticipacaoIndireta" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="840" leftMargin="1" rightMargin="1" topMargin="1" bottomMargin="7">
+	<style name="Zebra" isDefault="false">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style isDefault="false" style="Zebra" mode="Opaque" forecolor="#000000" backcolor="#CCCCCC"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="dataset1"/>
+	<parameter name="NUM_CENTRAL" class="java.lang.Integer"/>
+	<parameter name="NUM_SINGULAR" class="java.lang.Integer"/>
+	<parameter name="IMAGEM_SICOOB" class="java.awt.Image"/>
+	<parameter name="ANO" class="java.lang.Integer"/>
+	<parameter name="MES" class="java.lang.Integer"/>
+	<parameter name="COD_RELATORIO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="anoMesBase" class="java.lang.Integer">
+		<fieldDescription><![CDATA[anoMesBase]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="idInstituicaoCentral" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idInstituicaoCentral]]></fieldDescription>
+	</field>
+	<field name="idInstituicaoSingular" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idInstituicaoSingular]]></fieldDescription>
+	</field>
+	<field name="mes" class="java.lang.String">
+		<fieldDescription><![CDATA[mes]]></fieldDescription>
+	</field>
+	<field name="nomeInstituicaoCentral" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeInstituicaoCentral]]></fieldDescription>
+	</field>
+	<field name="nomeInstituicaoSingular" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeInstituicaoSingular]]></fieldDescription>
+	</field>
+	<field name="numInstituicaoCentral" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numInstituicaoCentral]]></fieldDescription>
+	</field>
+	<field name="numInstituicaoSingular" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numInstituicaoSingular]]></fieldDescription>
+	</field>
+	<field name="percParticipacao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[percParticipacao]]></fieldDescription>
+	</field>
+	<field name="valorParticipacao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorParticipacao]]></fieldDescription>
+	</field>
+	<field name="valorParticipacaoBancoob" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorParticipacaoBancoob]]></fieldDescription>
+	</field>
+	<field name="valorSaldoInteg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorSaldoInteg]]></fieldDescription>
+	</field>
+	<variable name="SOMAVALORSINGCENTRAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorParticipacaoBancoob}]]></variableExpression>
+	</variable>
+	<variable name="SOMAVALORSALDOINTEG" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorSaldoInteg}]]></variableExpression>
+	</variable>
+	<variable name="SOMAPERCPARTICIPACAOPORGRUPO" class="java.math.BigDecimal" resetType="Group" resetGroup="GRUPOCENTRAL" calculation="Sum">
+		<variableExpression><![CDATA[$F{percParticipacao}]]></variableExpression>
+	</variable>
+	<variable name="SOMAVALORSALDOINTEGPORGRUPO" class="java.math.BigDecimal" resetType="Group" resetGroup="GRUPOCENTRAL" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorSaldoInteg}]]></variableExpression>
+	</variable>
+	<variable name="SOMAVALORSINGCENTRALPORGRUPO" class="java.math.BigDecimal" resetType="Group" resetGroup="GRUPOCENTRAL" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorParticipacaoBancoob}]]></variableExpression>
+	</variable>
+	<group name="GRUPOCENTRAL">
+		<groupHeader>
+			<band height="14" splitType="Prevent">
+				<staticText>
+					<reportElement x="51" y="0" width="348" height="14" backcolor="#999999">
+						<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+						<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Singular]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="455" y="0" width="172" height="14" backcolor="#999999">
+						<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+						<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Valor da Singular na Central]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="627" y="0" width="97" height="14" backcolor="#999999">
+						<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+						<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[% Participação]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="724" y="0" width="116" height="14" backcolor="#999999">
+						<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+						<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Valor Participação Indireta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="51" height="14" backcolor="#999999">
+						<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+						<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Central]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="399" y="0" width="56" height="14" backcolor="#999999">
+						<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+						<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Ano/Mês Base]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="Zebra" stretchType="RelativeToBandHeight" x="51" y="0" width="348" height="14">
+					<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+					<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{numInstituicaoSingular} + " - " + $F{nomeInstituicaoSingular}]]></textFieldExpression>
+			</textField>
+			<textField pattern="R$ #,##0.00" isBlankWhenNull="true">
+				<reportElement style="Zebra" x="455" y="0" width="172" height="14">
+					<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+					<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorSaldoInteg} != null ? $F{valorSaldoInteg} : 0.00]]></textFieldExpression>
+			</textField>
+			<textField pattern="R$ #,##0.00" isBlankWhenNull="true">
+				<reportElement style="Zebra" x="724" y="0" width="116" height="14">
+					<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+					<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorParticipacaoBancoob} != null ? $F{valorParticipacaoBancoob} : 0.00]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.000000" isBlankWhenNull="true">
+				<reportElement style="Zebra" x="627" y="0" width="97" height="14">
+					<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+					<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{percParticipacao} != null ? $F{percParticipacao} : 0.00]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Zebra" x="0" y="0" width="51" height="14" backcolor="#CCCCCC">
+					<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+					<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{numInstituicaoCentral}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Zebra" x="399" y="0" width="56" height="14" backcolor="#CCCCCC">
+					<property name="net.sf.jasperreports.export.xls.auto.fit.column" value="true"/>
+					<property name="net.sf.jasperreports.export.xls.auto.fit.row" value="true"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{anoMesBase}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

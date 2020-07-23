@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobCampos="br.com.bancoob.componentes.campos.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	width="600" height="450" layout="absolute" xmlns:renderes="br.com.sicoob.sisbr.cca.renderes.*">
+	
+	<containers:VBoxBancoob x="0" y="0" width="100%" paddingLeft="10" paddingRight="10">
+		<containers:HBoxBancoob width="100%">
+			<titulo:SubtituloView texto="DADOS DO ASSOCIADO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<Rotulo width="110" text="Conta Capital:" />
+			<cca:ProcurarContaCapital id="procurarCCA" idSituacaoContaCapital="1" idSituacaoCadastro="99" validarObrigatorio="true"/>
+		</containers:HBoxBancoob>
+			
+		<containers:HBoxBancoob width="100%">
+			<Rotulo width="110" text="Motivo Desligamento:" />
+			<input:Combo width="140" id="cboMotivoDesligamento" labelField="descListaItem" validarObrigatorio="true"/>
+			<containers:HBoxBancoob width="100%" horizontalAlign="right">
+				<Rotulo width="110" text="Data do Desligamento:" />
+				<Rotulo id="rtDataDesligamento" fontWeight="bold" />
+			</containers:HBoxBancoob>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<titulo:SubtituloView texto="VALORES" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<containers:VBoxBancoob width="160">
+				<Rotulo text="Integralizado (R$)"/>
+				<containers:HBoxBancoob>
+					<input:Texto id="txtIntegralizado" editable="false" enabled="false" width="120" tipoEntrada="1" casasDecimais="2"/>
+					<Rotulo text="-" paddingLeft="10"/>
+				</containers:HBoxBancoob>
+			</containers:VBoxBancoob>
+			<containers:VBoxBancoob width="160">
+				<Rotulo text="Empréstimo(s) a Pagar (R$)"/>
+				<containers:HBoxBancoob>
+					<input:Texto id="txtEmprestimosAPagar" editable="false" enabled="false" width="120" tipoEntrada="1" casasDecimais="2"/>
+					<Rotulo text="=" paddingLeft="10"/>
+				</containers:HBoxBancoob>
+			</containers:VBoxBancoob>
+			<containers:VBoxBancoob width="160">
+				<Rotulo text="Disponível para Devolução (R$)"/>
+				<input:Texto id="txtDisponivel" editable="false" enabled="false" width="120" tipoEntrada="1" casasDecimais="2"/>
+			</containers:VBoxBancoob>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<navegacao:Tab id="tabNav" width="100%" height="240" focusEnabled="false">
+				
+				<containers:CanvasBancoob label="Empréstimos" id="tabEmprestimos" width="100%">
+					<containers:VBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						
+						<containers:HBoxBancoob width="100%">
+							<titulo:SubtituloView texto="EMPRÉSTIMOS" />
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%">
+							<grid:Grid width="100%" id="gridEmprestimos" height="175" sortableColumns="false">
+								<grid:columns>
+									<grid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="40" sortable="false"
+													 headerRenderer="br.com.sicoob.sisbr.cca.movimentacao.desligarencontrocontas.DesligarEncontroContasCheckBoxHeaderRenderer">
+										<grid:itemRenderer>
+											<mx:Component>
+												<renderes:DesligarEncontroContasCheckBoxRenderer click="checkBoxClick(event)" />
+											</mx:Component>
+										</grid:itemRenderer>
+									</grid:ColunaGrid> 
+									<grid:ColunaGrid headerText="Contrato" dataField="descOperacaoCredito" width="80" textAlign="left" paddingLeft="5" />
+									<grid:ColunaGrid headerText="Data Operação" dataField="dataEntradaOperacao" width="80" textAlign="left" paddingLeft="5" />
+									<grid:ColunaGrid headerText="Modalidade" dataField="descLinha" width="200" textAlign="left" paddingLeft="5"/>
+									<grid:ColunaGrid headerText="Saldo Atual" dataField="valorQuitacao" width="100" textAlign="left" paddingLeft="5"/>
+								</grid:columns>
+							</grid:Grid>
+						</containers:HBoxBancoob>
+						
+					</containers:VBoxBancoob>
+				</containers:CanvasBancoob>
+				
+				<containers:CanvasBancoob label="Dados da Devolução" id="tabDevolucao" width="100%" enabled="false">
+					<containers:VBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						
+						<containers:HBoxBancoob width="100%">
+							<titulo:SubtituloView texto="DEVOLUÇÃO" />
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%" verticalAlign="middle">
+							<Rotulo width="120" text="Forma de Devolução:" />
+							<input:RadioGrupoBancoob id="optGroupFormaDevolucao"/>
+							<bancoobInput:Radio label="À vista" groupName="optGroupFormaDevolucao" id="optAVista" value="1" selected="true" />
+							<bancoobInput:Radio label="Parcelado" groupName="optGroupFormaDevolucao" id="optParcelado" value="2" />							
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%" verticalAlign="middle">
+							<Rotulo width="120" text="Data Início Devolução:" />
+							<bancoobCampos:CampoData width="90" id="dtDataInicioDevolucao" validarObrigatorio="true"/>
+							<containers:HBoxBancoob width="100%" horizontalAlign="right" verticalAlign="middle">
+								<Rotulo text="Forma de Crédito:"/>
+								<input:Combo width="140" id="cboFormaCredito" labelField="descListaItem" validarObrigatorio="true"/>
+							</containers:HBoxBancoob>
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%" verticalAlign="middle">
+							<Rotulo width="120" text="Qtde Parcelas:" />
+							<input:Texto width="90" id="txtQtdParcelas" tipoEntrada="1" casasDecimais="0" maxChars="4" permitirValoreNegativos="false" validarObrigatorio="true"/>
+							<containers:HBoxBancoob width="100%" horizontalAlign="right">
+								<Botao id="btGerarParcelas" label="GERAR PARCELAS" width="140" />
+							</containers:HBoxBancoob>
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%">
+							<grid:Grid width="100%" id="gridParcelas" height="90" sortableColumns="false">
+								<grid:columns>
+									<grid:ColunaGrid headerText="Parcela" dataField="numParcela" width="80" textAlign="left" paddingLeft="5" />
+									<grid:ColunaGrid headerText="Data do Vencimento" dataField="dataVencimento" width="110" textAlign="left" paddingLeft="5" />
+									<grid:ColunaGrid headerText="Valor Parcela (R$)" dataField="valorParcela" width="150" textAlign="left" paddingLeft="5"/>
+									<grid:ColunaGrid headerText="Forma Pagamento" dataField="formaPagamento" width="150" textAlign="left" paddingLeft="5"/>
+								</grid:columns>
+							</grid:Grid>
+						</containers:HBoxBancoob>
+						
+					</containers:VBoxBancoob>
+				</containers:CanvasBancoob>
+				
+			</navegacao:Tab>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5">
+			<Botao id="btEfetivar" label="EFETIVAR O DESLIGAMENTO" width="160" />
+			<Botao id="btFechar" label="FECHAR" width="86" />
+			<Botao id="btLimpar" label="LIMPAR" width="86" />
+		</containers:HBoxBancoob>
+		
+	</containers:VBoxBancoob>
+	
+</Modulo>

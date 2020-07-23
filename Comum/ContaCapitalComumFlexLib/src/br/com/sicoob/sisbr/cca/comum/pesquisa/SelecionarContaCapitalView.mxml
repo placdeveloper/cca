@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bancoob:Modulo xmlns:bancoob="br.com.bancoob.componentes.*"
+				xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+				xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+				xmlns:mx="http://www.adobe.com/2006/mxml" width="600" 
+				height="449" minHeight="425" layout="absolute" 
+				xmlns:paginacao="br.com.bancoob.componentes.paginacao.*" 
+				paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" 
+				xmlns:negocio="br.com.bancoob.sisbr.negocio.*" 
+				xmlns:titulo="br.com.bancoob.componentes.titulo.*"
+				horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	
+	<mx:ViewStack id="vStack" paddingBottom="10" paddingLeft="0" paddingRight="0" paddingTop="0" creationPolicy="all" left="10" right="10" top="10" bottom="10">
+			
+		<mx:VBox id="canvasSelContas" height="438" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			
+			<titulo:SubtituloView texto="FILTROS" width="100%" />
+			<mx:Canvas id="containerFiltros" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<bancoob:Rotulo text="Tipo Pesquisa:" width="80" x="0" paddingTop="2" />
+				<bancoobInput:Combo id="cboTipoProcura" tabIndex="1" editable="false" x="80" width="150" />
+				<bancoobInput:Texto navegarComEnter="true" width="340" tabIndex="2" x="240" id="txtValor" maxChars="50" />
+			</mx:Canvas>
+			<mx:Canvas width="100%">
+				<bancoob:Botao id="botProcurar" width="100" height="24" tabIndex="3" right="0" icon="@Embed('br/com/bancoob/imagens/icos/srch_mini.png')" label="CONSULTAR" toolTip="Iniciar a Pesquisa"/>
+			</mx:Canvas>
+			
+			<titulo:SubtituloView texto="SELECIONE O ASSOCIADO" width="100%" />
+			<bancoobGrid:Grid x="10" y="166" width="100%" height="232" id="grdDados" doubleClickEnabled="true" tabIndex="5">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid headerText="Conta Capital" width="140" dataField="numContaCapital" textAlign="left"/>
+					<bancoobGrid:ColunaGrid headerText="Nome" width="310" dataField="nome" textAlign="left"/>
+					<bancoobGrid:ColunaGrid headerText="CPF/CNPJ" width="130" dataField="cpfCnpj" textAlign="left"/>
+					<bancoobGrid:ColunaGrid headerText="Situação Conta" width="110" dataField="descSituacaoContaCapital" textAlign="left"/>
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+			<paginacao:BarraPaginacao x="10" y="353" width="100%" id="barraPaginacao" />
+			
+			<mx:Spacer height="10" />
+			
+			<mx:HBox width="100%" horizontalAlign="right" y="1">
+				<bancoob:Botao width="69" id="botOK" enabled="{grdDados.selectedItem!=null}" label="OK" tabIndex="6" toolTip="Clique para selecionar a conta capital"/>
+				<bancoob:Botao width="69" id="botFechar" label="FECHAR" tabIndex="7" toolTip="Fechar pesquisa" />
+			</mx:HBox>
+		</mx:VBox>
+	</mx:ViewStack>
+	
+</bancoob:Modulo>

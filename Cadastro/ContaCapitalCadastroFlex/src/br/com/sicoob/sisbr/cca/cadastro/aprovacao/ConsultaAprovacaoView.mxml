@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="650" height="350" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="650" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="SELECIONE UM CADASTRO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<bancoobGrid:Grid x="0" y="130" width="100%" id="grid" tabIndex="1" doubleClickEnabled="true" tabEnabled="true" height="280">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid id="numContaCapital" headerText="Conta Capital" dataField="numContaCapital" width="60" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="nomeCompleto" headerText="Nome" dataField="nomeCompleto" width="140" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="cpfCnpj" headerText="CPF/CNPJ" dataField="cpfCnpj" width="60" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="datahoraatualizacao" headerText="Data Cadastro" dataField="dataHoraAtualizacao" width="60" textAlign="left" />
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+		</containers:HBoxBancoob>
+		
+		<!-- Botoes -->			
+		<!-- Botoes -->
+		<!-- Botoes -->
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btOK" label="OK" width="86" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

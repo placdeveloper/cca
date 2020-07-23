@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="CadastroFlex.mxml" projectUUID="8663a824-6ce8-4acf-91dc-827c53b6bb01" version="11">
+  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="false" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderLocation="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/bin-debug/AplicativoContaCapital/Renovacao/swf" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="1">
+      <libraryPathEntry kind="4" path=""/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-bcd-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-sicoob-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-componentes-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-constantes-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-sisbr-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/capes/capes-corporativo-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/libs/CorporativoFlex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/libs/SelecaoContaCorrente.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/cca-comum-swc/bin/cca-comum-swc.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/libs/ged-comum-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/relatorio-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-sisbr-assets-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/capes/capes-comum-flex.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="CadastroFlex.mxml">
+      <airExcludes/>
+    </application>
+  </applications>
+  <modules>
+    <module application="src/Teste.mxml" destPath="CadastroContaCapitalAtendimento.swf" optimize="false" sourcePath="src/CadastroContaCapitalAtendimento.as"/>
+    <module application="src/Teste.mxml" destPath="CadastroValorCota.swf" optimize="false" sourcePath="src/CadastroValorCota.as"/>
+    <module application="src/CadastroFlex.mxml" destPath="cadastrocontaCapitalren.swf" optimize="false" sourcePath="src/CadastroContaCapitalRen.as"/>
+    <module application="src/CadastroFlex.mxml" destPath="consultacontacapitalren.swf" optimize="false" sourcePath="src/ConsultaContaCapitalRen.as"/>
+    <module application="src/Teste.mxml" destPath="AlteraCadastroContaCapitalRen.swf" optimize="false" sourcePath="src/AlteraCadastroContaCapitalRen.as"/>
+    <module application="src/Teste.mxml" destPath="VisualizaCadastroContaCapitalRen.swf" optimize="false" sourcePath="src/VisualizaCadastroContaCapitalRen.as"/>
+    <module application="src/Teste.mxml" destPath="TesteRen.swf" optimize="false" sourcePath="src/TesteRen.as"/>
+    <module application="src/Teste.mxml" destPath="ConsultaAprovacao.swf" optimize="false" sourcePath="src/ConsultaAprovacao.as"/>
+    <module application="src/Teste.mxml" destPath="CadastroConfiguracaoCapital.swf" optimize="false" sourcePath="src/CadastroConfiguracaoCapital.as"/>
+    <module application="src/Teste.mxml" destPath="CadastroValorConfiguracaoCapital.swf" optimize="false" sourcePath="src/CadastroValorConfiguracaoCapital.as"/>
+    <module application="src/Teste.mxml" destPath="AprovacaoCadastroContaCapital.swf" optimize="false" sourcePath="src/AprovacaoCadastroContaCapital.as"/>
+    <module application="src/Teste.mxml" destPath="AprovacaoDocumento.swf" optimize="false" sourcePath="src/AprovacaoDocumento.as"/>
+  </modules>
+  <workers/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+  <buildTargets/>
+</actionScriptProperties>

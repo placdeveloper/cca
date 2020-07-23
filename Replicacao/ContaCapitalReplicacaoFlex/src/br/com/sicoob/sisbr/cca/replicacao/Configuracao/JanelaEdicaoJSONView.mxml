@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	width="400" height="400" layout="absolute" creationComplete="render()">
+	
+	<mx:Script>
+		<![CDATA[
+			private var json:String;
+			
+			public function init(json:String):void {
+				this.json = json;
+			}
+			
+			public function render():void {
+				txtJSON.text = this.json;
+			}
+			
+			protected function btCancelar_clickHandler(event:MouseEvent):void {
+				fecharJanela();				
+			}
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob width="100%" height="100%" borderStyle="none">
+		<bancoobInput:TextoArea x="10" y="0" width="100%" id="txtJSON" height="350" paddingTop="10" somenteMaiusculas="false"/>
+		<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5">
+			<Botao id="btCancelarJSON" label="CANCELAR" width="100" click="btCancelar_clickHandler(event)" />
+			<Botao id="btSalvarJSON" label="SALVAR" width="90"/>
+		</containers:HBoxBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

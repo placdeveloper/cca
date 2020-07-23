@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bancoob:Modulo xmlns:mx="http://www.adobe.com/2006/mxml"
+		xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+		xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+		xmlns:bancoob="br.com.bancoob.componentes.*"
+		xmlns:bancoobNavegacao="br.com.bancoob.componentes.navegacao.*"
+		xmlns:sisbrSelGeral="br.com.bancoob.sisbr.componentes.selecaoGeral.*"
+		xmlns:sisbrProcPessoa="br.com.bancoob.sisbr.componentes.procurarCliente.*"
+		width="610" height="452" layout="absolute" xmlns:ns1="br.com.bancoob.componentes.containers.*" styleName="ModuloSemEstilo">
+	<bancoob:Botao x="232" y="420" label="OK" width="86" id="btnOK" tabIndex="5"/>
+	<bancoob:Botao x="326" y="420" label="Cancelar" width="86" id="btnCancelar" tabIndex="6"/>
+	<bancoob:Botao x="420" y="420" label="Fechar" width="86" id="btnFechar" tabIndex="7"/>
+	<bancoob:Botao x="514" y="420" label="Ajuda" width="86" id="btnAjuda" tabIndex="8"/>
+	<sisbrProcPessoa:procurarPessoa x="153.5" y="24" id="ctrNumPessoaJuridica" tabIndex="1" width="422" />
+	<bancoob:Rotulo x="16" y="128" text="DDD:"/>
+	<bancoob:Rotulo x="10" y="80" text="Nome da Empresa:"/>
+	<bancoob:Rotulo x="10" y="181" text="Matrícula na Empresa:"/>
+	<bancoob:Rotulo x="10" y="207" text="Cargo:"/>
+	<bancoob:Rotulo x="10" y="340" text="Tipo de Tomador:"/>
+	<bancoob:Rotulo x="10" y="366" text="Tipo de Verba:"/>
+	<bancoob:Rotulo x="10" y="392" text="Sindicalização:"/>
+	<bancoob:Rotulo x="10" y="233" text="Tipo Funcionário:"/>
+	<bancoob:Rotulo x="10" y="259" text="Situação do Funcionário:"/>
+	<bancoob:Rotulo x="10" y="285" text="Tipo de Afastamento:"/>
+	<bancoob:Rotulo x="143.5" y="128" text="Número:"/>
+	<bancoob:Rotulo x="311.5" y="128" text="Ramal:"/>
+	<bancoob:Rotulo x="479.5" y="207" text="Data de Admissão:"/>
+	<bancoob:Rotulo x="483.5" y="259" text="Período de Férias:"/>
+	<bancoob:Rotulo x="10" y="28" text="Código da Empresa:"/>
+	<bancoob:Rotulo x="10" y="54" text="Código do Órgão:"/>
+	<sisbrSelGeral:ProcurarGeral x="226.5" y="52" id="procOrgao" width="35" tabIndex="3" enabled="true" height="21" icon="@Embed('file:///C:/Bancoob/SISBR/Framework/FLEX/Portal/src/br/com/bancoob/imagens/icos/srch_mini.png')">
+		<sisbrSelGeral:disabledIcon>@Embed('file:///C:/Bancoob/SISBR/Framework/FLEX/Portal/src/br/com/bancoob/imagens/icos/srch_mini_desab.png')</sisbrSelGeral:disabledIcon>
+	</sisbrSelGeral:ProcurarGeral>
+	<bancoobInput:Texto x="153.5" y="52" width="65" id="txtCodOrgao" agruparDigitos="false" tabIndex="2" enabled="false" maxChars="3" restrict="0-9" textAlign="right"/>
+	<bancoob:Rotulo id="txtDescOrgao" x="269.5" y="54" width="306" fontWeight="bold"/>
+	<bancoobInput:Texto x="153.5" y="78" width="422" id="txtDescEmpresaTrabalha" maxChars="50" tabIndex="4" agruparDigitos="false"/>
+	<bancoobInput:Texto x="157" y="179" width="181.5" id="txtDescMatriculaFunc" maxChars="20" tabIndex="8" agruparDigitos="false" textAlign="right"/>
+	<bancoobInput:Texto x="157" y="205" width="305.5" id="txtDescOcupacaoProfissional" maxChars="25" tabIndex="9" agruparDigitos="false"/>
+	<bancoobInput:Texto x="58" y="126" width="51" id="txtNumDDD" maxChars="4" tabIndex="5" agruparDigitos="false" restrict="0-9"/>
+	<bancoobInput:Texto x="365.5" y="126" width="51" id="txtNumRamal" maxChars="4" tabIndex="7" agruparDigitos="false" restrict="0-9"/>
+	<bancoobInput:Combo x="157" y="231" width="305.5" id="cboCodTipoFuncionario" labelField="descListaItem" tabIndex="10"/>
+	<bancoobInput:Combo x="157" y="257" width="305.5" id="cboCodSitFuncionario" labelField="descListaItem" tabIndex="11"/>
+	<bancoobInput:Combo x="157" y="283" width="305.5" id="cboCodTpAfastFuncionario" labelField="descListaItem" tabIndex="12"/>
+	<bancoobInput:Combo x="157" y="338" width="305.5" id="cboCodTipoTomador" labelField="descListaItem" tabIndex="15"/>
+	<bancoobInput:Combo x="157" y="364" width="305.5" id="cboCodTipoVerba" labelField="descListaItem" tabIndex="16"/>
+	<bancoobInput:Combo x="157" y="390" width="305.5" id="cboCodTipoSindicalizacao" labelField="descListaItem" tabIndex="17"/>	
+	<bancoobInput:Data x="483.5" y="229" id="dtDataAdmissao" tabIndex="13">
+	</bancoobInput:Data>
+	<bancoobInput:Mascara x="204" y="126" width="79.5" inputMask="####-####" restrict="0-9" id="txtNumTelefone" tabIndex="6"/>
+	<bancoobInput:Mascara x="484.5" y="283" width="50" id="txtPeriodoFerias" inputMask="##/##" maxChars="6" restrict="0-9" tabIndex="14"/>
+	<mx:Label x="27" y="6" text="EMPRESA" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+	<mx:Image y="12" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="89" right="10"/>
+	<mx:Image x="7" y="6" source="br/com/bancoob/imagens/icos/Empresa.png" alpha=".5"/>
+	<mx:Label x="27" y="105" text="TELEFONE" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+	<mx:Image y="111" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="89" right="10"/>
+	<mx:Image x="7" y="104" source="br/com/bancoob/imagens/icos/phone.png" alpha=".5"/>
+	<mx:Label x="27" y="156" text="DADOS DO FUNCIONÁRIO" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+	<mx:Image y="162" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="168" right="10"/>
+	<mx:Image x="7" y="155" source="br/com/bancoob/imagens/icos/Contact.png" alpha=".5"/>
+	<mx:Label x="27" y="313" text="CONSIGNAÇÃO EM FOLHA" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+	<mx:Image y="319" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="174" right="10"/>
+	<mx:Image x="7" y="314" source="br/com/bancoob/imagens/icos/Folha.png" alpha=".5"/>
+</bancoob:Modulo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar id="EJBModule_cca_api_rest" version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/ejb-jar_3_0.xsd">
+	
+	<display-name>API.APIContaCapital - RestFull</display-name>
+
+	<interceptors>
+    	<interceptor>
+        	<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.UsuarioInterceptor</interceptor-class>
+		</interceptor>   	
+    	<interceptor>
+        	<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.TransacaoBancariaInterceptor</interceptor-class>
+		</interceptor>   
+    	<interceptor>
+        	<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.CacheInterceptor</interceptor-class>
+		</interceptor>
+    	<interceptor>
+        	<interceptor-class>br.com.sicoob.sisbr.cca.apirest.servicos.interceptors.APIRestContaCapitalInternacionalizacaoInterceptor</interceptor-class>
+		</interceptor>
+    	<interceptor>
+        	<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.TempoExecucaoInterceptor</interceptor-class>
+		</interceptor>
+	</interceptors>
+
+
+	<assembly-descriptor>
+		<interceptor-binding>
+			<ejb-name>*</ejb-name>
+			<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.UsuarioInterceptor</interceptor-class>
+			<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.TransacaoBancariaInterceptor</interceptor-class>
+			<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.CacheInterceptor</interceptor-class>
+        	<interceptor-class>br.com.sicoob.sisbr.cca.apirest.servicos.interceptors.APIRestContaCapitalInternacionalizacaoInterceptor</interceptor-class>
+       		<interceptor-class>br.com.bancoob.negocio.servicos.interceptors.TempoExecucaoInterceptor</interceptor-class>
+		</interceptor-binding>
+	</assembly-descriptor>	
+
+</ejb-jar>

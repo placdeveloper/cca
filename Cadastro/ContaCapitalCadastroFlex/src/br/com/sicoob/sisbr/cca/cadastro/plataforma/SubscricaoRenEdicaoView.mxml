@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bancoobValidaveis:ModuloValidavel 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:bancoobValidaveis="br.com.bancoob.componentes.containers.validaveis.*"
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" 
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:componentes="br.com.bancoob.componentes.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="650" height="475" layout="absolute">
+	
+	<mx:Script>
+		<![CDATA[
+			import br.com.bancoob.componentes.tabelapaginada.TabelaPaginadaUtils;
+			protected function abaParcelamento_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+		]]>
+	</mx:Script>
+	
+	
+	<containers:VBoxBancoob x="0" y="0" width="650">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DADOS DO ASSOCIADO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="10">
+			<Rotulo text="Data da Subscrição:" width="110" />
+			<Rotulo id="dataSubscricao" text="" x="150" />
+		</validaveis:HBoxValidavel>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="40">
+			<Rotulo text="Conta Capital:" width="110" />
+			<Rotulo id="lblNumContaCapital" />
+		</containers:HBoxBancoob>
+		
+		<containers:VBoxBancoob width="650" borderStyle="none" paddingTop="10">
+			<navegacao:Tab id="tabNav" width="650" height="325">
+				
+				<!-- Aba Subscrição -->
+				<containers:CanvasBancoob label="Dados da Subscrição" id="tabSubscricao" width="100%">
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<titulo:SubtituloView texto="SUBSCRIÇÃO" width="100%" />
+					</containers:HBoxBancoob>
+					
+					<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+						<Rotulo width="140" text="Tipo de Subscrição:" />
+						<input:Combo width="150" id="cboTipoSubscricao" labelField="descListaItem" validarObrigatorio="true" editable="true" />
+					</validaveis:HBoxValidavel>					
+					
+					<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="70">
+						<Rotulo width="140" text="Valor (R$):" />
+						<input:Texto width="100" id="vlrSubs" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true" />
+						
+						<Rotulo width="110" height="18" paddingLeft="50" text="Cotas:"/>
+						<input:Texto id="qtdCotas" enabled="false" width="69" height="22" casasDecimais="0" maxChars="9" permitirValoreNegativos="false" tipoEntrada="1" validarObrigatorio="true"/>
+					</validaveis:HBoxValidavel>
+					
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="110">
+						<titulo:SubtituloView texto="INTEGRALIZAÇÃO (À VISTA)" width="100%" />
+					</containers:HBoxBancoob>
+					
+					<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="150">
+						<Rotulo width="140" text="Valor (R$):" />
+						<input:Texto width="100" id="vlrInteg" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true" />						
+					</validaveis:HBoxValidavel>
+					
+					<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="180">
+						<Rotulo width="140" text="Forma de Débito:" />
+						<input:Combo id="cboTipoInteg" width="150" height="22" editable="true" labelField="descListaItem" validarObrigatorio="true"/>
+						<Rotulo id="labelCco" width="120" height="18" paddingLeft="15" text="Nº Conta Corrente:"/>
+						<input:Combo id="cboCco" x="444" y="180" editable="false" labelField="descListaItem" width="120"/>
+					</validaveis:HBoxValidavel>
+					
+					<input:Combo id="cboMatricula" x="444" y="180" editable="false" labelField="descListaItem"/>
+					<Rotulo id="labelMatricula" x="316" y="180" width="120" height="18" paddingLeft="15" text="Nº Matricula:"/>
+					
+				</containers:CanvasBancoob>
+				
+				<!-- Aba Dados Parcelamento -->
+				<containers:CanvasBancoob id="abaParcelamento" label="Dados do Parcelamento" width="100%"  enabled="false">
+					
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<titulo:SubtituloView texto="PARCELAMENTO" width="100%" />
+					</containers:HBoxBancoob>
+					
+					<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="30">
+						<Rotulo width="140" text="Valor do Parcelamento (R$):"/>
+						<input:Texto width="150" id="vlrParcelamento" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true" />
+						
+						<Rotulo width="140" text="Valor a parcelar (R$):"/>
+						<input:Texto width="120" id="vlrParcelar" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true" />
+					</validaveis:HBoxValidavel>
+					
+					<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="60">
+						<Rotulo width="140" text="Qtde Parcelas:" />
+						<input:Texto width="150" id="qtdParcelas" tipoEntrada="1" casasDecimais="0" maxChars="4" permitirValoreNegativos="false" validarObrigatorio="true" />
+						
+						<Rotulo width="140" text="Dia do Débito:" />
+						<input:Texto width="120" id="diaDebito" tipoEntrada="1" casasDecimais="0" maxChars="2" permitirValoreNegativos="false" validarObrigatorio="true" />
+					</validaveis:HBoxValidavel>										
+					
+					<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="90">
+						<Rotulo width="140" text="Forma de Débito:" />
+						<input:Combo width="150" id="cboTipoIntegParcela" labelField="descListaItem" validarObrigatorio="true" editable="true" />	
+						
+						<Rotulo width="140" id="labelCcoParcela" text="Nº Conta Corrente:" />
+						<input:Combo id="cboCcoParcela" x="464" y="90" labelField="descListaItem" editable="false" width="120"/>
+					</validaveis:HBoxValidavel>	
+					<Rotulo id="labelMatriculaParcela" x="316" y="90" width="140" text="Nº Matricula:"/>
+					<input:Combo id="cboMatriculaParcela" x="464" y="90" labelField="descListaItem" editable="false"/>
+					
+					<containers:HBoxBancoob right="10" bottom="0.033348083" width="195" height="43"
+											horizontalAlign="right" verticalAlign="middle">
+						<Botao id="btIncluir" label="INCLUIR" width="86" enabled="false" />
+						<Botao id="btExcluir" label="EXCLUIR" width="86" enabled="false" />
+					</containers:HBoxBancoob>
+					<grid:Grid id="grid" x="10" y="150" width="628" height="100" editable="false"
+							   tabEnabled="true">
+						<grid:columns>
+							<grid:ColunaGrid id="numParcela" headerText="Parcela" dataField="numParcela" textAlign="left" width="100" />
+							<grid:ColunaGrid id="dataVencimento" headerText="Data de Vencimento" dataField="dataVencimento" textAlign="left" width="100"/>
+							<grid:ColunaGrid id="valorParcela" headerText="Valor Parcela (R$)" labelFunction="{TabelaPaginadaUtils.defaultValorRealLabelFunction}" dataField="valorParcela" textAlign="left" width="100"/>
+							<grid:ColunaGrid id="idTipoInteg" headerText="Forma Pagamento" dataField="idTipoInteg" textAlign="left" width="100"/>
+							<grid:ColunaGrid visible="false" id="dataVencimentoOrdenacao" headerText="Ordenacao" dataField="dataVencimentoOrdenacao" textAlign="left" width="100"/>
+							<grid:ColunaGrid visible="false" id="numContaCorrente" headerText="numContaCorrente" dataField="numContaCorrente" textAlign="left" width="100"/>
+							<grid:ColunaGrid visible="false" id="descNumMatriculaFunc" headerText="descNumMatriculaFunc" dataField="descNumMatriculaFunc" textAlign="left" width="100"/>
+						</grid:columns>
+					</grid:Grid>
+					<Botao id="btGerarParcelas" x="465" y="120" width="175" height="22"
+						   label="GERAR PARCELAS"/>
+					
+				</containers:CanvasBancoob>
+			</navegacao:Tab>
+		</containers:VBoxBancoob>
+	</containers:VBoxBancoob>
+	<!-- Botoes -->
+	<containers:CanvasBancoob x="0" y="425" width="650" height="50">
+		<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0">
+			<Botao id="btOk" label="OK" width="86" />
+			<Botao id="btCanc" label="CANCELAR" width="86" />
+			<Botao id="btFechar" label="FECHAR" width="86" />
+		</containers:HBoxBancoob>
+	</containers:CanvasBancoob>	
+</bancoobValidaveis:ModuloValidavel>

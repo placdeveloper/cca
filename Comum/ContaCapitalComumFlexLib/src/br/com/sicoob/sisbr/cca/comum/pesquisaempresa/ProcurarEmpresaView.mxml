@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:bancoob="br.com.bancoob.componentes.*"
+		   xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+		   xmlns:mx="http://www.adobe.com/2006/mxml"
+		   clipContent="false" width="100%" horizontalAlign="left" 
+		   verticalAlign="middle" horizontalGap="5" 
+		   horizontalScrollPolicy="off" verticalScrollPolicy="off" 
+		   paddingLeft="0" paddingRight="0" paddingTop="0" 
+		   verticalGap="0" paddingBottom="0">
+	<mx:Style>
+	.infoTipStyle {
+	    color: #774401;
+	    fontSize: 9;
+	    fontWeight: "bold";
+	    shadowColor: #723E05;
+	    borderColor: #FFD63E;
+	    borderStyle: "errorTipBelow";
+	    paddingBottom: 4;    
+	    paddingLeft: 4;
+	    paddingRight: 4;
+	    paddingTop: 4;
+	    backgroundAlpha: 0.8;
+	    backgroundAlpha: 0.8;
+	    dropShadowEnabled: true;
+    }
+	</mx:Style>
+	
+	<bancoobInput:Texto id="txtNumCNPJ" navegarComEnter="true" width="130" restrict="0-9" textAlign="right" disabledColor="#171717" paddingRight="5" fontSize="12" fontFamily="ArialEmbedded" maxChars="14" height="22"/>	
+	<bancoob:Botao id="btProcurar"  width="33" label="" height="21">
+		<bancoob:icon>@Embed('br/com/bancoob/imagens/icos/srch_mini.png')</bancoob:icon>
+		<bancoob:disabledIcon>@Embed('br/com/bancoob/imagens/icos/srch_mini_desab.png')</bancoob:disabledIcon>
+	</bancoob:Botao>
+	<bancoobInput:Texto id="txtNome" width="100%" visible="true" enabled="false" borderStyle="solid" backgroundColor="#ffffff" backgroundAlpha=".4" fontFamily="ArialEmbedded" fontSize="12" paddingRight="4" borderThickness="0.5" disabledColor="#171717"/>
+</mx:HBox>

@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CCARelatorioExtratoCCA" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="NUM_COOPERATIVA" class="java.lang.String"/>
+	<parameter name="DESC_SIGLA_COOP" class="java.lang.String"/>
+	<parameter name="TXT_PERIODO" class="java.lang.String"/>
+	<parameter name="MATR" class="java.lang.Boolean"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="bairroResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[bairroResidencial]]></fieldDescription>
+	</field>
+	<field name="cepResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[cepResidencial]]></fieldDescription>
+	</field>
+	<field name="cidadeResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[cidadeResidencial]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="codGrupoHist" class="java.lang.Integer">
+		<fieldDescription><![CDATA[codGrupoHist]]></fieldDescription>
+	</field>
+	<field name="codSituacao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[codSituacao]]></fieldDescription>
+	</field>
+	<field name="dataHoraInclusao" class="java.util.Date">
+		<fieldDescription><![CDATA[dataHoraInclusao]]></fieldDescription>
+	</field>
+	<field name="dataLote" class="java.util.Date">
+		<fieldDescription><![CDATA[dataLote]]></fieldDescription>
+	</field>
+	<field name="dddResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[dddResidencial]]></fieldDescription>
+	</field>
+	<field name="departamento" class="java.lang.String">
+		<fieldDescription><![CDATA[departamento]]></fieldDescription>
+	</field>
+	<field name="descHistorico" class="java.lang.String">
+		<fieldDescription><![CDATA[descHistorico]]></fieldDescription>
+	</field>
+	<field name="descMatriculaFunc" class="java.lang.String">
+		<fieldDescription><![CDATA[descMatriculaFunc]]></fieldDescription>
+	</field>
+	<field name="descNomePessoa" class="java.lang.String">
+		<fieldDescription><![CDATA[descNomePessoa]]></fieldDescription>
+	</field>
+	<field name="empresa" class="java.lang.String">
+		<fieldDescription><![CDATA[empresa]]></fieldDescription>
+	</field>
+	<field name="enderecoResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoResidencial]]></fieldDescription>
+	</field>
+	<field name="idTipoHistoricoEstorno" class="java.lang.Long">
+		<fieldDescription><![CDATA[idTipoHistoricoEstorno]]></fieldDescription>
+	</field>
+	<field name="idTipoHistoricoLanc" class="java.lang.Long">
+		<fieldDescription><![CDATA[idTipoHistoricoLanc]]></fieldDescription>
+	</field>
+	<field name="numCGC_CPF" class="java.lang.String">
+		<fieldDescription><![CDATA[numCGC_CPF]]></fieldDescription>
+	</field>
+	<field name="numMatricula" class="java.lang.Long">
+		<fieldDescription><![CDATA[numMatricula]]></fieldDescription>
+	</field>
+	<field name="numPac" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numPac]]></fieldDescription>
+	</field>
+	<field name="numPessoa" class="java.lang.Long">
+		<fieldDescription><![CDATA[numPessoa]]></fieldDescription>
+	</field>
+	<field name="numSeqLanc" class="java.lang.Long">
+		<fieldDescription><![CDATA[numSeqLanc]]></fieldDescription>
+	</field>
+	<field name="numTelefoneResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[numTelefoneResidencial]]></fieldDescription>
+	</field>
+	<field name="saldoAtual" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[saldoAtual]]></fieldDescription>
+	</field>
+	<field name="ufResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[ufResidencial]]></fieldDescription>
+	</field>
+	<field name="valorCredito" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorCredito]]></fieldDescription>
+	</field>
+	<field name="valorDebito" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorDebito]]></fieldDescription>
+	</field>
+	<field name="valorLanc" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorLanc]]></fieldDescription>
+	</field>
+	<field name="valorSaldoBloqInt" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorSaldoBloqInt]]></fieldDescription>
+	</field>
+	<field name="numTelefoneFormatado" class="java.lang.String">
+		<fieldDescription><![CDATA[numTelefoneFormatado]]></fieldDescription>
+	</field>
+	<variable name="saldoLanc" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$F{saldoAtual}.add($F{valorCredito}).subtract($F{valorDebito})]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="saldoDev" class="java.math.BigDecimal" resetType="Group" resetGroup="numMatr1" calculation="Sum">
+		<variableExpression><![CDATA[$F{codGrupoHist}.intValue() == 3 ? $V{saldoLanc}:new BigDecimal(0)]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="saldoSubsc" class="java.math.BigDecimal" resetType="Group" resetGroup="numMatr1" calculation="Sum">
+		<variableExpression><![CDATA[$F{codGrupoHist}.intValue() == 1 ? $V{saldoLanc}:new BigDecimal(0)]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="saldoInteg" class="java.math.BigDecimal" resetType="Group" resetGroup="numMatr1" calculation="Sum">
+		<variableExpression><![CDATA[$F{codGrupoHist}.intValue() == 2 ? $V{saldoLanc}:new BigDecimal(0)]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="saldoDiv" class="java.math.BigDecimal" resetType="Group" resetGroup="numMatr1" calculation="Sum">
+		<variableExpression><![CDATA[$F{codGrupoHist}.intValue() == 4 ? $V{saldoLanc}:new BigDecimal(0)]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<group name="numMatr1" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{numMatricula}]]></groupExpression>
+		<groupHeader>
+			<band height="65">
+				<staticText>
+					<reportElement mode="Opaque" x="1" y="1" width="553" height="15" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DADOS DO COOPERADO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="17" width="65" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MATRÍCULA:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="47" width="65" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CIDADE/UF:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="32" width="65" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ENDEREÇO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="69" y="18" width="217" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descNomePessoa}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="69" y="32" width="270" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{enderecoResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="69" y="47" width="217" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cidadeResidencial}.toString() + " - " + $F{ufResidencial}.toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="287" y="18" width="52" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SITUAÇÃO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="401" y="18" width="40" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CPF/CGC:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="341" y="32" width="46" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[BAIRRO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="287" y="47" width="24" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CEP:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="401" y="47" width="51" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TELEFONE:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="387" y="32" width="164" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bairroResidencial}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="339" y="18" width="62" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{codSituacao}.intValue() == 1? "ATIVO": "DESLIGADO"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="441" y="18" width="110" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numCGC_CPF}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="311" y="47" width="90" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cepResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="452" y="47" width="99" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numTelefoneFormatado}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="1" height="65"/>
+				</line>
+				<line>
+					<reportElement x="1" y="0" width="554" height="1"/>
+				</line>
+				<line>
+					<reportElement x="1" y="64" width="554" height="1"/>
+				</line>
+				<line>
+					<reportElement x="554" y="1" width="1" height="63"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="numMatr2">
+		<groupExpression><![CDATA[$F{numMatricula}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<printWhenExpression><![CDATA[new Boolean($P{MATR}.booleanValue())]]></printWhenExpression>
+				<staticText>
+					<reportElement x="4" y="0" width="65" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MATR. FUNC:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="15" width="65" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DEPART.:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="69" y="0" width="132" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descMatriculaFunc}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="69" y="15" width="482" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{departamento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="201" y="0" width="65" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[EMRPESA:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="266" y="0" width="285" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{empresa}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="30" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.75"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="554" y="0" width="1" height="30"/>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="1" height="30"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="numMatr3">
+		<groupExpression><![CDATA[$F{numMatricula}]]></groupExpression>
+		<groupFooter>
+			<band height="84">
+				<staticText>
+					<reportElement mode="Opaque" x="1" y="4" width="553" height="15" backcolor="#CCCCCC"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RESUMO DO EXTRATO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="25" width="121" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO SUBSCRITO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="55" width="121" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO A DEVOLVER:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="40" width="121" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO INTEGRALIZADO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="303" y="25" width="121" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO VALORES DIVERSOS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="303" y="40" width="121" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO VALOR BLOQUEADO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="303" y="55" width="121" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO TOTAL (Int./A Dev./Div):]]></text>
+				</staticText>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="125" y="25" width="161" height="15"/>
+					<box rightPadding="4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoSubsc}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="125" y="40" width="161" height="15"/>
+					<box rightPadding="4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoInteg}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="125" y="55" width="161" height="15"/>
+					<box rightPadding="4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoDev}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="424" y="25" width="127" height="15"/>
+					<box rightPadding="4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoDiv}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="424" y="40" width="127" height="15"/>
+					<box rightPadding="4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorSaldoBloqInt}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="424" y="55" width="127" height="15"/>
+					<box rightPadding="4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoInteg}.add($V{saldoDev}).add($V{saldoDiv})]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="83" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.75"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="0" y="4" width="1" height="79"/>
+				</line>
+				<line>
+					<reportElement x="554" y="4" width="1" height="79"/>
+				</line>
+				<line>
+					<reportElement x="0" y="3" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.75"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="1" y="19" width="553" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.75"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="codGrupoHist">
+		<groupExpression><![CDATA[$F{codGrupoHist}]]></groupExpression>
+		<groupHeader>
+			<band height="34">
+				<textField>
+					<reportElement mode="Opaque" x="0" y="4" width="555" height="14" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{codGrupoHist}.intValue() == 1? "SUBSCRIÇÃO" :
+    $F{codGrupoHist}.intValue() == 2? "INTEGRALIZAÇÃO":
+        $F{codGrupoHist}.intValue() == 3? "DEVOLUÇÃO":
+            $F{codGrupoHist}.intValue() == 4? "VALORES DIVERSOS":
+                ""]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="18" width="69" height="16" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DATA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="69" y="18" width="217" height="16" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[  HISTÓRICO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="286" y="18" width="84" height="16" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DÉBITOS  ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="370" y="18" width="81" height="16" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CRÉDITOS  ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="451" y="18" width="104" height="16" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO ATUAL  ]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="3"/>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="125" y="2" width="299" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SICOOB - Conta Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="22" width="299" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório do Extrato da Conta Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="6" width="56" height="15"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Data Emissão:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="21" width="56" height="15"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Hora Emissão:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="40" width="552" height="14"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NUM_COOPERATIVA}+" - "+$P{DESC_SIGLA_COOP} + " " +  $P{TXT_PERIODO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="483" y="6" width="70" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="483" y="21" width="70" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="1" height="54"/>
+			</line>
+			<line>
+				<reportElement x="1" y="54" width="554" height="1"/>
+			</line>
+			<line>
+				<reportElement x="554" y="1" width="1" height="53"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="69" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{dataLote}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="0" width="217" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descHistorico}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="286" y="0" width="84" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorDebito}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="370" y="0" width="81" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorCredito}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="451" y="0" width="104" height="16">
+					<printWhenExpression><![CDATA[new Boolean($F{codGrupoHist}.intValue() == 3)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoDev}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="451" y="0" width="104" height="16">
+					<printWhenExpression><![CDATA[new Boolean($F{codGrupoHist}.intValue() == 4)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoDiv}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="451" y="0" width="104" height="16">
+					<printWhenExpression><![CDATA[new Boolean($F{codGrupoHist}.intValue() == 2)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoInteg}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="452" y="0" width="103" height="16">
+					<printWhenExpression><![CDATA[new Boolean($F{codGrupoHist}.intValue() == 1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{saldoSubsc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

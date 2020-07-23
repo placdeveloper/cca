@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	width="400" height="400" layout="absolute" creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			private var modelos:Object = {
+				'cca': '{ \n numMatricula:1, \n numCliente: 1,' +
+						' \n valorSaldoAtuInteg: 1, \n valorSaldoAtuSubsc: 1,' +
+						' \n valorSaldoAtuDevolver: 1, \n valorSaldoBloqInt: 1, \n idContaCapital: 1,' +
+						' \n dataMatricula: "YYYY-MM-DD", \n codSituacao: 1 \n}',
+						
+				'parc': '{ \n numMatricula:1,' +
+						' \n dataVencParcela: "YYYY-MM-DD", \n dataSituacaoParcela: "YYYY-MM-DD", \n dataEnvioCob: "YYYY-MM-DD",' +
+						' \n numParcelamento: 1, \n numParcela: 1, \n valorParcela: 1, \n numContaCorrente: "",' +
+						' \n uIDTrabalha: "", \n descObservacao: "", \n idParcelamentoContaCapital: 1, \n codTipoParcelamento: 1,' +
+						' \n codSituacaoParcela: 1, \n codModoLanc: 1, \n codMotivoDevolucao: 1 \n}',
+						
+				'lanc': '{ \n numMatricula:1,' +
+						' \n numSeqLanc: 1, \n valorLanc: 1, \n descNumDocumento: "",' +
+						' \n idTipoHistoricoLanc: 1, \n idTipoHistoricoEstorno: 1, \n numLoteLanc: 1, \n dataHoraInclusao: "YYYY-MM-DD",' +
+						' \n idUsuarioResp: "", \n bolAtualizado: 1, \n dataLote: "YYYY-MM-DD" \n}'
+			};
+			
+			public function init():void {
+				this.optCCA.addEventListener(MouseEvent.CLICK, exibirModelo);	
+				this.optParc.addEventListener(MouseEvent.CLICK, exibirModelo);	
+				this.optLanc.addEventListener(MouseEvent.CLICK, exibirModelo);
+				this.txtJSON.text = modelos['cca'];
+			}
+			
+			protected function btFechar_clickHandler(event:MouseEvent):void {
+				fecharJanela();				
+			}
+			
+			protected function exibirModelo(event:MouseEvent):void {
+				this.txtJSON.text = modelos[event.target.value];				
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob width="100%" height="100%" borderStyle="none">
+		<containers:HBoxBancoob width="100%" paddingTop="10">
+			<bancoobInput:Radio id="optCCA" groupName="optJSON" value="cca" label="ContaCapital" selected="true"/>
+			<bancoobInput:Radio id="optParc" groupName="optJSON" value="parc" label="Parcelamento"/>
+			<bancoobInput:Radio id="optLanc" groupName="optJSON" value="lanc" label="Lancamento"/>
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingTop="10">
+			<bancoobInput:TextoArea width="100%" id="txtJSON" height="300" paddingTop="10" somenteMaiusculas="false"/>
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5">
+			<Botao id="btFechar" label="FECHAR" width="100" click="btFechar_clickHandler(event)" />
+		</containers:HBoxBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

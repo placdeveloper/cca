@@ -1,0 +1,181 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "O Conta Capital - CCA é um aplicativo que controla o cadastro dos associados de uma cooperativa de crédito, assim como o capital integralizado de cada associado. Esse capital de cada associado é o que compõe o capital social da cooperativa.",
+    "version" : "v1",
+    "title" : "CCA - Conta Capital",
+    "termsOfService" : "https://developers.sicoob.com.br",
+    "license" : {
+      "name" : "Licença de uso Sicoob",
+      "url" : "http://api.sicoob.com.br"
+    }
+  },
+  "host" : "localhost:9080",
+  "basePath" : "/cca-api",
+  "tags" : [ {
+    "name" : "Integralizações"
+  } ],
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/integralizacoes/integralizar" : {
+      "post" : {
+        "tags" : [ "Integralizações" ],
+        "summary" : "Realiza o(s) lançamento(s) de subscrição/integralização.",
+        "description" : "Realiza o(s) lançamento(s) de subscrição/integralização e retorna lista com as chaves de integralização.",
+        "operationId" : "integralizarCapital",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Dados da integralização.",
+          "description" : "Integralizacao",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Integralizacao"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Recurso criado com sucesso.",
+            "schema" : {
+              "$ref" : "#/definitions/RespostaIntegralizacao"
+            }
+          },
+          "400" : {
+            "description" : "Erros negociais e falhas de validação.",
+            "schema" : {
+              "$ref" : "#/definitions/MensagensErro"
+            }
+          },
+          "500" : {
+            "description" : "Erro interno.",
+            "schema" : {
+              "$ref" : "#/definitions/MensagensErro"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Integralizacao" : {
+      "type" : "object",
+      "properties" : {
+        "numeroContaCapital" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 154,
+          "description" : "O número da conta capital."
+        },
+        "idInstituicao" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 29,
+          "description" : "O número da instituição no SCI."
+        },
+        "valorSubscricao" : {
+          "type" : "number",
+          "example" : 100.0,
+          "description" : "O valor da subcrição de capital a ser realizada."
+        },
+        "valorIntegralizacao" : {
+          "type" : "number",
+          "example" : 50.0,
+          "description" : "O valor da integralização de capital a ser realizada."
+        },
+        "idTipoHistorico" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 138,
+          "description" : "O identificador do histórico de integralização a ser lançado."
+        },
+        "codigoOperacao" : {
+          "type" : "string",
+          "example" : "FAP - 154",
+          "description" : "O código identificador do rementente da operação."
+        },
+        "numeroContaCorrente" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 1996,
+          "description" : "O número da conta corrente para os casos de integralização via cco."
+        },
+        "quantidadeParcelas" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 2,
+          "description" : "Quantidade de parcelas para o saldo residual de capital.(Casos em que valor subscrito > valor integralizado)."
+        },
+        "dataInicioParcelamento" : {
+          "type" : "string",
+          "example" : "2019-08-01",
+          "description" : "Data de início do parcelamento (Casos em que valor subscrito > valor integralizado)."
+        }
+      },
+      "description" : "Dados da integralização."
+    },
+    "Lancamento" : {
+      "type" : "object",
+      "properties" : {
+        "idInstituicao" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 29,
+          "description" : "O número da instituição no SCI."
+        },
+        "dataLancamento" : {
+          "type" : "string",
+          "example" : "2019-08-01",
+          "description" : "Data do lote."
+        },
+        "numeroLote" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 9000,
+          "description" : "Número do lote."
+        },
+        "numeroLancamento" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 1,
+          "description" : "Número do lançamento."
+        }
+      },
+      "description" : "Dados do lançamento."
+    },
+    "MensagensErro" : {
+      "type" : "object",
+      "properties" : {
+        "mensagens" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/SicoobMensagem"
+          }
+        }
+      }
+    },
+    "RespostaIntegralizacao" : {
+      "type" : "object",
+      "properties" : {
+        "resultado" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Lancamento"
+          }
+        }
+      },
+      "description" : "Modelo de retorno referente as integralizações realizadas."
+    },
+    "SicoobMensagem" : {
+      "type" : "object",
+      "properties" : {
+        "mensagem" : {
+          "type" : "string"
+        },
+        "codigo" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

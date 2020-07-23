@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>br.com.sicoob.cca</groupId>
+		<artifactId>cca-comum</artifactId>
+		<version>1.1.70.38</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>cca-comum-contacapital-ejb</artifactId>
+	<packaging>ejb</packaging>
+	<name>CCA - Conta Capital Renovacao - ContaCapitalComumEJB</name>
+
+
+
+	<dependencies>
+
+		<!-- JavaEE -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+		
+		<!-- CCA -->
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-entidades-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Sicoob -->
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-was9</artifactId>
+		</dependency>
+
+		<!-- Externo -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+		<!-- Testes -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

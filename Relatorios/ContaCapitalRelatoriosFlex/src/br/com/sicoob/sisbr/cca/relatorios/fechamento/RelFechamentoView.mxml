@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cmp="br.com.sicoob.sisbr.contaCapital.componentes.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:empresa="br.com.sicoob.sisbr.cca.comum.pesquisaempresa.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	width="700" height="380" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="100%" height="100%" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="Dados do Relatório" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="0" paddingRight="10" y="30" left="0">
+			
+			<Rotulo width="30" text="Data:" id="lblQtdDias" textAlign="left" />
+			<input:Data width="100" id="data" validarObrigatorio="true" />
+			
+			<Botao id="btConsultar" label="CONSULTAR" width="86" />
+		</validaveis:HBoxValidavel>
+		
+		<grid:Grid x="0" y="90" width="100%" id="gridRelatorios" doubleClickEnabled="true" height="250" left="10" right="10">
+			<grid:columns>
+				<grid:ColunaGrid id="codRelatorio" headerText="Cód. Relatório" dataField="codRelatorio" width="40" textAlign="left" paddingLeft="5" />
+				<grid:ColunaGrid id="descricao" headerText="Descrição" dataField="descricao" width="200" textAlign="left" paddingLeft="5"/>
+				<grid:ColunaGrid id="dataGrid" headerText="Data" dataField="data" width="80" textAlign="left" paddingLeft="5" />
+				<grid:ColunaGrid id="caminho" headerText="caminho" dataField="caminho" width="200" textAlign="left" paddingLeft="5"  visible="false"/>
+			</grid:columns>
+		</grid:Grid>
+		
+		<!-- Botoes -->
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0">
+				<Botao id="btVisualizar" label="VISUALIZAR" width="86" enabled="false" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	
+	</containers:VBoxBancoob>
+
+
+</Modulo>

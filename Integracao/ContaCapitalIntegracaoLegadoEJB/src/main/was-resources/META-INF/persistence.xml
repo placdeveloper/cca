@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	
+	<persistence-unit name="emcca_integracao" transaction-type="JTA">
+		
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>jdbc/BancoobDS</jta-data-source>		
+		
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.CapaLoteCapitalLegado</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.CapaLoteCapitalLegadoPK</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.ContaCapitalLegado</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.HistContaCapitalLegado</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.HistContaCapitalLegadoPK</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.LancamentosCCapitalLegado</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.LancamentosCCapitalLegadoPK</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.ParcelamentoCCALegado</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.ParcelamentoCCALegadoPK</class>
+		<class>br.com.sicoob.sisbr.cca.legado.negocio.entidades.ValorCotaLegado</class>
+		
+		<exclude-unlisted-classes />		
+				
+		<properties>
+			
+			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.WebSphereExtendedJTATransactionLookup"/>
+			<property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.WebSphereExtendedJtaPlatform"/>
+			
+			<property name="br.com.bancoob.infraestrutura.conexao.data_source" value="jdbc/BancoobDS" />
+			
+			<property name="hibernate.connection.provider_class" value="br.com.sicoob.sisbr.cca.legado.persistencia.ContaCapitalIntegracaoLegadoConnectionProvider" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect" />			
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			
+		</properties>
+		
+	</persistence-unit>
+		
+</persistence>

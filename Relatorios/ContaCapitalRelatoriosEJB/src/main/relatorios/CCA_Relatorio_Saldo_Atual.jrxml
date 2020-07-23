@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CCA_Relatorio_Saldo_Atual" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="net.sf.jasperreports.export.csv.exclude.origin.band.title" value="title"/>
+	<property name="net.sf.jasperreports.export.csv.exclude.origin.keep.first.band.columnHeader" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.csv.exclude.origin.band.pageFooter" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.csv.exclude.origin.band.groupHeader" value="groupHeader"/>
+	<property name="net.sf.jasperreports.export.csv.exclude.origin.band.groupFooter" value="groupFooter"/>
+	<property name="net.sf.jasperreports.export.csv.exclude.origin.band.lastPageFooter" value="lastPageFooter"/>
+	<parameter name="COD_RELATORIO" class="java.lang.String"/>
+	<parameter name="dataProcessamento" class="java.util.Date"/>
+	<parameter name="filtroOrdenacao" class="java.lang.String"/>
+	<parameter name="fechamento" class="java.lang.Boolean"/>
+	<parameter name="numContaCapitalFinal" class="java.lang.String"/>
+	<parameter name="numContaCapitalInicial" class="java.lang.String"/>
+	<parameter name="IMAGEM_SICOOB" class="java.lang.Object"/>
+	<parameter name="AGRUPAR_PA" class="java.lang.Boolean"/>
+	<parameter name="filtroDescEmpresa" class="java.lang.String"/>
+	<parameter name="filtroCnpjEmpresa" class="java.lang.String"/>
+	<parameter name="DESC_SIGLA_COOP" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cnpjEmpresa" class="java.lang.String">
+		<fieldDescription><![CDATA[cnpjEmpresa]]></fieldDescription>
+	</field>
+	<field name="dataAtualProduto" class="java.util.Date">
+		<fieldDescription><![CDATA[dataAtualProduto]]></fieldDescription>
+	</field>
+	<field name="descEmpresa" class="java.lang.String">
+		<fieldDescription><![CDATA[descEmpresa]]></fieldDescription>
+	</field>
+	<field name="descPA" class="java.lang.String">
+		<fieldDescription><![CDATA[descPA]]></fieldDescription>
+	</field>
+	<field name="idInstituicao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idInstituicao]]></fieldDescription>
+	</field>
+	<field name="integralizacao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[integralizacao]]></fieldDescription>
+	</field>
+	<field name="matriculaFuncionario" class="java.lang.String">
+		<fieldDescription><![CDATA[matriculaFuncionario]]></fieldDescription>
+	</field>
+	<field name="nomeCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeCliente]]></fieldDescription>
+	</field>
+	<field name="numContaCapital" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numContaCapital]]></fieldDescription>
+	</field>
+	<field name="numContaCapitalFinal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numContaCapitalFinal]]></fieldDescription>
+	</field>
+	<field name="numContaCapitalInicial" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numContaCapitalInicial]]></fieldDescription>
+	</field>
+	<field name="numPA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numPA]]></fieldDescription>
+	</field>
+	<field name="numPessoaJuridica" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numPessoaJuridica]]></fieldDescription>
+	</field>
+	<field name="ordenacao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ordenacao]]></fieldDescription>
+	</field>
+	<field name="situacaoAprovacao" class="java.lang.String">
+		<fieldDescription><![CDATA[situacaoAprovacao]]></fieldDescription>
+	</field>
+	<field name="situacaoConta" class="java.lang.String">
+		<fieldDescription><![CDATA[situacaoConta]]></fieldDescription>
+	</field>
+	<field name="subscricao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[subscricao]]></fieldDescription>
+	</field>
+	<field name="valorADevolver" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorADevolver]]></fieldDescription>
+	</field>
+	<field name="valorARealizar" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorARealizar]]></fieldDescription>
+	</field>
+	<field name="agruparPorPA" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[agruparPorPA]]></fieldDescription>
+	</field>
+	<variable name="totalGeralSubscricao" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalGeralSubscricao}.add($F{subscricao} != null ? $F{subscricao} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalGeralIntegralizacao" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalGeralIntegralizacao}.add($F{integralizacao} != null ? $F{integralizacao} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalGeralADevolver" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalGeralADevolver}.add($F{valorADevolver} != null ? $F{valorADevolver} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalGeralARealizar" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{totalGeralARealizar}.add($F{valorARealizar} != null ? $F{valorARealizar} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="somaQtdAssociados" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="totalSubscricaoPorPA" class="java.math.BigDecimal" resetType="Group" resetGroup="GroupPAC">
+		<variableExpression><![CDATA[$V{totalSubscricaoPorPA}.add($F{subscricao} != null ? $F{subscricao} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalIntegralizacaoPorPA" class="java.math.BigDecimal" resetType="Group" resetGroup="GroupPAC">
+		<variableExpression><![CDATA[$V{totalIntegralizacaoPorPA}.add($F{integralizacao} != null ? $F{integralizacao} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalADevolverPorPA" class="java.math.BigDecimal" resetType="Group" resetGroup="GroupPAC">
+		<variableExpression><![CDATA[$V{totalADevolverPorPA}.add($F{valorADevolver} != null ? $F{valorADevolver} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalARealizarPorPA" class="java.math.BigDecimal" resetType="Group" resetGroup="GroupPAC">
+		<variableExpression><![CDATA[$V{totalARealizarPorPA}.add($F{valorARealizar} != null ? $F{valorARealizar} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalGeralAssociados" class="java.math.BigDecimal" incrementType="Report">
+		<variableExpression><![CDATA[$V{totalGeralAssociados}.add($V{GroupPAC_COUNT} != null ? $V{GroupPAC_COUNT} : new BigDecimal(0.0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="GroupPAC" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{numPA}]]></groupExpression>
+		<groupHeader>
+			<band height="36">
+				<printWhenExpression><![CDATA[$P{AGRUPAR_PA} == true]]></printWhenExpression>
+				<textField>
+					<reportElement isPrintRepeatedValues="false" x="1" y="0" width="554" height="15" isPrintInFirstWholeBand="true"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font fontName="Arial" size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["<b>PA: " + $F{numPA}.toString() + "</b>" + " - " +  $F{descPA}.toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="506" y="15" width="49" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[A Realizar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="356" y="15" width="50" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Subscrição]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="406" y="15" width="50" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Integralização]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="241" y="15" width="57" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Situação Conta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="1" y="15" width="51" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Conta Capital]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="298" y="15" width="58" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Situação Cadastro]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="456" y="15" width="50" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[A Devolver ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="186" y="15" width="55" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" printWhenGroupChanges="GroupPAC" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Matrícula Funcionário]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="52" y="15" width="134" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" printWhenGroupChanges="GroupPAC" backcolor="#CCCCCC"/>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nome Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="52" y="15" width="189" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" printWhenGroupChanges="GroupPAC" backcolor="#CCCCCC">
+						<printWhenExpression><![CDATA[$P{filtroCnpjEmpresa} == null]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2">
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nome Cliente]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<printWhenExpression><![CDATA[$P{AGRUPAR_PA} == true]]></printWhenExpression>
+				<textField>
+					<reportElement x="1" y="0" width="355" height="15" isPrintInFirstWholeBand="true"/>
+					<box leftPadding="2">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font fontName="Arial" size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["<b>Total PA " + $F{numPA}.toString() + ": </b>" + $V{GroupPAC_COUNT}.toString() + ($V{GroupPAC_COUNT} > 1 ? " Associados" :  " Associado")]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GroupPAC" pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="456" y="0" width="50" height="15"/>
+					<box rightPadding="2">
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalADevolverPorPA} != null ? $V{totalADevolverPorPA} : new BigDecimal(0.0)]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GroupPAC" pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="406" y="0" width="50" height="15"/>
+					<box rightPadding="2">
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalIntegralizacaoPorPA} != null ? $V{totalIntegralizacaoPorPA} : new BigDecimal(0.0)]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GroupPAC" pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="506" y="0" width="49" height="15"/>
+					<box rightPadding="2">
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalARealizarPorPA} != null ? $V{totalARealizarPorPA} : new BigDecimal(0.0)]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GroupPAC" pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="356" y="0" width="50" height="15"/>
+					<box rightPadding="2">
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="7" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalSubscricaoPorPA} != null ? $V{totalSubscricaoPorPA} : new BigDecimal(0.0)]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<printWhenExpression><![CDATA[true]]></printWhenExpression>
+			<rectangle>
+				<reportElement x="1" y="0" width="554" height="79"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="59" width="555" height="20"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{DESC_SIGLA_COOP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="39" width="79" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[Hora de emissão: ]]></text>
+			</staticText>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="489" y="39" width="66" height="19"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="489" y="19" width="66" height="19"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="19" width="79" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[Data de emissão:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="0" width="79" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<text><![CDATA[Data de processamento:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="489" y="0" width="66" height="19"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{dataProcessamento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="167" y="40" width="226" height="18" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["<b>Matrículas: </b>" + $P{numContaCapitalInicial} + " a " + $P{numContaCapitalFinal}  + "<b> Ordenação: </b>" + $P{filtroOrdenacao}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="12" y="10" width="104" height="30"/>
+				<box topPadding="0" leftPadding="0"/>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{IMAGEM_SICOOB}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="83" width="555" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{filtroCnpjEmpresa} != null && $P{filtroCnpjEmpresa}.length() == 14]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="5">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["<b>CNPJ: </b>" + $P{filtroCnpjEmpresa}.substring(0, 2) + "." + $P{filtroCnpjEmpresa}.substring(2, 5) + "." + $P{filtroCnpjEmpresa}.substring(5, 8) + "/" + $P{filtroCnpjEmpresa}.substring(8, 12) + "-" + $P{filtroCnpjEmpresa}.substring(12, 14) + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Empresa: </b>" + $P{filtroDescEmpresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="167" y="20" width="226" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="0" width="226" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SICOOB - Conta Capital]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<printWhenExpression><![CDATA[$P{AGRUPAR_PA} == null || $P{AGRUPAR_PA} == false]]></printWhenExpression>
+			<staticText>
+				<reportElement mode="Opaque" x="241" y="0" width="57" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação Conta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="356" y="0" width="50" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subscrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="506" y="0" width="49" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A Realizar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="406" y="0" width="50" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Integralização]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="456" y="0" width="50" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A Devolver ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="51" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conta Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="298" y="0" width="58" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação Cadastro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="186" y="0" width="55" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" printWhenGroupChanges="GroupPAC" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matrícula Funcionário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="52" y="0" width="134" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" printWhenGroupChanges="GroupPAC" backcolor="#CCCCCC"/>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="52" y="0" width="189" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" printWhenGroupChanges="GroupPAC" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[$P{filtroCnpjEmpresa} == null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Cliente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="0" width="51" height="16" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{numContaCapital}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="506" y="0" width="49" height="16" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="2">
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorARealizar} != null ? $F{valorARealizar} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="356" y="0" width="50" height="16" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="2">
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subscricao} != null ? $F{subscricao} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="456" y="0" width="50" height="16" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="2">
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorADevolver} != null ? $F{valorADevolver} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="241" y="0" width="57" height="16" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{situacaoConta}.trim().equalsIgnoreCase("Excluido") ? "EXCLUÍDO" : $F{situacaoConta}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="298" y="0" width="58" height="16" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{situacaoAprovacao}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="406" y="0" width="50" height="16" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="2">
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{integralizacao} != null ? $F{integralizacao} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="52" y="0" width="134" height="16" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{filtroCnpjEmpresa} != null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="186" y="0" width="55" height="16">
+					<printWhenExpression><![CDATA[$P{filtroCnpjEmpresa} != null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{matriculaFuncionario}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="52" y="0" width="189" height="16" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{filtroCnpjEmpresa} == null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<printWhenExpression><![CDATA[true]]></printWhenExpression>
+			<line>
+				<reportElement x="103" y="29" width="399" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="43" y="19" width="60" height="17"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COD_RELATORIO}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="538" y="19" width="17" height="17"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="502" y="19" width="37" height="17"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="29" width="43" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="85" splitType="Immediate">
+			<printWhenExpression><![CDATA[true]]></printWhenExpression>
+			<textField evaluationTime="Report" pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="505" y="16" width="50" height="16"/>
+				<box rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalGeralARealizar} != null ? $V{totalGeralARealizar} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="405" y="16" width="50" height="16"/>
+				<box rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalGeralIntegralizacao} != null ? $V{totalGeralIntegralizacao} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="455" y="16" width="50" height="16"/>
+				<box rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalGeralADevolver} != null ? $V{totalGeralADevolver} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="355" y="16" width="50" height="16"/>
+				<box rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{totalGeralSubscricao} != null ? $V{totalGeralSubscricao} : new BigDecimal(0.0)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="405" y="0" width="50" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Integralização]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="455" y="0" width="50" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A Devolver ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="505" y="0" width="50" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A Realizar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="355" y="0" width="50" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subscrição]]></text>
+			</staticText>
+			<line>
+				<reportElement x="103" y="65" width="399" height="1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="502" y="55" width="37" height="17"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="538" y="55" width="17" height="17"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="55" width="60" height="17"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COD_RELATORIO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="65" width="43" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="1" y="0" width="354" height="32"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["<b>Total Geral: </b>" + $V{REPORT_COUNT}.toString() + ($V{REPORT_COUNT} > 1 ? " Associados" : " Associado")]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

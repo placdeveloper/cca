@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar-bnd xmlns="http://websphere.ibm.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-ejb-jar-bnd_1_1.xsd"
+	version="1.1">
+
+	<session name="ContaCapitalLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ContaCapitalLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/ContaCapitalLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ContaCapitalLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/ContaCapitalLegadoServicoRemote" />
+	</session>
+
+	<session name="HistContaCapitalLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.HistContaCapitalLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/HistContaCapitalLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.HistContaCapitalLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/HistContaCapitalLegadoServicoRemote" />
+	</session>
+
+	<session name="LancamentosCCapitalLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.LancamentosCCapitalLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/LancamentosCCapitalLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.LancamentosCCapitalLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/LancamentosCCapitalLegadoServicoRemote" />
+	</session>
+
+	<session name="ParcelamentoCCALegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ParcelamentoCCALegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/ParcelamentoCCALegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ParcelamentoCCALegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/ParcelamentoCCALegadoServicoRemote" />
+	</session>
+
+	<session name="CapaLoteCapitalLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.CapaLoteCapitalLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/CapaLoteCapitalLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.CapaLoteCapitalLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/CapaLoteCapitalLegadoServicoRemote" />
+	</session>
+
+	<session name="TrabalhaLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.TrabalhaLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/TrabalhaLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.TrabalhaLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/TrabalhaLegadoServicoRemote" />
+	</session>
+
+	<session name="ValorCotasLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ValorCotasLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/ValorCotasLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ValorCotasLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/ValorCotasLegadoServicoRemote" />
+	</session>
+
+	<session name="ConciliacaoContabilLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ConciliacaoContabilLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/ConciliacaoContabilLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ConciliacaoContabilLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/ConciliacaoContabilLegadoServicoRemote" />
+	</session>
+
+	<session name="InformacaoAcumuladaLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.InformacaoAcumuladaLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/InformacaoAcumuladaLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.InformacaoAcumuladaLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/InformacaoAcumuladaLegadoServicoRemote" />
+	</session>
+
+	<session name="OperacaoFinanceiraLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.OperacaoFinanceiraLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/OperacaoFinanceiraLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.OperacaoFinanceiraLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/OperacaoFinanceiraLegadoServicoRemote" />
+	</session>
+
+	<session name="ClienteCooperativaLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ClienteCooperativaLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/ClienteCooperativaLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ClienteCooperativaLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/ClienteCooperativaLegadoServicoRemote" />
+	</session>
+
+	<session name="EmprestimoIntegracaoLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.EmprestimoIntegracaoLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/EmprestimoIntegracaoLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.EmprestimoIntegracaoLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/EmprestimoIntegracaoLegadoServicoRemote" />
+	</session>
+
+	<session name="ReplicacaoContaCapitalLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ReplicacaoContaCapitalLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/ReplicacaoContaCapitalLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ReplicacaoContaCapitalLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/ReplicacaoContaCapitalLegadoServicoRemote" />
+	</session>
+
+	<session name="GestaoEmpresarialLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.GestaoEmpresarialLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/GestaoEmpresarialLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.GestaoEmpresarialLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/GestaoEmpresarialLegadoServicoRemote" />
+	</session>
+
+	<session name="ProdutoLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ProdutoLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/ProdutoLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.ProdutoLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/ProdutoLegadoServicoRemote" />
+	</session>
+
+	<session name="PLDContaCapitalLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.PLDContaCapitalLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/PLDContaCapitalLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.PLDContaCapitalLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/PLDContaCapitalLegadoServicoRemote" />
+	</session>
+	
+	<session name="TabelaIRRFLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.TabelaIRRFLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/TabelaIRRFLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.TabelaIRRFLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/TabelaIRRFLegadoServicoRemote" />
+	</session>
+	
+	<session name="PesquisaEmpresaLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.PesquisaEmpresaLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/PesquisaEmpresaLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.PesquisaEmpresaLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/PesquisaEmpresaLegadoServicoRemote" />
+	</session>
+	
+	<session name="IntegralizacaoOutrosBancosLegadoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.IntegralizacaoOutrosBancosLegadoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracaoLegado/IntegralizacaoOutrosBancosLegadoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.legado.negocio.servicos.interfaces.IntegralizacaoOutrosBancosLegadoServicoRemote"
+			binding-name="ContaCapitalIntegracaoLegado/IntegralizacaoOutrosBancosLegadoServicoRemote" />
+	</session>
+</ejb-jar-bnd>

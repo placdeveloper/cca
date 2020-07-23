@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bancoob:Modulo
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width="100%" height="100%" borderStyle="none" borderThickness="0" styleName="ModuloSemEstilo"
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*" 
+	xmlns:bancoob="br.com.bancoob.componentes.*"
+	xmlns:container="br.com.bancoob.componentes.containers.*"
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import br.com.bancoob.componentes.tabelapaginada.TabelaPaginadaUtils;
+		]]>
+	</mx:Script>
+	
+	<mx:Canvas y="2" height="27" cornerRadius="10" borderStyle="solid" left="0" right="0" borderThickness="0" backgroundColor="#ffffff" backgroundAlpha=".4" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<bancoob:Rotulo x="37" y="5" text="SELECIONE UM REGISTRO." width="568" fontSize="11" fontWeight="bold" alpha=".7" fontFamily="ArialEmbedded" id="txtTitulo"/>
+		<mx:Image x="10" y="5" source="br/com/bancoob/imagens/icos/paste_16.png" alpha=".5"/>		
+	</mx:Canvas>
+	
+	<container:HBoxBancoob width="100%" height="100%">
+		<container:CanvasBancoob width="100%" height="100%">
+			<bancoobGrid:Grid id="gridCCA" width="100%" x="0" top="36" bottom="10" tabIndex="1">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid id="numContaCapital" headerText="Conta Capital" dataField="numContaCapital" width="60" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="nomeCompleto" headerText="Nome" dataField="nomeCompleto" width="120" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="cpfCnpj" headerText="CPF/CNPJ" dataField="cpfCnpj" width="65" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="descSituacaoContaCapital" headerText="Situação Conta" dataField="descSituacaoContaCapital" width="50" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="descSituacaoAprovacaoCapital" headerText="Situação Cadastro" dataField="descSituacaoAprovacaoCapital" width="75" textAlign="left" />
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+		</container:CanvasBancoob>
+		
+	</container:HBoxBancoob>
+</bancoob:Modulo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+	
+	<persistence-unit name="emCCAEntidades" transaction-type="JTA">
+		
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>jdbc/BancoobCCADS</jta-data-source>
+		
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.GrupoHistorico</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoLote</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoPessoa</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoCooperativa</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.CondicaoAssociacao</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.SituacaoContaCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.ContaCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.HistoricoContaCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.HistoricoLancamentoCCA</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoHistoricoCCA</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.SituacaoParcelamento</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.AgrupadorConfiguracaoCapital</class>
+		
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.OrigemIntegralizacao</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoIntegralizacao</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoPeriodoDebito</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoValorDebito</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.DebitoContaCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.ParticipacaoCentralBancoob</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.HistParticipacaoCentralBancoob</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.ParticipacaoIndiretaBancoob</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.ConfiguracaoCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoValorConfiguracaoCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.PerfilConfiguracaoCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.ValorConfiguracaoCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.HistValorConfiguracaoCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.SituacaoCadastroProposta</class>
+		
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.PropostaSubscricao</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.HistoricoPropostaSubscricao</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.DocumentoCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoDocumentoCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.Parcelamento</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.LancamentoContaCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoSubscricao</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.TipoParcelamento</class>	
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.MotivoDevolucao</class>	
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.OrigemBloqueioCapital</class>			
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.BloqueioCapital</class>			
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.HistBloqueioCapital</class>
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.HistDebitoContaCapital</class>
+		
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.ContaCorrenteView</class>		
+		
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.MetodoOperacaoContaCapital</class>	
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.ResultadoOperacaoContaCapital</class>	
+		<class>br.com.sicoob.cca.entidades.negocio.entidades.OperacaoContaCapital</class>	
+		
+		<exclude-unlisted-classes />
+		
+		<properties>
+			
+			<property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.WebSphereExtendedJtaPlatform"/>
+			
+			<property name="br.com.bancoob.infraestrutura.conexao.data_source" value="jdbc/BancoobCCADS" />
+				
+			<property name="hibernate.dialect" value="org.hibernate.dialect.DB2Dialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			 
+		</properties>
+		
+	</persistence-unit>
+	
+</persistence>

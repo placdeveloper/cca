@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cmp="br.com.sicoob.sisbr.contaCapital.componentes.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:empresa="br.com.sicoob.sisbr.cca.comum.pesquisaempresa.*"
+	width="700" height="315" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="700" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="Associado" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Todos:" width="80" />
+			<input:Check name="todos" id="chkTodos" selected="true" x="74" label="Todos"/>
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Conta Capital:" width="80" />
+			<cca:ProcurarContaCapital idSituacaoContaCapital="99" idSituacaoCadastro="99" id="procurarCCA" exibeCpfCnpj="false"/>
+		</containers:HBoxBancoob>
+		
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="Destinação" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" paddingBottom="10" paddingTop="10">
+			<Rotulo width="80" text="Ano Base:" id="lblQtdDias" textAlign="left" />
+			<input:Texto width="100" id="anoBase" restrict="0-9" casasDecimais="0" maxChars="4" permitirValoreNegativos="false" validarObrigatorio="true"  x="74"/>
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" paddingBottom="10">
+			<Rotulo text="PA:" width="80" />
+			<input:Combo width="450" id="cboPac" labelField="descListaItem" editable="false" x="74"/>
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" paddingBottom="10">
+			<Rotulo text="Agrupar por PA:" width="80" />
+			<input:Check name="agrupadorPA" id="chkAgrupadorPA" selected="false" x="74"/>
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" paddingBottom="10">
+			<Rotulo text="Ordenar por:" width="80" />
+			<input:Combo width="250" id="cboOrdenacao" labelField="descListaItem" editable="false" x="74"/>
+		</containers:HBoxBancoob>
+		
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="35" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0" paddingTop="10">
+				<Botao id="btOk" label="OK" width="86" />
+				<Botao id="btCancelar" label="CANCELAR" width="86" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+		
+	</containers:VBoxBancoob>
+</Modulo>

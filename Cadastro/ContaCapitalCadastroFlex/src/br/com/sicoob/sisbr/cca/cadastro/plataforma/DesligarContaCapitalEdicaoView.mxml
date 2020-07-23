@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bancoobValidaveis:ModuloValidavel 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:bancoobValidaveis="br.com.bancoob.componentes.containers.validaveis.*"
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" 
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:componentes="br.com.bancoob.componentes.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="602" height="315" layout="absolute">
+	
+	<mx:Script>
+		<![CDATA[
+			
+		]]>
+	</mx:Script>
+		
+	<containers:VBoxBancoob x="0" y="0" width="600">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DADOS DO ASSOCIADO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:CanvasBancoob width="100%">
+			<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="5">
+				<Rotulo width="110" text="Data do Desligamento:" />
+				<Rotulo id="dataDesligamento" fontWeight="bold" />
+			</validaveis:HBoxValidavel>
+			
+			<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="30">
+				<Rotulo width="110" text="Conta Capital:" />
+				<Rotulo id="numCCA" fontWeight="bold" />
+			</validaveis:HBoxValidavel>
+		</containers:CanvasBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="50">
+			<titulo:SubtituloView texto="OPERAÇÃO" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:CanvasBancoob width="100%">
+			<validaveis:HBoxValidavel width="100%" paddingLeft="10">
+				<bancoobInput:Radio label="Demissão" groupName="optGroupOperacao" id="optDemissao" value="2" fontFamily="ArialEmbedded" />
+				<bancoobInput:Radio label="Exclusão" groupName="optGroupOperacao" id="optExclusao" value="3" fontFamily="ArialEmbedded" /> 
+				<bancoobInput:Radio label="Eliminação" groupName="optGroupOperacao" id="optEliminacao" value="4" fontFamily="ArialEmbedded" />
+			</validaveis:HBoxValidavel>
+		</containers:CanvasBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="80">
+			<titulo:SubtituloView texto="CAPITAL SOCIAL" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:CanvasBancoob width="100%">
+			<validaveis:HBoxValidavel x="0" y="10" width="100%" paddingLeft="10">
+				<Rotulo width="130" text="Valor da Subscrição (R$):" />
+				<input:Texto width="120" id="vlrSubs" enabled="false" tipoEntrada="1" casasDecimais="2" maxChars="10" permitirValoreNegativos="false" />
+				
+				<Rotulo width="130" text="Valor da Bloqueado (R$):" />
+				<input:Texto width="120" id="vlrBloq" enabled="false" tipoEntrada="1" casasDecimais="2" maxChars="10" permitirValoreNegativos="false" />
+			</validaveis:HBoxValidavel>
+			
+			<validaveis:HBoxValidavel x="0" y="40" width="100%" paddingLeft="10">
+				<Rotulo width="130" text="Valor Integralizado (R$):" />
+				<input:Texto width="120" id="vlrInteg" enabled="false" tipoEntrada="1" casasDecimais="2" maxChars="10" permitirValoreNegativos="false" />
+				
+				<Rotulo width="130" text="Quantidade de Cotas:" />
+				<input:Texto width="120" id="qtdCotas" enabled="false" tipoEntrada="1" casasDecimais="0" maxChars="10" permitirValoreNegativos="false" />
+			</validaveis:HBoxValidavel>
+		</containers:CanvasBancoob>
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10">
+			<Rotulo width="130" text="Valor a Integralizar (R$):" />
+			<input:Texto width="120" id="vlrAInteg" enabled="false" tipoEntrada="1" casasDecimais="2" maxChars="10" permitirValoreNegativos="false" />
+		</validaveis:HBoxValidavel>
+		
+		<!-- Botoes -->            
+		<!-- Botoes -->
+		<!-- Botoes -->
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob right="313" bottom="0" width="277" height="40" horizontalAlign="left" verticalAlign="middle" paddingLeft="2">
+				<Botao id="btDemissao" width="160" label="CARTA DE DEMISSÃO" enabled="false" />
+			</containers:HBoxBancoob>
+			<containers:HBoxBancoob right="10" bottom="0" width="304" height="40" horizontalAlign="right" verticalAlign="middle" paddingRight="2">
+				<Botao id="btOk" label="OK" width="86" />
+				<Botao id="btCanc" label="CANCELAR" width="86" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>		
+		
+	</containers:VBoxBancoob>
+	
+</bancoobValidaveis:ModuloValidavel>

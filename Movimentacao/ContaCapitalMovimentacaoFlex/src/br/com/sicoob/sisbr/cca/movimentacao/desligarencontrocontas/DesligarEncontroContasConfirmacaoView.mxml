@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobCampos="br.com.bancoob.componentes.campos.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	width="600" height="530" layout="absolute" xmlns:renderes="br.com.sicoob.sisbr.cca.renderes.*">
+	
+	<containers:VBoxBancoob x="0" y="0" width="100%" paddingLeft="10" paddingRight="10">
+		<containers:HBoxBancoob width="100%">
+			<titulo:SubtituloView texto="DADOS DO ASSOCIADO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<Rotulo width="120" text="Conta Capital:" fontWeight="bold"/>
+			<Rotulo id="rtCCA" text="" width="400"/>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<Rotulo width="120" text="Motivo Desligamento:" fontWeight="bold"/>
+			<Rotulo id="rtMotivoDesligamento" text="" width="400"/>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<Rotulo width="120" text="Data do Desligamento:" fontWeight="bold"/>
+			<Rotulo id="rtDataDesligamento" text="" width="400"/>
+		</containers:HBoxBancoob>
+			
+		<containers:HBoxBancoob width="100%">
+			<titulo:SubtituloView texto="VALORES" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<grid:Grid width="100%" id="gridValores" height="45" sortableColumns="false">
+				<grid:columns>
+					<grid:ColunaGrid headerText="Integralizado (R$)" dataField="valorIntegralizado" width="150" textAlign="left" paddingLeft="5" />
+					<grid:ColunaGrid headerText="-" dataField="sinal1" width="10" textAlign="center" />
+					<grid:ColunaGrid headerText="Empréstimo(s) a Pagar (R$)" dataField="valorEmprestimos" width="150" textAlign="left" paddingLeft="5" />
+					<grid:ColunaGrid headerText="=" dataField="sinal2" width="10" textAlign="center" />
+					<grid:ColunaGrid headerText="Disponível para Devolução (R$)" dataField="valorDisponivelDevolucao" width="150" textAlign="left" paddingLeft="5" />
+				</grid:columns>
+			</grid:Grid>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<titulo:SubtituloView texto="EMPRÉSTIMOS" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<grid:Grid width="100%" id="gridEmprestimos" height="85" sortableColumns="false">
+				<grid:columns>
+					<grid:ColunaGrid headerText="Contrato" dataField="descOperacaoCredito" width="80" textAlign="left" paddingLeft="5" />
+					<grid:ColunaGrid headerText="Data Operação" dataField="dataEntradaOperacao" width="80" textAlign="left" paddingLeft="5" />
+					<grid:ColunaGrid headerText="Modalidade" dataField="descLinha" width="200" textAlign="left" paddingLeft="5"/>
+					<grid:ColunaGrid headerText="Saldo Atual" dataField="valorQuitacao" width="100" textAlign="left" paddingLeft="5"/>
+				</grid:columns>
+			</grid:Grid>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<titulo:SubtituloView texto="DEVOLUÇÃO" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%">
+			<grid:Grid width="100%" id="gridParcelas" height="85" sortableColumns="false">
+				<grid:columns>
+					<grid:ColunaGrid headerText="Parcela" dataField="numParcela" width="80" textAlign="left" paddingLeft="5" />
+					<grid:ColunaGrid headerText="Data do Vencimento" dataField="dataVencimento" width="110" textAlign="left" paddingLeft="5" />
+					<grid:ColunaGrid headerText="Valor Parcela (R$)" dataField="valorParcela" width="150" textAlign="left" paddingLeft="5"/>
+					<grid:ColunaGrid headerText="Forma Pagamento" dataField="formaPagamento" width="150" textAlign="left" paddingLeft="5"/>
+				</grid:columns>
+			</grid:Grid>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" backgroundAlpha="0.1" backgroundColor="#000000" verticalAlign="middle">
+			<containers:HBoxBancoob width="100%" paddingLeft="5">
+				<Imagem alpha=".6" source="br/com/bancoob/imagens/icos/information.png"/>
+			</containers:HBoxBancoob>
+			<RotuloMultLine id="rtAlerta" fontWeight="bold" />			
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob>
+			<Rotulo fontWeight="bold" text="Confirma o desligamento do associado de acordo com os dados de empréstimo e devolução citados acima?"/>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingRight="10" paddingTop="5">
+			<Botao id="btConfirmar" label="CONFIRMAR" width="90" />
+			<Botao id="btCancelar" label="CANCELAR" width="90" />
+		</containers:HBoxBancoob>
+		
+	</containers:VBoxBancoob>
+	
+</Modulo>

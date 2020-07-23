@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	xmlns:render="br.com.sicoob.sisbr.cca.render.*"
+	width="600" height="500" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob x="0" y="0" width="600" id="containerTela">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="FILTROS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="50">
+			<Rotulo width="60" text="Ano Base:" />
+			<input:Texto id="filtroAnoBase" visible="true" width="60" focusEnabled="true" maxChars="4" restrict="0-9" />
+			<Botao id="btConsultar" label="CONSULTAR" width="86" />
+		</validaveis:HBoxValidavel>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="100">
+			<titulo:SubtituloView texto="RESULTADO DA CONSULTA" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<bancoobGrid:Grid x="0" y="130" width="100%" id="grid" tabIndex="1" doubleClickEnabled="true" tabEnabled="true" height="350">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid dataField="selecionado" id="selecionado" headerText="" textAlign="center" width="40" sortable="false"
+						 headerRenderer="br.com.sicoob.sisbr.cca.cadastro.tabelairrf.TabelaIRRFViewCheckBoxHeaderRenderer">
+						<bancoobGrid:itemRenderer>
+							<mx:Component>
+								<render:TabelaIRRFCheckBoxRenderer click="checkBoxClick(event)" />
+							</mx:Component>
+						</bancoobGrid:itemRenderer>
+					</bancoobGrid:ColunaGrid>
+					<bancoobGrid:ColunaGrid id="anoBase" headerText="Ano Base" dataField="anoBase" width="50" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="percAliquota" headerText="Perc. Alíquota" dataField="percAliquota" width="50" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="valorBaseInicial" headerText="Valor Base Inicial" dataField="valorBaseInicial" width="50" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="valorBaseFinal" headerText="Valor Base Final" dataField="valorBaseFinal" width="50" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="valorDeducao" headerText="Valor Dedução" dataField="valorDeducao" width="50" textAlign="left" />
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+		</containers:HBoxBancoob>
+		
+		<!-- Botoes -->
+		<!-- Botoes -->
+		<!-- Botoes -->
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="left" verticalAlign="middle" left="10">
+				<Botao id="btIncluir" label="INCLUIR" width="86" />
+				<Botao id="btExcluir" label="EXCLUIR" width="86" enabled="false" />
+			</containers:HBoxBancoob>
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

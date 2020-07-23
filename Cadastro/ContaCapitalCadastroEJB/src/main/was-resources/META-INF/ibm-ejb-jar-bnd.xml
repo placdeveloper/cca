@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar-bnd xmlns="http://websphere.ibm.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-ejb-jar-bnd_1_1.xsd"
+	version="1.1">
+
+	<session name="ValorCotaServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ValorCotaServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/ValorCotaServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ValorCotaServicoRemote"
+			binding-name="ContaCapitalCadastro/ValorCotaServicoRemote" />
+	</session>
+	
+	<session name="ConfiguracaoCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ConfiguracaoCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/ConfiguracaoCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ConfiguracaoCapitalServicoRemote"
+			binding-name="ContaCapitalCadastro/ConfiguracaoCapitalServicoRemote" />
+	</session>
+	
+	<session name="ValorConfiguracaoCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ValorConfiguracaoCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/ValorConfiguracaoCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ValorConfiguracaoCapitalServicoRemote"
+			binding-name="ContaCapitalCadastro/ValorConfiguracaoCapitalServicoRemote" />
+	</session>
+	
+	<session name="CadastroContaCapitalRenServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.CadastroContaCapitalRenServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/CadastroContaCapitalRenServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.CadastroContaCapitalRenServicoRemote"
+			binding-name="ContaCapitalCadastro/CadastroContaCapitalRenServicoRemote" />
+	</session>
+	
+	<session name="SituacaoCadastroPropostaServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.SituacaoCadastroPropostaServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/SituacaoCadastroPropostaServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.SituacaoCadastroPropostaServicoRemote"
+			binding-name="ContaCapitalCadastro/SituacaoCadastroPropostaServicoRemote" />
+	</session>
+	
+	<session name="PropostaSubscricaoServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.PropostaSubscricaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/PropostaSubscricaoServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.PropostaSubscricaoServicoRemote"
+			binding-name="ContaCapitalCadastro/PropostaSubscricaoServicoRemote" />
+	</session>
+	
+	<session name="ContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ContaCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/ContaCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.ContaCapitalServicoRemote"
+			binding-name="ContaCapitalCadastro/ContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="DocumentoCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.DocumentoCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/DocumentoCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.DocumentoCapitalServicoRemote"
+			binding-name="ContaCapitalCadastro/DocumentoCapitalServicoRemote" />
+	</session>
+	
+	<session name="AprovacaoContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.AprovacaoContaCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/AprovacaoContaCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.AprovacaoContaCapitalServicoRemote"
+			binding-name="ContaCapitalCadastro/AprovacaoContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="AgrupadorConfiguracaoCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.AgrupadorConfiguracaoCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalCadastro/AgrupadorConfiguracaoCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.cadastro.negocio.servicos.interfaces.AgrupadorConfiguracaoCapitalServicoRemote"
+			binding-name="ContaCapitalCadastro/AgrupadorConfiguracaoCapitalServicoRemote" />
+	</session>
+
+</ejb-jar-bnd>

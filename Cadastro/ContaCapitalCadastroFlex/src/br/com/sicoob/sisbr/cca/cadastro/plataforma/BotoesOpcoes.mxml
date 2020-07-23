@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+		   borderStyle="none" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="284" 
+		   clipContent="false" xmlns:componentes="br.com.bancoob.componentes.*"
+		   xmlns:bancoob="br.com.bancoob.componentes.*"
+		   xmlns:componentesPlataforma="br.com.bancoob.componentes.botoes.*">
+			
+
+	<componentesPlataforma:BotaoPlataforma  id="btFichaCadastral"  x="19" y="0" buttonMode="true" enabled="true" visible="true"   rotulo="Ficha Proposta" useHandCursor="true" tabIndex="402" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/prtpv_32.png')" />
+
+	<componentesPlataforma:BotaoPlataforma  id="btOutrosDados"  x="19" y="60" buttonMode="true" enabled="true" visible="true"   rotulo="Outros Dados" useHandCursor="true" tabIndex="403" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/lgicn_32.png')" />	
+	
+	<componentesPlataforma:BotaoPlataforma  id="btSubscricao"  x="19" y="120" buttonMode="true" enabled="true" visible="true"   rotulo="Subscrição" useHandCursor="true" tabIndex="404" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/docs_32.png')" />	
+	
+	<componentesPlataforma:BotaoPlataforma  id="btDevolucao"  x="19" y="180" buttonMode="true" enabled="true" visible="true"   rotulo="Devolução" useHandCursor="true" tabIndex="405" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/undo_32.png')" />
+	
+	<componentesPlataforma:BotaoPlataforma  id="btDesligamento"  x="19" y="240" buttonMode="true" enabled="true" visible="true" rotulo="Desligar" useHandCursor="true" tabIndex="406" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/cut_32.png')" />	
+	
+	<componentesPlataforma:BotaoPlataforma  id="btDebitoPorTempoIndeterminado"  x="19" y="300" buttonMode="true" enabled="true" visible="true"  rotulo="Débito Tempo Indeterminado" useHandCursor="true" tabIndex="407" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/cal_32.png')" />
+
+	
+</mx:Canvas>

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Main-Class: br.com.sicoob.cca.replicacao.ExecucaoReplicacaoCca
+Class-Path: . ExecucaoReplicacaoCca_lib/jbossall-client.jar 
+ ExecucaoReplicacaoCca_lib/thinclient-sicoob.jar 
+ ExecucaoReplicacaoCca_lib/cca-integracao-contacapital-legado-ejb.jar 
+ ExecucaoReplicacaoCca_lib/cca-processamento-contacapital-ejb.jar 
+ ExecucaoReplicacaoCca_lib/sicoob-java.jar 
+ ExecucaoReplicacaoCca_lib/cca-replicacao-contacapital-ejb.jar 
+ ExecucaoReplicacaoCca_libWAS/cca-integracao-contacapital-legado-ejb-stubs.jar 
+ ExecucaoReplicacaoCca_libWAS/cca-processamento-contacapital-ejb-stubs.jar 
+ ExecucaoReplicacaoCca_libWAS/cca-replicacao-contacapital-ejb-stubs.jar 
+ ExecucaoReplicacaoCca_libWAS/com.ibm.ws.mail.jar 
+ ExecucaoReplicacaoCca_libWAS/javax.mail-1.5.0.jar 

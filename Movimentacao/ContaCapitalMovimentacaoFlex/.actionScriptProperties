@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="Teste.mxml" projectUUID="8663a824-6ce8-4acf-91dc-827c53b6bb01" version="11">
+  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="false" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderLocation="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/bin-debug/AplicativoContaCapital/Renovacao/swf" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="1">
+      <libraryPathEntry kind="4" path="">
+        <modifiedEntries>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/datavisualization.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/framework.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/qtp.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/rpc.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/utilities.swc" useDefaultLinkType="false"/>
+        </modifiedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-bcd-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-sicoob-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-componentes-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-constantes-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-sisbr-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/libs/CorporativoFlex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/cca-comum-swc/bin/cca-comum-swc.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/libs/SelecaoContaCorrente.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/capes/capes-corporativo-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/relatorio-flex.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="C:/SisbrDesenv/Flex/prt-base-sisbr-portal-flex-air/resources/prt/prt-base-sisbr-assets-flex.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="Teste.mxml">
+      <airExcludes/>
+    </application>
+  </applications>
+  <modules>
+    <module application="src/Teste.mxml" destPath="MovimentacaoSubscricaoRen.swf" optimize="false" sourcePath="src/MovimentacaoSubscricaoRen.as"/>
+    <module application="src/Teste.mxml" destPath="Teste.swf" optimize="false" sourcePath="src/Teste.as"/>
+    <module application="src/Teste.mxml" destPath="MovimentacaoParcelamentoRen.swf" optimize="false" sourcePath="src/MovimentacaoParcelamentoRen.as"/>
+    <module application="src/Teste.mxml" destPath="movimentacaodevolucaoren.swf" optimize="false" sourcePath="src/MovimentacaoDevolucaoRen.as"/>
+    <module application="src/Teste.mxml" destPath="parcelamentorenatendimento.swf" optimize="false" sourcePath="src/ParcelamentoRenAtendimento.as"/>
+    <module application="src/Teste.mxml" destPath="movimentacaotransferenciaren.swf" optimize="false" sourcePath="src/MovimentacaoTransferenciaRen.as"/>
+    <module application="src/Teste.mxml" destPath="DesligarContaCapitalRen.swf" optimize="false" sourcePath="src/DesligarContaCapitalRen.as"/>
+    <module application="src/Teste.mxml" destPath="MovimentacaoBloqueio.swf" optimize="false" sourcePath="src/MovimentacaoBloqueio.as"/>
+    <module application="src/Teste.mxml" destPath="DebitoIndeterminadoRen.swf" optimize="false" sourcePath="src/DebitoIndeterminadoRen.as"/>
+    <module application="src/Teste.mxml" destPath="DesligarEncontroContas.swf" optimize="false" sourcePath="src/DesligarEncontroContas.as"/>
+    <module application="src/Teste.mxml" destPath="IntegralizacaoOutrosBancos.swf" optimize="false" sourcePath="src/IntegralizacaoOutrosBancos.as"/>
+  </modules>
+  <workers/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+  <buildTargets/>
+</actionScriptProperties>

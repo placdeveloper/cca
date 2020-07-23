@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar-bnd xmlns="http://websphere.ibm.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-ejb-jar-bnd_1_1.xsd"
+	version="1.1">
+
+	<session name="RelContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.relatorios.negocio.servicos.interfaces.RelContaCapitalServicoRemote"
+			binding-name="cca_relatorios/RelContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="RelV2ParticipacaoIndiretaSingularServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelParticipacaoIndiretaSingularServicoRemote" />
+	</session>
+
+	<session name="RelV2FichaPropostaMatriculaServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelFichaPropostaMatriculaServicoRemote" />
+	</session>
+
+	<session name="RelV2AprovacaoQuadroPendenciaServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelAprovacaoQuadroPendenciaServicoRemote" />
+	</session>
+
+	<session name="RelV2DesligamentoAssociadoServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelDesligamentoAssociadoServicoRemote" />
+	</session>
+
+	<session name="RelV2ImpedimentosDesligamentoServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelImpedimentosDesligamentoServicoRemote" />
+	</session>
+
+	<session name="RelV2ValorParametroServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelValorParametroServicoRemote" />
+	</session>
+
+	<session name="RelV2DebitoIndeterminadoServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelDebitoIndeterminadoServicoRemote" />
+	</session>
+	
+	<session name="RelV2BloqueiosServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelBloqueiosServicoRemote" />
+	</session>
+	
+	<session name="RelV2HistoricoBloqueioServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelHistoricoBloqueioServicoRemote" />
+	</session>
+	
+	<session name="RelV2SolDevolucaoCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelSolDevolucaoCapitalServicoRemote" />
+	</session>
+	
+	<session name="RelV2ReciboTransferenciaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelReciboTransferenciaCapitalServicoRemote" />
+	</session>
+	
+	<session name="RelV2ParcelamentoContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelParcelamentoContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="RelV2SaldoAtualServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelSaldoAtualServicoRemote" />
+	</session>
+	
+	<session name="RelV2RecolhimentoIrrfDestinacaoJurosServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelRecolhimentoIrrfDestinacaoJurosServicoRemote" />
+	</session>
+	
+	<session name="RelV2SituacaoMatriculaCCARenServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelSituacaoMatriculaCCARenServicoRemote" />
+	</session>
+	
+	<session name="RelV2SituacaoPeriodoCCARenServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelSituacaoPeriodoCCARenServicoRemote" />
+	</session>
+	
+	<session name="RelV2DesligamentoEncontroContasServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelDesligamentoEncontroContasServicoRemote" />
+	</session>
+	
+	<session name="RelV2DesligamentoEncontroContasListaServicoEJB">
+		<interface
+			class="br.com.sicoob.relatorio.api.interfaces.IProcessamentoRelatorioServico"
+			binding-name="cca_relatorios/RelDesligamentoEncontroContasListaServicoRemote" />
+	</session>
+	
+	<session name="FechRelatoriosServicoEJB">			
+		<interface
+			class="br.com.sicoob.cca.relatorios.negocio.servicos.interfaces.FechRelatoriosServicoLocal"
+			binding-name="ejblocal:cca_relatorios/FechRelatoriosServico" />
+			
+		<interface
+			class="br.com.sicoob.cca.relatorios.negocio.servicos.interfaces.FechRelatoriosServicoRemote"
+			binding-name="cca_relatorios/FechRelatoriosServico" />
+	</session>
+	
+</ejb-jar-bnd>

@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>cca</artifactId>
+		<groupId>br.com.sicoob.cca</groupId>
+		<version>1.1.70.38</version>
+	</parent>
+
+	<artifactId>cca-invoker-contacapital</artifactId>
+	<name>CCA - Conta Capital Renovacao - Invoker</name>
+	<description>Modulo para testes dos servicos remotos</description>
+
+	<dependencies>
+	
+		<!-- Was -->
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jbossall-client</artifactId>
+			<version>4.2.3.GA</version>
+			<scope>provided</scope>
+		</dependency>
+	
+		<!-- Sicoob -->
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-frontoffice-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-api-contacapital</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-replicacao-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cte</groupId>
+			<artifactId>cte-transacional-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cte</groupId>
+			<artifactId>cte-frontoffice-ejb</artifactId>
+			<version>${cte.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-was9</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sws-api</artifactId>
+		</dependency>
+		
+		<!-- Outros -->
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>br.com.sicoob.framework.relatorio</groupId>
+		    <artifactId>relatorio-api</artifactId>
+		</dependency>
+		
+		<!-- Testes -->	
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+	      <groupId>org.powermock</groupId>
+	      <artifactId>powermock-core</artifactId>
+	      <scope>test</scope>
+	   </dependency>
+		<dependency>
+	      <groupId>org.powermock</groupId>
+	      <artifactId>powermock-module-junit4</artifactId>
+	      <scope>test</scope>
+	   </dependency>
+	   <dependency>
+	      <groupId>org.powermock</groupId>
+	      <artifactId>powermock-api-mockito</artifactId>
+	      <scope>test</scope>
+	   </dependency>
+	</dependencies>
+
+</project>

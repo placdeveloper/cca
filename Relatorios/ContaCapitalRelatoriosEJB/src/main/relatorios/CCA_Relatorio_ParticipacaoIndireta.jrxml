@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelParticipacaoIndireta" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="Zebra" isDefault="false" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue() % 2 == 0)]]></conditionExpression>
+			<style isDefault="false" style="Zebra" mode="Opaque" forecolor="#000000" backcolor="#CCCCCC"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="dataset1"/>
+	<parameter name="NUM_CENTRAL" class="java.lang.Integer"/>
+	<parameter name="NUM_SINGULAR" class="java.lang.Integer"/>
+	<parameter name="IMAGEM_SICOOB" class="java.awt.Image"/>
+	<parameter name="ANO" class="java.lang.Integer"/>
+	<parameter name="MES" class="java.lang.Integer"/>
+	<parameter name="COD_RELATORIO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="anoMesBase" class="java.lang.Integer">
+		<fieldDescription><![CDATA[anoMesBase]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="idInstituicaoCentral" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idInstituicaoCentral]]></fieldDescription>
+	</field>
+	<field name="idInstituicaoSingular" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idInstituicaoSingular]]></fieldDescription>
+	</field>
+	<field name="mes" class="java.lang.String">
+		<fieldDescription><![CDATA[mes]]></fieldDescription>
+	</field>
+	<field name="nomeInstituicaoCentral" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeInstituicaoCentral]]></fieldDescription>
+	</field>
+	<field name="nomeInstituicaoSingular" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeInstituicaoSingular]]></fieldDescription>
+	</field>
+	<field name="numInstituicaoCentral" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numInstituicaoCentral]]></fieldDescription>
+	</field>
+	<field name="numInstituicaoSingular" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numInstituicaoSingular]]></fieldDescription>
+	</field>
+	<field name="percParticipacao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[percParticipacao]]></fieldDescription>
+	</field>
+	<field name="valorParticipacao" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorParticipacao]]></fieldDescription>
+	</field>
+	<field name="valorParticipacaoBancoob" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorParticipacaoBancoob]]></fieldDescription>
+	</field>
+	<field name="valorSaldoInteg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorSaldoInteg]]></fieldDescription>
+	</field>
+	<variable name="SOMAVALORSINGCENTRAL" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorParticipacaoBancoob}]]></variableExpression>
+	</variable>
+	<variable name="SOMAVALORSALDOINTEG" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorSaldoInteg}]]></variableExpression>
+	</variable>
+	<variable name="SOMAPERCPARTICIPACAOPORGRUPO" class="java.math.BigDecimal" resetType="Group" resetGroup="GRUPOCENTRAL" calculation="Sum">
+		<variableExpression><![CDATA[$F{percParticipacao}]]></variableExpression>
+	</variable>
+	<variable name="SOMAVALORSALDOINTEGPORGRUPO" class="java.math.BigDecimal" resetType="Group" resetGroup="GRUPOCENTRAL" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorSaldoInteg}]]></variableExpression>
+	</variable>
+	<variable name="SOMAVALORSINGCENTRALPORGRUPO" class="java.math.BigDecimal" resetType="Group" resetGroup="GRUPOCENTRAL" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorParticipacaoBancoob}]]></variableExpression>
+	</variable>
+	<group name="GRUPOCENTRAL" isReprintHeaderOnEachPage="true" keepTogether="true">
+		<groupExpression><![CDATA[$F{idInstituicaoCentral}.toString() + $F{anoMesBase}.toString()]]></groupExpression>
+		<groupHeader>
+			<band height="56">
+				<textField>
+					<reportElement mode="Opaque" x="46" y="10" width="756" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numInstituicaoCentral} + " - " + $F{nomeInstituicaoCentral}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="GRUPOCENTRAL" pattern="¤ #,##0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="113" y="24" width="167" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorParticipacao}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="280" y="24" width="68" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Mês Base:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="348" y="24" width="454" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{mes}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="10" width="46" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ Central:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="41" width="413" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ Singular]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="413" y="41" width="161" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Valor da Singular na Central]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="574" y="41" width="105" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[% Participação]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="679" y="41" width="123" height="14" backcolor="#999999"/>
+					<box rightPadding="1">
+						<topPen lineWidth="1.0" lineStyle="Solid"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Valor Participação Indireta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="24" width="113" height="14" backcolor="#999999"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ Valor Participação:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<staticText>
+					<reportElement x="0" y="1" width="413" height="14"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ Total]]></text>
+				</staticText>
+				<textField pattern="###0.000000" isBlankWhenNull="true">
+					<reportElement x="574" y="1" width="105" height="14"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SOMAPERCPARTICIPACAOPORGRUPO} != null ? $V{SOMAPERCPARTICIPACAOPORGRUPO} : 0.00]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+					<reportElement x="679" y="1" width="123" height="14"/>
+					<box rightPadding="1">
+						<topPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SOMAVALORSINGCENTRALPORGRUPO} != null ? $V{SOMAVALORSINGCENTRALPORGRUPO} : 0.00]]></textFieldExpression>
+				</textField>
+				<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+					<reportElement x="413" y="1" width="161" height="14"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SOMAVALORSALDOINTEGPORGRUPO} != null ? $V{SOMAVALORSALDOINTEGPORGRUPO} : 0.00]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="75">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="802" height="74"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="413" y="40" width="42" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Ano:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="40" width="119" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ANO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="701" y="54" width="101" height="14"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="701" y="40" width="101" height="14"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Hora Emissão:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="348" y="55" width="65" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NUM_SINGULAR} == null ? "TODAS" : $P{NUM_SINGULAR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="701" y="20" width="101" height="14"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="11" y="11" width="104" height="30"/>
+				<box leftPadding="0"/>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{IMAGEM_SICOOB}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="701" y="6" width="101" height="14"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Data Emissão:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="6" width="451" height="14" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SISBR 2.0 - Conta Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="21" width="451" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Relatório Participação Indireta de Singular no Bancoob]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="40" width="68" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Central: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="55" width="68" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Singular: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="348" y="40" width="65" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NUM_CENTRAL} == null ? "TODAS" : $P{NUM_CENTRAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="413" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{numInstituicaoSingular} + " - " + $F{nomeInstituicaoSingular}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="413" y="0" width="161" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorSaldoInteg} != null ? $F{valorSaldoInteg} : 0.00]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="679" y="0" width="123" height="14"/>
+				<box rightPadding="1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorParticipacaoBancoob} != null ? $F{valorParticipacaoBancoob} : 0.00]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.000000" isBlankWhenNull="true">
+				<reportElement x="574" y="0" width="105" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{percParticipacao} != null ? $F{percParticipacao} : 0.00]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="10" width="44" height="1"/>
+			</line>
+			<line>
+				<reportElement x="105" y="10" width="522" height="1"/>
+			</line>
+			<line>
+				<reportElement x="701" y="9" width="101" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="44" y="0" width="61" height="20"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COD_RELATORIO}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="679" y="0" width="22" height="20"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="627" y="0" width="52" height="20"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="24">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="413" y="0" width="161" height="14"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SOMAVALORSALDOINTEG} != null ? $V{SOMAVALORSALDOINTEG} : 0.00]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="679" y="0" width="123" height="14"/>
+				<box rightPadding="1">
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{SOMAVALORSINGCENTRAL} != null ? $V{SOMAVALORSINGCENTRAL} : 0.00]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="413" height="14"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ Total Geral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="574" y="0" width="105" height="14"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

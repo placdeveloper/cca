@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="1500" height="200" layout="absolute" 
+	horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	
+	<Rotulo width="60" text="Classe:" y="0" />
+	<input:Combo x="110" y="0" width="1300" id="cmbClazz" enabled="true" name="cmbClazz" />
+	
+	<Rotulo width="60" text="Metodo:" y="30" />
+	<input:Combo x="110" y="30" width="1300" id="cmbMtds" enabled="true" name="cmbMtds" />
+	
+	<Rotulo width="60" text="Parametros:" y="60" />
+	<input:Texto x="110" width="500" y="60" id="valorParametros" />
+	
+	<containers:CanvasBancoob width="100%" y="130">
+		<containers:HBoxBancoob height="50" horizontalAlign="center" verticalAlign="middle">
+			<Botao id="btOk" label="OK" width="86" />
+		</containers:HBoxBancoob>
+	</containers:CanvasBancoob>
+	
+</Modulo>

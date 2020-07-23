@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	width="516" height="450" layout="absolute"
+	>
+	
+	<mx:Canvas id="configuracaoCapital" height="440" width="497" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="10" y="10">
+		<titulo:SubtituloView x="0" y="0" texto="DADOS" />
+		<Rotulo x="0" y="30" text="Código:" />
+		<bancoobInput:Texto x="100" y="30" id="idConfiguracaoCapital" width="100" restrict="0123456789.,\\" maxChars="5"/>
+		<Rotulo x="0" y="60" text="Agrupador:"/>
+		<bancoobInput:Combo x="100" y="60" width="200" id="cmbAgrupador" name="cmbAgrupador" labelField="descListaItem" editable="false"/>
+		<Rotulo x="0" y="90" text="Nome:"/>
+		<bancoobInput:Texto x="100" y="90" id="nomeConfiguracaoCapital" width="375" maxChars="200"/>
+		<Rotulo x="0" y="120" text="Descrição:"/>
+		<bancoobInput:TextoArea x="100" y="120" id="descConfiguracaoCapital" width="375" height="80" maxChars="200"/>	
+		<Rotulo x="0" y="210" text="Tipo Valor:"/>
+		<bancoobInput:Combo x="100" y="210" width="200" id="cmbTipoValorConfiguracaoCapital" name="cmbTipoValorConfiguracaoCapital" labelField="descListaItem" editable="false"/>
+		<Rotulo x="0" y="240" text="Ativo:"/>
+		<bancoobInput:Combo x="100" y="240" width="200" id="cmbSituacao" name="cmbSituacao" editable="false"/>
+		<Rotulo x="0" y="270" text="Administrado por:"/>
+		<bancoobInput:Combo x="100" y="270" width="200" id="cmbPerfilConfiguracaoCapital" name="cmbPerfilConfiguracaoCapital" labelField="descListaItem" editable="false"/>
+		<Rotulo x="0" y="300" text="Maior que Zero:"/>
+		<bancoobInput:Check x="100" y="300" id="bolMaiorZero" name="maiorZero" />
+		<Rotulo x="0" y="330" text="Mostrar no Relatório:"/>
+		<bancoobInput:Check x="100" y="330" id="bolMostrarRelatorio" name="mostrarRelatorio" />
+		<containers:HBoxBancoob height="42" width="460" x="15" y="361" horizontalAlign="right" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+			<Botao id="btOK" label="OK" width="89"/>
+			<Botao id="btCancelar" label="Cancelar" width="89"/>
+			<Botao id="btFechar" label="Fechar" width="89"/>
+		</containers:HBoxBancoob>	
+		
+	</mx:Canvas>	
+	
+</Modulo>

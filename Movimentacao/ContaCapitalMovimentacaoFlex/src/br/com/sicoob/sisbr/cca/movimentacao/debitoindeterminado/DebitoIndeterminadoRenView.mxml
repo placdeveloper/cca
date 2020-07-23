@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:selecaoGeral="br.com.bancoob.sisbr.componentes.selecaoGeral.*"
+	xmlns:renderCCA="br.com.sicoob.sisbr.cca.renderes.*"
+	width="800" height="630" layout="absolute">
+	
+	<containers:VBoxBancoob width="100%" height="100%" borderStyle="none" paddingTop="5" paddingBottom="5">
+		<navegacao:Tab id="tabNav" width="100%" height="100%">
+			
+			<!-- Aba Resumo -->
+			<containers:CanvasBancoob label="Resumo" id="tabResumo" width="100%" >
+				
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<titulo:SubtituloView texto="QUADRO GERAL DE ASSOCIADOS" width="100%" />
+				</containers:HBoxBancoob>
+				<grid:Grid x="0" y="30" width="395" id="gridQuadroGeral" doubleClickEnabled="true" height="90" left="10" right="10">
+					<grid:columns>
+						<grid:ColunaGrid id="tipoPessoa" headerText="Tipo Pessoa" dataField="tipoPessoa" width="60" textAlign="center" />
+						<grid:ColunaGrid id="comDebito" headerText="Com Débito" dataField="qtdPessoasComDebito" width="30" textAlign="center" />
+						<grid:ColunaGrid id="semDebito" headerText="Sem Débito" dataField="qtdPessoasSemDebito" width="30" textAlign="center" />
+						<grid:ColunaGrid id="totalAssociados" headerText="Total de Associados" dataField="totalAssociados" width="100" textAlign="center" />
+					</grid:columns>
+				</grid:Grid>
+				
+				<containers:HBoxBancoob width="395" paddingLeft="10" y="130">
+					<titulo:SubtituloView id="subTituloCCODiaFixo" width="100%" />
+				</containers:HBoxBancoob>
+				<grid:Grid x="0" y="160" width="390" id="gridDebCCODia" doubleClickEnabled="true" height="400" left="10">
+					<grid:columns>
+						<grid:ColunaGrid id="dia" headerText="Dia" dataField="dia" width="70" textAlign="center" />
+						<grid:ColunaGrid id="qtd" headerText="Quantidade" dataField="qtdPorDiaFixo" width="70" textAlign="center" />
+						<grid:ColunaGrid id="valorTotal" headerText="Valor Total" dataField="valorTotalPorDiaFixo" width="70" textAlign="center">
+							<grid:itemRenderer>
+								<mx:Component>
+									<mx:DataGridItemRenderer textAlign="right" paddingRight="5"/>
+								</mx:Component>
+							</grid:itemRenderer>
+						</grid:ColunaGrid>
+					</grid:columns>
+				</grid:Grid>
+				
+				<containers:HBoxBancoob width="365" y="130" right="10">
+					<titulo:SubtituloView id="subTituloCCOIntervalo" width="100%" />
+				</containers:HBoxBancoob>
+				<grid:Grid x="0" y="160" width="365" id="gridDebCCOIntervalo" doubleClickEnabled="true" height="255" right="10">
+					<grid:columns>
+						<grid:ColunaGrid id="intervaloDias" headerText="Intervalo Dias" dataField="intervaloDias" width="100" textAlign="center" />
+						<grid:ColunaGrid id="qtdIntervalo" headerText="Quantidade" dataField="qtdIntervalo" width="100" textAlign="center" />
+						<grid:ColunaGrid id="valorTotalIntervalo" headerText="Valor Total" dataField="valorTotalIntervalo" width="100" textAlign="center">
+							<grid:itemRenderer>
+								<mx:Component>
+									<mx:DataGridItemRenderer textAlign="right" paddingRight="5"/>
+								</mx:Component>
+							</grid:itemRenderer>
+						</grid:ColunaGrid>
+					</grid:columns>
+				</grid:Grid>
+				
+				<containers:HBoxBancoob width="365" y="420" right="10">
+					<titulo:SubtituloView texto="DÉBITOS VIA FOLHA" width="100%" />
+				</containers:HBoxBancoob>
+				<grid:Grid x="0" y="450" width="365" id="gridDebFolhaBanco" doubleClickEnabled="true" height="110" right="10">
+					<grid:columns>
+						<grid:ColunaGrid id="descFormaCalculo" headerText="Forma Cálculo" dataField="descFormaCalculo" width="100" textAlign="center" />
+						<grid:ColunaGrid id="qtdDebitos" headerText="Total de Débitos" dataField="qtdDebitos" width="100" textAlign="center" />
+					</grid:columns>
+				</grid:Grid>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Consulta/Manutencao --> 
+			<containers:CanvasBancoob id="tabManutencao" label="Consulta/Manutenção" width="100%">
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<titulo:SubtituloView texto="FILTROS" width="100%" />
+				</containers:HBoxBancoob>
+				
+				<validaveis:HBoxValidavel width="100%" paddingLeft="10" paddingRight="10" y="30">
+					<Rotulo width="80" text="Tipo Pesquisa:" />
+					<input:Combo width="150" id="cboTipoPesquisa" labelField="descListaItem" />
+					
+					<input:Texto visible="false" width="100%" />	
+					<Botao id="btConsultar" label="CONSULTAR" width="86" />
+				</validaveis:HBoxValidavel>
+				
+				<input:Texto x="260" y="30" id="valorTipoPeqsuisa" visible="true" width="420" focusEnabled="true" editable="true" permitirValoreNegativos="false" />
+				<input:Combo x="260" y="30" id="comboTipoPesquisa" visible="false" width="420" focusEnabled="true" includeInLayout="false"/>
+				
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="60">
+					<titulo:SubtituloView texto="ASSOCIADOS COM DÉBITO CADASTRADO" width="100%" />
+				</containers:HBoxBancoob>
+				<grid:Grid x="0" y="90" width="100%" id="gridDebitos" doubleClickEnabled="true" height="450" left="10" right="10">
+					<grid:columns>
+						<grid:ColunaGrid dataField="selecionado" id="selecionado" headerText="" textAlign="center" width="40" sortable="false"
+							 headerRenderer="br.com.sicoob.sisbr.cca.movimentacao.debitoindeterminado.DebitoIndeterminadoRenCheckBoxHeaderRenderer">
+							<grid:itemRenderer>
+								<mx:Component>
+									<renderCCA:DebitoIndeterminadoCheckBoxRenderer click="checkBoxClick(event)" />
+								</mx:Component>
+							</grid:itemRenderer>
+						</grid:ColunaGrid> 
+						<grid:ColunaGrid id="numContaCapital" headerText="Conta Capital" dataField="numContaCapital" width="80" textAlign="right" paddingRight="5" />
+						<grid:ColunaGrid id="nome" headerText="Nome" dataField="nome" width="150" textAlign="left" paddingLeft="5"/>
+						<grid:ColunaGrid id="tipoPessoaDeb" headerText="Tipo Pessoa" dataField="tipoPessoa" width="70" textAlign="left" />
+						<grid:ColunaGrid id="formaDebito" headerText="Forma Débito" dataField="formaDebito" width="70" textAlign="left" paddingLeft="5"/>
+						<grid:ColunaGrid id="valor" headerText="Valor" dataField="valor" width="70" textAlign="right" paddingRight="5" />
+						<grid:ColunaGrid id="dataPeriodoDeb" headerText="Data Débito" dataField="dataPeriodoDeb" width="70" textAlign="left" paddingLeft="5"/>
+					</grid:columns>
+				</grid:Grid>
+				
+				<!-- Botoes -->
+				<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="left" verticalAlign="middle" left="10">
+					<Botao id="btIncluir" label="INCLUIR" width="86" />
+					<Botao id="btAlterar" label="ALTERAR" width="86" enabled="false" />
+					<Botao id="btExcluir" label="EXCLUIR" width="86" enabled="false" />
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+					<Botao id="btRelatorio" label="RELATÓRIO" width="86" enabled="false" />
+					<Botao id="btFechar" label="FECHAR" width="86" />
+				</containers:HBoxBancoob>
+			</containers:CanvasBancoob>
+			
+		</navegacao:Tab>
+	</containers:VBoxBancoob>
+</Modulo>

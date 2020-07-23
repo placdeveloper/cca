@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+		   borderStyle="none" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="284" 
+		   xmlns:corporativo="br.com.sicoob.sisbr.componentes.cadastrounicoclientes.anotacoes.*"
+		   clipContent="false" 
+		   xmlns:bancoob="br.com.bancoob.componentes.*"
+		   xmlns:componentesPlataforma="br.com.bancoob.componentes.botoes.*">
+	
+	<componentesPlataforma:BotaoPlataforma id="btCancTodas" x="19" y="0" buttonMode="true" enabled="true" visible="true" useHandCursor="true" rotulo="Cancelar Todos Parc." imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/cancl_32.png')" />
+	
+	<componentesPlataforma:BotaoPlataforma id="botManutencaoParcelamento" x="19" y="60" buttonMode="true" enabled="true" visible="true" useHandCursor="true" rotulo="Manutenção" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/confg_32.png')" />	
+	
+	<componentesPlataforma:BotaoPlataforma id="botBaixaViaBanco" x="19" y="120" buttonMode="true" enabled="true" visible="true" useHandCursor="true" rotulo="Baixar Via Banco" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/down_32.png')" />
+
+	<componentesPlataforma:BotaoPlataforma id="botCancelamentoParcela" x="19" y="180" buttonMode="true" enabled="true" visible="true" useHandCursor="true" rotulo="Cancelamento da Parcela" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/undo_32.png')" />
+	
+</mx:Canvas>

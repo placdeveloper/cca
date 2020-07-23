@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>br.com.sicoob.cca</groupId>
+		<artifactId>cca-movimentacao</artifactId>
+		<version>1.1.70.38</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>cca-movimentacao-contacapital-fachada</artifactId>
+	<packaging>jar</packaging>
+	<name>CCA - Conta Capital Renovacao - ContaCapitalMovimentacaoFachada</name>
+
+
+	<dependencies>
+
+		<!-- JavaEE -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+
+		<!-- CCA -->
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-movimentacao-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-cadastro-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-comum-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Sicoob -->
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-was9</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework.portal</groupId>
+			<artifactId>prt-base-sisbr-java</artifactId>
+		</dependency>
+
+		<!-- Externos -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+
+		<!-- Testes -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+		</dependency>
+
+		<!-- Adicionado para executar corretamente os testes (classloader) -->
+		<dependency> 
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+		</dependency>
+		<dependency> 
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency> <!-- Adicionado para executar corretamente os testes (classloader) -->
+			<groupId>br.com.sicoob.cco</groupId>
+			<artifactId>cco-api-ejb</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

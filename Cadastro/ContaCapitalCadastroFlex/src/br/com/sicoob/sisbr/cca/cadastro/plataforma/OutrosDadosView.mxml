@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo xmlns:mx="http://www.adobe.com/2006/mxml" width="566" height="435" layout="absolute" 
+		xmlns="br.com.bancoob.componentes.*"
+		xmlns:bancoobInput="br.com.bancoob.componentes.input.*" 
+		xmlns:bancoobContainers="br.com.bancoob.componentes.containers.*" xmlns:sisbrSelecaoGeral="br.com.bancoob.sisbr.componentes.selecaoGeral.*" xmlns:selecaoContaCorrente="br.com.bancoob.sisbr.selecaoContaCorrente.*">
+	
+	<mx:Canvas height="142" x="5" y="149" width="556" cornerRadius="0" borderStyle="solid" borderThickness="3" clipContent="true" horizontalScrollPolicy="off" verticalScrollPolicy="off" borderColor="#ffffff" backgroundColor="#ffffff">
+		<mx:Image x="-1" y="-3" alpha=".7">
+			<mx:source>br/com/bancoob/imagens/fundoVerde.gif</mx:source>
+		</mx:Image>
+	</mx:Canvas>
+	
+	<Rotulo x="32" y="10" text="CLIENTE" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+	<Imagem y="14" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="91" right="10"/>
+	<Rotulo x="35" y="157" text="DADOS PARA DÉBITO" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+	<Imagem y="162" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="156" right="16"/>
+	<Imagem x="15" y="155" source="br/com/bancoob/imagens/icos/exp_16.png" alpha=".5"/>
+	<Imagem y="59" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="10" right="10"/>
+	<Imagem y="430" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" left="10" right="10"/>
+	<Imagem x="10" y="10" source="br/com/bancoob/imagens/icos/Cliente.png" alpha=".5"/>
+	<Rotulo x="32" y="33" text="Matrícula:"/>
+	<Rotulo x="32" y="71" text="Conta Corrente p/ Débito/Crédito:"/>
+	<bancoobInput:Texto x="99" y="31" width="128" id="txtMatricula" maxChars="35" tabIndex="2" enabled="false"/>
+	<Rotulo x="32" y="97" text="Débito com Prazo Indeterminado:"/>
+	<Rotulo x="32" y="121" text="Forma de Débito:"/>
+	<bancoobInput:Check x="235" y="97" id="chkUtilizaPrazo"/>
+	<bancoobInput:Combo x="235" y="119" id="cboCodFormaDebito" editable="false"/>
+	
+	
+	<!--    
+	<Rotulo x="10" y="380" text="Observação da Restrição:" id="lblObs"/>
+	<Rotulo x="273" y="380" text="Condição de Associação:"/>
+	-->
+	<Rotulo x="58" y="302" text="Participante Rateio"/>
+	<Rotulo x="58" y="354" text="Restrição p/ alterar a destinação do rateio" id="lblRestricao"/>
+	<Rotulo x="58" y="328" text="Direito a voto"/>
+	<!-- <Rotulo x="10" y="368" text="Matrícula na Empresa:" visible="false"/>
+	<bancoobInput:Combo x="147" y="366" id="cboMatricula" />
+	<Botao x="328" y="366" width="104" label="Inclui Matrícula" id="btnIncluiMatricula"/> -->
+	<bancoobInput:Check x="36" y="302" id="chkParticipaRateio"/>
+	<bancoobInput:Check x="36" y="354" id="chkRestricao"/>
+	<bancoobInput:Check x="36" y="328" id="chkVoto"/>
+	<bancoobContainers:VSBancoob y="174" height="112" right="10" left="10" id="VSDadosDebito">
+		<bancoobContainers:CanvasBancoob label="" width="100%" height="100%" id="VSDadosDebito_Conta">
+			<Rotulo x="32" y="64" text="PERÍODO" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+			<Imagem y="69" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" width="444" x="92"/>
+			<Imagem x="10" y="64" source="br/com/bancoob/imagens/icos/cal_16.png" alpha=".5"/>
+			<Rotulo x="32" y="9" text="Valor:"/>
+			<Rotulo x="32" y="35" text="Data Inicial Vencimento:"/>
+			<bancoobInput:Texto x="181" y="7" width="128" id="txtValorDeb" maxChars="14" tabIndex="2" tipoEntrada="1" casasDecimais="2"/>
+			<bancoobInput:Texto x="151" y="84" width="65" id="txtPeriodoProxDeb" maxChars="3" tabIndex="2" tipoEntrada="1" casasDecimais="0"/>
+			<bancoobInput:Texto x="392" y="84" width="65" id="txtDiaFixo" maxChars="3" tabIndex="2" tipoEntrada="1" casasDecimais="0"/>
+			<bancoobInput:Data x="181" y="33" id="dtmDataVencimentoDeb">
+			</bancoobInput:Data>
+			<bancoobInput:Radio x="32" y="86" label="Período em Dias" groupName="optGroupPeriodo" id="optPeriodoProxDeb" fontFamily="ArialEmbedded"/>
+			<bancoobInput:Radio x="288" y="86" label="Dia Base Fixo" groupName="optGroupPeriodo" id="optDiaFixo" fontFamily="ArialEmbedded"/>
+		</bancoobContainers:CanvasBancoob>
+		<bancoobContainers:CanvasBancoob label="" width="100%" height="116" id="VSDadosDebito_Folha">
+			<Rotulo x="31" y="4" text="Data Inicial Vencimento:"/>
+			<bancoobInput:Data x="180" y="1" id="dtmDataVencimentoDebFolha">
+			</bancoobInput:Data>
+			<Rotulo x="32" y="27" text="TIPO DE DÉBITO" fontWeight="bold" fontFamily="ArialEmbedded" alpha=".8"/>
+			<Imagem y="30" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" width="406" x="130"/>
+			<Imagem x="10" y="27" source="br/com/bancoob/imagens/icos/cal_16.png" alpha=".5"/>
+			<Imagem y="74" source="br/com/bancoob/imagens/imgsTelas/linha.swf" scaleContent="false" width="526" x="10"/>
+			<bancoobInput:Radio x="32" y="49" label="Cotas" groupName="optGroupTipoDebFolha" id="optCotas" fontFamily="ArialEmbedded"/>
+			<bancoobInput:Radio x="106" y="49" label="% de Salário do Associado" groupName="optGroupTipoDebFolha" id="optSalAssociado" fontFamily="ArialEmbedded"/>
+			<bancoobInput:Radio x="296" y="49" label="% de Salário Base" groupName="optGroupTipoDebFolha" id="optSalBase" fontFamily="ArialEmbedded"/>
+			<bancoobInput:Radio x="440" y="49" label="Valor Fixo" groupName="optGroupTipoDebFolha" id="optValorFixo" fontFamily="ArialEmbedded"/>
+			<sisbrSelecaoGeral:ProcurarGeral width="25" height="21" id="procRendas" tabIndex="8" visible="true" x="407" y="84">
+				<sisbrSelecaoGeral:icon>@Embed('br/com/bancoob/imagens/icos/srch_mini.png')</sisbrSelecaoGeral:icon>
+				<sisbrSelecaoGeral:disabledIcon>@Embed('br/com/bancoob/imagens/icos/srch_mini_desab.png')</sisbrSelecaoGeral:disabledIcon>
+			</sisbrSelecaoGeral:ProcurarGeral>
+			<mx:HBox x="10" y="84" width="526" verticalAlign="middle">
+				<Rotulo text="Quantidade de Cotas:" id="lblValorDebFolha"/>
+				<bancoobInput:Texto width="128" id="txtValorDebFolha" maxChars="14" tabIndex="2" tipoEntrada="1" casasDecimais="2"/>
+				<mx:Spacer width="40"/>
+				<Rotulo text="Valor:" id="lblValorCalculadoFolha"/>
+				<bancoobInput:Texto width="128" id="txtValorCalculadoFolha" maxChars="14" tabIndex="2" tipoEntrada="1" casasDecimais="2" enabled="false"/>
+			</mx:HBox>
+		</bancoobContainers:CanvasBancoob>
+	</bancoobContainers:VSBancoob>
+	<!--
+	<bancoobInput:TextoArea x="10" y="398" width="255" height="108" id="txtRestricao"/>
+	<bancoobInput:TextoArea x="273" y="398" width="255" height="108" id="txtCondicao" enabled="false"/>
+	-->
+	<Botao x="282" y="391" label="OK" width="86" id="btnOK" tabIndex="5"/>
+	<Botao x="376" y="391" label="Cancelar" width="86" id="btnCancelar" tabIndex="6"/>
+	<Botao x="470" y="391" label="Fechar" width="86" id="btnFechar" tabIndex="7"/>
+	<!--
+	<sisbrSelecaoGeral:ProcurarGeral x="534" y="398" width="25" height="21" id="procCondicao" tabIndex="8" toolTip="Clique para visualizar as condições de associação">
+	<sisbrSelecaoGeral:icon>@Embed('file:///C:/Bancoob/SISBR/Framework/FLEX/Portal/src/br/com/bancoob/imagens/icos/srch_mini.png')</sisbrSelecaoGeral:icon>
+	<sisbrSelecaoGeral:disabledIcon>@Embed('file:///C:/Bancoob/SISBR/Framework/FLEX/Portal/src/br/com/bancoob/imagens/icos/srch_mini_desab.png')</sisbrSelecaoGeral:disabledIcon>
+	</sisbrSelecaoGeral:ProcurarGeral>
+	-->
+	
+	<selecaoContaCorrente:ProcurarContaCorrente x="236" y="71" id="selecaoContaCorrente" width="171" txtNomeIsVisible="false" filtrarCCAtivas="true" filtrarCCBloqueadas="true" iDProdutoUtiliza="2">
+	</selecaoContaCorrente:ProcurarContaCorrente>
+	
+</Modulo>

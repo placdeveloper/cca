@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:bancoob="br.com.bancoob.componentes.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:renderes1="br.com.sicoob.sisbr.cca.renderes.*"	
+	width="800" height="520" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import br.com.bancoob.componentes.tabelapaginada.TabelaPaginadaUtils;
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob x="0" y="0" width="800" height="100%">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="FILTROS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="40">
+			<Rotulo width="115" height="18" text="Conta Capital:"/>
+			<cca:ProcurarContaCapital id="procurarCCA" idSituacaoContaCapital="99" idSituacaoCadastro="2"/>
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+			<Rotulo width="115" height="18" text="Tipo Parcelamento:"/>
+			<input:Combo width="150" id="cboTipoParcelamento" labelField="descListaItem" validarObrigatorio="true" editable="true" />
+		</validaveis:HBoxValidavel>					
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+			<Rotulo width="115" height="18" text="Situação Parcelamento:"/>
+			<input:Combo width="150" id="cboSituacaoParcelamento" labelField="descListaItem" validarObrigatorio="true" editable="true" />
+			<validaveis:HBoxValidavel width="499" paddingLeft="413" y="40">
+				<Botao id="btProcurar" width="86" height="22" label="PROCURAR" />
+			</validaveis:HBoxValidavel>
+		</validaveis:HBoxValidavel>					
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="PARCELAMENTOS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<grid:Grid id="gridParcelamento" x="10" y="150" width="780" height="100" editable="false"
+					   tabEnabled="true">
+				<grid:columns>
+					<grid:ColunaGrid id="numContaCapital" headerText="Conta Capital" dataField="numContaCapital" textAlign="left" width="100" />
+					<grid:ColunaGrid id="descTipoParcelamento" headerText="Tipo Parcelamento" dataField="descTipoParcelamento" textAlign="left" width="100"/>
+					<grid:ColunaGrid id="numParcelamento" headerText="Número" dataField="numParcelamento" textAlign="left" width="100"/>
+					<grid:ColunaGrid id="qtdParcelas" headerText="Qtd. Parcelas" dataField="qtdParcelas" textAlign="left" width="100"/>
+					<grid:ColunaGrid id="valorTotal" headerText="Valor Total (R$)" labelFunction="{TabelaPaginadaUtils.defaultValorRealLabelFunction}" dataField="valorTotal" textAlign="left" width="100"/>
+					<grid:ColunaGrid id="valorAberto" headerText="Valor Aberto (R$)" labelFunction="{TabelaPaginadaUtils.defaultValorRealLabelFunction}" dataField="valorAberto" textAlign="left" width="100"/>
+					<grid:ColunaGrid visible="false" id="idTipoParcelamento" headerText="idTipoParcelamento" dataField="idTipoParcelamento" textAlign="left" width="100"/>
+				</grid:columns>
+			</grid:Grid>
+		</containers:HBoxBancoob>
+		 
+		<containers:CanvasBancoob width="800" height="34">
+			<containers:HBoxBancoob paddingLeft="10" paddingRight="10" height="34" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0" paddingTop="10">
+				<Botao id="btCancTodas" label="CANCELAR TODOS PARCELAMENTOS" width="200" enabled="false"/>
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>		
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="PARCELAS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="800" height="137" paddingLeft="10" paddingRight="10">
+			<grid:Grid id="gridParcelas" x="10" y="150" width="780" height="136" editable="false"
+					   tabEnabled="true">
+				<grid:columns>
+					<grid:ColunaGrid dataField = "selecionado" id="selecionado" headerText="" textAlign="center" width="40" >
+						<grid:itemRenderer>
+							<mx:Component>
+								<renderes1:ParcelamentoCheckBoxRenderer/>
+							</mx:Component>
+						</grid:itemRenderer>
+					</grid:ColunaGrid> 
+					<grid:ColunaGrid id="numParcela" headerText="Parcela" dataField="numParcela" textAlign="left" width="55" />
+					<grid:ColunaGrid id="dataVencimento" headerText="Data de Vencimento" dataField="dataVencimento" textAlign="left" width="100"/>
+					<grid:ColunaGrid id="valorParcela" headerText="Valor Parcela (R$)" labelFunction="{TabelaPaginadaUtils.defaultValorRealLabelFunction}" dataField="valorParcela" textAlign="left" width="90"/>
+					<grid:ColunaGrid id="dataSituacao" headerText="Data Situação" dataField="dataSituacao" textAlign="left" width="85"/>
+					<grid:ColunaGrid id="descSituacao" headerText="Situação" dataField="descSituacao" textAlign="left" width="80"/>
+					<grid:ColunaGrid id="descFormaPagamento" headerText="Forma de Pagamento" dataField="descFormaPagamento" textAlign="left" width="125"/>
+					<grid:ColunaGrid id="idParcelamento" headerText="idParcelamento" dataField="idParcelamento" textAlign="left" width="100" visible="false" />				
+					<grid:ColunaGrid id="idSituacaoParcelamento" headerText="idSituacaoParcelamento" dataField="idSituacaoParcelamento" textAlign="left" width="100" visible="false" />				
+				</grid:columns>
+			</grid:Grid>		
+		</containers:HBoxBancoob>
+		<containers:CanvasBancoob width="800" height="44">
+			<containers:HBoxBancoob paddingLeft="10" paddingRight="10" height="44" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0">
+				<Botao id="btManutencao" label="MANUTENÇÃO" width="130" enabled="false"/>
+				<Botao id="btCancParcela" label="CANCELAR PARCELA" width="130" enabled="false"/>
+				<Botao id="btBaixar" label="BAIXAR VIA BANCO" width="130" enabled="false"/>
+				<Botao id="btFechar" label="FECHAR" width="130" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+		
+	</containers:VBoxBancoob>
+	<!-- Botoes -->
+	
+	<input:Check id="chkSelecionaTodos" x="31" y="325"/>
+	
+</Modulo>

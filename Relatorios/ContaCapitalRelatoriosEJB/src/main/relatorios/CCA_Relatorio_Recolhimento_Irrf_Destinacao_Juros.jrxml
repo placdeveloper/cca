@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CCA_Relatorio_Saldo_Atual" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<subDataset name="dataset1"/>
+	<parameter name="DESC_SIGLA_COOP" class="java.lang.String"/>
+	<parameter name="IMAGEM_SICOOB" class="java.awt.Image"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COD_RELATORIO" class="java.lang.String"/>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<parameter name="filtroCnpjEmpresa" class="java.lang.String"/>
+	<parameter name="filtroDescEmpresa" class="java.lang.String"/>
+	<parameter name="filtroNumContaCapital" class="java.lang.Integer"/>
+	<parameter name="filtroOrdenacao" class="java.lang.String"/>
+	<parameter name="filtroAnoBase" class="java.lang.String"/>
+	<parameter name="filtroNumPac" class="java.lang.Integer"/>
+	<parameter name="filtroTodos" class="java.lang.String"/>
+	<field name="recolhimentos" class="java.util.Collection"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="136">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="555" height="103"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="85" width="555" height="18" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{DESC_SIGLA_COOP}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="11" y="11" width="104" height="30"/>
+				<box topPadding="0" leftPadding="0"/>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{IMAGEM_SICOOB}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="427" y="13" width="57" height="12"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Data Emissão:]]></text>
+			</staticText>
+			<textField pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="484" y="33" width="71" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="149" y="11" width="252" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISBR 2.0 - Conta Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="33" width="57" height="12"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="7" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Hora Emissão:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="484" y="13" width="71" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="109" width="555" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{filtroCnpjEmpresa} != null && $P{filtroCnpjEmpresa}.length() == 14]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="2" rightPadding="5">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["<b>CNPJ: </b>" + $P{filtroCnpjEmpresa}.substring(0, 2) + "." + $P{filtroCnpjEmpresa}.substring(2, 5) + "." + $P{filtroCnpjEmpresa}.substring(5, 8) + "/" + $P{filtroCnpjEmpresa}.substring(8, 12) + "-" + $P{filtroCnpjEmpresa}.substring(12, 14) + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Empresa: </b>" + $P{filtroDescEmpresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="149" y="33" width="252" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Destinação de Juros / Recolhimento IRRF]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="64" y="55" width="420" height="18" isRemoveLineWhenBlank="true"/>
+				<box leftPadding="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["<b>Matrículas: </b>" + ($P{filtroTodos} ? "Todas" : $P{filtroNumContaCapital}.toString()) + " <b> Ordenação: </b>" + $P{filtroOrdenacao} + "<b> Ano Base: </b>" + $P{filtroAnoBase} + "<b> PA: </b>" + ($P{filtroNumPac} < 0 ? "Todos" : $P{filtroNumPac}.toString())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="22">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20"/>
+				<subreportParameter name="filtroCnpjEmpresa">
+					<subreportParameterExpression><![CDATA[$P{filtroCnpjEmpresa}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{recolhimentos})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["CCA_Relatorio_Recolhimento_Irrf_Destinacao_Juros_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="44" y="3" width="60" height="17"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{COD_RELATORIO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="11" width="44" height="1"/>
+			</line>
+			<line>
+				<reportElement x="527" y="8" width="28" height="1" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="374" y="0" width="100" height="17"/>
+				<box leftPadding="4">
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{USUARIO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="104" y="11" width="270" height="1" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="510" y="0" width="17" height="17"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="473" y="0" width="37" height="17"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="7" isBold="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pág."+$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

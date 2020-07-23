@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar-bnd xmlns="http://websphere.ibm.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-ejb-jar-bnd_1_1.xsd"
+	version="1.1">
+	
+	<session name="FechamentoContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.comum.negocio.servicos.interfaces.FechamentoContaCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalComum/FechamentoContaCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.comum.negocio.servicos.interfaces.FechamentoContaCapitalServicoRemote"
+			binding-name="ContaCapitalComum/FechamentoContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="PesquisaContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.comum.negocio.servicos.interfaces.PesquisaContaCapitalServicoLocal"
+			binding-name="ejblocal:ContaCapitalComum/PesquisaContaCapitalServico" />
+		<interface
+			class="br.com.sicoob.cca.comum.negocio.servicos.interfaces.PesquisaContaCapitalServicoRemote"
+			binding-name="ContaCapitalComum/PesquisaContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="ViewInstituicaoServicoEJB">
+		<interface
+			class="br.com.sicoob.cca.comum.negocio.servicos.interfaces.ViewInstituicaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalComum/ViewInstituicaoServico" />
+		<interface
+			class="br.com.sicoob.cca.comum.negocio.servicos.interfaces.ViewInstituicaoServicoRemote"
+			binding-name="ContaCapitalComum/ViewInstituicaoServicoRemote" />
+	</session>
+</ejb-jar-bnd>

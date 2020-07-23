@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+		   borderStyle="none" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="100%" clipContent="false"
+		   xmlns:bancoob="br.com.bancoob.componentes.*">
+	
+	<bancoob:Botao id="btFichaCadastral" x="19" y="0" buttonMode="true" useHandCursor="true" tabIndex="402">
+		<bancoob:downSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtFichaCadastralOver')</bancoob:downSkin>
+		<bancoob:overSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtFichaCadastral')</bancoob:overSkin>
+		<bancoob:upSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtFichaCadastralOver')</bancoob:upSkin>
+		<bancoob:disabledSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtFichaCadastralDesab')</bancoob:disabledSkin>
+	</bancoob:Botao>
+	<bancoob:Botao id="btOutrosDados" x="19" y="60" buttonMode="true" useHandCursor="true" tabIndex="403">
+		<bancoob:downSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtOutrosDadosOver')</bancoob:downSkin>
+		<bancoob:overSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtOutrosDadosNormal')</bancoob:overSkin>
+		<bancoob:upSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtOutrosDadosOver')</bancoob:upSkin>
+		<bancoob:disabledSkin>@Embed(source='br/com/bancoob/imagens/imgsTelas/botoesPlataforma.swf', symbol='conteudoBtOutrosDadosDesab')</bancoob:disabledSkin>
+	</bancoob:Botao>
+</mx:Canvas>

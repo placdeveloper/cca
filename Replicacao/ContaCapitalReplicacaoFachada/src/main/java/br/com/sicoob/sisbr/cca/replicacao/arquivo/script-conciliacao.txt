@@ -1,0 +1,148 @@
+IF EXISTS(
+	SELECT 
+		NumCooperativa
+	FROM 
+		INSTITUICAO 
+	WHERE 
+		NumCooperativa IN (
+		--COOPERATIVAS QUE ESTAO NA RELACAO
+					{cooperativas}           
+		)
+	) 
+BEGIN 
+	
+	BEGIN TRAN
+
+	DECLARE @maxnumseqlanc	AS INT
+	DECLARE @dataproduto	AS DATETIME
+	DECLARE @idusuario		AS VARCHAR(40)
+	DECLARE @numlotelanc	AS INT
+	DECLARE @msg			AS VARCHAR(100)
+
+	SET @numlotelanc = 9000
+	DECLARE @NUMCOOP AS INT = (SELECT NumCooperativa FROM Instituicao)
+	
+	SELECT TOP 1 @idusuario = IDUsuario 
+	FROM Usuario 
+	WHERE (IDUsuario like '%usradm%'+CAST(@NUMCOOP AS VARCHAR(4))+'%') 
+		or (IDUsuario like '%usrprod%'+CAST(@NUMCOOP AS VARCHAR(4))+'%'	)
+	
+	IF (@idusuario IS NULL)
+	BEGIN
+		SELECT TOP 1 @idusuario = IDUsuario 
+		FROM Usuario 
+		WHERE (IDUsuario like '%usrbancoo%'+CAST(@NUMCOOP AS VARCHAR(4))+'%' ) 
+		or (IDUsuario like '%usrfech%'+CAST(@NUMCOOP AS VARCHAR(4))+'%'	)
+	END	
+	
+	SELECT @dataproduto = DataAtualProd FROM Produto WHERE IDProduto = 2
+	SELECT @maxnumseqlanc = isnull(max(numseqlanc),0) FROM LancamentosCCapital WHERE DataLote = @dataproduto and NumLoteLanc = @numlotelanc
+
+	--CRIA CAPA LOTE CASO AINDA NAO EXISTA PARA A DATA DE HOJE
+	IF @maxnumseqlanc = 0
+	BEGIN
+		INSERT INTO CapaLoteCapital (ValorTotalLoteApu,
+		ValorTotalLoteInf, QtdLancApu, 
+		QtdLancInf, DataLote, NumLoteLanc)
+		(SELECT Valor = 0, Valor = 0, Qtd = 0, Qtd = 0,
+		DataLote = @dataproduto, 
+		NumLoteLanc = @numlotelanc)
+
+		IF (@@ERROR <> 0)
+		BEGIN
+			SET @msg = '1 - CAPALOTECAPITAL'
+			GOTO fimProblemas
+		END 
+	END
+
+	CREATE TABLE #TBSUBSC
+	(
+		ID INT identity,
+		NumCooperativa INT,
+		IDProduto INT,
+		NumMatricula INT,
+		IDTipoHistoricoLanc INT,
+		DescNumDocumento VARCHAR(10),
+		NumGRI VARCHAR(50),
+		ValorLanc money
+	)
+	
+	--CARGA DOS LANÇAMENTOS
+	
+	{script}   
+	
+
+	--ELIMINA AS DEMAIS COOPERATIVAS
+  	DELETE FROM #TBSUBSC WHERE NumCooperativa <> @NUMCOOP
+
+	--LANCAMENTOS DE CONTA CAPITAL
+	INSERT INTO LancamentosCCapital 
+	SELECT 
+		DataLote = @dataproduto,
+		NumLoteLanc = @numlotelanc,
+		NumSeqLanc = ID +@maxnumseqlanc,
+		DescNumDocumento,
+		ValorLanc,
+		BolAtualizado = 0,
+		NumMatricula,
+		IDProduto,
+		IDTipoHistoricoLanc,
+		IDProdutoEst = NULL,
+		IDTipoHistoricoEstorno =NULL,
+		IDUsuarioResp = @idusuario,
+		DataHoraInclusao = getdate(),
+		CodMotivoDevolucao =NULL,
+		DescObsDevolucao = NumGRI,
+		NULL,
+		NULL,
+		NULL
+	FROM	
+		#TBSUBSC
+
+
+	IF (@@ERROR <> 0)
+	BEGIN
+		SET @msg = '2 - LANCAMENTOSCCAPITAL'
+		GOTO fimProblemas
+	END
+
+	
+	--ATUALIZA CAPA LOTE COM OS VALORES LANCADOS
+	UPDATE 
+		CapaLoteCapital 
+	SET 
+		ValorTotalLoteApu = Valor,
+		ValorTotalLoteInf = Valor, 
+		QtdLancApu = Qtd,
+		QtdLancInf = Qtd
+	FROM
+		(SELECT 
+			Valor = SUM(Valorlanc), Qtd = COUNT(*) 
+		FROM
+			LancamentosCCapital 
+		WHERE 
+			DataLote = @DataProduto
+			and NumLoteLanc = @numlotelanc
+		) AS A
+	WHERE 
+		DataLote = @dataproduto
+		and NumLoteLanc = @NumLoteLanc
+
+	IF (@@ERROR <> 0)
+	BEGIN
+		SET @msg = '3 - CAPALOTECAPITAL'
+		GOTO fimProblemas
+	END
+
+	DROP TABLE #TBSUBSC
+
+COMMIT TRAN
+RETURN 
+
+fimProblemas:
+	RAISERROR(@msg, 16, 1)
+	ROLLBACK TRAN
+	RETURN
+END 
+
+

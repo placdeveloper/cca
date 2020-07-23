@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="750" height="450" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="750" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="FILTROS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<nivelInstituicao:NivelInstituicao width="100%" id="compNivelInst" _bolInstCentral="true" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="100">
+			<Rotulo width="100" text="Situação Cadastro:" />
+			<input:Combo width="220" id="cboSituacaoCadastro" labelField="descListaItem" editable="false" />
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" paddingRight="10" y="130">
+			<Rotulo width="100" text="Tipo Pesquisa:" />
+			<input:Combo width="220" id="cboTipoPesquisa" labelField="descListaItem" editable="false" />
+			<input:Texto id="valorTipoPeqsuisa" visible="true" width="100%" focusEnabled="true" />
+		</validaveis:HBoxValidavel>
+		
+		<containers:CanvasBancoob width="100%" y="150">
+			<containers:HBoxBancoob height="25" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btConsultar" label="CONSULTAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="170">
+			<titulo:SubtituloView texto="SELECIONE" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<bancoobGrid:Grid x="0" y="130" width="100%" id="grid" tabIndex="1" doubleClickEnabled="true" tabEnabled="true" height="200">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid id="numContaCapital" headerText="Conta Capital" dataField="numContaCapital" width="60" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="nomeCompleto" headerText="Nome" dataField="nomeCompleto" width="120" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="cpfCnpj" headerText="CPF/CNPJ" dataField="cpfCnpj" width="65" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="descSituacaoContaCapital" headerText="Situação Conta" dataField="descSituacaoContaCapital" width="50" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="descSituacaoAprovacaoCapital" headerText="Situação Cadastro" dataField="descSituacaoAprovacaoCapital" width="75" textAlign="left" />
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+		</containers:HBoxBancoob>
+		
+		<!-- Botoes -->			
+		<!-- Botoes -->
+		<!-- Botoes -->
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="left" verticalAlign="middle" left="10">
+				<Botao id="btIncluir" label="INCLUIR" width="86" />
+				<Botao id="btAlterar" label="ALTERAR" width="86" />
+				<Botao id="btExcluir" label="EXCLUIR" width="86" visible="false" includeInLayout="false" />
+				<Botao id="btVisualizar" label="VISUALIZAR" width="86" />
+			</containers:HBoxBancoob>
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

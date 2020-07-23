@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.NivelInstituicao"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.NivelInstituicaoView"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.CampoPesquisaCCA"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.CampoPesquisaCCAView"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.ProcurarContaCapital"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.SelecaoContaCapital"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.SelecaoContaCapitalFiltroPesquisaProxy"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.SelecaoContaCapitalPainelProcurar"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.SelecaoContaCapitalPainelProcurarView"/>
+    <classEntry path="br.com.sicoob.sisbr.cca.comum.pesquisa.SelecaoContaCapitalView"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

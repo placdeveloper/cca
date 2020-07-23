@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar-bnd xmlns="http://websphere.ibm.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-ejb-jar-bnd_1_1.xsd"
+	version="1.1">
+
+	<session name="ConciliacaoContabilJobServicoEJB">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/ConciliacaoContabilJobServicoRemote" />
+	</session>
+
+	<session name="ConciliacaoContabilStepServicoEJB">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/ConciliacaoContabilStepServicoRemote" />
+	</session>
+
+	<session name="PercentualSingularJobServicoEJB">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/PercentualSingularJobServicoRemote" />
+	</session>
+
+	<session name="PercentualSingularStepServicoEJB">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/PercentualSingularStepServicoRemote" />
+	</session>
+
+	<session name="LancamentoContabilSingularJobServicoEJB">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/LancamentoContabilSingularJobServicoRemote" />
+	</session>
+
+	<session name="LancamentoContabilSingularStepServicoEJB">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/LancamentoContabilSingularStepServicoRemote" />
+	</session>
+
+	<session name="ParticipacaoIndiretaCentralizadorJobServicoEJB">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/ParticipacaoIndiretaCentralizadorJobServicoRemote" />
+	</session>
+
+	<session name="ProcessamentoReplicacaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.processamento.negocio.servicos.interfaces.ProcessamentoReplicacaoServicoRemote"
+			binding-name="cca_processamento/ProcessamentoReplicacaoServicoRemote" />
+	</session>
+	
+	<session name="GestaoEmpresarialJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/GestaoEmpresarialJobRemote" />
+	</session>
+
+	<session name="GestaoEmpresarialStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/GestaoEmpresarialStepRemote" />
+	</session>
+	<session name="PLDContaCapitalJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/PLDContaCapitalJobRemote" />
+	</session>
+
+	<session name="PLDContaCapitalStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/PLDContaCapitalStepRemote" />
+	</session>
+	
+	<session name="ExpurgoReplicacaoContaCapitalJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/ExpurgoReplicacaoContaCapitalJobRemote" />
+	</session>
+
+	<session name="ExpurgoReplicacaoContaCapitalStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/ExpurgoReplicacaoContaCapitalStepRemote" />
+	</session>
+	
+		<session name="SaldoContaCapitalJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/SaldoContaCapitalJobRemote" />
+	</session>
+
+	<session name="SaldoContaCapitalStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/SaldoContaCapitalStepRemote" />
+	</session>
+	
+	<session name="IntegralizacaoOutrosBancosJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/IntegralizacaoOutrosBancosJobRemote" />
+	</session>
+
+	<session name="IntegralizacaoOutrosBancosStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/IntegralizacaoOutrosBancosStepRemote" />
+	</session>
+	
+	<session name="FechAtualizarDataJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechAtualizarDataJobRemote" />
+	</session>
+
+	<session name="FechAtualizarDataStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechAtualizarDataStepRemote" />
+	</session>
+	
+	<session name="FechMecanismoContabilJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechMecanismoContabilJobRemote" />
+	</session>
+
+	<session name="FechMecanismoContabilStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechMecanismoContabilStepRemote" />
+	</session>
+	
+	<session name="FechOperacoesFinanceirasContabilizacaoJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechOperacoesFinanceirasContabilizacaoJobRemote" />
+	</session>
+
+	<session name="FechOperacoesFinanceirasContabilizacaoStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechOperacoesFinanceirasContabilizacaoStepRemote" />
+	</session>
+	
+	<session name="FechGerarInfoCalculoVarJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechGerarInfoCalculoVarJobRemote" />
+	</session>
+
+	<session name="FechGerarInfoCalculoVarStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechGerarInfoCalculoVarStepRemote" />
+	</session>
+	
+	<session name="FechGravacaoSaldoCapSocialIntegralizadoJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechGravacaoSaldoCapSocialIntegralizadoJobRemote" />
+	</session>
+
+	<session name="FechGravacaoSaldoCapSocialIntegralizadoStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechGravacaoSaldoCapSocialIntegralizadoStepRemote" />
+	</session>
+	
+	<session name="FechGerarInfoAcumuladasJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechGerarInfoAcumuladasJobRemote" />
+	</session>
+
+	<session name="FechGerarInfoAcumuladasStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechGerarInfoAcumuladasStepRemote" />
+	</session>
+	
+	<session name="FechRelatoriosContaCapitalJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechRelatoriosContaCapitalJobRemote" />
+	</session>
+	<session name="FechRelSaldoContaCapitalStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechRelSaldoContaCapitalStepRemote" />
+	</session>
+	<session name="FechRelPosicaoDiariaCarteiraStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechRelPosicaoDiariaCarteiraStepRemote" />
+	</session>
+	<session name="FechRelLancContabilStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechRelLancContabilStepRemote" />
+	</session>
+	
+	<session name="FechRelResumoLancamentosStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechRelResumoLancamentosStepRemote" />
+	</session>
+	<session name="FechRelLancamentosSinteticoStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechRelLancamentosSinteticoStepRemote" />
+	</session>
+	<session name="FechRelLancamentosAnaliticoStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechRelLancamentosAnaliticoStepRemote" />
+	</session>
+	<session name="FechRelConciliacaoContabilStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechRelConciliacaoContabilStepRemote" />
+	</session>
+	
+	<session name="FechBaixarParcelaViaCCOJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechBaixarParcelaViaCCOJobRemote" />
+	</session>
+	<session name="FechBaixarParcelaViaCCOSQLStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechBaixarParcelaViaCCOSQLStepRemote" />
+	</session>
+	<session name="FechBaixarParcelaViaCCODB2Step">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechBaixarParcelaViaCCODB2StepRemote" />
+	</session>
+	<session name="FechBaixarIntegDebIndetJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechBaixarIntegDebIndetJobRemote" />
+	</session>
+	<session name="FechBaixarIntegDebIndetSQLStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechBaixarIntegDebIndetSQLStepRemote" />
+	</session>
+	<session name="FechBaixarIntegDebIndetDB2Step">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechBaixarIntegDebIndetDB2StepRemote" />
+	</session>	
+	<session name="FechGerarCalculoProvisaoJurosJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechGerarCalculoProvisaoJurosJobRemote" />
+	</session>
+	<session name="FechGerarCalculoProvisaoJurosStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechGerarCalculoProvisaoJurosStepRemote" />
+	</session>	
+	<session name="FechDestinacaoJurosJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechDestinacaoJurosJobRemote" />
+	</session>
+	<session name="FechDestinacaoJurosSQLStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechDestinacaoJurosSQLStepRemote" />
+	</session>
+	<session name="FechDestinacaoJurosDB2Step">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechDestinacaoJurosDB2StepRemote" />
+	</session>		
+	<session name="FechAtualizarMovimentoLancamentosJob">
+		<interface
+			class="br.com.sicoob.sws.api.servico.JobServico"
+			binding-name="cca_processamento/FechAtualizarMovimentoLancamentosJobRemote" />
+	</session>
+	<session name="FechAtualizarMovimentoLancamentosSQLStep">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechAtualizarMovimentoLancamentosSQLStepRemote" />
+	</session>
+	<session name="FechAtualizarMovimentoLancamentosDB2Step">
+		<interface
+			class="br.com.sicoob.sws.api.servico.StepServico"
+			binding-name="cca_processamento/FechAtualizarMovimentoLancamentosDB2StepRemote" />
+	</session>	
+</ejb-jar-bnd>

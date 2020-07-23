@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+		   borderStyle="none" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="284" 
+		   xmlns:corporativo="br.com.sicoob.sisbr.componentes.cadastrounicoclientes.anotacoes.*"
+		   clipContent="false" xmlns:componentes="br.com.bancoob.componentes.*"
+		   xmlns:componentesPlataforma="br.com.bancoob.componentes.botoes.*">
+	
+	<componentesPlataforma:BotaoPlataforma id="btEncerrar" x="19" y="0" enabled="false" visible="true" alpha=".2"
+										   rotulo="AGENDAR ENCERRAMENTO" imagem="@Embed(source='br/com/bancoob/imagens/icos/PNG/cancl_32.png')"/>
+	
+	<componentesPlataforma:BotaoPlataforma id="BtDesfazerEncerramento" x="19" y="0" buttonMode="true" useHandCursor="false" enabled="false" visible="false" alpha=".2"
+										   rotulo="DESFAZER AGENDAMENTO" imagem="@Embed(source='br/com/bancoob/imagens/undo_32.png')"/>
+	
+	<componentesPlataforma:BotaoPlataforma id="btBloquear" x="19" y="60" useHandCursor="false" enabled="false" alpha=".2" visible="true"
+										   rotulo="BLOQUEAR" imagem="@Embed(source='br/com/bancoob/imagens/icos/listaAplicativos/lock_32.png')"/>
+	
+	<componentesPlataforma:BotaoPlataforma id="btDesbloquear" x="19" y="60" buttonMode="true" useHandCursor="false" enabled="false" alpha=".2" visible="false"
+										   rotulo="DESBLOQUEAR" imagem="@Embed(source='br/com/bancoob/imagens/icos/listaAplicativos/ulock_32.png')"/>
+	
+	<componentesPlataforma:BotaoPlataforma id="btContrato" x="19" y="118" buttonMode="true" useHandCursor="false" enabled="true" alpha="1" visible="true"
+										   rotulo="CONTRATO" imagem="@Embed(source='br/com/bancoob/imagens/copy_32.png')"/>
+	
+	<!--<componentesPlataforma:BotaoPlataforma id="btAnotacoes" x="19" y="176" buttonMode="true" useHandCursor="false" enabled="true" alpha="1" visible="true"
+										   rotulo="ANOTAÇÕES" imagem="@Embed(source='br/com/bancoob/imagens/icos/modulos/edit_32.png')"/>-->
+	
+	<componentesPlataforma:BotaoPlataforma id="btFichaProposta" x="19" y="176" buttonMode="true" useHandCursor="false" enabled="false" alpha="1" visible="false"
+										   rotulo="FICHA PROPOSTA" imagem="@Embed(source='br/com/bancoob/imagens/editar_32.png')"/>
+</mx:Canvas>

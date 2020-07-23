@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	width="750" height="380" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="750">
+		<containers:VBoxBancoob width="100%" borderStyle="solid">
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<titulo:SubtituloView texto="INSTITUIÇÃO" width="100%" />
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<nivelInstituicao:NivelInstituicao width="100%" id="compNivelInst" _bolInstCentral="true" />
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingRight="10" paddingBottom="10">
+				<Botao id="btConsultar" label="Consultar" width="86" />
+			</containers:HBoxBancoob>
+		</containers:VBoxBancoob>
+		
+		<containers:VBoxBancoob width="100%" paddingLeft="10" paddingRight="10" borderStyle="solid">
+			<containers:HBoxBancoob width="100%">
+				<titulo:SubtituloView texto="COTA" width="100%" />
+			</containers:HBoxBancoob>
+			<validaveis:HBoxValidavel width="100%">
+				<Rotulo width="155" text="Valor da Cota (R$):" />
+				<input:Texto width="120" id="vlrCota" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true" />
+				
+				<Rotulo width="120" text="Quant. Mín Cotas:" />
+				<input:Texto width="120" id="numMinCota" tipoEntrada="1" casasDecimais="0" maxChars="4" permitirValoreNegativos="false" validarObrigatorio="true" />
+			</validaveis:HBoxValidavel>
+			
+			<containers:HBoxBancoob width="100%">
+				<titulo:SubtituloView texto="SUBSCRIÇÃO" width="100%" />
+			</containers:HBoxBancoob>
+			<validaveis:HBoxValidavel width="100%">
+				<Rotulo width="155" text="Valor Mínimo Subscrição (R$):" />
+				<input:Texto width="120" id="vlrMinSubs" editable="false" enabled="false" casasDecimais="2" textAlign="right" />
+				
+				<Rotulo width="120" text="Quant. Máx. Parcelas:" />
+				<input:Texto width="120" id="numMaxParcelas" tipoEntrada="1" casasDecimais="0" maxChars="3" permitirValoreNegativos="false" validarObrigatorio="true" />
+			</validaveis:HBoxValidavel>
+			
+			<containers:HBoxBancoob width="100%">
+				<titulo:SubtituloView texto="INTEGRALIZAÇÃO (à vista)" width="100%" />
+			</containers:HBoxBancoob>
+			<validaveis:HBoxValidavel width="100%">
+				<Rotulo width="155" text="Percentual Mínimo (%):" />
+				<input:Texto width="120" id="percMinInteg" tipoEntrada="1" casasDecimais="2" maxChars="5" permitirValoreNegativos="false" validarObrigatorio="true" />
+				
+				<Rotulo width="120" text="Valor Mínimo (R$):" />
+				<input:Texto width="120" id="vlrMinInteg" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true"  />
+			</validaveis:HBoxValidavel>
+			
+			<containers:CanvasBancoob width="100%">
+				<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="left" verticalAlign="middle">
+					<Botao id="btVisualizarHist" label="VISUALIZAR HISTÓRICO" width="150" />
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0">
+					<Botao id="btOk" label="OK" width="86" />
+					<Botao id="btCanc" label="CANCELAR" width="86" />
+					<Botao id="btFechar" label="FECHAR" width="86" />
+				</containers:HBoxBancoob>
+			</containers:CanvasBancoob>
+		</containers:VBoxBancoob>
+		
+	</containers:VBoxBancoob>
+	
+</Modulo>

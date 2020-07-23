@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<containers:HBoxBancoob xmlns:mx="http://www.adobe.com/2006/mxml"
+						xmlns:componentes="br.com.bancoob.componentes.*"
+						xmlns:containers="br.com.bancoob.componentes.containers.*"
+						xmlns:renderes="br.com.bancoob.componentes.renderes.*"		
+						xmlns:componentesPlataforma="br.com.bancoob.componentes.botoes.*"
+						width="100%" height="100%" creationComplete="init()"
+						horizontalAlign="center" horizontalScrollPolicy="off"
+						implements="mx.controls.listClasses.IDropInListItemRenderer"
+						verticalScrollPolicy="off">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.BaseListData;
+			import mx.core.Application;
+			
+			import br.com.bancoob.componentes.Alerta;
+			import br.com.bancoob.componentes.containers.Janela;
+			import br.com.sicoob.sisbr.cca.vo.DocumentoCapitalVO;
+			import br.com.sicoob.sisbr.ged.visualizacaoDocumentos.FabricaVisualizadorDocumentoGED;
+			import br.com.sicoob.sisbr.ged.visualizacaoDocumentos.IVisualizadorDocumentoGED;
+			import br.com.sicoob.sisbr.ged.visualizacaoDocumentos.ParametroVisualizadorDocumentoGED;
+			
+			
+			
+			[Bindable("dataChange")]
+			private var _listData:BaseListData;
+			
+			[Bindable]
+			private var exibir : Boolean = true;
+			
+			private var visualizadorDocumento:IVisualizadorDocumentoGED;
+			
+			private var janela:Janela = new Janela();
+			
+			private static const TITULO_JANELA:String = "Visualização de documentos GED";
+			private static const HINT_BOTAO:String = "Visualizar";
+			
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = value;
+			}
+			
+			public function init():void {
+				btnVisualizar.addEventListener(MouseEvent.CLICK, onClickAbrir);
+				btnExcluir.addEventListener(MouseEvent.CLICK, confirmExcluir);
+				
+				btnExcluir.visible = this.parentDocument is CadastroContaCapitalEdicao;
+			}
+			
+			private function onClickAbrir(event:MouseEvent):void {
+				var parametro:ParametroVisualizadorDocumentoGED = new ParametroVisualizadorDocumentoGED();
+				
+				parametro.idDocumento = data.idDocumento;
+				
+				var factory:FabricaVisualizadorDocumentoGED = new FabricaVisualizadorDocumentoGED();                          
+				factory.carregar(parametro, onCarregarModulo);
+			}
+			
+			private function onCarregarModulo(modulo:IVisualizadorDocumentoGED):void {
+				modulo.visualizarDocumento();
+				
+				janela.title = TITULO_JANELA;
+				janela.width = 950;
+				janela.height = 675;
+				
+				janela.addChild(modulo as DisplayObject);
+				janela.abrir(DisplayObject(Application.application), true);
+			}
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+			}
+			
+			private function confirmExcluir(event:MouseEvent):void {
+				Alerta.show("Deseja realmente excluir a Ficha Proposta?", "DECISÃO", Alerta.ALERTA_PERGUNTA, null, onClickExcluir);
+			}
+			
+			private function onClickExcluir(event:MouseEvent):void {
+				var docVO:DocumentoCapitalVO = (this.data as DocumentoCapitalVO);
+				
+				if(docVO != null && docVO.idDocumento > 0) {
+					(this.parentDocument as CadastroContaCapitalEdicao).excluirDocumento(docVO);
+				}
+			}
+		]]>
+	</mx:Script>
+	<mx:Image id="btnVisualizar" source="@Embed('br/com/bancoob/imagens/icones/icoLupa.png')" buttonMode="true" />
+	
+	<mx:Spacer width="5" />
+	
+	<mx:Image id="btnExcluir" source="@Embed('br/com/bancoob/imagens/deletesmall.png')" buttonMode="true" />
+	
+</containers:HBoxBancoob>

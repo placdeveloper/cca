@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobCampos="br.com.bancoob.componentes.campos.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:bancoob="br.com.bancoob.componentes.*" 
+	xmlns:selecaoGeral="br.com.bancoob.sisbr.componentes.selecaoGeral.*"
+	xmlns:renderCCA="br.com.sicoob.sisbr.cca.renderes.*"
+	width="580" height="180" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob width="100%" height="100%" borderStyle="none" paddingTop="10" paddingBottom="10">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="70">
+			<titulo:SubtituloView texto="TIPO DE ALTERAÇÃO" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="100">
+			<bancoobInput:Radio label="Valor" groupName="optGroupAlteracao" id="optValor" value="1" fontFamily="ArialEmbedded" />
+			<bancoobInput:Radio label="Data" groupName="optGroupAlteracao" id="optData" value="2" fontFamily="ArialEmbedded" /> 
+			<bancoobInput:Radio label="Valor e Data" groupName="optGroupAlteracao" id="optValorData" value="3" fontFamily="ArialEmbedded" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="130" id="hboxSubtituloDadosDebito">
+			<titulo:SubtituloView texto="DADOS PARA DÉBITO" id="subtituloDadosDebito" width="100%"  />
+		</containers:HBoxBancoob>
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="170" id="hboxDadosDebito">
+			<input:Check id="chkAplicarPercentual" doubleClickEnabled="false" label="Aplicar um percentual(%) sobre o valor anterior?" width="280"/>
+			
+			<Rotulo width="110" text="Valor para Débito (R$):" id="lblVlrDebito" textAlign="left"  />
+			<input:Texto width="160" id="vlrDebito" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" />
+			
+			<Rotulo width="110" text="Percentual(%):" id="lblPercentualDebito" textAlign="left"  />
+			<input:Texto width="160" id="percentualDebito" tipoEntrada="1" casasDecimais="0" maxChars="3" permitirValoreNegativos="false" />
+		</validaveis:HBoxValidavel>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="250" id="hboxSubtituloPeriodo">
+			<titulo:SubtituloView texto="PERÍODO (DIA FIXO)" width="100%" id="subtituloPeriodo"  />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="290" id="hboxDadosPeriodo">
+			<Rotulo width="130" id="lblDataInicialDeb" text="Data Inicial do Débito:" />
+			<bancoobCampos:CampoData width="90" id="dataInicialDeb" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" backgroundAlpha="0.1" backgroundColor="#000000" height="50" id="hxBoxInformacaoCCOIntervalo">
+			<containers:HBoxBancoob width="100%" paddingTop="2" paddingBottom="2" verticalAlign="middle">
+				<bancoob:Imagem alpha=".6" source="br/com/bancoob/imagens/icos/information.png" />
+				<RotuloMultLine fontWeight="bold" id="informacaoCCOIntervalo" />
+			</containers:HBoxBancoob>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" backgroundAlpha="0.1" backgroundColor="#000000" height="40" id="hboxInformacao">
+			<containers:HBoxBancoob width="100%" paddingTop="2" paddingBottom="2" verticalAlign="middle">
+				<bancoob:Imagem alpha=".6" source="br/com/bancoob/imagens/icos/information.png" />
+				<RotuloMultLine fontWeight="bold" id="informacaoGeral"  />
+			</containers:HBoxBancoob>
+		</containers:HBoxBancoob>
+		
+		<!-- Botoes -->
+		<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10" width="100%" y="330">
+			<Botao id="btOk" label="OK" width="86" />
+			<Botao id="btFechar" label="FECHAR" width="86" />
+		</containers:HBoxBancoob>		
+		
+	</containers:VBoxBancoob>
+</Modulo>

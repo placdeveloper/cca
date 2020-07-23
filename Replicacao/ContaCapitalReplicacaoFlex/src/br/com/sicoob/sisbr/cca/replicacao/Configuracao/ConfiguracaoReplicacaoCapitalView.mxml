@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:renderes="br.com.bancoob.componentes.renderes.*"
+	xmlns:renderConfig="br.com.sicoob.sisbr.cca.replicacao.Configuracao.*"
+	width="900" height="500" layout="absolute" xmlns:monitoracao="br.com.sicoob.sisbr.cca.replicacao.monitoracao.*">
+	
+	<containers:CanvasBancoob label="Tela Acesso" id="telaAcesso" width="100%">
+		<Rotulo text="CHAVE DE ACESSO:" x="400" y="100"/>
+		<input:Texto id="txtChaveAcesso" x="320" y="120" width="250"/>
+		<Botao id="btChaveAcesso" label="Validar" width="90" x="405" y="150"/>
+	</containers:CanvasBancoob>
+	
+	<containers:VBoxBancoob id="telaConfiguracao" width="100%" height="100%" borderStyle="none" visible="false" includeInLayout="false">
+		<navegacao:Tab id="tabNav" width="100%" height="100%" paddingLeft="10" paddingRight="10" focusEnabled="false">
+			
+			<!-- Aba Replicação -->
+			<containers:CanvasBancoob label="Replicação" id="tabReplicacao" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="PARÂMETROS" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<bancoobGrid:Grid width="100%" id="grdConfigucacao" doubleClickEnabled="true" tabEnabled="true" height="200">
+							<bancoobGrid:columns>
+								<bancoobGrid:ColunaGrid id="idConfiguracaoReplicacaoCCA" headerText="Código" dataField="idConfiguracaoReplicacaoCCA" width="20" textAlign="left"/>
+								<bancoobGrid:ColunaGrid id="nomeConfiguracaoReplicacao" headerText="Nome" dataField="nomeConfiguracaoReplicacao" width="80" textAlign="left"/>
+								<bancoobGrid:ColunaGrid id="descConfiguracaoReplicacao" headerText="Valor" dataField="descConfiguracaoReplicacao" width="60" textAlign="left"/>
+							</bancoobGrid:columns>
+						</bancoobGrid:Grid>		
+						
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<Rotulo text="Valor:" />
+						<input:TextoArea width="100%" id="txtDescConfiguracaoReplicacao" somenteMaiusculas="false" height="100"/>	
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="10">
+						<Botao id="btRecarregar" label="RECARREGAR" width="90"/>
+						<Botao id="btOK" label="Salvar" width="86"/>
+					</containers:HBoxBancoob>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Coop. Piloto -->
+			<containers:CanvasBancoob label="Coop. Piloto" id="tabConfigCoopPiloto" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="CONFIGURAÇÃO DE COOPERATIVAS PILOTO"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<Rotulo width="80" text="Central:"/>
+						<input:Combo width="100%" id="cmbCentral" labelField="descListaItem"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<Rotulo text="Singulares:"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<mx:List id="lstSingularesOrigem" height="200" width="405" labelField="descListaItem" allowMultipleSelection="true"/>
+						<containers:VBoxBancoob paddingTop="50">
+							<Botao id="btTransferirOrigemDestino" label="&gt;" width="50"/>
+							<Botao id="btTransferirDestinoOrigem" label="&lt;" width="50"/>
+						</containers:VBoxBancoob>
+						<mx:List id="lstSingularesDestino" height="200" width="405" labelField="descListaItem" allowMultipleSelection="true"/>
+					</containers:HBoxBancoob>	
+					
+					<containers:HBoxBancoob width="100%" paddingTop="10">
+						<Rotulo text="Valor:" />
+						<input:TextoArea width="100%" id="txtDescConfigCoopPiloto" editable="false" enabled="false" height="100"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="10">
+						<Botao id="btSalvarCoopPiloto" label="SALVAR" width="86" />
+					</containers:HBoxBancoob>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Piloto -->
+			<containers:CanvasBancoob label="Piloto" id="tabPiloto" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="ESCOLHA AS COOPERATIVAS PARA PREPARAÇÃO"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<Rotulo width="80" text="Central:"/>
+						<input:Combo width="100%" id="cmbCentralPP" labelField="descListaItem"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<Rotulo text="Singulares:"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<mx:List id="lstSingularesOrigemPP" height="90" width="405" labelField="descListaItem" allowMultipleSelection="true"/>
+						<containers:VBoxBancoob paddingTop="20">
+							<Botao id="btTransferirOrigemDestinoPP" label="&gt;" width="50"/>
+							<Botao id="btTransferirDestinoOrigemPP" label="&lt;" width="50"/>
+						</containers:VBoxBancoob>
+						<mx:List id="lstSingularesDestinoPP" height="90" width="405" labelField="descListaItem" allowMultipleSelection="true"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" horizontalAlign="right">
+						<Botao id="btProcurarPiloto" label="CONSULTAR" width="95" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="RESULTADO"/>
+					</containers:HBoxBancoob>
+					
+					<navegacao:Tab id="tabNavPP" width="100%" height="100%" paddingLeft="10" paddingRight="10" focusEnabled="false">
+						
+						<containers:CanvasBancoob label="COOPERATIVAS" id="tabPP0" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdPP0" height="150" sortableColumns="false">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="20" >
+												<bancoobGrid:itemRenderer>
+													<mx:Component>
+														<renderConfig:PilotoCheckBoxRenderer/>
+													</mx:Component>
+												</bancoobGrid:itemRenderer>
+											</bancoobGrid:ColunaGrid>
+											<bancoobGrid:ColunaGrid headerText="CENTRAL" dataField="central" textAlign="left" width="200"/>
+											<bancoobGrid:ColunaGrid headerText="COOPERATIVA" dataField="descCoop" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<containers:CanvasBancoob label="DB2 (DELETE)" id="tabPP1" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdPP1" height="150" sortableColumns="false">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="20">
+												<bancoobGrid:itemRenderer>
+													<mx:Component>
+														<renderConfig:PilotoCheckBoxRenderer/>
+													</mx:Component>
+												</bancoobGrid:itemRenderer>
+											</bancoobGrid:ColunaGrid>
+											<bancoobGrid:ColunaGrid headerText="COOP" dataField="numCoop" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="CCA" dataField="db2.CONTACAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="PROP" dataField="db2.PROPOSTASUBSCRICAO" />
+											<bancoobGrid:ColunaGrid headerText="DEB" dataField="db2.DEBITOCONTACAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="DOC" dataField="db2.DOCUMENTOCAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="PARC" dataField="db2.PARCELAMENTOCONTACAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="LANC" dataField="db2.LANCAMENTOCONTACAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="HLANC" dataField="db2.HISTLANCAMENTOCONTACAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="HDEB" dataField="db2.HISTDEBITOCONTACAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="HCCA" dataField="db2.HISTCONTACAPITAL" />
+											<bancoobGrid:ColunaGrid headerText="HPROP" dataField="db2.HISTPROPOSTASUBSCRICAO" />
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<containers:CanvasBancoob label="SQL (UPDATE)" id="tabPP2" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdPP2" height="150" sortableColumns="false">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="20" >
+												<bancoobGrid:itemRenderer>
+													<mx:Component>
+														<renderConfig:PilotoCheckBoxRenderer/>
+													</mx:Component>
+												</bancoobGrid:itemRenderer>
+											</bancoobGrid:ColunaGrid>
+											<bancoobGrid:ColunaGrid headerText="COOP" dataField="numCoop" textAlign="left" width="50"/>
+											<bancoobGrid:ColunaGrid headerText="ContaCapital" dataField="sql.ContaCapital" width="150"/>
+											<bancoobGrid:ColunaGrid headerText="LancamentosCCapital" dataField="sql.LancamentosCCapital" width="150"/>
+											<bancoobGrid:ColunaGrid headerText="ParcelamentoCCA" dataField="sql.ParcelamentoCCA" width="150"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<containers:CanvasBancoob label="REPLICACAO SQL (DELETE)" id="tabPP3" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdPP3" height="150" sortableColumns="false">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="20" >
+												<bancoobGrid:itemRenderer>
+													<mx:Component>
+														<renderConfig:PilotoCheckBoxRenderer/>
+													</mx:Component>
+												</bancoobGrid:itemRenderer>
+											</bancoobGrid:ColunaGrid>
+											<bancoobGrid:ColunaGrid headerText="COOP" dataField="numCoop" textAlign="left" width="50"/>
+											<bancoobGrid:ColunaGrid headerText="ReplicacaoCCA" dataField="sql.ReplicacaoCCA" width="500"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+					</navegacao:Tab>
+					
+					<containers:CanvasBancoob width="100%">
+						<containers:HBoxBancoob horizontalAlign="left" bottom="0" left="0">
+							<input:Check id="chkSelecionarTodasPP" label="Selecionar todas"/>
+						</containers:HBoxBancoob>
+						<containers:HBoxBancoob horizontalAlign="right" bottom="0" right="0">
+							<Botao id="btCSVPiloto" label="CSV" width="50" enabled="false" name="csv-grdPP0"/>
+							<Botao id="btPrepararPiloto" label="PREPARAR PILOTO" width="120" />
+						</containers:HBoxBancoob>
+					</containers:CanvasBancoob>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Bat. SQL x DB2 -->
+			<containers:CanvasBancoob label="Bat. SQL x DB2" id="tabBatimento" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+				
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="CONSULTAR DIVERGÊNCIAS SQL X DB2"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<input:Radio id="optRelBatSingular" groupName="optRelBat" value="1" label="Informar cooperativa" selected="true"/>
+						<input:Radio id="optRelBatLista" groupName="optRelBat" value="2" label="Selecionar lista"/>
+						<containers:HBoxBancoob width="100%" horizontalAlign="right">
+							<Botao id="btRelDivergencias" label="RELATÓRIO DETALHADO" width="150" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob id="boxProgressBatimento" width="100%" visible="false" includeInLayout="false">
+						<mx:ProgressBar id="progressoBatimento" labelPlacement="center" trackHeight="22"
+										minimum="0" visible="true" maximum="100" label="Progresso: 0/0" 
+										direction="right" mode="manual" width="180" paddingLeft="10" paddingRight="10"/>
+						<Rotulo text="Cooperativas com divergência: " />
+						<input:Texto width="200" id="txtCooperativasComDivergencias" />
+					</containers:HBoxBancoob>
+						
+					<containers:HBoxBancoob width="100%">
+						<Rotulo text="Cooperativa(s):" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<input:Texto width="200" id="txtCooperativaDivergencias" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob id="lstCoopRel" width="100%" visible="false" includeInLayout="false">
+						<mx:List id="lstCoopRelOrigem" height="200" width="405" labelField="descListaItem" allowMultipleSelection="true"/>
+						<containers:VBoxBancoob paddingTop="50">
+							<Botao id="btTransferirOrigemDestinoRel" label="&gt;" width="50"/>
+							<Botao id="btTransferirDestinoOrigemRel" label="&lt;" width="50"/>
+						</containers:VBoxBancoob>
+						<mx:List id="lstCoopRelDestino" height="200" width="405" labelField="descListaItem" allowMultipleSelection="true"/>
+					</containers:HBoxBancoob>	
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="CONSULTAR CONTAS COM SALDOS DIVERGENTES SQL X DB2"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob>
+						<Rotulo text="Cooperativa:" />
+						<input:Texto width="80" id="txtCooperativaBatimentoSaldos" restrict="0-9" maxChars="4" />
+						<Botao id="btExecBatimentoSaldos" width="33" label="" height="21">
+							<icon>@Embed('br/com/bancoob/imagens/icos/srch_mini.png')</icon>
+							<disabledIcon>@Embed('br/com/bancoob/imagens/icos/srch_mini_desab.png')</disabledIcon>
+						</Botao>	
+						<Botao id="btCSVSaldo" label="CSV" width="50" enabled="false" name="csv-grdBatimentoSaldos" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<bancoobGrid:Grid width="100%" id="grdBatimentoSaldos" height="200">
+							<bancoobGrid:columns>
+								<bancoobGrid:ColunaGrid headerText="Matrícula" dataField="numMatricula" textAlign="left" width="60"/>
+								<bancoobGrid:ColunaGrid headerText="SaldoAtuInteg" dataField="valorSaldoIntegLegado" textAlign="left"/>
+								<bancoobGrid:ColunaGrid headerText="SALDOINTEG" dataField="valorSaldoInteg" textAlign="left"/>
+								<bancoobGrid:ColunaGrid headerText="SaldoAtuSubsc" dataField="valorSaldoSubscLegado" textAlign="left"/>
+								<bancoobGrid:ColunaGrid headerText="SALDOSUBSC" dataField="valorSaldoSubsc" textAlign="left"/>
+								<bancoobGrid:ColunaGrid headerText="SaldoAtuDevolver" dataField="valorSaldoDevolLegado" textAlign="left"/>
+								<bancoobGrid:ColunaGrid headerText="SALDODEVOL" dataField="valorSaldoDevol" textAlign="left"/>
+								<bancoobGrid:ColunaGrid headerText="SaldoBloqInt" dataField="valorSaldoBloqLegado" textAlign="left"/>
+								<bancoobGrid:ColunaGrid headerText="SALDOBLOQ" dataField="valorSaldoBloq" textAlign="left"/>
+							</bancoobGrid:columns>
+						</bancoobGrid:Grid>
+					</containers:HBoxBancoob>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Conciliação -->
+			<containers:CanvasBancoob label="Conciliação" id="tabConciliacao" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="ESCOLHA UMA COOPERATIVA PARA CONCILIAR"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob>
+						<Rotulo text="Cooperativa:" />
+						<input:Texto width="80" id="txtCooperativaConciliacao" restrict="0-9" maxChars="4" />
+						<Botao id="btExecConciliacao" width="33" label="" height="21">
+							<icon>@Embed('br/com/bancoob/imagens/icos/srch_mini.png')</icon>
+							<disabledIcon>@Embed('br/com/bancoob/imagens/icos/srch_mini_desab.png')</disabledIcon>
+						</Botao>	
+						<mx:ProgressBar id="progressoConciliacao" labelPlacement="center" trackHeight="22"
+										minimum="0" visible="true" maximum="100" label="Progresso: 0/0" 
+										direction="right" mode="manual" width="160" paddingLeft="10" paddingRight="10"/>
+					</containers:HBoxBancoob>
+					
+					<navegacao:Tab id="tabNavConc" width="100%" height="100%" paddingLeft="10" paddingRight="10" focusEnabled="false">
+						
+						<!-- Aba Lancamentos -->
+						<containers:CanvasBancoob label="Lanç. não atualizados" id="tabConcLancamentos" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="LANÇAMENTOS NÃO ATUALIZADOS (BOLATUALIZADO = 0)"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcLanc" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="DataLote" dataField="dataLote" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumLoteLanc" dataField="numLoteLanc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumSeqLanc" dataField="numSeqLanc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorLanc" dataField="valorLanc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumMatricula" dataField="numMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="Id Hist." dataField="idHistorico" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="DataHoraInclusao" dataField="dataHoraInclusao" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btConcCSV1" label="CSV" width="50" enabled="false" name="csv-grdConcLanc" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba Parcela sem Subscricao -->
+						<containers:CanvasBancoob label="Parc. s/ Subsc." id="tabConcParcSemSubsc" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="PARCELA SEM SUBSCRIÇÃO (GERAR SCRIPT DE SUBSCRIÇÃO)"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcParcSemSubs" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumMatricula" dataField="numMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuSubsc" dataField="valorSaldoAtuSubsc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorLancSubscDoDia" dataField="valorLancSubscDoDia" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuInteg" dataField="valorSaldoAtuInteg" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorParcEmAberto" dataField="valorParcEmAberto" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorLancIntegDoDia" dataField="valorLancIntegDoDia" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorDiferenca" dataField="valorDiferenca" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btGerarScript1" label="GERAR SCRIPT" width="100" enabled="false"/>
+									<Botao id="btConcCSV2" label="CSV" width="50" enabled="false" name="csv-grdConcParcSemSubs" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba Subscricao sem Parcela -->
+						<containers:CanvasBancoob label="Subsc. s/ Parc." id="tabConcSubscSemParc" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="SUBSCRIÇÃO SEM PARCELA (GERAR SCRIPT DE BAIXA DE SUBSCRIÇÃO)"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcSubsSemParc" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumMatricula" dataField="numMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuSubsc" dataField="valorSaldoAtuSubsc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorLancSubscDoDia" dataField="valorLancSubscDoDia" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuInteg" dataField="valorSaldoAtuInteg" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorParcEmAberto" dataField="valorParcEmAberto" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorLancIntegDoDia" dataField="valorLancIntegDoDia" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorDiferenca" dataField="valorDiferenca" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btGerarScript2" label="GERAR SCRIPT" width="100" enabled="false"/>
+									<Botao id="btConcCSV3" label="CSV" width="50" enabled="false" name="csv-grdConcSubsSemParc" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba Duplicidades -->
+						<containers:CanvasBancoob label="Duplicidades" id="tabConcDuplicidades" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="CLIENTES COM MAIS DE UMA MATRÍCULA ATIVA"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcDuplicidade" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Central" dataField="central" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumCliente" dataField="numCliente" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumMatricula" dataField="numMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="DataMatricula" dataField="dataMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuInteg" dataField="valorSaldoAtuInteg" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuSubsc" dataField="valorSaldoAtuSubsc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuDevol" dataField="valorSaldoAtuDevol" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoBloqInt" dataField="valorSaldoBloqInt" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btConcCSV4" label="CSV" width="50" enabled="false" name="csv-grdConcDuplicidade" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba CapaLote -->
+						<containers:CanvasBancoob label="CapaLote" id="tabConcCapaLote" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="DIVERGÊNCIAS - CAPALOTE X LANÇAMENTOS"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcCapaLote" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumLoteLanc" dataField="numLoteLanc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorCapaLote" dataField="valorCapaLote" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="QtdCapaLote" dataField="qtdCapaLote" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorLancamentos" dataField="valorLancamentos" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="QtdLancamentos" dataField="qtdLancamentos" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btGerarScriptCapaLote" label="GERAR SCRIPT" width="100" enabled="false"/>
+									<Botao id="btConcCSV5" label="CSV" width="50" enabled="false" name="csv-grdConcCapaLote" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba Saldos Negativos -->
+						<containers:CanvasBancoob label="Saldos Neg." id="tabConcSaldosNegativos" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="SALDOS NEGATIVOS"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcSaldosNegativos" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumMatricula" dataField="numMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="CodGrupoHist" dataField="codGrupoHist" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="Total" dataField="valorLanc" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btConcCSV6" label="CSV" width="50" enabled="false" name="csv-grdConcSaldosNegativos" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba Parcelamento de Devolução sem Saldo -->
+						<containers:CanvasBancoob label="Parc. Dev. s/ Saldo" id="tabConcParcDevSemSaldo" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="PARCELAMENTO DE DEVOLUÇÃO SEM SALDO"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcParcDevSemSaldo" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumMatricula" dataField="numMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="ValorParcEmAberto" dataField="valorParcEmAberto" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="-" dataField="auxiliar1" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="(" dataField="auxiliar2" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuDevol" dataField="valorSaldoAtuDevol" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="+" dataField="auxiliar3" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="LancDevDoDia" dataField="valorLanc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText=")" dataField="auxiliar4" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="=" dataField="auxiliar5" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="Diferença" dataField="valorDiferenca" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btConcCSV7" label="CSV" width="50" enabled="false" name="csv-grdConcParcDevSemSaldo" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba Devolução sem Parcelamento - Ativos -->
+						<containers:CanvasBancoob label="Dev. s/ Parc. - Ativos" id="tabConcDevSemParcAtivos" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								<containers:HBoxBancoob width="100%">
+									<titulo:SubtituloView texto="DEVOLUÇÃO SEM PARCELAMENTO - ATIVOS"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdConcDevSemParcAtivos" height="200">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Cooperativa" dataField="cooperativa" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="NumMatricula" dataField="numMatricula" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="(" dataField="auxiliar1" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="ValorSaldoAtuDevol" dataField="valorSaldoAtuDevol" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="+" dataField="auxiliar2" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="LancDevDoDia" dataField="valorLanc" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText=")" dataField="auxiliar3" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="-" dataField="auxiliar4" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="ValorParcEmAberto" dataField="valorParcEmAberto" textAlign="left"/>
+											<bancoobGrid:ColunaGrid headerText="=" dataField="auxiliar5" textAlign="left" width="20"/>
+											<bancoobGrid:ColunaGrid headerText="Diferença" dataField="valorDiferenca" textAlign="left"/>
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5" paddingBottom="10">
+									<Botao id="btConcCSV8" label="CSV" width="50" enabled="false" name="csv-grdConcDevSemParcAtivos" />
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+					</navegacao:Tab>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Expurgo -->
+			<containers:CanvasBancoob label="Expurgo" id="tabExpurgo" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="EXPURGO DA REPLICAÇÃO (REGISTROS IDSITUACAOREPLICACAO = 0, FORA DO PILOTO)"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob>
+						<Rotulo text="Cooperativa:" />
+						<input:Texto width="80" id="txtCooperativaExpurgo" restrict="0-9" maxChars="4" />
+						<Botao id="btConsultarExpurgo" width="33" label="" height="21">
+							<icon>@Embed('br/com/bancoob/imagens/icos/srch_mini.png')</icon>
+							<disabledIcon>@Embed('br/com/bancoob/imagens/icos/srch_mini_desab.png')</disabledIcon>
+						</Botao>	
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="RESULTADO DA CONSULTA"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<bancoobGrid:Grid width="100%" id="grdExpurgo" height="200">
+							<bancoobGrid:columns>
+								<bancoobGrid:ColunaGrid dataField="selecionado" id="colExpurgoSelecionado" headerText="" textAlign="center" width="20" >
+									<bancoobGrid:itemRenderer>
+										<mx:Component>
+											<renderes:CheckBoxRenderer/>
+										</mx:Component>
+									</bancoobGrid:itemRenderer>
+								</bancoobGrid:ColunaGrid>
+								<bancoobGrid:ColunaGrid id="colExpurgoNumCoop" headerText="Cooperativa" dataField="numCooperativa" textAlign="left" width="60"/>
+								<bancoobGrid:ColunaGrid id="colExpurgoIdInst" headerText="IdInstituição" dataField="idInstituicao" textAlign="left" width="60"/>
+								<bancoobGrid:ColunaGrid id="colExpurgoNomeCoop" headerText="Nome Cooperativa" dataField="nomeCooperativa" textAlign="left"/>
+								<bancoobGrid:ColunaGrid id="colExpurgoQuantidade" headerText="Quantidade" dataField="quantidade" textAlign="left" width="60"/>
+							</bancoobGrid:columns>
+						</bancoobGrid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:CanvasBancoob width="100%">
+						<containers:HBoxBancoob horizontalAlign="left" bottom="0" left="0">
+							<input:Check id="chkSelecionarTodas" label="Selecionar todas"/>
+						</containers:HBoxBancoob>
+						<containers:HBoxBancoob horizontalAlign="right" bottom="0" right="0">
+							<Botao id="btExpurgar" label="EXPURGAR" width="90" />
+						</containers:HBoxBancoob>
+					</containers:CanvasBancoob>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba API -->
+			<containers:CanvasBancoob label="API" id="tabAPI" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="TESTE DE API"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<input:Radio id="optAPI" groupName="optAPI" value="1" label="API" selected="true"/>
+						<input:Radio id="optAPIInteg" groupName="optAPI" value="2" label="Integração"/>						
+					</containers:HBoxBancoob>
+					
+					<containers:VBoxBancoob id="boxAPI" width="100%">
+						<containers:HBoxBancoob width="100%">
+							<Rotulo width="80" text="Classe:"/>
+							<input:Combo width="100%" id="cmbAPIClasse" labelField="classe"/>
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%">
+							<Rotulo width="80" text="Método:"/>
+							<input:Combo width="100%" id="cmbAPIMetodo" labelField="metodo" enabled="false" editable="false"/>
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%" paddingTop="10">
+							<Rotulo width="80" text="Parâmetros:" />
+							<input:Texto width="100%" id="txtAPIParametros" editable="false" />
+						</containers:HBoxBancoob>
+					</containers:VBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" paddingTop="10">
+						<Rotulo width="80" text="Valor:" />
+						<input:TextoArea width="100%" id="txtAPIValor" height="100"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" paddingTop="10">
+						<Rotulo width="80" text="Resultado:" />
+						<input:TextoArea width="100%" id="txtAPIResultado" height="100" editable="false"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="10">
+						<Botao id="btAPIExec" label="EXECUTAR" width="90" />
+					</containers:HBoxBancoob>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Monitoracao -->
+			<containers:CanvasBancoob label="Monitoração" id="tabMonitoracao" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+				
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="OPÇÕES"/>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" paddingTop="5">
+						<containers:VBoxBancoob width="25%">
+							<Rotulo text="COOPERATIVA" fontSize="11" fontWeight="bold" />
+							<input:Radio id="optMonitCooperativaTodas" groupName="optMonitCooperativa" value="" label="Todas"/>
+							<input:Radio id="optMonitCooperativaPiloto" groupName="optMonitCooperativa" value="" label="Piloto" selected="true"/>
+							<containers:HBoxBancoob width="100%">
+								<input:Radio id="optMonitCooperativaNumero" groupName="optMonitCooperativa" value="" label="Número"/>
+								<input:Texto width="50" id="txtMonitCooperativa" restrict="0-9" maxChars="4" visible="false"/>
+							</containers:HBoxBancoob>
+						</containers:VBoxBancoob>
+						<containers:VBoxBancoob width="25%" id="boxMonitVisao">
+							<Rotulo text="VISÃO" fontSize="11" fontWeight="bold" />
+							<input:Radio groupName="optMonitVisao" value="1,2" label="Todas"/>
+							<input:Radio groupName="optMonitVisao" value="1" label="Geral" selected="true"/>
+							<input:Radio groupName="optMonitVisao" value="2" label="Cooperativas"/>
+						</containers:VBoxBancoob>
+						<containers:VBoxBancoob width="25%" id="boxMonitSituacao">
+							<Rotulo text="SITUAÇÃO" fontSize="11" fontWeight="bold" />
+							<input:Radio groupName="optMonitSituacao" value="0,1,2,4" label="Todas"/>
+							<input:Radio groupName="optMonitSituacao" value="0,2,4" label="Aguardando, Erro e Inválido" selected="true"/>
+							<input:Radio groupName="optMonitSituacao" value="0" label="Aguardando"/>
+							<input:Radio groupName="optMonitSituacao" value="2" label="Erro"/>
+							<input:Radio groupName="optMonitSituacao" value="4" label="Inválido"/>
+							<input:Radio groupName="optMonitSituacao" value="1" label="Sucesso"/>
+						</containers:VBoxBancoob>
+						<containers:VBoxBancoob width="25%">
+							<Rotulo text="PERÍODO" fontSize="11" fontWeight="bold" />
+							<input:Radio id="optMonitPeriodoTodas" groupName="optMonitPeriodo" value="0" label="Todas" selected="true"/>
+							<input:Radio id="optMonitPeriodoHoje" groupName="optMonitPeriodo" value="1" label="Hoje" />
+							<input:Radio id="optMonitPeriodoIntervalo" groupName="optMonitPeriodo" value="2" label="Intervalo" />
+							<containers:HBoxBancoob width="100%" id="boxMonitPeriodoDe" visible="false">
+								<Rotulo text="De:" width="30"/>
+								<input:Data id="txtMonitPeriodoDe"/>
+							</containers:HBoxBancoob>
+							<containers:HBoxBancoob width="100%" id="boxMonitPeriodoAte" visible="false">
+								<Rotulo text="Até:" width="30"/>
+								<input:Data id="txtMonitPeriodoAte" />
+							</containers:HBoxBancoob>
+						</containers:VBoxBancoob>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="0">
+						<Botao id="btMonitCSV1" label="CSV Geral" width="70" enabled="false" name="csv-grdMonitGeral" />
+						<Botao id="btMonitCSV2" label="CSV Cooperativas" width="70" enabled="false" name="csv-grdMonitCooperativas" />
+						<Botao id="btMonitConsultar" label="CONSULTAR" width="90" />
+					</containers:HBoxBancoob>
+					
+					<navegacao:Tab id="tabNavMonit" width="100%" height="200" paddingLeft="10" paddingRight="10" focusEnabled="false">
+						
+						<!-- Aba Geral -->
+						<containers:CanvasBancoob label="Geral" id="tabMonitGeral" width="100%">
+							<containers:VBoxBancoob x="0" y="5" width="100%">
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdMonitGeral" height="150">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="" dataField="tabela" textAlign="left" color="black" />
+											<bancoobGrid:ColunaGrid headerText="Aguardando" dataField="qtdAguardando" textAlign="left" color="blue" />
+											<bancoobGrid:ColunaGrid headerText="Inválido" dataField="qtdInvalido" textAlign="left" color="black" />
+											<bancoobGrid:ColunaGrid headerText="Replicado" dataField="qtdReplicado" textAlign="left" color="green" />
+											<bancoobGrid:ColunaGrid headerText="Erro" dataField="qtdErro" textAlign="left" color="red" />
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+						<!-- Aba Cooperativas -->
+						<containers:CanvasBancoob label="Cooperativas" id="tabMonitCooperativas" width="100%">
+							<containers:VBoxBancoob x="0" y="10" width="100%">
+								
+								<containers:HBoxBancoob width="100%">
+									<Rotulo text="CONTACAPITAL" paddingLeft="150" fontSize="11" fontWeight="bold"/>
+									<Rotulo text="PARCELAMENTOCONTACAPITAL" paddingLeft="110" fontSize="11" fontWeight="bold"/>
+									<Rotulo text="LANCAMENTOCONTACAPITAL" paddingLeft="80" fontSize="11" fontWeight="bold"/>
+								</containers:HBoxBancoob>
+								
+								<containers:HBoxBancoob width="100%">
+									<bancoobGrid:Grid width="100%" id="grdMonitCooperativas" height="150">
+										<bancoobGrid:columns>
+											<bancoobGrid:ColunaGrid headerText="Coop" dataField="numCooperativa"/>
+											<bancoobGrid:ColunaGrid headerText="Aguardando" dataField="qtdAguardandoCCA" textAlign="left" color="blue" />
+											<bancoobGrid:ColunaGrid headerText="Inválido" dataField="qtdInvalidoCCA" textAlign="left" color="black" />
+											<bancoobGrid:ColunaGrid headerText="Replicado" dataField="qtdReplicadoCCA" textAlign="left" color="green" />
+											<bancoobGrid:ColunaGrid headerText="Erro" dataField="qtdErroCCA" textAlign="left" color="red" />
+											<bancoobGrid:ColunaGrid headerText="Aguardando" dataField="qtdAguardandoParc" textAlign="left" color="blue" />
+											<bancoobGrid:ColunaGrid headerText="Inválido" dataField="qtdInvalidoParc" textAlign="left" color="black" />
+											<bancoobGrid:ColunaGrid headerText="Replicado" dataField="qtdReplicadoParc" textAlign="left" color="green" />
+											<bancoobGrid:ColunaGrid headerText="Erro" dataField="qtdErroParc" textAlign="left" color="red" />
+											<bancoobGrid:ColunaGrid headerText="Aguardando" dataField="qtdAguardandoLanc" textAlign="left" color="blue" />
+											<bancoobGrid:ColunaGrid headerText="Inválido" dataField="qtdInvalidoLanc" textAlign="left" color="black" />
+											<bancoobGrid:ColunaGrid headerText="Replicado" dataField="qtdReplicadoLanc" textAlign="left" color="green" />
+											<bancoobGrid:ColunaGrid headerText="Erro" dataField="qtdErroLanc" textAlign="left" color="red" />
+										</bancoobGrid:columns>
+									</bancoobGrid:Grid>
+								</containers:HBoxBancoob>
+								
+							</containers:VBoxBancoob>
+						</containers:CanvasBancoob>
+						
+					</navegacao:Tab>
+				
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>	
+			
+			<!-- Aba Acoes -->
+			<containers:CanvasBancoob label="Ações" id="tabAcoes" width="100%">
+				
+				<containers:VBoxBancoob x="0" y="10" width="100%">
+					
+					<containers:HBoxBancoob width="100%" paddingTop="10">
+						<input:Check id="chkAcoesIntervalo" label="Intervalo" />
+						
+						<containers:HBoxBancoob id="boxAcoesIntervalo" width="100%" paddingLeft="10" visible="false" includeInLayout="false">
+							<Rotulo text="IDs: " /> 
+							<input:Texto width="80" id="txtAcoesIntervaloDe" restrict="0-9" />
+							<Rotulo text="até" /> 
+							<input:Texto width="80" id="txtAcoesIntervaloAte" restrict="0-9" />
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob id="boxAcoesFiltros1" width="100%" paddingLeft="10">
+							
+							<Rotulo text="Quantidade de registros:" />
+							<input:Texto width="50" id="txtAcoesQtdRegistros" restrict="0-9" text="1000" />
+							
+							<Rotulo text="Situação:" />
+							<input:Combo width="160" id="cmbAcoesSituacao" labelField="descListaItem" />
+							
+							<Rotulo text="Tabela:" />
+							<input:Combo width="140" id="cmbAcoesTabela" labelField="descListaItem" />
+							
+						</containers:HBoxBancoob>
+						
+						<containers:HBoxBancoob width="100%" horizontalAlign="right">
+							<Botao id="btAcoesConsultar" label="CONSULTAR" width="90" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob id="boxAcoesFiltros2" width="100%" paddingTop="10">
+						<Rotulo text="Cooperativa:" />
+						<input:Texto width="50" id="txtAcoesCoop" restrict="0-9" maxChars="4" />
+						
+						<Rotulo text="Ação:" />
+						<input:Combo width="140" id="cmbAcoesAcao" labelField="descListaItem" />
+						
+						<Rotulo text="Data Cadastro:" />
+						<input:Texto width="80" id="txtAcoesDtCad" restrict="0-9" maxChars="8" />
+						
+						<Rotulo text="Data Replicação:" />
+						<input:Texto width="80" id="txtAcoesDtRep" restrict="0-9" maxChars="8" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<bancoobGrid:Grid width="100%" id="grdAcoes" height="300" doubleClickEnabled="true">
+							<bancoobGrid:columns>
+								<bancoobGrid:ColunaGrid headerRenderer="br.com.sicoob.sisbr.cca.replicacao.monitoracao.MonitoracaoCheckBoxHeaderRenderer" 
+														sortable="false" dataField="selecionado" id="selecionado" textAlign="center" width="20">
+									<bancoobGrid:itemRenderer>
+										<mx:Component>
+											<monitoracao:MonitoracaoCheckBoxRenderer />
+										</mx:Component>
+									</bancoobGrid:itemRenderer>
+								</bancoobGrid:ColunaGrid>
+								<bancoobGrid:ColunaGrid width="50" headerText="ID" dataField="idReplicacaoCCA" textAlign="left" />
+								<bancoobGrid:ColunaGrid width="40" headerText="Coop" dataField="numCooperativa" textAlign="left" />
+								<bancoobGrid:ColunaGrid width="40" headerText="Tabela" dataField="siglaTabela" textAlign="left" />
+								<bancoobGrid:ColunaGrid width="30" headerText="Ação" dataField="codAcao" textAlign="left" />
+								<bancoobGrid:ColunaGrid width="50" headerText="Situação" dataField="idSituacaoReplicacaoCCA" textAlign="left" />
+								<bancoobGrid:ColunaGrid width="70" headerText="Data Cadastro" dataField="dataHoraCadastro" textAlign="left" />
+								<bancoobGrid:ColunaGrid width="70" headerText="Data Replicacao" dataField="dataHoraReplicacao" textAlign="left" />
+								<bancoobGrid:ColunaGrid width="200" headerText="Mensagem" dataField="descMensagemReplicacao" textAlign="left" />
+							</bancoobGrid:columns>
+						</bancoobGrid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="5">
+						<Botao id="btAcoesExecutarReplicacao" label="Executar Replicação" width="150" />
+						<Botao id="btAcoesCSV" label="CSV" width="50" enabled="false" name="csv-grdAcoes" />
+						<Botao id="btAcoesReprocessar" label="REPROCESSAR" width="100"/>
+						<Botao id="btAcoesInvalidar" label="INVALIDAR" width="90"/>
+						<Botao id="btAcoesEditarJSON" label="EDITAR JSON" width="90"/>
+						<Botao id="btAcoesModelosJSON" label="MODELOS JSON" width="100"/>
+					</containers:HBoxBancoob>
+					
+				</containers:VBoxBancoob>
+				
+			</containers:CanvasBancoob>
+			
+		</navegacao:Tab>
+	</containers:VBoxBancoob>
+	
+</Modulo>

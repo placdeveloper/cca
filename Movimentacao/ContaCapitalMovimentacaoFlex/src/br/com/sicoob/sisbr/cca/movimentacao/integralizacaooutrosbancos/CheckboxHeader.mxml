@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<containers:HBoxBancoob xmlns="br.com.bancoob.componentes.*" 
+						xmlns:mx="http://www.adobe.com/2006/mxml" 
+						xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+						xmlns:input="br.com.bancoob.componentes.input.*"
+						xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+						xmlns:containers="br.com.bancoob.componentes.containers.*"
+						xmlns:grid="br.com.bancoob.componentes.grid.*"
+						xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+						xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+						xmlns:renderes1="br.com.sicoob.sisbr.cca.renderes.*"
+						width="100%" height="100%" creationComplete="init()"
+						horizontalAlign="center" horizontalScrollPolicy="off"
+						implements="mx.controls.listClasses.IDropInListItemRenderer"
+						verticalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.BaseListData;
+			
+			import br.com.bancoob.componentes.grid.Grid;
+			
+			[Bindable("dataChange")]
+			private var _listData:BaseListData;
+			
+			private function init(): void {
+				chkSelecionaTodos.addEventListener(MouseEvent.CLICK, onClick);
+			}
+			
+			private function onClick(event:MouseEvent):void {
+				var grid:Grid = (parentDocument)["gridDados"] as Grid;
+				if(grid.dataProvider != null) {
+					grid.dataProvider.refresh();
+					for (var i:int=0; i < grid.dataProvider.length; i++) {
+						grid.dataProvider[i].selecionado = chkSelecionaTodos.selected;
+					}
+				}
+			}
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+			}
+			
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = value;
+			}
+		]]>
+	</mx:Script>
+	
+	<input:Check id="chkSelecionaTodos" doubleClickEnabled="false" />
+	
+</containers:HBoxBancoob>

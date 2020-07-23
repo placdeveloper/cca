@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo xmlns:mx="http://www.adobe.com/2006/mxml" 		
+		xmlns="br.com.bancoob.componentes.*" 
+		xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+		xmlns:containers="br.com.bancoob.componentes.containers.*"
+		xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+		xmlns:input="br.com.bancoob.componentes.input.*"
+		xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"				
+		width="650" height="290" layout="absolute">
+	
+	
+	<containers:VBoxBancoob x="0" y="0" width="100%">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DÉBITO" width="100%" />
+		</containers:HBoxBancoob>
+	
+		<containers:CanvasBancoob width="100%">
+		
+			<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="10">
+				<Rotulo width="140" text="Conta Capital:" />
+				<cca:ProcurarContaCapital id="procurarCCADebito" width="477" idSituacaoCadastro="99" />
+			</validaveis:HBoxValidavel>	
+		</containers:CanvasBancoob>				
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+			<Rotulo width="140" text="Valor Integralizado (R$):" />
+			<input:Texto width="170" enabled="false" id="vlrIntegralizado" text="0,00" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" />
+			
+			<Rotulo width="140" text="Mínimo Exigido (R$):" />
+			<input:Texto width="150" enabled="false" id="vlrMinimoExigido" text="0,00" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" />
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="70">
+			<Rotulo width="140" text="Valor Bloqueado (R$):" />
+			<input:Texto width="170" enabled="false" id="vlrBloqueado" text="0,00" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" />
+			
+			<Rotulo width="140" text="Total Disponível (R$):" />
+			<input:Texto width="150" enabled="false" id="vlrDisponivel" text="0,00" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" />
+		</validaveis:HBoxValidavel>		
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="100">
+			<Rotulo width="140" text="Valor a Transferir (R$):" />
+			<input:Texto width="170" enabled="true" id="vlrTransferir" text="0,00" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" />
+			
+		</validaveis:HBoxValidavel>
+		
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="CRÉDITO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:CanvasBancoob width="100%">
+			
+			<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="10">
+				<Rotulo width="140" text="Conta Capital:" />
+				<cca:ProcurarContaCapital id="procurarCCACredito" width="477" idSituacaoCadastro="99" />
+			</validaveis:HBoxValidavel>	
+			
+		</containers:CanvasBancoob>
+		
+		<!-- Botoes -->
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob right="10" bottom="0" width="304" height="40" horizontalAlign="right" verticalAlign="middle" paddingRight="2">
+				<Botao id="btOk" label="OK" width="86" />
+				<Botao id="btCanc" label="CANCELAR" width="86" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+		
+	</containers:VBoxBancoob>		
+		
+</Modulo>
+

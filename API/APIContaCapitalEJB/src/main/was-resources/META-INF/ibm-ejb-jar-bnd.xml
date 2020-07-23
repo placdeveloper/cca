@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar-bnd xmlns="http://websphere.ibm.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-ejb-jar-bnd_1_1.xsd"
+	version="1.1">
+
+	<session name="ContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.ContaCapitalServicoLocal"
+			binding-name="ejblocal:APIContaCapital/ContaCapitalServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.ContaCapitalServicoRemote"
+			binding-name="APIContaCapital/ContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="IntegralizacaoCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.IntegralizacaoCapitalServicoLocal"
+			binding-name="ejblocal:APIContaCapital/IntegralizacaoCapitalServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.IntegralizacaoCapitalServicoRemote"
+			binding-name="APIContaCapital/IntegralizacaoCapitalServicoRemote" />
+	</session>
+	
+	<session name="CadastroContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.CadastroContaCapitalServicoLocal"
+			binding-name="ejblocal:APIContaCapital/CadastroContaCapitalServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.CadastroContaCapitalServicoRemote"
+			binding-name="APIContaCapital/CadastroContaCapitalServicoRemote" />
+	</session>
+	
+	<session name="DebIndeterminadoContaCapitalServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.DebIndeterminadoContaCapitalServicoLocal"
+			binding-name="ejblocal:APIContaCapital/DebIndeterminadoContaCapitalServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.api.negocio.servicos.interfaces.DebIndeterminadoContaCapitalServicoRemote"
+			binding-name="APIContaCapital/DebIndeterminadoContaCapitalServicoRemote" />
+	</session>
+
+</ejb-jar-bnd>

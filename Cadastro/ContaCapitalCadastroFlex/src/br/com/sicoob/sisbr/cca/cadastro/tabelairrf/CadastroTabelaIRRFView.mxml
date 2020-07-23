@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="700" height="520" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob x="0" y="0" width="700" id="containerTela">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="FILTROS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="50">
+			<Rotulo width="60" text="Ano Base:" />
+			<input:Texto id="ano" visible="true" width="60" focusEnabled="true" maxChars="4" restrict="0-9" tabIndex="1" />
+			<mx:CheckBox id="ckRepetirAnoAnterior" tabIndex="2" />
+			<Rotulo width="300" text="Repetir os dados do Ano Anterior para o Ano Base?" />
+		</validaveis:HBoxValidavel>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="100">
+			<titulo:SubtituloView texto="INSERIR VALORES" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="130">
+			<Rotulo width="90" text="Perc. Alíquota %:" />
+			<input:Texto width="60" id="aliquota" tipoEntrada="1" casasDecimais="2" maxChars="6" permitirValoreNegativos="false" validarObrigatorio="true" tabIndex="3" />
+			
+			<Rotulo width="60" text="Valor Inicial:" />
+			<input:Texto width="70" id="valorInicial" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" tabIndex="4" />
+			
+			<Rotulo width="60" text="Valor Final:" />
+			<input:Texto width="70" id="valorFinal" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" tabIndex="5" />
+			
+			<Rotulo width="90" text="Valor Dedução:" />
+			<input:Texto width="70" id="deducao" tipoEntrada="1" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" tabIndex="6" />
+			
+			<mx:Spacer width="5" />
+			<mx:Image id="btAddItem" source="@Embed('br/com/bancoob/imagens/icos/add.png')" buttonMode="true" tabIndex="7" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<grid:Grid x="0" y="180" width="100%" id="grid" doubleClickEnabled="true" height="350" tabEnabled="false">
+				<grid:columns>
+					<grid:ColunaGrid id="acao" headerText=" " width="12"  
+						 itemRenderer="br.com.sicoob.sisbr.cca.cadastro.tabelairrf.CadastroTabelaIRRFRenderer">
+					</grid:ColunaGrid>
+					<grid:ColunaGrid id="anoBase" headerText="Ano Base" dataField="anoBase" width="50" textAlign="left" />
+					<grid:ColunaGrid id="percAliquota" headerText="Perc. Alíquota" dataField="percAliquota" width="50" textAlign="left" />
+					<grid:ColunaGrid id="valorBaseInicial" headerText="Valor Base Inicial" dataField="valorBaseInicial" width="50" textAlign="left" />
+					<grid:ColunaGrid id="valorBaseFinal" headerText="Valor Base Final" dataField="valorBaseFinal" width="50" textAlign="left" />
+					<grid:ColunaGrid id="valorDeducao" headerText="Valor Dedução" dataField="valorDeducao" width="50" textAlign="left" />
+				</grid:columns>
+			</grid:Grid>
+		</containers:HBoxBancoob>
+		
+		<!-- Botoes -->			
+		<!-- Botoes -->
+		<!-- Botoes -->
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btOk" label="OK" width="86" tabIndex="8" />
+				<Botao id="btFechar" label="FECHAR" width="86" tabIndex="9" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

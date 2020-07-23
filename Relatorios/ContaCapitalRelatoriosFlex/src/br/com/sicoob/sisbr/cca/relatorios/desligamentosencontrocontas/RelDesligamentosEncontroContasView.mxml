@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:cmp="br.com.sicoob.sisbr.contaCapital.componentes.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	width="700" height="200" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="700" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="Dados do Associado" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<mx:HBox paddingLeft="23">
+			<Rotulo width="120" text="Tipo de Relatório:" />
+			<containers:VBoxBancoob id="tpRel" width="100%" paddingLeft="10" paddingRight="10">
+				<containers:HBoxBancoob width="100%" >
+					<bancoobInput:Radio groupName="optTipoRelatorio" id="optRelatorioDesligamento" label="Desligamento com Encontro Contas" selected="true"/>		
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob width="100%">
+					<bancoobInput:Radio groupName="optTipoRelatorio" id="optTermoDesligamento" label="Termo Desligamento" />
+				</containers:HBoxBancoob>
+			</containers:VBoxBancoob>
+		</mx:HBox>
+		
+		<containers:HBoxBancoob>
+		</containers:HBoxBancoob>
+		
+		<containers:VBoxBancoob id="relatorioDesligamento" width="100%" paddingLeft="10" paddingRight="10">
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<Rotulo text="Conta Capital Inicial:" width="133" />
+				<cca:ProcurarContaCapital id="procurarCCAInicial" idSituacaoContaCapital="2" idSituacaoCadastro="99" exibeCpfCnpj="false" validarObrigatorio="true"/>
+			</containers:HBoxBancoob>
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<Rotulo text="Conta Capital Final:" width="133" />
+				<cca:ProcurarContaCapital id="procurarCCAFinal" idSituacaoContaCapital="2" idSituacaoCadastro="99" exibeCpfCnpj="false" validarObrigatorio="true"/>
+			</containers:HBoxBancoob>
+		</containers:VBoxBancoob>
+		<containers:VBoxBancoob id="termoDesligamento" width="100%" paddingLeft="10" paddingRight="10">
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<Rotulo text="Conta Capital:" width="133" />
+				<cca:ProcurarContaCapital id="procurarCCA" idSituacaoContaCapital="2" idSituacaoCadastro="99" exibeCpfCnpj="false" validarObrigatorio="true"/>
+			</containers:HBoxBancoob>
+		</containers:VBoxBancoob>
+		
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="35" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0" paddingTop="10">
+				<Botao id="btOk" label="OK" width="86" />
+				<Botao id="btCancelar" label="Cancelar" width="86" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+		
+	</containers:VBoxBancoob>
+</Modulo>

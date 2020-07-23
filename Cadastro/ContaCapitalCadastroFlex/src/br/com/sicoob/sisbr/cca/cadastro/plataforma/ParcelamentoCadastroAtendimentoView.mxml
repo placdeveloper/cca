@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FormularioCadastro 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="vertical" creationPolicy="all" 
+	top="0" right="0" bottom="0" left="0" 
+	width="370" height="250"
+	xmlns="br.com.bancoob.componentes.cadastro.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" 
+	xmlns:input="br.com.bancoob.componentes.input.*" 
+	xmlns:componentes="br.com.bancoob.componentes.*" 
+	xmlns:servico="br.com.bancoob.util.servico.*" 
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	>
+	<containers:CanvasBancoob width="100%">
+		<containers:VBoxBancoob x="0" y="0" width="100%" height="100%">
+			<containers:HBoxBancoob width="100%">
+				<titulo:SubtituloView texto="PARCELA" width="100%" />
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%">
+				<componentes:Rotulo text="Data de Vencimento:" width="30%"/>
+				<input:Data id="dtVencimento" width="100" height="24"/>
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%">
+				<componentes:Rotulo text="Valor da Parcela (R$):" width="30%"/>
+				<input:Texto id="vlrParcela" width="100" height="22" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true"/>
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%">
+				<titulo:SubtituloView texto="MODO DE DÉBITO" width="100%" />
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%">
+				<componentes:Rotulo text="Forma de Débito:" width="36%"/>
+				<input:Combo id="cboTipoIntegParcela" labelField="descListaItem" validarObrigatorio="true" editable="true" width="150"/>
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%" paddingTop="5">
+				<componentes:Rotulo id="labelCcoParcela" width="36%" text="Nº Conta Corrente:" />
+				<input:Combo id="cboCcoParcela" x="140" y="153" labelField="descListaItem" editable="false" width="150"/>
+			</containers:HBoxBancoob>
+		</containers:VBoxBancoob>
+		<componentes:Rotulo id="labelMatriculaParcela" x="0" y="153" width="120" height="18" text="Nº Matricula:"/>
+		<input:Combo id="cboMatriculaParcela" x="140" y="153" labelField="descListaItem" editable="false"/>
+	</containers:CanvasBancoob>
+	
+	<containers:CanvasBancoob x="0" y="0" width="100%" height="100%">
+		<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0">
+			<componentes:Botao id="btOk" label="OK" width="86" />
+			<componentes:Botao id="btCanc" label="CANCELAR" width="86" />
+			<componentes:Botao id="btFechar" label="FECHAR" width="86" />
+		</containers:HBoxBancoob>
+	</containers:CanvasBancoob>
+	
+</FormularioCadastro>

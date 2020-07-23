@@ -1,0 +1,1483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CCARelFichaMatric" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="OPT_M" class="java.lang.String"/>
+	<parameter name="OPT_F" class="java.lang.String"/>
+	<parameter name="TXT_MATRICULA" class="java.lang.String"/>
+	<parameter name="NUM_COOPERATIVA" class="java.lang.String"/>
+	<parameter name="DESC_SIGLA_COOP" class="java.lang.String"/>
+	<parameter name="IMAGEM_SICOOB" class="java.awt.Image"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="ramalResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[ramalResidencial]]></fieldDescription>
+	</field>
+	<field name="dddComercial" class="java.lang.String">
+		<fieldDescription><![CDATA[dddComercial]]></fieldDescription>
+	</field>
+	<field name="bairroComercial" class="java.lang.String">
+		<fieldDescription><![CDATA[bairroComercial]]></fieldDescription>
+	</field>
+	<field name="modoLanc" class="java.lang.String">
+		<fieldDescription><![CDATA[modoLanc]]></fieldDescription>
+	</field>
+	<field name="bairroResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[bairroResidencial]]></fieldDescription>
+	</field>
+	<field name="ufComercial" class="java.lang.String">
+		<fieldDescription><![CDATA[ufComercial]]></fieldDescription>
+	</field>
+	<field name="dataConstituicao" class="java.util.Date">
+		<fieldDescription><![CDATA[dataConstituicao]]></fieldDescription>
+	</field>
+	<field name="valorLancInteg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorLancInteg]]></fieldDescription>
+	</field>
+	<field name="numParcela" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numParcela]]></fieldDescription>
+	</field>
+	<field name="numCgcCpf" class="java.lang.String">
+		<fieldDescription><![CDATA[numCgcCpf]]></fieldDescription>
+	</field>
+	<field name="dataVencParcela" class="java.util.Date">
+		<fieldDescription><![CDATA[dataVencParcela]]></fieldDescription>
+	</field>
+	<field name="codEstadoCivil" class="java.lang.Integer">
+		<fieldDescription><![CDATA[codEstadoCivil]]></fieldDescription>
+	</field>
+	<field name="dataEmissaoRG" class="java.util.Date">
+		<fieldDescription><![CDATA[dataEmissaoRG]]></fieldDescription>
+	</field>
+	<field name="descApelidoPessoa" class="java.lang.String">
+		<fieldDescription><![CDATA[descApelidoPessoa]]></fieldDescription>
+	</field>
+	<field name="enderecoComercial" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoComercial]]></fieldDescription>
+	</field>
+	<field name="valorSaldoAtuSubsc" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorSaldoAtuSubsc]]></fieldDescription>
+	</field>
+	<field name="numPessoa" class="java.lang.Long">
+		<fieldDescription><![CDATA[numPessoa]]></fieldDescription>
+	</field>
+	<field name="valorLancSubsc" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorLancSubsc]]></fieldDescription>
+	</field>
+	<field name="sNumPessoa" class="java.lang.String">
+		<fieldDescription><![CDATA[sNumPessoa]]></fieldDescription>
+	</field>
+	<field name="dddResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[dddResidencial]]></fieldDescription>
+	</field>
+	<field name="cepResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[cepResidencial]]></fieldDescription>
+	</field>
+	<field name="descNomePessoa" class="java.lang.String">
+		<fieldDescription><![CDATA[descNomePessoa]]></fieldDescription>
+	</field>
+	<field name="descNacionalidade" class="java.lang.String">
+		<fieldDescription><![CDATA[descNacionalidade]]></fieldDescription>
+	</field>
+	<field name="cepComercial" class="java.lang.String">
+		<fieldDescription><![CDATA[cepComercial]]></fieldDescription>
+	</field>
+	<field name="desclistaitem" class="java.lang.String">
+		<fieldDescription><![CDATA[desclistaitem]]></fieldDescription>
+	</field>
+	<field name="codProfissao" class="java.lang.Long">
+		<fieldDescription><![CDATA[codProfissao]]></fieldDescription>
+	</field>
+	<field name="numRG" class="java.lang.String">
+		<fieldDescription><![CDATA[numRG]]></fieldDescription>
+	</field>
+	<field name="cidadeComercial" class="java.lang.String">
+		<fieldDescription><![CDATA[cidadeComercial]]></fieldDescription>
+	</field>
+	<field name="valorParcela" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorParcela]]></fieldDescription>
+	</field>
+	<field name="bolEnvioCorrespondencia" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[bolEnvioCorrespondencia]]></fieldDescription>
+	</field>
+	<field name="ramalcomercial" class="java.lang.String">
+		<fieldDescription><![CDATA[ramalcomercial]]></fieldDescription>
+	</field>
+	<field name="codPfPj" class="java.lang.Integer">
+		<fieldDescription><![CDATA[codPfPj]]></fieldDescription>
+	</field>
+	<field name="descUfOrgExpRG" class="java.lang.String">
+		<fieldDescription><![CDATA[descUfOrgExpRG]]></fieldDescription>
+	</field>
+	<field name="situacao" class="java.lang.String">
+		<fieldDescription><![CDATA[situacao]]></fieldDescription>
+	</field>
+	<field name="codTipoSexo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[codTipoSexo]]></fieldDescription>
+	</field>
+	<field name="dataNascimento" class="java.util.Date">
+		<fieldDescription><![CDATA[dataNascimento]]></fieldDescription>
+	</field>
+	<field name="numTelefoneComercial" class="java.lang.String">
+		<fieldDescription><![CDATA[numTelefoneComercial]]></fieldDescription>
+	</field>
+	<field name="numTelefoneResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[numTelefoneResidencial]]></fieldDescription>
+	</field>
+	<field name="cidadeResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[cidadeResidencial]]></fieldDescription>
+	</field>
+	<field name="descNaturalidade" class="java.lang.String">
+		<fieldDescription><![CDATA[descNaturalidade]]></fieldDescription>
+	</field>
+	<field name="descOrgaoExpRG" class="java.lang.String">
+		<fieldDescription><![CDATA[descOrgaoExpRG]]></fieldDescription>
+	</field>
+	<field name="codTipoEndereco" class="java.lang.Integer">
+		<fieldDescription><![CDATA[codTipoEndereco]]></fieldDescription>
+	</field>
+	<field name="numInscEstadual" class="java.lang.String">
+		<fieldDescription><![CDATA[numInscEstadual]]></fieldDescription>
+	</field>
+	<field name="enderecoResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[enderecoResidencial]]></fieldDescription>
+	</field>
+	<field name="ufResidencial" class="java.lang.String">
+		<fieldDescription><![CDATA[ufResidencial]]></fieldDescription>
+	</field>
+	<field name="descCondicaoAssociacao" class="java.lang.String">
+		<fieldDescription><![CDATA[descCondicaoAssociacao]]></fieldDescription>
+	</field>
+	<field name="valorSaldoAtuInteg" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[valorSaldoAtuInteg]]></fieldDescription>
+	</field>
+	<field name="numParcelamento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numParcelamento]]></fieldDescription>
+	</field>
+	<field name="descEstadoCivil" class="java.lang.String">
+		<fieldDescription><![CDATA[descEstadoCivil]]></fieldDescription>
+	</field>
+	<variable name="valorSaldoAtuSubsc_1" class="java.math.BigDecimal" resetType="None">
+		<variableExpression><![CDATA[$F{valorSaldoAtuSubsc} != null && $F{valorLancSubsc} != null ?
+    $F{valorSaldoAtuSubsc}.add($F{valorLancSubsc}) :
+        $F{valorSaldoAtuSubsc} != null ? $F{valorSaldoAtuSubsc} :
+             $F{valorLancSubsc} != null ?  $F{valorLancSubsc} :
+                new BigDecimal(0)]]></variableExpression>
+	</variable>
+	<variable name="valorSaldoAtuInteg_1" class="java.math.BigDecimal" resetType="None">
+		<variableExpression><![CDATA[$F{valorSaldoAtuInteg} != null && $F{valorLancInteg} != null ?
+    $F{valorSaldoAtuInteg}.add($F{valorLancInteg}) :
+        $F{valorSaldoAtuInteg} != null ? $F{valorSaldoAtuInteg} :
+             $F{valorLancInteg} != null ?  $F{valorLancInteg} :
+                new BigDecimal(0)]]></variableExpression>
+	</variable>
+	<group name="numPessoa1">
+		<groupExpression><![CDATA[$F{numPessoa}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<staticText>
+					<reportElement x="0" y="0" width="555" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Nome Completo:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="16" width="555" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descNomePessoa}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="120">
+				<printWhenExpression><![CDATA[new Boolean($F{codPfPj}.intValue() != 1)]]></printWhenExpression>
+				<staticText>
+					<reportElement x="0" y="0" width="354" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Apelido:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="354" y="0" width="107" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Data Nascimento:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="461" y="0" width="94" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Sexo:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="16" width="354" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descApelidoPessoa}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement x="354" y="16" width="107" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{dataNascimento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="494" y="16" width="16" height="14"/>
+					<box rightPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[M]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="542" y="16" width="13" height="14"/>
+					<box rightPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<text><![CDATA[F]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="483" y="17" width="11" height="11"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{OPT_M}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement x="531" y="17" width="11" height="11"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{OPT_F}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="30" width="300" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Naturalidade:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="300" y="30" width="255" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Nacionalidade:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="46" width="300" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descNaturalidade}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="300" y="46" width="255" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descNacionalidade}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="60" width="91" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Estado Civil:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="91" y="60" width="115" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[CPF:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="206" y="60" width="115" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Carteira Identidade:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="321" y="60" width="104" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Data Emissão RG:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="425" y="60" width="95" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Órgão Emissor:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="520" y="60" width="35" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[UF:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="76" width="91" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descEstadoCivil}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="91" y="76" width="115" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numCgcCpf}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="206" y="76" width="115" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numRG}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement x="321" y="76" width="104" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{dataEmissaoRG}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="425" y="76" width="95" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descOrgaoExpRG}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="520" y="76" width="35" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descUfOrgExpRG}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="90" width="555" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Profissão:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="106" width="555" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{desclistaitem}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="60">
+				<printWhenExpression><![CDATA[new Boolean($F{codPfPj}.intValue() == 1)]]></printWhenExpression>
+				<staticText>
+					<reportElement x="0" y="0" width="555" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Apelido:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="16" width="555" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descApelidoPessoa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="30" width="155" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Data Constituição:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="155" y="30" width="199" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[CNPJ:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="354" y="30" width="201" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Nº Inscrição Estadual:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="46" width="155" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{dataConstituicao}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="155" y="46" width="199" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numCgcCpf}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="354" y="46" width="201" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numInscEstadual}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="150">
+				<staticText>
+					<reportElement x="321" y="0" width="234" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Bairro:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="321" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Endereço Residencial:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="484" y="30" width="71" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Ramal:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="219" y="30" width="35" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[UF:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="30" width="219" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Cidade:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="369" y="30" width="115" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Telefone:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="254" y="30" width="115" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[CEP:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="484" y="90" width="71" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Ramal:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="90" width="219" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Cidade:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="369" y="90" width="115" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Telefone:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="254" y="90" width="115" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[CEP:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="219" y="90" width="35" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[UF:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="60" width="321" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Endereço Comercial:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="321" y="60" width="234" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Bairro:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="120" width="555" height="16"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Condição de Associação:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="76" width="321" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{enderecoComercial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="16" width="321" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{enderecoResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="321" y="76" width="234" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bairroComercial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="321" y="16" width="234" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bairroResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="106" width="219" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cidadeComercial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="46" width="219" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cidadeResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="219" y="46" width="35" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ufResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="219" y="106" width="35" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ufComercial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="254" y="46" width="115" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cepResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="254" y="106" width="115" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{cepComercial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="484" y="46" width="71" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ramalResidencial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="484" y="106" width="71" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ramalcomercial}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="369" y="46" width="115" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dddResidencial} != null && $F{dddResidencial} != null ? "(" + $F{dddResidencial} + ") " + $F{numTelefoneResidencial}: ""]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="369" y="106" width="115" height="14"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dddComercial} != null && $F{numTelefoneComercial} != null ? "(" + $F{dddComercial} + ") " + $F{numTelefoneComercial}: ""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement isPrintRepeatedValues="false" x="0" y="136" width="555" height="14"/>
+					<box leftPadding="4">
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descCondicaoAssociacao}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="168">
+				<staticText>
+					<reportElement x="0" y="0" width="555" height="20"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Observações:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="438" height="20"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Local:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="438" y="20" width="117" height="20"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="40" width="555" height="51"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement>
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Declaro que as informações prestadas são verdadeiras e respondo civil e criminalmente por sua autenticidade:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="91" width="247" height="26"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Associado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="300" y="91" width="255" height="26"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Responsável Cooperativa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="117" width="555" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[CONTA CAPITAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="135" width="91" height="15"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Vlr Subscrito:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="173" y="135" width="107" height="15"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Vlr Integralizado:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="369" y="135" width="107" height="15"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Vlr a Integralizar:]]></text>
+				</staticText>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="91" y="135" width="82" height="15"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+					</box>
+					<textElement/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{valorSaldoAtuSubsc_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="280" y="135" width="89" height="15"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+					</box>
+					<textElement/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{valorSaldoAtuInteg_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="476" y="135" width="79" height="15"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement/>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{valorSaldoAtuSubsc_1}.subtract($V{valorSaldoAtuInteg_1})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="150" width="555" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PARCELAMENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="247" y="91" width="53" height="26"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[   ]]></text>
+				</staticText>
+			</band>
+			<band height="18">
+				<staticText>
+					<reportElement x="0" y="0" width="35" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Nº]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="35" y="0" width="50" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Parcela]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="85" y="0" width="70" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Vencimento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="155" y="0" width="80" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Valor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="235" y="0" width="168" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Forma Pagamento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="403" y="0" width="152" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Situação]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="150">
+				<staticText>
+					<reportElement x="0" y="0" width="555" height="18"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[TERMO DE DEMISSÃO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="18" width="555" height="18"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Motivo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="36" width="280" height="90"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Local:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="280" y="36" width="275" height="90"/>
+					<box leftPadding="4">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="126" width="254" height="24"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Associado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="305" y="126" width="250" height="24"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Responsável Cooperativa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="254" y="126" width="51" height="24"/>
+					<box leftPadding="0">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[   ]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="337" y="0" width="107" height="15"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Código Pessoa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="0" width="164" height="30"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Ficha de Matrícula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="15" width="78" height="15"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Matrícula:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="415" y="15" width="140" height="15"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{TXT_MATRICULA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="555" height="16"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[TERMO DE ADMISSÃO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="15"/>
+				<box leftPadding="4">
+					<topPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sNumPessoa}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="173" height="30"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{IMAGEM_SICOOB}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="14">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="35" height="14"/>
+				<box rightPadding="4">
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{numParcelamento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="35" y="0" width="50" height="14"/>
+				<box rightPadding="4">
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{numParcela}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="85" y="0" width="70" height="14"/>
+				<box>
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{dataVencParcela}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="155" y="0" width="80" height="14"/>
+				<box rightPadding="4">
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{valorParcela}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="235" y="0" width="168" height="14"/>
+				<box leftPadding="4">
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{modoLanc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="403" y="0" width="152" height="14"/>
+				<box leftPadding="4">
+					<leftPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,962 @@
+﻿<?xml version="1.0"?>
+<sisbrweb>
+	<MDICCAWEB>
+		<menu id="MNUCCA" label="Conta Capital" icone="">
+			<item id="MNUDEBINDCCA" 
+				label="Débito por Tempo Indeterminado" 
+				titulo="Débito por Tempo Indeterminado" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros=""
+				swf="/AplicativoContaCapital/Renovacao/swf/debitoindeterminadoren" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUCONSULTACCA" 
+				label="Consulta Conta Capital" 
+				titulo="Consulta da Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB" 				
+				swf="/AplicativoContaCapital/Atendimento/ConsultaContaCapital" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUCADASTROCCAREN" 
+				label="Cadastro" 
+				titulo="Consultar Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/consultacontacapitalren" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item hash="MNUAPROVACAO_0" id="MNUAPROVACAO" 
+				label="Aprovação" 
+				titulo="Aprovar Cadastro Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/consultaaprovacao" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUSUBSCCCAREN" 
+				label="Subscrição de Capital" 
+				titulo="Subscrição de Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/movimentacaosubscricaoren" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUINTEGOUTROSBANCOS" 
+				label="Integralização em outros bancos" 
+				titulo="Integralização em outros bancos" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/integralizacaooutrosbancos" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUPARCELCCCAREN" 
+				label="Parcelamento" 
+				titulo="Parcelamento" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/movimentacaoparcelamentoren" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>			
+			<item id="MNUBLOQUEIOCCA" 
+				label="Bloqueio de Capital" 
+				titulo="Bloqueio de Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/movimentacaobloqueio" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUDESLIGAR" 
+				label="Desligamento" 
+				titulo="Desligar Associado" 
+				usaSelGeral="0" 
+				idLista=""  
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/desligarcontacapitalren" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUDESLIGARENCONTROCONTAS" 
+				label="Desligamento com encontro de contas" 
+				titulo="Desligamento com encontro de contas" 
+				usaSelGeral="0" 
+				idLista=""  
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB" 				
+				swf="/AplicativoContaCapital/Renovacao/swf/desligarencontrocontas" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUDEVOLCCCAREN" 
+				label="Devolução de Capital" 
+				titulo="Devolução de Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/movimentacaodevolucaoren" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>	
+			<item id="MNUTRANSFCCAREN" 
+				label="Transferência de Capital" 
+				titulo="Transferência de Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/movimentacaotransferenciaren" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>							
+			<item id="MNUCADASTROINVESTCENTRALBANCOOB" 
+				label="Investimento da Central no Bancoob" 
+				titulo="Investimento da Central no Bancoob" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/cadastroinvestimentocentralbancoob" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>					
+			<item id="MNUCONSULTAMOVIMENTOCCA" 
+				label="Consulta de Movimento..." 
+				titulo="Consulta de Movimento do Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros=""
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB" 
+				swf="/AplicativoContaCapital/Atendimento/MovimentoContaCapital" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUREATIVARCOOPERADO" 
+				label="Reativar Cooperado..." 
+				titulo="Reativar Cooperado" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB" 
+				swf="/AplicativoContaCapital/Atendimento/ReativarCooperado" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUESTORNOCAPITAL" 
+				label="Estornar Capital" 
+				titulo="Estornar Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros=""
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB" 
+				swf="/AplicativoContaCapital/Atendimento/EstornoCapital" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUESTLANCCCA" 
+				label="cancelamento de lançamentos do dia..." 
+				titulo="cancelamento de lançamentos do dia" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros=""
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				 
+				swf="/AplicativoContaCapital/Atendimento/CancelarLancDia" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUESTIMPCCA" 
+				label="Cancelamento da importação do dia..." 
+				titulo="Cancelamento da importação do dia" 
+				usaSelGeral="0"
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"
+				swf="/AplicativoContaCapital/Retaguarda/CancelarImpDia" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUEXCLUSAOASSOCIADOCCA" 
+				label="Exclusão de Cooperado Desligado" 
+				titulo="Exclusão de Cooperado Desligado" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"
+				swf="/AplicativoContaCapital/Atendimento/ExclusaoCoopDesligado" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<menu id="MNUPROVISAOJUROS" label="Provisão de Juros" icone="">
+				<item id="MNUPROVEXERCICIO" 
+					label="Exercício Remunerado" 
+					titulo="Exercício Remunerado" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros=""
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"
+					swf="/AplicativoContaCapital/Atendimento/ExercicioRemuneradoSelecao" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+	
+				<item id="MNUIMPORTACAOSALDOPROVISAO" 
+					label="Importação de Saldos" 
+					titulo="Importação de Saldos Integralizados para Provisão de Juros" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"
+					swf="/AplicativoContaCapital/Retaguarda/ImportacaoSaldoProvisao" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNUCANCELARIMPORTACAOSALDOPROVISAO" 
+					label="Cancelar importação" 
+					titulo="Cancelamento da Importação de Saldos" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Retaguarda/CancelarImportacaoSaldos" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNUPROVCONSULTA" 
+					label="Consulta Provisão" 
+					titulo="Consulta de Provisão de Juros" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/ConsultaProvisaoJuros" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+			</menu>
+			<item id="MNUPREPARACAOREMESSA" 
+				label="Preparação de Remessas" 
+				titulo="Preparação de Remessas" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Retaguarda/PreparacaoRemessasCCA" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUBAIXAREMESSA" 
+				label="Baixar Remessas Sem Retorno..." 
+				titulo="Baixar Remessas Sem Retorno" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros=""
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				 
+				swf="/AplicativoContaCapital/Retaguarda/BaixarRemSemRetorno" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes"> 
+			</item>		
+			<item id="MNUCENSOCOOPERADOS" 
+				label="Gerar Arquivo de Censo de Cooperados" 
+				titulo=" Gerar Arquivo de Censo de Cooperados" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Retaguarda/GerarArquivoCensoCoop" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes"> 
+			</item> 
+			<item id="MNUVALORCOTAPERIODOCCA" 
+				label="Valor da Cota por Período..." 
+				titulo="Valor da Cota por Período" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/ValorCotaPorPeriodo" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+		</menu>
+		
+		
+		
+		<menu id="MNUADM" label="Administrativo" icone="">
+			<item id="MNUCONDICAOESTATUTARIA" 
+				label="Condições Estatutárias" 
+				titulo="Condições Estatutárias" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/condestatutaria" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>	
+			<item id="MNUCONFREPLICACAOCAPITAL" 
+				label="Configuração Replicação" 
+				titulo="Configuração Replicação" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				swf="/AplicativoContaCapital/Renovacao/swf/configuracaoreplicacaocapital" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>				
+			<menu id="MNUPARAMETRO" label="Parâmetro" icone="">
+				<item id="MNUCADASTROPARAMETRO" 
+					label="Cadastrar Parâmetro"
+					titulo="Cadastrar Parâmetro" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					swf="/AplicativoContaCapital/Renovacao/swf/cadastroconfiguracaocapital" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>			
+				<item id="MNUCADASTROVALORPARAMETRO" label="Cadastrar Valor Parâmetro"
+					titulo="Cadastrar Valor Parâmetro" usaSelGeral="0" idLista=""
+					usaFiltro="" parametros=""
+					swf="/AplicativoContaCapital/Renovacao/swf/cadastrovalorconfiguracaocapital"
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>			
+			</menu>		
+			<item id="MNUTABELAIRRF" 
+				label="Tabela IRRF - Juros ao Capital" 
+				titulo="Tabela IRRF - Juros ao Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/tabelairrf" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>															
+		</menu>
+			
+		<menu id="MNUREMESSA" label="Remessas" icone="">
+			<menu id="MNUIMPORTARMOVIMENTOS" label="Importação" icone="">	
+				<item id="MNUIMPORTACAODEPARTAMENTO"
+					label="Departamento" 
+					titulo="Departamento" 
+					usaSelGeral="0"
+					idLista=""
+					usaFiltro=""
+					parametros=""
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Retaguarda/ImportacaoArquivoDepartamento"
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+			</menu>
+		</menu>
+		<menu id="MNUAPOIO" label="Apoio" icone="">
+			<menu id="MNUAPOIOCORPORATIVO" label="Corporativo" icone="">
+				<item id="MNUAPOIOCORPORATIVOLEIAUTE" 
+					label="Leiaute Importação de Departamentos..." 
+					titulo="Leiaute Importação de Departamentos" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Retaguarda/LeiauteImpDep" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+			</menu>
+		</menu>
+		<menu id="MNURELATORIO" label="Relatórios" icone="">
+			<item id="MNURELFECH" 
+				label="Relatórios de Fechamento" 
+				titulo="Relatórios de Fechamento" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="2" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/PlataformaContabilidade/RelFechamento/RelFechamentoBase" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes" 
+				link="">
+			</item>
+			<item id="MNURELCCAEVENTUALEXTRATO" 
+				label="Extrato..." 
+				titulo="Extrato" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros=""
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				 
+				swf="/AplicativoContaCapital/Atendimento/RelExtratoCCA" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELFICHAPROPOSTADEMATRICULA"
+				label="Ficha Proposta de Matricula"
+				titulo="Ficha Proposta Matricula"
+				usaSelGeral="0"
+				idLista=""
+				usaFiltro=""
+				parametros=""
+				swf="/AplicativoContaCapital/Renovacao/swf/relfichapropostamatricula"
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<menu id="MNURELCCAEVENTUALRECIBO" label="Recibo" icone="">
+				<item id="MNURELCCARECIBOMOV" 
+					label="De Movimentação..."
+					titulo="Recibo de Movimentação" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelReciboInteg" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNURELCCARECIBOTRANS" 
+					label="De Transferênca..."
+					titulo="Recibo de Transferênca" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros=""
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					 
+					swf="/AplicativoContaCapital/Atendimento/RelReciboTransf" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNURELCCARECIBODES" 
+					label="De Desligamento..."
+					titulo="Recibo de Desligamento" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelReciboDeslig" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNURELCCARECIBODEB" 
+					label="Autorização Débito C/C..."
+					titulo="Autorização Débito Integralização" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelReciboDebCco" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+			</menu>
+			<item id="MNURELCCAPARCELAMENTO" 
+				label="Parcelamento" 
+				titulo="Relatório de Parcelamento de Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelParcelamentoCCA" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELCCAFRMPARCELAMENTO" 
+				label="Formulário de Parcelamento" 
+				titulo="Emissão do Formulário de Parcelamento de Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelFormularioParcelamentoCCA" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELCCAEVENTUALINTEGPENDENTES" 
+				label="Integralizações Pendentes..."
+				titulo="Relatório de Integralizações Pendentes" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelIntegPendente" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELCCAEVENTUALINTEG" 
+				label="Associados sem Integralização no Período..."
+				titulo="Relatório de Associados sem Integralização no Período" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelIntegNaoRealizada" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<menu id="MNURELCCALANCAMENTOS" label="Lançamentos" icone="">
+				<item id="MNURELCCALANCNAOCONTABILIZADOS" 
+					label="Não Contabilizados" 
+					titulo="Relatório de Lançamentos não Contabilizados" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelLancNaoContabilizados" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNURELCCALANCLOTE" 
+					label="por Lote" 
+					titulo="Relatório de Lançamentos em Conta Capital" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="1"
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"
+					swf="/AplicativoContaCapital/Atendimento/RelatorioLancamentos" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNURELCCALANCMATRICULA" 
+					label="por Matrícula" 
+					titulo="Relatório de Lançamentos em Conta Capital" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="2" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelatorioLancamentos" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNURELCCARESUMOLANCAMENTOS" 
+					label="Resumo" 
+					titulo="Relatório de Resumo de Lançamentos" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelatorioResumoLancamentos" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+			</menu>
+			<item id="MNURELCCARESUMOSALDOSATUAIS" 
+                 label="Resumo de Saldos Atuais" 
+                 titulo="Relatório de Saldos de Conta Capital" 
+                 usaSelGeral="0" 
+                 idLista="" 
+                 usaFiltro="" 
+                 parametros="" 
+                 destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				 destino="servicosJava"
+                 swf="/AplicativoContaCapital/Atendimento/RelResumoSaldosAtuais" 
+                 icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+            </item>			
+			<item id="MNURELCCASALDOSMEDIOS" 
+				label="Saldos Médios" 
+				titulo="Relatório de Saldos Médios Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelSaldosMedios" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<menu id="MNURELCCASITUACAO" label="Situação da Conta Capital" icone="">
+ 				<item id="MNURELCCASITUACAOMATRICULA"  
+ 					label="por Matrícula..."  
+ 					titulo="Relatorio de Situações de Conta Capital"  
+ 					usaSelGeral="0"  
+ 					idLista=""  
+ 					usaFiltro=""  
+ 					parametros=""  
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB" 					
+ 					swf="/AplicativoContaCapital/Atendimento/RelSituacaoCCA"  
+ 					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes"> 
+ 				</item>		 	
+				<item id="MNURELCCASITUACAOPERIODO" 
+					label="por Período..." 
+					titulo="Relatorio de Situações de Conta Capital por Período" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelSituacaoPeriodoCCA" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>			
+				<item id="MNURELCCASITUACAOMATRICULAREN"
+                          label="por Matrícula Novo..."
+                          titulo="Relatorio de Situações de Conta Capital"
+                          usaSelGeral="0"
+                          idLista=""
+                          usaFiltro=""
+                          parametros=""
+                          swf="/AplicativoContaCapital/Renovacao/swf/relsituacaomatriculaccaren"
+                          icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+                 </item>			
+				<item id="MNURELCCASITUACAOPERIODOREN"
+                          label="por Período Novo..."
+                          titulo="Relatorio de Situações de Conta Capital por Período"
+                          usaSelGeral="0"
+                          idLista=""
+                          usaFiltro=""
+                          parametros=""
+                          swf="/AplicativoContaCapital/Renovacao/swf/relsituacaoperiodoccaren"
+                          icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+                 </item>			
+			</menu>
+			<item id="MNURELPOSDIARIACARTEIRA" 
+				label="Posição Diária da Carteira" 
+				titulo="Posição Diária da Carteira" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelPosicaoDiariaCarteira" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELATORIOCONCILIACAOCONTABIL" 
+				label="Conciliação Contábil..." 
+				titulo="Relatório de Conciliação Contábil" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelatorioConciliacaoContabil" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<menu id="MNURELDIARIOCCA" label="Diário Auxiliar" icone="">
+				<item id="MNURELDIARIOMOVCCA"
+						label="Movimentos" 
+						titulo="Relatório Diário Auxiliar" 
+						usaSelGeral="0"
+						idLista=""
+						usaFiltro=""
+						parametros=""
+						destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+						destino="servicosJava"
+						mdi="MDICCAWEB"						
+						swf="/AplicativoContaCapital/Atendimento/RelatorioMovDiarioAux"
+						icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+				<item id="MNURELDIARIOCCATERMO"
+					    label="Termo Abertura / Fechamento..." 
+					    titulo="Diário Geral - Termo Abertura / Encerramento" 
+					    usaSelGeral="0"
+					    idLista=""
+					    usaFiltro=""
+					    parametros="2"
+						destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+						destino="servicosJava"
+						mdi="MDICCAWEB"					    
+					    swf="/AplicativoContaCorrente/Comum/RelTermoAberFech"
+					    icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>
+			</menu>	
+			<item id="MNURELOPERACOESFINANCEIRAS" 
+				label="Operações Financeiras..."
+				titulo="Relatório de Operações Financeiras" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros=""
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				 
+				swf="/AplicativoContaCapital/Atendimento/RelOperacoesFinanceiras" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELCCAEVENTUALCAPREALDEV" 
+				label="Capital a Realizar/Devolver/Devolvido..."
+				titulo="Relatório de Capital a Realizar/Devolver/Devolvido" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelCapRealDev" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELPROVJUROSCCA" 
+				label="Provisão de Juros" 
+				titulo="Relatório da Provisão de Juros de Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelProvisaoJuros" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUCCARELDESTINACAOJUROS" 
+				label="Destinação de Juros..."
+				titulo="Relatório da Destinação de Juros de Conta Capital " 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelDestinacaoJurosCCA" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELATORIOIRDESTINACAOJUROS" 
+				label="I.R. DA DESTINAÇÃO DE JUROS..." 
+				titulo="Relatório do Recolhimento de IRRF da Destinação de Juros" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelRecolhimentoIRRFDestinacaoJuros" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELCCARELCONDICOESDEASSOCIACAO" 
+				label="Condições de Associação"
+				titulo="Relatório de Condições de Associação" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelCondicoesDeAssociacao" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>	
+			<item id="MNURELLISTAPRESENCA" 
+				label="Lista de Presença" 
+				titulo="Relatório de Lista de Presença" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelListaPresenca" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>		
+			<item id="MNURELNAOCOOPERADO" 
+				label="Lista de Não-Cooperados" 
+				titulo="Relatório de Não-Cooperados" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelNaoCooperado" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNUINCONSISTENCIACCACONSIGNADO" 
+				label="INCONSISTÊNCIA DO CAPITAL CONSIGNADO" 
+				titulo="Relatório de Inconsistências do Capital Consignado" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelInconsistenciaFolhaPagto" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELCCAEVENTUALINTEGPRAZO" 
+				label="Integralização por Prazo Indeterminado..."
+				titulo="Relatório de Integralização por Prazo Indeterminado" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelIntegPrazo" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELREMCAPCONSIGNADOCCA" 
+				label="Remessas do Capital Consignado..."
+				titulo="Relatório de Remessas do Capital Consignado" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+				destino="servicosJava"
+				mdi="MDICCAWEB"				
+				swf="/AplicativoContaCapital/Atendimento/RelRemessaCapConsignado" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELPARTICIPACAOINDIRETA" 
+				label="Participação Indireta de Singular no Bancoob"
+				titulo="Relatório de Participação Indireta de Singular no Bancoob" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/relparticipacaoindiretasingular" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>			
+			<menu id="MNURELINCORPORACAO" label="Incorporação" icone="">
+				<item id="MNURELPOSINCORPORACAO" 
+					label="Relatório Pós Incorporação"
+					titulo="Relatório Pós Incorporação" 
+					usaSelGeral="0" 
+					idLista="" 
+					usaFiltro="" 
+					parametros="" 
+					destinoArquivos="{destinoArquivos:destinoArquivosBG}"
+					destino="servicosJava"
+					mdi="MDICCAWEB"					
+					swf="/AplicativoContaCapital/Atendimento/RelPosIncorporacao" 
+					icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+				</item>	
+			</menu>					
+			<item id="MNURELPARCELAMENTOCONTACAPITAL"
+				label="Parcelamento Conta Capital"
+				titulo="Parcelamento Conta Capital"
+				usaSelGeral="0"
+				idLista=""
+				usaFiltro=""
+				parametros=""
+				swf="/AplicativoContaCapital/Renovacao/swf/relparcelamentocontacapital"
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELSALDOSATUAL" 
+				label="Saldos de Conta Capital" 
+				titulo="Relatório de Saldos de Conta Capital" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/relsaldoatual" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELDESLIGAMENTOSENCONTROCONTAS" 
+				label="Desligamentos com encontro de contas" 
+				titulo="Relatório de desligamentos com encontro de contas" 
+				usaSelGeral="0" 
+				idLista="" 
+				usaFiltro="" 
+				parametros="" 
+				swf="/AplicativoContaCapital/Renovacao/swf/reldesligamentosencontrocontas" 
+				icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+			</item>
+			<item id="MNURELDESTINACAOJUROSRECOLHIMENTOIRRF" 
+                label="Relatório de destinação de juros / Recolhimento IRRF" 
+                titulo="Relatório de destinação de juros / Recolhimento IRRF" 
+                usaSelGeral="0" 
+                idLista="" 
+                usaFiltro="" 
+                parametros="" 
+                swf="/AplicativoContaCapital/Renovacao/swf/relrecolhimentoirrfdestinacaojuros" 
+                icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+           </item>      
+		   <item id="MNURELFECHAMENTOLISTAGEM" 
+                label="Relatórios de fechamento" 
+                titulo="Relatórios de fechamento"
+                usaSelGeral="0" 
+                idLista="" 
+                usaFiltro="" 
+                parametros="" 
+                swf="/AplicativoContaCapital/Renovacao/swf/relatoriosdefechamento" 
+                icone="br/com/bancoob/imagens/icos/modulos/cadastroClientes">
+           </item>
+		</menu>	
+	</MDICCAWEB>
+</sisbrweb>

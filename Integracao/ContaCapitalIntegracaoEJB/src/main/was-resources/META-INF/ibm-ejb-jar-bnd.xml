@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar-bnd xmlns="http://websphere.ibm.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-ejb-jar-bnd_1_1.xsd"
+	version="1.1">
+
+	<session name="InstituicaoIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.InstituicaoIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/InstituicaoIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.InstituicaoIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/InstituicaoIntegracaoServicoRemote" />
+	</session>
+
+	<session name="CapesIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.CapesIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/CapesIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.CapesIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/CapesIntegracaoServicoRemote" />
+	</session>
+
+	<session name="GenIntIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.GenIntIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/GenIntIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.GenIntIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/GenIntIntegracaoServicoRemote" />
+	</session>
+
+	<session name="ContaCorrenteIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.ContaCorrenteIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/ContaCorrenteIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.ContaCorrenteIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/ContaCorrenteIntegracaoServicoRemote" />
+	</session>
+
+	<session name="ContabilidadeIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.ContabilidadeIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/ContabilidadeIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.ContabilidadeIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/ContabilidadeIntegracaoServicoRemote" />
+	</session>
+
+	<session name="LocalizacaoIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.LocalizacaoIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/LocalizacaoIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.LocalizacaoIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/LocalizacaoIntegracaoServicoRemote" />
+	</session>
+
+	<session name="DocumentoIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.DocumentoIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/DocumentoIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.DocumentoIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/DocumentoIntegracaoServicoRemote" />
+	</session>
+
+	<session name="GftIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.GftIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/GftIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.GftIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/GftIntegracaoServicoRemote" />
+	</session>
+
+	<session name="CaptacaoRemuneradaIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.CaptacaoRemuneradaIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/CaptacaoRemuneradaIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.CaptacaoRemuneradaIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/CaptacaoRemuneradaIntegracaoServicoRemote" />
+	</session>
+	
+	<session name="CreditoIntegracaoServicoEJB">
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.CreditoIntegracaoServicoLocal"
+			binding-name="ejblocal:ContaCapitalIntegracao/CreditoIntegracaoServico" />
+		<interface
+			class="br.com.sicoob.sisbr.cca.integracao.negocio.servicos.interfaces.CreditoIntegracaoServicoRemote"
+			binding-name="ContaCapitalIntegracao/CreditoIntegracaoServicoRemote" />
+	</session>
+
+</ejb-jar-bnd>

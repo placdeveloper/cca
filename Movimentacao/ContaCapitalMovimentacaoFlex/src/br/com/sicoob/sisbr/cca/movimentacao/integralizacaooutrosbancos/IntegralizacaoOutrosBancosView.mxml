@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:renderes="br.com.bancoob.componentes.renderes.*"
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cmp="br.com.sicoob.sisbr.contaCapital.componentes.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:renderes1="br.com.sicoob.sisbr.cca.renderes.*"	
+	width="950" height="500" layout="absolute">
+	
+	<mx:Script>
+		<![CDATA[
+			import br.com.bancoob.componentes.renderes.CheckBoxRenderer;
+		]]>
+	</mx:Script>
+	<containers:VBoxBancoob x="0" y="0" width="100%" height="100%" id="containerTela">
+		
+		<navegacao:Tab id="tabNav" width="100%" height="100%" paddingLeft="10" paddingRight="10" focusEnabled="false">
+			
+			<!-- Aba Favorecidos -->
+			<containers:CanvasBancoob label="Favorecidos" id="tabFavorecidos" width="100%">
+				<containers:VBoxBancoob x="0" y="10" width="100%" paddingLeft="5" paddingRight="5">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="Filtros" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" y="10">
+						<Rotulo width="80" height="18" text="Conta Capital:"/>
+						<cca:ProcurarContaCapital id="procurarCCA_fav" idSituacaoCadastro="2" idSituacaoContaCapital="1" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" y="40">
+						<Rotulo text="Tipo de Filtros:" width="80"/>
+						<input:Combo id="cboTipoFiltro" width="300" labelField="descListaItem" />
+						<input:Check id="chkPrincipal" label="Apenas Conta Principal" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" y="70">
+						<containers:HBoxBancoob width="100%">
+							<Rotulo text="Banco:" width="80"/>
+							<input:Combo id="cboBancos_fav" width="550" labelField="descListaItem" />
+						</containers:HBoxBancoob>
+						<containers:HBoxBancoob width="100%" horizontalAlign="right">
+							<Botao id="btConsultar_fav" width="85" label="CONSULTAR" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="LISTA DE FAVORECIDOS" width="100%" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<grid:Grid width="100%" id="gridContasFav" height="270" sortableColumns="false">
+							<grid:columns>
+								<grid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="30" 
+												 headerRenderer="br.com.sicoob.sisbr.cca.movimentacao.integralizacaooutrosbancos.CheckboxHeaderFav">
+									<grid:itemRenderer>
+										<mx:Component>
+											<renderes:CheckBoxRenderer />
+										</mx:Component>
+									</grid:itemRenderer>
+								</grid:ColunaGrid> 
+								<grid:ColunaGrid dataField="numCliente" width="40" headerText="Nº Cliente" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="numMatricula" width="60" headerText="Conta Capital" textAlign="center"/>
+								<grid:ColunaGrid dataField="descNomePessoa" width="190" headerText="Nome Cliente" textAlign="center"/>
+								<grid:ColunaGrid dataField="numCpfCnpj" width="60" headerText="CPF/CNPJ" textAlign="center"/>
+								<grid:ColunaGrid dataField="numBancoFavorecido" width="40" headerText="Nº Banco" textAlign="center"/>
+								<grid:ColunaGrid dataField="numAgenciaFavorecido" width="40" headerText="Agência" textAlign="center"/>
+								<grid:ColunaGrid dataField="numContaFavorecido" width="50" headerText="Nº Conta" textAlign="center"/>
+								<grid:ColunaGrid dataField="contaPrincipal" width="50" headerText="Conta Principal" textAlign="center" itemRenderer="br.com.sicoob.sisbr.cca.movimentacao.integralizacaooutrosbancos.ContaPrincipalRenderer"/>
+							</grid:columns>
+						</grid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="10">
+							<Botao id="btAtualizarContas" width="135" label="Atualizar Contas" />
+							<Botao id="btDefinirPrincipal" width="150" label="Definir Como Principal" />
+							<Botao id="btFecharFav" width="86" label="Fechar" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>
+					
+				</containers:VBoxBancoob>
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Integralizacao -->
+			<containers:CanvasBancoob label="Preparação de Remessa" id="tabIntegralizacao" width="100%">
+				<containers:VBoxBancoob x="0" y="10" width="100%" paddingLeft="5" paddingRight="5">
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="FILTROS" width="100%" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" y="10">
+						<Rotulo width="80" height="18" text="Conta Capital:"/>
+						<cca:ProcurarContaCapital id="procurarCCA" idSituacaoCadastro="2" idSituacaoContaCapital="1" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" y="40">
+						<containers:HBoxBancoob width="100%">
+							<Rotulo text="Banco:" width="80"/>
+							<input:Combo id="cboBancos" width="550" labelField="descListaItem" />
+						</containers:HBoxBancoob>
+						<containers:HBoxBancoob width="100%" horizontalAlign="right">
+							<Botao id="btConsultar" width="85" label="CONSULTAR" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="LISTA DE FAVORECIDOS" width="100%" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<Rotulo text="Valor a Integralizar (R$):" width="120"/>
+						<input:Texto id="txtValorIntegralizar" width="180" tipoEntrada="1" text="0,00" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" />						
+						<Botao id="btDefinirValor" width="130" label="DEFINIR PARA TODOS" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<grid:Grid width="100%" id="gridDados" height="270" sortableColumns="false" editable="true">
+							<grid:columns>
+								<grid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="30" sortable="false" editable="false"
+												 headerRenderer="br.com.sicoob.sisbr.cca.movimentacao.integralizacaooutrosbancos.CheckboxHeader">
+									<grid:itemRenderer>
+										<mx:Component>
+											<renderes:CheckBoxRenderer />
+										</mx:Component>
+									</grid:itemRenderer>
+								</grid:ColunaGrid> 
+								<grid:ColunaGrid dataField="numCliente" width="40" headerText="Nº Cliente" textAlign="center" editable="false" visible="false"/>
+								<grid:ColunaGrid dataField="numMatricula" width="60" headerText="Conta Capital" textAlign="center" editable="false"/>
+								<grid:ColunaGrid dataField="descNomePessoa" width="190" headerText="Nome Cliente" textAlign="center" editable="false"/>
+								<grid:ColunaGrid dataField="numCpfCnpj" width="60" headerText="CPF/CNPJ" textAlign="center" editable="false"/>
+								<grid:ColunaGrid dataField="numBancoFavorecido" width="40" headerText="Nº Banco" textAlign="center" editable="false"/>
+								<grid:ColunaGrid dataField="numAgenciaFavorecido" width="40" headerText="Agência" textAlign="center" editable="false"/>
+								<grid:ColunaGrid dataField="numContaFavorecido" width="50" headerText="Nº Conta" textAlign="center" editable="false"/>
+								<grid:ColunaGrid dataField="valorIntegralizacaoStr" width="50" headerText="Valor" textAlign="right" editable="true" paddingRight="10"/>
+							</grid:columns>
+						</grid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:CanvasBancoob width="100%">
+						<containers:HBoxBancoob height="35" bottom="0" horizontalAlign="right" verticalAlign="middle" paddingTop="10" right="0">
+							<Botao id="btEnviarRemessa" width="130" label="PREPARAR REMESSA" enabled="false"/>
+							<Botao id="btFechar" label="FECHAR" width="86" />
+						</containers:HBoxBancoob>
+					</containers:CanvasBancoob>
+					
+				</containers:VBoxBancoob>
+			</containers:CanvasBancoob>
+			
+			<!-- Aba Remessa enviada-->
+			<containers:CanvasBancoob label="Remessas Preparadas" id="tabRemessa" width="100%">
+				<containers:VBoxBancoob x="0" y="10" width="100%" paddingLeft="5" paddingRight="5">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="Filtros" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" y="10">
+						<Rotulo width="80" height="18" text="Conta Capital:"/>
+						<cca:ProcurarContaCapital id="procurarCCA_rem" idSituacaoCadastro="2" idSituacaoContaCapital="1" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" y="40">
+						<Rotulo width="80" text="Mês/Ano:" />
+						<input:Texto id="numMesRem" restrict="0-9" casasDecimais="0" maxChars="2" permitirValoreNegativos="false" validarObrigatorio="true" />						
+						<input:Texto id="numAnoRem" restrict="0-9" casasDecimais="0" maxChars="4" permitirValoreNegativos="false" validarObrigatorio="true"/>
+					</containers:HBoxBancoob>										
+					
+					<containers:HBoxBancoob width="100%" y="10">
+						<containers:HBoxBancoob width="100%">
+							<Rotulo text="Banco:" width="80"/>
+							<input:Combo id="cboBancos_rem" width="550" labelField="descListaItem" />
+						</containers:HBoxBancoob>
+						<containers:HBoxBancoob width="100%" horizontalAlign="right">
+							<Botao id="btConsultar_rem" width="85" label="CONSULTAR" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>						
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="LISTA DE REMESSAS" width="100%" />
+					</containers:HBoxBancoob>	
+					
+					<containers:HBoxBancoob width="100%">
+						<grid:Grid width="100%" id="gridRemEnv" height="120" sortableColumns="false" editable="false">
+							<grid:columns>
+								<grid:ColunaGrid dataField="sequencialArquivo" width="35" headerText="Nº Remessa" textAlign="center"/>
+								<grid:ColunaGrid dataField="descBanco" width="70" headerText="Banco" textAlign="center"/>
+								<grid:ColunaGrid dataField="numAgencia" width="35" headerText="Agência" textAlign="center"  />
+								<grid:ColunaGrid dataField="nomeArquivo" width="100" headerText="Arquivo" textAlign="center"/>
+								<grid:ColunaGrid dataField="dataGeracao" width="40" headerText="Data Geração" textAlign="center"/>
+								<grid:ColunaGrid dataField="qtdRegistros" width="35" headerText="Quantidade" textAlign="center"/>
+								<grid:ColunaGrid dataField="valorTotal" width="40" headerText="Total" textAlign="right" editable="true" paddingRight="10"/>
+								<grid:ColunaGrid dataField="descSituacaoArquivo" width="60" headerText="Situação" textAlign="center"/>								
+							</grid:columns>
+						</grid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="DETALHE" width="100%" />
+					</containers:HBoxBancoob>	
+					
+					<containers:HBoxBancoob width="100%">
+						<grid:Grid width="100%" id="gridDetalheRem" height="120" editable="false"
+								   tabEnabled="true">
+							<grid:columns>
+								<grid:ColunaGrid dataField="numMatricula" width="50" headerText="Conta Capital" textAlign="center"/>
+								<grid:ColunaGrid dataField="descNomePessoa" width="140" headerText="Nome Cliente" textAlign="center"/>
+								<grid:ColunaGrid dataField="numCpfCnpj" width="50" headerText="CPF/CNPJ" textAlign="center"/>
+								<grid:ColunaGrid dataField="numAgenciaFavorecido" width="50" headerText="Agência" textAlign="center"/>
+								<grid:ColunaGrid dataField="numContaFavorecido" width="50" headerText="Nº Conta" textAlign="center"/>
+								<grid:ColunaGrid dataField="valorIntegralizacao" headerText="Valor" width="50" textAlign="right" paddingLeft="5"/>
+							</grid:columns>							
+						</grid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="10">
+							<Botao id="btImprimir" label="IMPRIMIR" width="90" visible="false" />
+							<Botao id="btFecharRemEnv" width="86" label="Fechar" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>										
+					
+				</containers:VBoxBancoob>
+			</containers:CanvasBancoob>		
+			
+			<!-- Aba Remessa Retorno -->
+			<containers:CanvasBancoob label="Remessas Retorno" id="tabRemRet" width="100%">
+				<containers:VBoxBancoob x="0" y="10" width="100%" paddingLeft="5" paddingRight="5">
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="Filtros" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%" y="10">
+						<Rotulo width="80" height="18" text="Conta Capital:"/>
+						<cca:ProcurarContaCapital id="procurarCCA_rem_ret" idSituacaoCadastro="2" idSituacaoContaCapital="1" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" y="40">
+						<Rotulo width="80" text="Mês/Ano:" />
+						<input:Texto id="numMes" restrict="0-9" casasDecimais="0" maxChars="2" permitirValoreNegativos="false" validarObrigatorio="true" />
+						<input:Texto id="numAno" restrict="0-9" casasDecimais="0" maxChars="4" permitirValoreNegativos="false" validarObrigatorio="true" />
+					</containers:HBoxBancoob>										
+					
+					<containers:HBoxBancoob width="100%" y="70">
+						<containers:HBoxBancoob width="100%">
+							<Rotulo text="Banco:" width="80"/>
+							<input:Combo id="cboBancos_rem_ret" width="550" labelField="descListaItem" />
+						</containers:HBoxBancoob>
+						<containers:HBoxBancoob width="100%" horizontalAlign="right">
+							<Botao id="btConsultar_rem_ret" width="85" label="CONSULTAR" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="LISTA DE RETORNO" width="100%" />
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<grid:Grid width="100%" id="gridRemRet" height="110" sortableColumns="false" editable="false">
+							<grid:columns>
+								<grid:ColunaGrid dataField="numBanco" width="40" headerText="Nº Banco" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="sequencialArquivo" width="35" headerText="Nº Remessa" textAlign="center"/>
+								<grid:ColunaGrid dataField="descBanco" width="70" headerText="Banco" textAlign="center"/>
+								<grid:ColunaGrid dataField="numAgencia" width="35" headerText="Agência" textAlign="center"/>
+								<grid:ColunaGrid dataField="nomeArquivo" width="80" headerText="Arquivo" textAlign="center"/>
+								<grid:ColunaGrid dataField="dataGeracao" width="40" headerText="Data Recepção" textAlign="center"/>
+								<grid:ColunaGrid dataField="qtdRegistros" width="35" headerText="Quantidade" textAlign="center"/>
+								<grid:ColunaGrid dataField="valorTotal" width="40" headerText="Total" textAlign="right" editable="true" paddingRight="10"/>
+							</grid:columns>
+						</grid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<titulo:SubtituloView texto="DETALHE" width="100%" />
+					</containers:HBoxBancoob>						
+					
+					<containers:HBoxBancoob width="100%">
+						<grid:Grid width="100%" id="gridRemRetDetalhe" height="120" sortableColumns="false">
+							<grid:columns>
+								<grid:ColunaGrid dataField="selecionado" headerText="" textAlign="center" width="30" 
+												 headerRenderer="br.com.sicoob.sisbr.cca.movimentacao.integralizacaooutrosbancos.CheckboxHeaderRemRet">
+									<grid:itemRenderer>
+										<mx:Component>
+											<renderes1:IntegracaoOutrosBancosCheckBoxRenderer/>
+										</mx:Component>
+									</grid:itemRenderer>
+								</grid:ColunaGrid> 
+								
+								<grid:ColunaGrid dataField="bolIntegralizadoCapital" width="40" headerText="bolIntegralizadoCapital" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="numBanco" width="40" headerText="Nº Banco" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="sequencialArquivo" width="40" headerText="sequencialArquivo" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="sequencialDetalhe" width="40" headerText="sequencialDetalhe" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="numParcela" width="40" headerText="numParcela" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="nomeArquivo" width="40" headerText="nomeArquivo" textAlign="center" visible="false"/>
+								
+								<grid:ColunaGrid dataField="numCliente" width="50" headerText="Nº Cliente" textAlign="center" visible="false"/>
+								<grid:ColunaGrid dataField="numMatricula" width="50" headerText="Conta Capital" textAlign="center"/>
+								<grid:ColunaGrid dataField="descNomePessoa" width="140" headerText="Nome Cliente" textAlign="center"/>
+								<grid:ColunaGrid dataField="numCpfCnpj" width="50" headerText="CPF/CNPJ" textAlign="center"/>
+								<grid:ColunaGrid dataField="numAgenciaFavorecido" width="50" headerText="Agência" textAlign="center"/>
+								<grid:ColunaGrid dataField="numContaFavorecido" width="50" headerText="Nº Conta" textAlign="center"/>
+								<grid:ColunaGrid dataField="valorIntegralizacao" headerText="Valor" width="50" textAlign="right" paddingLeft="5"/>
+								<grid:ColunaGrid dataField="strIntegralizadoCapital" headerText="Integralizado" width="40" textAlign="center"/>
+							</grid:columns>
+						</grid:Grid>
+					</containers:HBoxBancoob>
+					
+					<containers:HBoxBancoob width="100%">
+						<containers:HBoxBancoob width="100%" horizontalAlign="right" paddingTop="10">
+							<Botao id="btIntegralizar" width="135" label="Integralizar" />
+							<Botao id="btFecharRemRet" width="86" label="Fechar" />
+						</containers:HBoxBancoob>
+					</containers:HBoxBancoob>
+					
+				</containers:VBoxBancoob>
+			</containers:CanvasBancoob>			
+			
+		</navegacao:Tab>		
+	</containers:VBoxBancoob>
+</Modulo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:componentes="br.com.bancoob.componentes.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="650" height="365" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="100%">
+		<containers:VBoxBancoob width="100%" borderStyle="none">
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<titulo:SubtituloView texto="INFORMAÇÕES DO CADASTRO" width="100%" />
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<navegacao:Tab id="tabNav" width="100%" height="100%">
+					<!-- Aba Conta Capital -->
+					<!-- Aba Conta Capital -->
+					<!-- Aba Conta Capital -->
+					<containers:CanvasBancoob label="Dados Cadastrais" id="tabContaCapital" width="100%" height="100%">
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="10">
+							<Rotulo text="Data do Cadastro:" y="10" width="90" />
+							<Rotulo id="dataCadastro" text="" x="100" />
+						</validaveis:HBoxValidavel>
+						
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+							<Rotulo text="CPF/CNPJ:" height="60" width="90" />
+							<Rotulo id="cpfCnpj" height="60" />
+						</validaveis:HBoxValidavel>
+						
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="70">
+							<Rotulo text="Nome:" width="90" />
+							<Rotulo id="nomePessoa" />
+						</validaveis:HBoxValidavel>
+						
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="100">
+							<Rotulo text="N° Conta Capital:" width="90" />
+							<Rotulo id="numContaCapital" />
+						</validaveis:HBoxValidavel>
+					</containers:CanvasBancoob>
+					
+					<!-- Aba Proposta de Subscrição -->
+					<!-- Aba Proposta de Subscrição -->
+					<!-- Aba Proposta de Subscrição -->
+					<containers:CanvasBancoob label="Proposta de Subscrição" id="tabProposta" width="100%" height="150">
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="10">
+							<Rotulo width="100" text="Valor da Subscrição:" />
+							<Rotulo width="100" id="vlrSubs" />
+							
+							<Rotulo width="130" text="Valor Integralização à Vista:" />
+							<Rotulo width="100" id="vlrInteg" />
+						</validaveis:HBoxValidavel>
+						
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+							<Rotulo width="100" text="Quant. Parcelas:" />
+							<Rotulo width="100" id="qtdParcelas" />
+							
+							<Rotulo width="130" text="Valor das Parcelas:" />
+							<Rotulo width="100" id="vlrParcelas" /> 
+						</validaveis:HBoxValidavel>
+						
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="70">
+							<Rotulo width="100" text="Dia para Débito:" />
+							<Rotulo width="100" id="diaDebito" />
+						</validaveis:HBoxValidavel>
+						
+						<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="100">
+							<Rotulo width="100" text="Forma de Débito:" />
+							<Rotulo width="100" id="descTipoInteg" />
+							
+							<Rotulo width="100" id="numCcoLabel" text="Nº Conta Corrente:" />
+							<Rotulo width="100" id="numCco" />
+						</validaveis:HBoxValidavel>
+					</containers:CanvasBancoob>
+					
+					<containers:CanvasBancoob label="Anotações Vigentes" id="tabAnotVigentes" width="100%" height="100%">
+						<containers:HBoxBancoob id="anotVigente" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%" />
+					</containers:CanvasBancoob>
+					
+					<containers:CanvasBancoob label="Anotações Baixadas" id="tabAnotBaixada" width="100%" height="100%">
+						<containers:HBoxBancoob id="anotBaixada" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%" />
+					</containers:CanvasBancoob>
+				</navegacao:Tab>
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<titulo:SubtituloView texto="APROVAÇÃO" width="100%" />
+			</containers:HBoxBancoob>
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="0">
+				<Rotulo width="80" text="Situação:" />
+				<input:Combo width="150" id="cboSituacaoCadastro" labelField="descListaItem" validarObrigatorio="true" editable="false" />
+			</containers:HBoxBancoob>
+			<containers:HBoxBancoob width="100%" height="60" paddingLeft="10" paddingRight="10" y="0">
+				<Rotulo width="80" text="Observação:" />
+				<input:TextoArea id="observacao" height="100%" width="100%" maxChars="200" />
+			</containers:HBoxBancoob>
+			
+			<!-- Botoes -->			
+			<!-- Botoes -->
+			<!-- Botoes -->
+			<containers:CanvasBancoob width="100%" paddingRight="10">
+				<containers:HBoxBancoob height="50" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+					<Botao id="btOk" label="OK" width="86" />
+					<Botao id="btFechar" label="FECHAR" width="86" />
+				</containers:HBoxBancoob>
+			</containers:CanvasBancoob>
+		</containers:VBoxBancoob>
+	</containers:VBoxBancoob>
+</Modulo>

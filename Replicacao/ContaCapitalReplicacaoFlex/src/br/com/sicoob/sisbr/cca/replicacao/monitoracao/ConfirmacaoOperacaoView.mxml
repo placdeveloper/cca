@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	xmlns:componentes="br.com.bancoob.componentes.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	height="220" width="400" creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.formatters.DateFormatter;
+			
+			import br.com.bancoob.sisbr.DadosLogin;
+			
+			public function init():void {
+				var format:DateFormatter = new DateFormatter();
+				format.formatString = "DD/MM/YYYY J:NN:SS";
+				loginUsuario.text = DadosLogin.usr + " " + format.format(new Date());
+			}
+			
+			protected function btCancelar_clickHandler(event:MouseEvent):void {
+				fecharJanela();				
+			}
+		]]>
+	</mx:Script>
+	
+	<containers:HBoxBancoob width="100%">
+		<containers:VBoxBancoob width="100%">
+			
+			<mx:Spacer height="10" />
+			
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<componentes:Rotulo x="10" width="200" text="Deseja prosseguir?" fontWeight="bold" />
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<componentes:Rotulo x="10" width="90" text="Usuário:" />
+				<componentes:Rotulo width="200" id="loginUsuario" />
+			</containers:HBoxBancoob>
+			
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<componentes:Rotulo x="10" width="90" text="Justificativa:" />
+				<bancoobInput:TextoArea width="260" height="100" id="justificativa" editable="true" maxChars="1000" />
+			</containers:HBoxBancoob>
+			
+			<mx:Spacer height="10" />
+			
+			<containers:HBoxBancoob height="32" width="100%" bottom="0" horizontalAlign="center" verticalAlign="middle" paddingLeft="10" paddingRight="10">
+				<Botao id="btOk" label="Ok" width="100" />
+				<Botao id="btCancelar" label="Cancelar" width="100" click="btCancelar_clickHandler(event)" />
+			</containers:HBoxBancoob>
+		</containers:VBoxBancoob>
+	</containers:HBoxBancoob>
+	
+</Modulo>

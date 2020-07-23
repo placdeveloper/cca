@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	width="950" height="450" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="950" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="FILTROS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<nivelInstituicao:NivelInstituicao width="100%" id="compNivelInst" _bolInstCentral="true" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" paddingRight="10" y="100">
+			<Rotulo width="100" text="Tipo Pesquisa:" />
+			<input:Combo width="220" id="cboTipoPesquisa" labelField="descListaItem" editable="false" />
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="130">
+			<Rotulo width="100" text="Situação Bloqueio:" />
+			<input:Combo width="220" id="cboSituacaoBloqueio" labelField="descListaItem" editable="false" />
+			<validaveis:HBoxValidavel width="592" paddingLeft="506" y="130">
+				<Botao id="btConsultar" label="CONSULTAR" width="86"/>
+			</validaveis:HBoxValidavel>
+		</validaveis:HBoxValidavel>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="170">
+			<titulo:SubtituloView texto="SELECIONE" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<bancoobGrid:Grid x="0" y="130" width="100%" id="grid" tabIndex="1" doubleClickEnabled="true" height="220" wordWrap="true">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid id="numContaCapital" headerText="Conta Capital" dataField="numContaCapital" width="55" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="nomePessoa" headerText="Nome" dataField="nomePessoa" width="120" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="cpfCnpj" headerText="CPF/CNPJ" dataField="cpfCnpj" width="80" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="dataBloqueio" headerText="Data Bloqueio" dataField="dataBloqueio" width="55" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="valorBloqueado" headerText="Valor Bloqueado (R$)" dataField="valorBloqueado" width="80" textAlign="left">
+						<bancoobGrid:itemRenderer>
+							<mx:Component>
+								<mx:DataGridItemRenderer textAlign="right" />
+							</mx:Component>
+						</bancoobGrid:itemRenderer>
+					</bancoobGrid:ColunaGrid>
+					<bancoobGrid:ColunaGrid id="nomeTipoBloqueio" headerText="Tipo de Bloqueio" dataField="nomeTipoBloqueio" width="80" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="dataProtocolo" headerText="Data Protocolo" dataField="dataProtocolo" width="58" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="numProtocolo" headerText="Nº Protocolo" dataField="numProtocolo" width="65" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="numProcesso" headerText="Nº Processo" dataField="numProcesso" width="65" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="situacao" headerText="Situação" width="42" dataField="ativo" textAlign="left" itemRenderer="br.com.sicoob.sisbr.cca.movimentacao.bloqueio.SituacaoBloqueioRenderer"/>
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+		</containers:HBoxBancoob>
+		
+		<!-- Botoes -->			
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="left" verticalAlign="middle" left="10">
+				<Botao id="btHistorico" label="VISUALIZAR HISTÓRICO" width="140" enabled="false"/>
+				<Botao id="btRelatorio" label="RELATÓRIO" width="90" enabled="false"/>
+			</containers:HBoxBancoob>
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btIncluir" label="INCLUIR BLOQUEIO" width="130" />
+				<Botao id="btDesbloquear" label="DESBLOQUEAR" width="100" enabled="false" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	</containers:VBoxBancoob>
+	
+	<input:Texto id="valorTipoPesquisa" visible="false" width="588" x="350" y="92"/>
+	<input:Combo id="cboTipoBloqueio" visible="false" width="220" labelField="descListaItem" editable="false" x="350" y="92"/>
+	
+</Modulo>

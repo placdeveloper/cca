@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>cca-movimentacao</artifactId>
+  <packaging>pom</packaging>
+  <name>CCA - Conta Capital Renovacao - Movimentacao</name>
+
+  <parent> 
+	  <groupId>br.com.sicoob.cca</groupId>
+	  <artifactId>cca</artifactId>
+	  <version>1.1.70.38</version>  
+  </parent>
+
+
+  <modules>
+    <module>ContaCapitalMovimentacaoEJB</module>
+	<module>ContaCapitalMovimentacaoFachada</module>
+	<module>ContaCapitalMovimentacaoFlex</module>
+  </modules>
+
+</project>

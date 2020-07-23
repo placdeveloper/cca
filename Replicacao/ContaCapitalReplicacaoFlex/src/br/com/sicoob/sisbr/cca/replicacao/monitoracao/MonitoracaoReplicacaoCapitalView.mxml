@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:componentes="br.com.bancoob.componentes.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*" 
+	xmlns:renderes1="br.com.sicoob.sisbr.cca.replicacao.monitoracao.*"
+	height="100%" width="100%" verticalScrollPolicy="auto">
+	
+	<containers:VBoxBancoob x="5" y="5" width="100%">
+		<containers:VBoxBancoob width="100%" borderStyle="solid">
+			
+			<containers:HBoxBancoob width="100%">
+				<componentes:Rotulo x="5" width="70" text="Cooperativa:" fontWeight="bold" />
+				<input:Texto width="40" id="numCoop" textAlign="right" tipoEntrada="2" restrict="0-9" casasDecimais="0" maxChars="4" permitirValoreNegativos="false" validarObrigatorio="false" enabled="false"/>
+				<input:Check id="chkApenasPilotos" label="Apenas pilotos" selected="true"/>
+			</containers:HBoxBancoob>
+			
+			<bancoobGrid:Grid x="0" y="5" width="100%" id="grdVisaoGeral" tabIndex="1" doubleClickEnabled="false" tabEnabled="true" height="250" variableRowHeight="true" wordWrap="true">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid id="tabela" headerText="TABELA" width="180" dataField="tabela" textAlign="left" color="black" fontSize="30" />
+					<bancoobGrid:ColunaGrid id="qtdAguardando" width="80" headerText="AGUARDANDO" dataField="qtdAguardando" textAlign="left" color="blue" fontSize="50" />
+					<bancoobGrid:ColunaGrid id="qtdInvalido" width="70" headerText="INVÁLIDO" dataField="qtdInvalido" textAlign="left" color="black" fontSize="50" />
+					<bancoobGrid:ColunaGrid id="qtdReplicado" width="110" headerText="REPLICADO" dataField="qtdReplicado" textAlign="left" color="green" fontSize="50" />
+					<bancoobGrid:ColunaGrid id="qtdErro" width="100" headerText="ERRO" dataField="qtdErro" textAlign="left" color="red" fontSize="50" />
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+		</containers:VBoxBancoob>
+			
+		<containers:VBoxBancoob width="100%" borderStyle="solid">
+			<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+				<titulo:SubtituloView texto="LISTA DE ERROS (Amostragem de 1000 registros)" width="100%" />
+			</containers:HBoxBancoob>
+			
+			<bancoobGrid:Grid x="0" y="5" width="100%" id="grdErros" tabIndex="1" doubleClickEnabled="true" tabEnabled="true" height="160">
+				<bancoobGrid:columns>
+					<bancoobGrid:ColunaGrid headerRenderer="br.com.sicoob.sisbr.cca.replicacao.monitoracao.MonitoracaoCheckBoxHeaderRenderer" 
+											sortable="false" dataField="selecionado" id="selecionado" textAlign="center" width="3">
+						<bancoobGrid:itemRenderer>
+							<mx:Component>
+								<renderes1:MonitoracaoCheckBoxRenderer />
+							</mx:Component>
+						</bancoobGrid:itemRenderer>
+					</bancoobGrid:ColunaGrid>
+					<bancoobGrid:ColunaGrid id="idReplicacaoCCA" width="5" headerText="ID" dataField="idReplicacaoCCA" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="numCooperativa" width="5" headerText="COOP" dataField="numCooperativa" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="siglaTabela" width="5" headerText="TABELA" dataField="siglaTabela" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="codAcao" width="5" headerText="AÇÃO" dataField="codAcao" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="dataHoraCadastro" width="10" headerText="DT_CADASTRO" dataField="dataHoraCadastro" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="dataHoraReplicacao" width="10" headerText="DT_REPLICACAO" dataField="dataHoraReplicacao" textAlign="left" />
+					<bancoobGrid:ColunaGrid id="descMensagemReplicacao" width="60" headerText="MENSAGEM" dataField="descMensagemReplicacao" textAlign="left" />
+				</bancoobGrid:columns>
+			</bancoobGrid:Grid>
+
+			<containers:HBoxBancoob height="32" width="100%" bottom="0" horizontalAlign="left" horizontalGap="8" verticalAlign="middle" right="0">
+				<Botao id="btReprocessar" label="Reprocessar" width="100" />
+				<Botao id="btInvalidar" label="Invalidar" width="100" />
+			</containers:HBoxBancoob>
+		</containers:VBoxBancoob>
+	</containers:VBoxBancoob>
+</Modulo>

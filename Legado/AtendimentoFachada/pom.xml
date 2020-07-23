@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <parent>
+	<groupId>br.com.sicoob.cca</groupId>
+	<artifactId>cca-legado</artifactId>
+	<version>1.1.55.1-SNAPSHOT</version>
+  </parent>
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.com.sicoob.ccam</groupId>
+  <artifactId>ccam-backoffice-atendimento-fachada</artifactId>
+  <packaging>jar</packaging>
+  <name>CCA - Conta Capital Legado - CCAM - AtendimentoFachada</name>
+
+  
+  <repositories>
+  	<repository>
+	    <id>libs-legado</id>
+	    <name>Libs Legado</name>
+	    <url>file://${project.basedir}/libs</url>
+	</repository>
+  </repositories>
+  
+  <dependencies>
+  
+    <dependency>
+		<groupId>br.com.sicoob.cca</groupId>
+		<artifactId>cca-api-contacapital</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>br.com.sicoob.cca</groupId>
+		<artifactId>cca-integracao-contacapital-legado-ejb</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+  
+	<dependency>
+		<groupId>br.com.sicoob.cca</groupId>
+		<artifactId>cca-movimentacao-contacapital-ejb</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+	
+    <!-- Sicoob -->
+	<dependency>
+		<groupId>br.com.sicoob.framework</groupId>
+		<artifactId>sicoob-java</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>br.com.sicoob.framework</groupId>
+		<artifactId>sicoob-was9</artifactId>
+	</dependency>
+	
+	<dependency>
+  		<groupId>br.com.sicoob.sci</groupId>
+  		<artifactId>02_SciEJB</artifactId>
+  		<version>1.0</version>
+  		<scope>system</scope>
+  		<systemPath>${project.basedir}/libs/02_SciEJB-1.0.jar</systemPath>
+  	</dependency>
+	
+  	<dependency>
+  		<groupId>br.com.sicoob.corporativo</groupId>
+  		<artifactId>corporativo-sisbr-negocio</artifactId>
+  		<version>1.0.0.10</version>
+  	</dependency>
+	<dependency>
+	  <groupId>br.com.sicoob.corporativo</groupId>
+	  <artifactId>produto-ejb</artifactId>
+	  <version>1.0.0.0</version>
+	</dependency>
+  	<dependency>
+  		<groupId>br.com.sicoob.ccam</groupId>
+  		<artifactId>11_ContaCapitalComumEJB</artifactId>
+  		<version>1.0</version>
+  		<scope>system</scope>
+  		<systemPath>${project.basedir}/libs/11_ContaCapitalComumEJB-1.0.jar</systemPath>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com.sicoob.ccam</groupId>
+  		<artifactId>12_ContaCapitalAtendimentoBOEJB</artifactId>
+  		<version>1.0</version>
+  		<scope>system</scope>
+  		<systemPath>${project.basedir}/libs/12_ContaCapitalAtendimentoBOEJB-1.0.jar</systemPath>
+  	</dependency>
+	<dependency>
+	  <groupId>org.apache</groupId>
+	  <artifactId>commons-beanutils</artifactId>
+	</dependency>	
+  	<dependency>
+  		<groupId>br.com.sicoob.ccom</groupId>
+  		<artifactId>06_RetaguardaComum</artifactId>
+  		<version>1.0</version>
+  		<scope>system</scope>
+  		<systemPath>${project.basedir}/libs/06_RetaguardaComum-1.0.jar</systemPath>
+  	</dependency>
+	<dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate</artifactId>
+	</dependency>
+	<dependency>
+	  <groupId>net.sf</groupId>
+	  <artifactId>jasperreports</artifactId>
+	  <version>3.6.2</version>
+	</dependency>
+	<dependency>
+	  <groupId>br.com.sicoob.framework.relatorio</groupId>
+	  <artifactId>processamento-relatorio-negocio</artifactId>
+	  <version>1.0.1.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>br.com.sicoob.framework.relatorio</groupId>
+	  <artifactId>processamento-relatorio-legado-ejb</artifactId>
+	  <version>1.0.1.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>br.com.sicoob.framework.relatorio</groupId>
+	  <artifactId>processamento-relatorio-util</artifactId>
+	  <version>1.0.1.0</version>
+	</dependency> 	
+	<dependency>
+	  <groupId>br.com.sicoob.framework.portal</groupId>
+	  <artifactId>prt-base-sisbr-java</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.apache</groupId>
+		<artifactId>commons-lang</artifactId>
+	</dependency>
+  </dependencies>
+  
+  <build>
+  	<finalName>ContaCapitalAtendimentoBOFachada</finalName>
+  </build>
+  
+</project>

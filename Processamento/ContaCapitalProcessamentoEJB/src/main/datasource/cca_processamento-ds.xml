@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+   <local-tx-datasource>
+      <jndi-name>jdbc/cca_processamentoDS</jndi-name>
+      <connection-url>jdbc:db2://DB2T302:50001/CNT_TBP:currentLockTimeout=30;</connection-url>
+      <driver-class>com.ibm.db2.jcc.DB2Driver</driver-class>
+      <user-name>USRCCA</user-name>
+      <password>123456</password>
+      <min-pool-size>1</min-pool-size>
+      <max-pool-size>20</max-pool-size>
+      <idle-timeout-minutes>1</idle-timeout-minutes>
+	  <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+      <!--check-valid-connection-sql>select * from ESQUEMA.TABELA</check-valid-connection-sql-->
+   </local-tx-datasource>
+</datasources>

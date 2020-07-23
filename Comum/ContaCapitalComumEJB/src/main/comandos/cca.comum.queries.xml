@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE queries [
+	<!ELEMENT queries (query*)>
+	<!ELEMENT query (use-case+, description,paginacao?,command+, ordenacoes?)>
+	<!ELEMENT use-case    (#PCDATA)>
+	<!ELEMENT description (#PCDATA)>
+	<!ELEMENT command     (#PCDATA)>
+	<!ELEMENT parametros  (#PCDATA)>
+	<!ELEMENT paginar  (#PCDATA)>
+	<!ELEMENT paginacao (#PCDATA)>
+	<!ELEMENT colunaCodigo    (#PCDATA)>
+	<!ELEMENT colunaDescricao    (#PCDATA)>
+	<!ELEMENT numeroOcorrenciasPorPagina    (#PCDATA)>
+	<!ELEMENT primeiraCondicao    (#PCDATA)>
+	<!ELEMENT ascendente    (#PCDATA)>
+	<!ELEMENT ordenacoes (ordenacao+)>
+	<!ELEMENT ordenacao (#PCDATA)>
+	<!ELEMENT sql  (#PCDATA)>
+	<!ATTLIST ordenacao chave CDATA    #REQUIRED>
+	<!ATTLIST ordenacao default CDATA    #IMPLIED>
+	<!ATTLIST command parametros CDATA    #IMPLIED>
+	<!ATTLIST command paginar CDATA    #IMPLIED>
+	<!ATTLIST use-case name CDATA    #REQUIRED>
+	<!ATTLIST query name CDATA    #REQUIRED>
+	<!ATTLIST paginacao colunaCodigo CDATA    #REQUIRED>
+	<!ATTLIST paginacao colunaDescricao CDATA    #REQUIRED>
+	<!ATTLIST paginacao numeroOcorrenciasPorPagina CDATA    #REQUIRED>
+	<!ATTLIST paginacao primeiraCondicao CDATA    #REQUIRED>
+	<!ATTLIST paginacao ascendente CDATA    #REQUIRED>
+	<!ATTLIST paginacao hint CDATA    #REQUIRED>
+	<!ATTLIST paginacao hintAuxiliar CDATA   #IMPLIED>
+]>
+
+<queries>
+	<query name="PESQUISA_EXEMPLO">
+		<use-case name="Exemplo"></use-case>
+		<description>Exemplo</description>
+		<command>
+			<![CDATA[
+			]]>
+		</command>
+	</query>
+	
+	<query name="VERIFICA_FECH_CAPITAL_INICIADO">
+		<use-case name="Conta Capital"></use-case>
+		<description>Verifica o fechamento do produto conta capital foi inicializado</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					dataprocessamento 
+				FROM dbo.fechordemproduto WHERE idproduto = ${PRODUTO_CONTA_CAPITAL} 
+					AND dataprocessamento = (SELECT DataAtualProd FROM dbo.Produto WHERE idProduto = ${PRODUTO_CONTA_CAPITAL})
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISA_CONTACAPITAL">
+		<use-case name="Conta Capital"></use-case>
+		<description>Pesquisa conta capital por numero</description>
+		<command>
+			<![CDATA[
+				SELECT * FROM CCA.CONTACAPITAL CCA 
+        
+				INNER JOIN CCA.SITUACAOCONTACAPITAL SC 
+				ON CCA.IDSITUACAOCONTACAPITAL = SC.IDSITUACAOCONTACAPITAL
+				
+				INNER JOIN CCA.SITUACAOAPROVACAOCAPITAL SAC
+				ON CCA.IDSITUACAOAPROVACAOCAPITAL = SAC.IDSITUACAOAPROVACAOCAPITAL
+				
+				INNER JOIN CLI.VIW_PESSOA PES
+				ON PES.IDPESSOA = CCA.IDPESSOA AND PES.IDINSTITUICAO + 0 = CCA.IDINSTITUICAO
+	                
+	            WHERE 1 = 1
+				
+				AND CCA.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+	            	
+	            <j:if test="${idSituacaoCadastro != null and idSituacaoCadastro >= 0}">
+	            	AND CCA.IDSITUACAOAPROVACAOCAPITAL = <bancoob:valor valor="${idSituacaoCadastro}" />
+	            </j:if>	
+	            
+	            <j:if test="${idSituacaoContaCapital != null and idSituacaoContaCapital > 0}">
+	            	AND SC.IDSITUACAOCONTACAPITAL = <bancoob:valor valor="${idSituacaoContaCapital}" />
+	            </j:if>
+	            
+	            <j:if test="${numContaCapital != null and numContaCapital > 0}">
+	            	AND CCA.NUMCONTACAPITAL = <bancoob:valor valor="${numContaCapital}" />
+	            </j:if>
+	            
+	            <j:if test="${cpfCnpj != null and filtro.cpfCnpj != ''}">
+	            	 AND PES.NUMCPFCNPJ = <bancoob:valor valor="${cpfCnpj}" /> 
+	            </j:if>
+	            
+	             <j:if test="${nome != null and nome != ''}">
+	            	 AND PES.NOMECOMPLETO like <bancoob:valor valor="${nome}%" /> 
+	            </j:if>
+	            
+	            ORDER BY CCA.NUMCONTACAPITAL
+	 			
+	 			WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTA_COOPERATIVAS_ATIVAS_SCI">
+		<use-case name="CONSULTA_COOPERATIVAS_ATIVAS_SCI"></use-case>
+		<description>Consulta as cooperativas ativas diretamente da view do SCI</description>
+		<command>
+			<![CDATA[
+				SELECT IDINSTITUICAO, NUMCOOPERATIVA, DESCSIGLACOOP
+				FROM SCI.VIW_INSTITUICAO
+				WHERE CODSITUACAOESPECIAL IS NULL
+				        AND BOLUTILIZASISBR = 1
+				        AND CODSITUACAOINST = 1
+				        AND NUMPAC = 0
+				        AND NUMCOOPERATIVA IS NOT NULL
+				        <j:if test="${numCoopPai != null}">
+					        AND NUMCOOPPAI = <bancoob:valor valor="${numCoopPai}" />
+				        </j:if>
+			]]>
+		</command>
+	</query>
+	
+	<query name="SCI_LISTAR_CENTRAL">
+		<use-case name="SCI_LISTAR_CENTRAL"></use-case>
+		<description>Consulta as centrais</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					inst.IDINSTITUICAO as IDINSTITUICAO,
+					inst.NUMCOOPERATIVA as NUMCOOPERATIVA,
+					inst.DESCSIGLACOOP as DESCSIGLACOOP
+				FROM 
+					SCI.VIW_INSTITUICAO inst
+				WHERE 
+					UPPER(inst.DESCTIPOGRAUCOOP) = 'CENTRAL'
+					AND inst.BOLUTILIZASISBR = 1 AND inst.NUMPAC = 0
+				ORDER BY 
+					inst.NUMCOOPERATIVA
+			]]>
+		</command>
+	</query>
+	
+	<query name="SCI_LISTAR_CENTRAL_E_CONFEDERACAO">
+		<use-case name="SCI_LISTAR_CENTRAL_E_CONFEDERACAO"></use-case>
+		<description>Consulta as centrais</description>
+		<command>
+			<![CDATA[
+				SELECT 
+				        inst.IDINSTITUICAO as IDINSTITUICAO,
+				        inst.NUMCOOPERATIVA as NUMCOOPERATIVA,
+				        inst.DESCSIGLACOOP as DESCSIGLACOOP
+				FROM 
+				        SCI.VIW_INSTITUICAO inst
+				WHERE 
+				        (
+				        	UPPER(inst.CODTIPOGRAUCOOP) = 1  
+				        	OR 
+				        	(inst.NUMCOOPERATIVA = 300 AND inst.CODTIPOGRAUCOOP = 3)
+				        )
+				        AND 
+				        inst.BOLUTILIZASISBR = 1 AND inst.NUMPAC = 0
+				ORDER BY 
+				        inst.NUMCOOPERATIVA
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTA_PAC_POR_COOPERATIVA">
+		<use-case name="CONSULTA_PAC_POR_COOPERATIVA"></use-case>
+		<description>Pesquisa os PACs da cooperativa</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					NUMPAC, DESCNOMECOOP, IDINSTITUICAO, NUMCOOPERATIVA 
+				FROM 
+					SCI.VIW_INSTITUICAO 
+				WHERE 
+					IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+				ORDER 
+					BY NUMPAC
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXPURGAROPERACAO">
+		<use-case name="EXPURGAROPERACAO"></use-case>
+		<description>Expurgo da tabela Operação</description>
+		<command>
+			<![CDATA[
+				DELETE FROM CCA.OPERACAOCONTACAPITAL 
+				WHERE 
+					DATAHORAINICIOOPERACAO &lt;= <bancoob:valor valor="${dataExpurgoOperacao}" /> 
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARINFORMACAOPROFISSIONAL">
+		<use-case name="CONSULTARINFORMACAOPROFISSIONAL"></use-case>
+		<description>Consulta Informacao Profissional</description>
+		<command>
+			<![CDATA[
+				 SELECT IP.IDINFORMACAOPROFISSIONAL, IP.NUMMATRICULA FROM CCA.CONTACAPITAL C
+				 INNER JOIN CLI.INFORMACAOPROFISSIONAL IP ON C.IDPESSOA = IP.IDPESSOA AND C.IDINSTITUICAO = IP.IDINSTITUICAO
+				 WHERE C.IDCONTACAPITAL = <bancoob:valor valor="${idContaCapital}" /> 
+				 	AND IP.CODSITUACAOFUNCIONARIO = 1
+				 WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="FECHAMENTOQUERYUSERID">
+			<use-case name="FECHAMENTOQUERYUSERID"></use-case>
+			<description>Select idUsuario para Fechamento</description>
+			<command>
+				<![CDATA[
+					SELECT 
+	             		TOP 1 U.IDUsuario
+	       			FROM 
+			            Usuario U WITH (NOLOCK)
+		            INNER JOIN 
+			            (
+			                   (SELECT 1 IDORDEM,'usrBanFecInf' PREFIXOUSU) UNION
+			                   (SELECT 2 IDORDEM,'usrBancoobFec' PREFIXOUSU) UNION
+			                   (SELECT 3 IDORDEM,'usrBancoobAdm' PREFIXOUSU) UNION
+			                   (SELECT 4 IDORDEM,'usrProducao' PREFIXOUSU) 
+			            )
+		            TB ON U.IDUsuario like TB.PREFIXOUSU+'%'
+		       		ORDER BY IDORDEM ASC
+				]]>
+			</command>
+	</query>
+	<query name="INCLUIROPERACAOLOTE">
+		<use-case name="INCLUIROPERACAOLOTE"></use-case>
+		<command>
+			<![CDATA[
+				INSERT INTO CCA.OPERACAOCONTACAPITAL (DATAHORAINICIOOPERACAO, DATAHORAFIMOPERACAO, IDMETODOOPERACAO, DESCPARAMETROOPERACAO, IDRESULTADOOPERACAO, DESCERROOPERACAO, IDUSUARIO, IDINSTITUICAO, IDUNIDADEINST) VALUES 
+					(?, ?, ?, ?, ?, ?, ?, ?, ?)			
+			]]>
+		</command>
+	</query>	
+	
+	<query name="VERIFICASTEPFECHCAPITALINICIADO">
+		<use-case name="Conta Capital"></use-case>
+		<description>NAO MEXER NO ORDER BY - Verifica se step de fechamento foi inicializado e insere nova entrada caso não haja entrada para a data atual</description>
+		<command>
+			<![CDATA[
+				SELECT * FROM FINAL TABLE (
+					INSERT INTO CCA.PROCESSAMENTOCAPITAL (IDPROCESSOCAPITAL, DATAPROCESSAMENTO, DATAHORAINICIOPROCESSAMENTO, IDINSTITUICAO, IDSITUACAOPROCESSAMENTOCAPITAL)
+					SELECT * FROM (
+						VALUES (
+							<bancoob:valor valor="${idProcesso}" />,
+							<bancoob:valor valor="${dataAtualProduto}" />,
+							CURRENT TIMESTAMP,
+							<bancoob:valor valor="${idInstituicao}" />,
+							<bancoob:valor valor="${idTipoStatusProcessoIniciado}" />
+						)
+					)
+					WHERE NOT EXISTS (
+						SELECT IDSITUACAOPROCESSAMENTOCAPITAL
+						FROM CCA.PROCESSAMENTOCAPITAL FP
+						WHERE FP.DATAPROCESSAMENTO = <bancoob:valor valor="${dataAtualProduto}" />
+						AND FP.IDPROCESSOCAPITAL = <bancoob:valor valor="${idProcesso}" />
+						AND FP.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+						AND (
+							FP.IDSITUACAOPROCESSAMENTOCAPITAL = <bancoob:valor valor="${idTipoStatusProcessoIniciado}" />
+							OR
+							FP.IDSITUACAOPROCESSAMENTOCAPITAL = <bancoob:valor valor="${idTipoStatusProcessoConcluido}" />
+						)
+						ORDER BY DATAHORAINICIOPROCESSAMENTO DESC
+						FETCH FIRST 1 ROWS ONLY
+					)
+				)
+			]]>
+		</command>
+	</query>
+	
+	<query name="STEPFECHCAPITALCONCLUIDOREJEITADO">
+		<use-case name="Conta Capital"></use-case>
+		<description>NAO MEXER NO ORDER BY - finaliza step de fechamento para a data atual</description>
+		<command>
+			<![CDATA[
+				UPDATE CCA.PROCESSAMENTOCAPITAL 
+					SET DATAHORAFIMPROCESSAMENTO = CURRENT TIMESTAMP,
+					IDSITUACAOPROCESSAMENTOCAPITAL = <bancoob:valor valor="${idTipoStatusProcesso}" />,
+					DESCERROPROCESSAMENTO = <bancoob:valor valor="${descErroProcesso}" />
+				WHERE 
+					DATAPROCESSAMENTO = <bancoob:valor valor="${dataAtualProduto}" />
+					AND IDPROCESSOCAPITAL = <bancoob:valor valor="${idProcesso}" />
+					AND IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+					AND IDSITUACAOPROCESSAMENTOCAPITAL = <bancoob:valor valor="${idTipoStatusProcessoIniciado}" />
+				ORDER BY DATAHORAINICIOPROCESSAMENTO DESC
+				FETCH FIRST 1 ROWS ONLY
+			]]>
+		</command>
+	</query>
+
+</queries>

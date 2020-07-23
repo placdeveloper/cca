@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE queries [
+	<!ELEMENT queries (query*)>
+	<!ELEMENT query (use-case+, description,paginacao?,command+, ordenacoes?)>
+	<!ELEMENT use-case    (#PCDATA)>
+	<!ELEMENT description (#PCDATA)>
+	<!ELEMENT command     (#PCDATA)>
+	<!ELEMENT parametros  (#PCDATA)>
+	<!ELEMENT paginar  (#PCDATA)>
+	<!ELEMENT paginacao (#PCDATA)>
+	<!ELEMENT colunaCodigo    (#PCDATA)>
+	<!ELEMENT colunaDescricao    (#PCDATA)>
+	<!ELEMENT numeroOcorrenciasPorPagina    (#PCDATA)>
+	<!ELEMENT primeiraCondicao    (#PCDATA)>
+	<!ELEMENT ascendente    (#PCDATA)>
+	<!ELEMENT ordenacoes (ordenacao+)>
+	<!ELEMENT ordenacao (#PCDATA)>
+	<!ELEMENT sql  (#PCDATA)>
+	<!ATTLIST ordenacao chave CDATA    #REQUIRED>
+	<!ATTLIST ordenacao default CDATA    #IMPLIED>
+	<!ATTLIST command parametros CDATA    #IMPLIED>
+	<!ATTLIST command paginar CDATA    #IMPLIED>
+	<!ATTLIST use-case name CDATA    #REQUIRED>
+	<!ATTLIST query name CDATA    #REQUIRED>
+	<!ATTLIST paginacao colunaCodigo CDATA    #REQUIRED>
+	<!ATTLIST paginacao colunaDescricao CDATA    #REQUIRED>
+	<!ATTLIST paginacao numeroOcorrenciasPorPagina CDATA    #REQUIRED>
+	<!ATTLIST paginacao primeiraCondicao CDATA    #REQUIRED>
+	<!ATTLIST paginacao ascendente CDATA    #REQUIRED>
+	<!ATTLIST paginacao hint CDATA    #REQUIRED>
+	<!ATTLIST paginacao hintAuxiliar CDATA   #IMPLIED>
+]>
+
+<queries>
+	<query name="INCLUIRCONTACAPITALREPLICACAO">
+		<use-case name="INCLUIRCONTACAPITALREPLICACAO"></use-case>
+		<description>Incluir a ContaCapital replicada do sql no db2</description>		
+		<command>
+			<![CDATA[
+			WITH 
+			RESULTADO AS (
+			        SELECT IDCONTACAPITAL FROM NEW TABLE (
+						INSERT
+						INTO
+						    CCA.CONTACAPITAL
+					    (
+					        IDINSTITUICAO,IDSITUACAOCONTACAPITAL,IDPESSOA,NUMCONTACAPITAL,
+					        DATAMATRICULA,DATASAIDA,VALORSALDOINTEG,VALORSALDOSUBSC,
+					        VALORSALDODEVOL,VALORSALDOBLOQ,BOLMATRICULAESCOLHIDA,IDUSUARIO,
+					        DATAHORAATUALIZACAO,IDSITUACAOAPROVACAOCAPITAL,DESCOBSAPROVACAOCAPITAL
+					    )
+					    VALUES
+					    (
+					        <bancoob:valor valor="${objContaCapital.idInstituicao}" />,
+					        <bancoob:valor valor="${objContaCapital.codSituacao}" />,
+							(SELECT IDPESSOA FROM CLI.VIW_PESSOA WHERE IDINSTITUICAO = <bancoob:valor valor="${objContaCapital.idInstituicao}" /> AND IDPESSOALEGADO = <bancoob:valor valor="${objContaCapital.numCliente}" />),
+					        <bancoob:valor valor="${objContaCapital.numMatricula}" />,
+					        <bancoob:valor valor="${objContaCapital.dataMatricula}" />,
+					        <bancoob:valor valor="${objContaCapital.dataSaida}" />,
+					        <bancoob:valor valor="${objContaCapital.valorSaldoAtuInteg}" />,
+					        <bancoob:valor valor="${objContaCapital.valorSaldoAtuSubsc}" />,
+					        <bancoob:valor valor="${objContaCapital.valorSaldoAtuDevolver}" />,
+					        <bancoob:valor valor="${objContaCapital.valorSaldoBloqInt}" />,
+					        0,
+					        'USR_REPLICACAO_CCA',
+					        <bancoob:valor valor="${dataHoraAtualizacao}" />,
+					        2,
+					        'APROVADO VIA REPLICACAO'
+					    )
+			        )
+			)
+			SELECT IDCONTACAPITAL FROM RESULTADO 			
+
+			]]>
+		</command>
+	</query>
+
+	<query name="INCLUIRPARCELAMENTOCONTACAPITALREPLICACAO">
+		<use-case name="INCLUIRPARCELAMENTOCONTACAPITALREPLICACAO"></use-case>
+		<description>Incluir o parcelamento replicado do sql no db2</description>		
+		<command>
+			<![CDATA[
+			WITH
+			RESULTADO AS (
+		        SELECT IDPARCELAMENTOCONTACAPITAL FROM NEW TABLE (
+					INSERT	INTO
+					    CCA.PARCELAMENTOCONTACAPITAL
+				    (
+				        IDCONTACAPITAL, NUMPARCELAMENTO, NUMPARCELA, IDTIPOPARCELAMENTO,
+				        IDMOTIVODEVOLUCAO, IDSITUACAOPARCELAMENTO, IDTIPOINTEGRALIZACAO, DATAVENCPARCELA,
+				        DATASITUACAOPARCELA,VALORPARCELA,NUMCONTACORRENTE, DESCMATRICULAFUNC, DESCOBSERVACAO, IDINSTITUICAO
+				    )
+				    VALUES
+				    (
+				        (SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO =<bancoob:valor valor="${objParcelamentoContaCapital.idInstituicao}" /> AND NUMCONTACAPITAL = <bancoob:valor valor="${objParcelamentoContaCapital.numMatricula}" />),
+				        <bancoob:valor valor="${objParcelamentoContaCapital.numParcelamento}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.numParcela}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.codTipoParcelamento}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.codMotivoDevolucao}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.codSituacaoParcela}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.codModoLanc}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.dataVencParcela}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.dataSituacaoParcela}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.valorParcela}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.numContaCorrente}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.uIDTrabalha}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.descObservacao}" />,
+				        <bancoob:valor valor="${objParcelamentoContaCapital.idInstituicao}" />
+				    )
+				)
+			)
+			SELECT IDPARCELAMENTOCONTACAPITAL FROM RESULTADO 			
+
+			]]>
+		</command>
+	</query>	
+	
+	
+	<query name="INCLUIRLANCAMENTOCONTACAPITALREPLICACAO">
+		<use-case name="INCLUIRLANCAMENTOCONTACAPITALREPLICACAO"></use-case>
+		<description>Incluir o Lancamento replicada do sql no db2</description>		
+		<command>
+			<![CDATA[
+			WITH 
+			RESULTADO AS (
+		        SELECT IDLANCAMENTOCONTACAPITAL FROM NEW TABLE (
+					INSERT
+					INTO
+					    CCA.LANCAMENTOCONTACAPITAL
+				    (
+				        IDTIPOHISTORICO,IDTIPOHISTORICOESTORNO,IDTIPOLOTE,IDCONTACAPITAL,IDINSTITUICAO,						        
+				        IDUSUARIO,DATALANCAMENTO,DESCNUMDOCUMENTO,VALORLANCAMENTO,
+				        DATAHORAATUALIZACAO,BOLPROCESSADO,NUMSEQLANC
+				    )
+				    VALUES
+				    (
+				        <bancoob:valor valor="${objLancamentoContaCapital.idTipoHistoricoLanc}" />,
+				        <bancoob:valor valor="${objLancamentoContaCapital.idTipoHistoricoEstorno}" />,
+				        <bancoob:valor valor="${objLancamentoContaCapital.numLoteLanc}" />,
+				        (SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO =<bancoob:valor valor="${objLancamentoContaCapital.idInstituicao}" /> AND NUMCONTACAPITAL = <bancoob:valor valor="${objLancamentoContaCapital.numMatricula}" />),
+				        <bancoob:valor valor="${objLancamentoContaCapital.idInstituicao}" />,
+				        <bancoob:valor valor="${objLancamentoContaCapital.idUsuarioResp}" />,
+				        <bancoob:valor valor="${objLancamentoContaCapital.dataLote}" />,
+				        
+				        <j:if test="${objLancamentoContaCapital.descNumDocumento != null}">		        
+					        <bancoob:valor valor="${objLancamentoContaCapital.descNumDocumento}" />,
+				        </j:if>
+				        <j:if test="${objLancamentoContaCapital.descNumDocumento == null}">		        
+					        ' ',
+				        </j:if>
+				        				        
+				        <bancoob:valor valor="${objLancamentoContaCapital.valorLanc}" />,
+				        <bancoob:valor valor="${objLancamentoContaCapital.dataHoraInclusao}" />,
+				        <bancoob:valor valor="${objLancamentoContaCapital.bolAtualizado}" />,
+				        <bancoob:valor valor="${objLancamentoContaCapital.numSeqLanc}" />
+				    )	
+				)
+			)
+			SELECT IDLANCAMENTOCONTACAPITAL FROM RESULTADO 			
+
+			]]>
+		</command>
+	</query>	
+	
+	<query name="ALTERARCONTACAPITALREPLICACAO">
+		<use-case name="ALTERARCONTACAPITALREPLICACAO"></use-case>
+		<description>Alterar a ContaCapital replicada do sql no db2</description>		
+		<command>
+			<![CDATA[			
+			UPDATE
+				CCA.CONTACAPITAL
+			SET
+				IDSITUACAOCONTACAPITAL = <bancoob:valor valor="${objContaCapital.codSituacao}" />,
+				DATAMATRICULA = <bancoob:valor valor="${objContaCapital.dataMatricula}" />,
+				DATASAIDA = <bancoob:valor valor="${objContaCapital.dataSaida}" />,
+				VALORSALDOINTEG = <bancoob:valor valor="${objContaCapital.valorSaldoAtuInteg}" />,
+				VALORSALDOSUBSC = <bancoob:valor valor="${objContaCapital.valorSaldoAtuSubsc}" />,
+				VALORSALDODEVOL = <bancoob:valor valor="${objContaCapital.valorSaldoAtuDevolver}" />,
+				VALORSALDOBLOQ = <bancoob:valor valor="${objContaCapital.valorSaldoBloqInt}" />,
+				DATAHORAATUALIZACAO = <bancoob:valor valor="${dataHoraAtualizacao}" />
+			WHERE
+				IDINSTITUICAO =<bancoob:valor valor="${objContaCapital.idInstituicao}" /> AND  
+				NUMCONTACAPITAL = <bancoob:valor valor="${objContaCapital.numMatricula}" />
+			]]>
+		</command>
+	</query>	
+	
+	<query name="ALTERARPARCELAMENTOCONTACAPITALREPLICACAO">
+		<use-case name="ALTERARPARCELAMENTOCONTACAPITALREPLICACAO"></use-case>
+		<description>Alterar o Parcelamento replicado do sql no db2</description>		
+		<command>
+			<![CDATA[
+				UPDATE
+					CCA.PARCELAMENTOCONTACAPITAL
+				SET							
+		        	NUMPARCELAMENTO 		=	<bancoob:valor valor="${objParcelamentoContaCapital.numParcelamento}" />,
+		        	NUMPARCELA				=	<bancoob:valor valor="${objParcelamentoContaCapital.numParcela}" />,
+		        	IDTIPOPARCELAMENTO		=	<bancoob:valor valor="${objParcelamentoContaCapital.codTipoParcelamento}" />,
+		        	IDMOTIVODEVOLUCAO		=	<bancoob:valor valor="${objParcelamentoContaCapital.codMotivoDevolucao}" />,
+		        	IDSITUACAOPARCELAMENTO	= 	<bancoob:valor valor="${objParcelamentoContaCapital.codSituacaoParcela}" />,
+		        	IDTIPOINTEGRALIZACAO	=	<bancoob:valor valor="${objParcelamentoContaCapital.codModoLanc}" />,
+		        	DATAVENCPARCELA			=	<bancoob:valor valor="${objParcelamentoContaCapital.dataVencParcela}" />,
+		        	DATASITUACAOPARCELA		=	<bancoob:valor valor="${objParcelamentoContaCapital.dataSituacaoParcela}" />,
+		        	VALORPARCELA			=	<bancoob:valor valor="${objParcelamentoContaCapital.valorParcela}" />,
+		        	NUMCONTACORRENTE		= 	<bancoob:valor valor="${objParcelamentoContaCapital.numContaCorrente}" />,
+		        	DESCMATRICULAFUNC		= 	<bancoob:valor valor="${objParcelamentoContaCapital.uIDTrabalha}" />,
+		        	DESCOBSERVACAO			=	<bancoob:valor valor="${objParcelamentoContaCapital.descObservacao}" />		
+				WHERE
+					IDCONTACAPITAL 			= 	(SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO =<bancoob:valor valor="${objParcelamentoContaCapital.idInstituicao}" /> AND NUMCONTACAPITAL = <bancoob:valor valor="${objParcelamentoContaCapital.numMatricula}" />) AND								
+		        	NUMPARCELAMENTO 		=	<bancoob:valor valor="${objParcelamentoContaCapital.numParcelamento}" /> AND
+		        	NUMPARCELA				=	<bancoob:valor valor="${objParcelamentoContaCapital.numParcela}" /> AND
+		        	IDTIPOPARCELAMENTO		=	<bancoob:valor valor="${objParcelamentoContaCapital.codTipoParcelamento}" />
+			]]>
+		</command>
+	</query>		
+	
+	<query name="ALTERARLANCAMENTOCONTACAPITALREPLICACAO">
+		<use-case name="ALTERARLANCAMENTOCONTACAPITALREPLICACAO"></use-case>
+		<description>Alterar o Lancamento replicado do sql no db2</description>		
+		<command>
+			<![CDATA[
+				UPDATE
+					CCA.LANCAMENTOCONTACAPITAL
+				SET
+			        IDTIPOHISTORICO			= 	<bancoob:valor valor="${objLancamentoContaCapital.idTipoHistoricoLanc}" />, 
+			        IDTIPOHISTORICOESTORNO	= 	<bancoob:valor valor="${objLancamentoContaCapital.idTipoHistoricoEstorno}" />, 
+			        IDTIPOLOTE				=	<bancoob:valor valor="${objLancamentoContaCapital.numLoteLanc}" />,
+			        IDINSTITUICAO			=	<bancoob:valor valor="${objLancamentoContaCapital.idInstituicao}" />,
+			        <j:if test="${objLancamentoContaCapital.idUsuarioResp != null}">		        
+			        	IDUSUARIO				=	<bancoob:valor valor="${objLancamentoContaCapital.idUsuarioResp}" />,
+			        </j:if>
+			        <j:if test="${objLancamentoContaCapital.idUsuarioResp == null}">		        
+			        	IDUSUARIO				=	'USR_EXTERNO_SISBR',
+			        </j:if>
+			        DATALANCAMENTO			=	<bancoob:valor valor="${objLancamentoContaCapital.dataLote}" />,
+			        <j:if test="${objLancamentoContaCapital.descNumDocumento != null}">		        
+			        	DESCNUMDOCUMENTO				=	<bancoob:valor valor="${objLancamentoContaCapital.descNumDocumento}" />,
+			        </j:if>
+			        <j:if test="${objLancamentoContaCapital.descNumDocumento == null}">		        
+			        	DESCNUMDOCUMENTO				=	' ',
+			        </j:if>
+			        VALORLANCAMENTO			=	<bancoob:valor valor="${objLancamentoContaCapital.valorLanc}" />,
+			        DATAHORAATUALIZACAO		=	<bancoob:valor valor="${objLancamentoContaCapital.dataHoraInclusao}" />,
+			        BOLPROCESSADO			= 	<bancoob:valor valor="${objLancamentoContaCapital.bolAtualizado}" />
+				WHERE
+					IDINSTITUICAO 			= 	<bancoob:valor valor="${objLancamentoContaCapital.idInstituicao}" /> AND								
+		        	DATALANCAMENTO 			=	<bancoob:valor valor="${objLancamentoContaCapital.dataLote}" /> AND
+		        	IDTIPOLOTE				=	<bancoob:valor valor="${objLancamentoContaCapital.numLoteLanc}" /> AND
+		        	NUMSEQLANC				=	<bancoob:valor valor="${objLancamentoContaCapital.numSeqLanc}" />
+												
+			]]>
+		</command>
+	</query>		
+
+	<query name="EXCLUIRCONTACAPITALREPLICACAO">
+		<use-case name="EXCLUIRCONTACAPITALREPLICACAO"></use-case>
+		<description>Excluir a Conta Capital replicada do sql no db2</description>		
+		<command>
+			<![CDATA[
+				DELETE
+					CCA.CONTACAPITAL
+				WHERE
+				<j:if test="${obj.idContaCapital != null}">
+					IDCONTACAPITAL = <bancoob:valor valor="${obj.idContaCapital}" />								
+				</j:if>
+				<j:if test="${obj.idContaCapital == null}">
+					IDINSTITUICAO =<bancoob:valor valor="${obj.idInstituicao}" /> AND  
+					NUMCONTACAPITAL = <bancoob:valor valor="${obj.numMatricula}" />
+				</j:if>						
+			]]>
+		</command>
+	</query>	
+	
+	<query name="EXCLUIRDOCUMENTOCONTACAPITALREPLICACAO">
+		<use-case name="EXCLUIRDOCUMENTOCONTACAPITALREPLICACAO"></use-case>
+		<description>Excluir o Documento Conta Capital replicado do sql no db2</description>		
+		<command>
+			<![CDATA[
+				DELETE
+					CCA.DOCUMENTOCAPITAL
+				WHERE
+				<j:if test="${obj.idContaCapital != null}">
+					IDCONTACAPITAL = <bancoob:valor valor="${obj.idContaCapital}" />								
+				</j:if>
+				<j:if test="${obj.idContaCapital == null}">
+					IDCONTACAPITAL = (SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO =<bancoob:valor valor="${obj.idInstituicao}" /> AND NUMCONTACAPITAL = <bancoob:valor valor="${obj.numMatricula}" />) 								
+				</j:if>						
+			]]>
+		</command>
+	</query>		
+
+	<query name="EXCLUIRPROPOSTACONTACAPITALREPLICACAO">
+		<use-case name="EXCLUIRPROPOSTACONTACAPITALREPLICACAO"></use-case>
+		<description>Excluir a Proposta de Subscrição da Conta Capital no db2 com a chave do legado</description>		
+		<command>
+			<![CDATA[
+				DELETE
+					CCA.PROPOSTASUBSCRICAO
+				WHERE
+				<j:if test="${obj.idContaCapital != null}">
+					IDCONTACAPITAL = <bancoob:valor valor="${obj.idContaCapital}" />								
+				</j:if>
+				<j:if test="${obj.idContaCapital == null}">
+					IDCONTACAPITAL = (SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO =<bancoob:valor valor="${obj.idInstituicao}" /> AND NUMCONTACAPITAL = <bancoob:valor valor="${obj.numMatricula}" />) 								
+				</j:if>						
+			]]>
+		</command>
+	</query>
+
+	<query name="EXCLUIRDEBITOCONTACAPITALREPLICACAO">
+		<use-case name="EXCLUIRDEBITOCONTACAPITALREPLICACAO"></use-case>
+		<description>Excluir o débito indeterminado da Conta Capital no db2 com a chave do legado</description>		
+		<command>
+			<![CDATA[
+				DELETE
+					CCA.DEBITOCONTACAPITAL
+				WHERE
+				<j:if test="${obj.idContaCapital != null}">
+					IDCONTACAPITAL = <bancoob:valor valor="${obj.idContaCapital}" />								
+				</j:if>
+				<j:if test="${obj.idContaCapital == null}">
+					IDCONTACAPITAL = (SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO =<bancoob:valor valor="${obj.idInstituicao}" /> AND NUMCONTACAPITAL = <bancoob:valor valor="${obj.numMatricula}" />) 								
+				</j:if>						
+			]]>
+		</command>
+	</query>
+
+	<query name="EXCLUIRPARCELAMENTOCONTACAPITALREPLICACAO">
+		<use-case name="EXCLUIRPARCELAMENTOCONTACAPITALREPLICACAO"></use-case>
+		<description>Excluir o Parcelamento replicado do sql no db2</description>		
+		<command>
+			<![CDATA[
+				DELETE
+					CCA.PARCELAMENTOCONTACAPITAL
+				WHERE
+					IDCONTACAPITAL 			= 	(SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO =<bancoob:valor valor="${obj.idInstituicao}" /> AND NUMCONTACAPITAL = <bancoob:valor valor="${obj.numMatricula}" />) AND								
+		        	NUMPARCELAMENTO 		=	<bancoob:valor valor="${obj.numParcelamento}" /> AND
+		        	NUMPARCELA				=	<bancoob:valor valor="${obj.numParcela}" /> AND
+		        	IDTIPOPARCELAMENTO		=	<bancoob:valor valor="${obj.codTipoParcelamento}" />
+			]]>
+		</command>
+	</query>		
+
+	<query name="EXCLUIRLANCAMENTOCONTACAPITALREPLICACAO">
+		<use-case name="EXCLUIRLANCAMENTOCONTACAPITALREPLICACAO"></use-case>
+		<description>Excluir o Lancamento replicado do sql no db2</description>		
+		<command>
+			<![CDATA[
+				DELETE
+					CCA.LANCAMENTOCONTACAPITAL
+				WHERE
+					IDINSTITUICAO 			= 	<bancoob:valor valor="${obj.idInstituicao}" /> AND								
+		        	DATALANCAMENTO 			=	<bancoob:valor valor="${obj.dataLote}" /> AND
+		        	IDTIPOLOTE				=	<bancoob:valor valor="${obj.numLoteLanc}" /> AND
+		        	NUMSEQLANC				=	<bancoob:valor valor="${obj.numSeqLanc}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="PREPARARCOOPERATIVAPILOTO">
+		<use-case name="PREPARARCOOPERATIVAPILOTO"></use-case>
+		<description>Prepara a cooperativa piloto</description>		
+		<command>
+			<![CDATA[
+				DELETE FROM CCA.HISTDEBITOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />;
+				DELETE FROM CCA.HISTLANCAMENTOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />;
+				DELETE FROM CCA.HISTPROPOSTASUBSCRICAO WHERE
+					IDCONTACAPITAL IN ( 
+						SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+					); 
+				DELETE FROM CCA.HISTCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />;
+				DELETE FROM CCA.PARCELAMENTOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />;
+				DELETE FROM CCA.DEBITOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />;
+				DELETE FROM CCA.LANCAMENTOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />;
+				DELETE FROM CCA.PROPOSTASUBSCRICAO WHERE
+					IDCONTACAPITAL IN ( 
+						SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+					);
+				DELETE FROM CCA.DOCUMENTOCAPITAL WHERE
+					IDCONTACAPITAL IN ( 
+						SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+					); 	
+				DELETE FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />; 
+			]]>
+		</command>
+	</query>		
+	
+	<query name="CONSULTARCOOPERATIVAPILOTO">
+		<use-case name="CONSULTARCOOPERATIVAPILOTO"></use-case>
+		<description>Consulta quantidades das tabelas db2 da cooperativa piloto</description>		
+		<command>
+			<![CDATA[
+				SELECT 'CONTACAPITAL' TABELA, COUNT(*) QUANTIDADE FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> UNION
+				SELECT 'PROPOSTASUBSCRICAO', COUNT(*) FROM CCA.PROPOSTASUBSCRICAO WHERE IDCONTACAPITAL IN ( 
+				                SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+				        ) UNION
+				SELECT 'DEBITOCONTACAPITAL',  COUNT(*) FROM CCA.DEBITOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> UNION
+				SELECT 'DOCUMENTOCAPITAL', COUNT(*) FROM CCA.DOCUMENTOCAPITAL WHERE IDCONTACAPITAL IN ( 
+				                SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+				        ) UNION
+				SELECT 'PARCELAMENTOCONTACAPITAL', COUNT(*) FROM CCA.PARCELAMENTOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> UNION
+				SELECT 'LANCAMENTOCONTACAPITAL', COUNT(*) FROM CCA.LANCAMENTOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> UNION
+				SELECT 'HISTLANCAMENTOCONTACAPITAL', COUNT(*) FROM CCA.HISTLANCAMENTOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> UNION
+				SELECT 'HISTDEBITOCONTACAPITAL', COUNT(*) FROM CCA.HISTDEBITOCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> UNION
+				SELECT 'HISTCONTACAPITAL', COUNT(*) FROM CCA.HISTCONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> UNION
+				SELECT 'HISTPROPOSTASUBSCRICAO', COUNT(*) FROM CCA.HISTPROPOSTASUBSCRICAO WHERE IDCONTACAPITAL IN ( 
+				                SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+				        )
+			]]>
+		</command>
+	</query>		
+	
+	<query name="CONSULTARBATIMENTOSDB2_CONTACAPITAL">
+		<use-case name="CONSULTARBATIMENTOSDB2_CONTACAPITAL"></use-case>
+		<description>Consulta batimentos DB2 - CONTACAPITAL</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+				       'DB2' AS TABELA,
+				       IDINSTITUICAO,
+				       COUNT(*) AS TOTAL,
+				       SUM(VALORSALDOSUBSC) ValorSaldoAtuSubsc,
+				       SUM(VALORSALDOINTEG) ValorSaldoAtuInteg,
+				       SUM(VALORSALDODEVOL) ValorSaldoAtuDevolver,
+				       SUM(VALORSALDOBLOQ) ValorSaldoBloq 
+				FROM CCA.CONTACAPITAL 
+				<j:if test="${idInstituicao != null}">
+					WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+				</j:if> 
+				GROUP BY IDINSTITUICAO
+				WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBATIMENTOSDB2_PARCELAMENTOS">
+		<use-case name="CONSULTARBATIMENTOSDB2_PARCELAMENTOS"></use-case>
+		<description>Consulta batimentos DB2 - PARCELAMENTOCONTACAPITAL</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+				       'DB2' AS TABELA,
+				       C.IDINSTITUICAO,
+				       T.DESCTIPOPARCELAMENTO AS TIPOPARCELAMENTO,
+				       S.DESCSITUACAOPARCELAMENTO AS SITUACAOPARCELAMENTO,
+				       COUNT(*)AS TOTAL, 
+				       SUM(VALORPARCELA) AS VALORPARCELA 
+				 FROM CCA.PARCELAMENTOCONTACAPITAL P
+				INNER JOIN CCA.CONTACAPITAL C ON C.IDCONTACAPITAL=  P.IDCONTACAPITAL
+				INNER JOIN CCA.TIPOPARCELAMENTO T ON T.IDTIPOPARCELAMENTO = P.IDTIPOPARCELAMENTO 
+				INNER JOIN CCA.SITUACAOPARCELAMENTO S ON S.IDSITUACAOPARCELAMENTO = P.IDSITUACAOPARCELAMENTO
+				<j:if test="${idInstituicao != null}">
+					WHERE P.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+				</j:if> 
+				GROUP BY C.IDINSTITUICAO,T.DESCTIPOPARCELAMENTO,S.DESCSITUACAOPARCELAMENTO
+				ORDER BY TIPOPARCELAMENTO,SITUACAOPARCELAMENTO,TABELA
+				WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBATIMENTOSDB2_LANCAMENTOS">
+		<use-case name="CONSULTARBATIMENTOSDB2_LANCAMENTOS"></use-case>
+		<description>Consulta batimentos DB2 - LANCAMENTOCONTACAPITAL</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+				        'DB2' AS TABELA,
+				        IDINSTITUICAO,
+				        BOLPROCESSADO,
+				        COUNT(*) AS TOTAL,
+				        SUM(ValorLancamento) VALORLANCAMENTO 
+				FROM CCA.LANCAMENTOCONTACAPITAL
+				<j:if test="${idInstituicao != null}">
+					WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+				</j:if> 
+				GROUP BY IDINSTITUICAO,BOLPROCESSADO
+				WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBATIMENTOSDB2_SALDOS">
+		<use-case name="CONSULTARBATIMENTOSDB2_SALDOS"></use-case>
+		<description>Consulta batimentos DB2 - SALDOS</description>		
+		<command>
+			<![CDATA[
+				SELECT C.NUMCONTACAPITAL, C.VALORSALDOINTEG, C.VALORSALDOSUBSC, C.VALORSALDODEVOL, C.VALORSALDOBLOQ
+				FROM CCA.CONTACAPITAL C
+				WHERE C.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+				WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="REPLICARDEBITOINDETERMINADO">
+		<use-case name="REPLICARDEBITOINDETERMINADO"></use-case>
+		<description>Replica a tabela de debito indeterminado</description>		
+		<command>
+			<![CDATA[			
+				<j:if test="${objContaCapital.bolDebIndeterminado and (codAcao == 'I' or codAcao == 'U')}">
+					MERGE INTO CCA.DEBITOCONTACAPITAL AS T
+					USING (SELECT * FROM CCA.CONTACAPITAL WHERE IDINSTITUICAO = <bancoob:valor valor="${objContaCapital.idInstituicao}" /> AND  
+						NUMCONTACAPITAL = <bancoob:valor valor="${objContaCapital.numMatricula}" />) AS S
+					ON T.IDCONTACAPITAL = S.IDCONTACAPITAL
+					WHEN MATCHED THEN 
+					        UPDATE SET 
+					        	VALORDEBITO = <bancoob:valor valor="${objContaCapital.valorDeb}" />, 
+					        	DATAVENCIMENTODEBITO = <bancoob:valor valor="${objContaCapital.dataVencimentoDeb}" />,
+						        <j:if test="${objContaCapital.codFormaDeb == null}">		        
+					        		IDTIPOINTEGRALIZACAO = 2,
+						        </j:if>
+						        <j:if test="${objContaCapital.codFormaDeb != null}">		        
+						        	IDTIPOINTEGRALIZACAO = <bancoob:valor valor="${objContaCapital.codFormaDeb}" />,
+						        </j:if>						        
+						        
+					        	NUMPERIODO = <bancoob:valor valor="${objContaCapital.periodoProxDeb}" />,
+					        	IDTIPOPERIODODEBITO = <bancoob:valor valor="${objContaCapital.tipoPeriodoDeb}" />,
+
+						        <j:if test="${objContaCapital.codTipoValorDebito == null}">		        
+					        		IDTIPOVALORDEBITO = 0,
+						        </j:if>
+						        <j:if test="${objContaCapital.codTipoValorDebito != null}">		        
+					        		IDTIPOVALORDEBITO = <bancoob:valor valor="${objContaCapital.codTipoValorDebito}" />,
+						        </j:if>						        
+					        	
+					        	NUMCONTACORRENTE = <bancoob:valor valor="${objContaCapital.numContaCorrente}" />,
+					        	DATAHORADEBITO = <bancoob:valor valor="${dataHoraAtualizacao}" />
+					WHEN NOT MATCHED THEN 
+					        INSERT (IDCONTACAPITAL, IDINSTITUICAO, IDTIPOINTEGRALIZACAO, IDTIPOVALORDEBITO, IDTIPOPERIODODEBITO, IDUSUARIO, 
+					                NUMPERIODO, VALORDEBITO, DATAVENCIMENTODEBITO, DATAHORADEBITO, NUMCONTACORRENTE)
+					        VALUES (S.IDCONTACAPITAL,S.IDINSTITUICAO,
+						        <j:if test="${objContaCapital.codFormaDeb == null}">		        
+					        		2,
+						        </j:if>
+						        <j:if test="${objContaCapital.codFormaDeb != null}">		        
+									<bancoob:valor valor="${objContaCapital.codFormaDeb}" />,
+						        </j:if>						        
+						        <j:if test="${objContaCapital.codTipoValorDebito == null}">		        
+					        		0,
+						        </j:if>
+						        <j:if test="${objContaCapital.codTipoValorDebito != null}">		        
+									<bancoob:valor valor="${objContaCapital.codTipoValorDebito}" />,
+						        </j:if>						        
+					        	
+					        	<bancoob:valor valor="${objContaCapital.tipoPeriodoDeb}" />,
+					        	'USR_REPLICACAO_CCA',
+					        	<bancoob:valor valor="${objContaCapital.periodoProxDeb}" />,
+					        	<bancoob:valor valor="${objContaCapital.valorDeb}" />,
+					        	<bancoob:valor valor="${objContaCapital.dataVencimentoDeb}" />,
+					        	<bancoob:valor valor="${dataHoraAtualizacao}" />,
+					        	<bancoob:valor valor="${objContaCapital.numContaCorrente}" />)
+				</j:if>
+				<j:if test="${!objContaCapital.bolDebIndeterminado or codAcao == 'D'}">
+					DELETE FROM CCA.DEBITOCONTACAPITAL WHERE IDCONTACAPITAL = 
+						(SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL WHERE 
+							IDINSTITUICAO = <bancoob:valor valor="${objContaCapital.idInstituicao}" />   
+							AND NUMCONTACAPITAL = <bancoob:valor valor="${objContaCapital.numMatricula}" />)
+				</j:if>
+			]]>
+		</command>
+	</query>
+	
+	<query name="REPLICARHISTDEBITOINDETERMINADO">
+		<use-case name="REPLICARHISTDEBITOINDETERMINADO"></use-case>
+		<description>Replica a tabela de hist debito indeterminado</description>		
+		<command>
+			<![CDATA[	
+				INSERT INTO CCA.HISTDEBITOCONTACAPITAL 
+				SELECT 
+				        IDDEBITOCONTACAPITAL, DATAHORADEBITO, IDCONTACAPITAL, IDINSTITUICAO, IDTIPOINTEGRALIZACAO, IDTIPOVALORDEBITO, IDTIPOPERIODODEBITO,
+				        IDUSUARIO, NUMPERIODO, VALORDEBITO, DATAVENCIMENTODEBITO, NUMCONTACORRENTE, DESCMATRICULAFUNC
+				FROM CCA.DEBITOCONTACAPITAL
+				WHERE IDCONTACAPITAL = (SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL 
+										WHERE IDINSTITUICAO = <bancoob:valor valor="${objContaCapital.idInstituicao}" /> 
+											AND NUMCONTACAPITAL = <bancoob:valor valor="${objContaCapital.numMatricula}" />)	
+			]]>
+		</command>
+	</query>
+
+</queries>

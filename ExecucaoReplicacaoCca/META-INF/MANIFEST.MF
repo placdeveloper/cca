@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: br.com.sicoob.cca.replicacao.ExecucaoReplicacaoCca
+Class-Path: . ExecucaoReplicacaoCca_lib/jbossall-client.jar 
+ ExecucaoReplicacaoCca_lib/cca-integracao-contacapital-legado-ejb.jar 
+ ExecucaoReplicacaoCca_lib/cca-processamento-contacapital-ejb.jar 
+ ExecucaoReplicacaoCca_lib/sicoob-java.jar 
+ ExecucaoReplicacaoCca_lib/cca-replicacao-contacapital-ejb.jar

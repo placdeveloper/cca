@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<containers:HBoxBancoob xmlns:mx="http://www.adobe.com/2006/mxml"
+						xmlns:componentes="br.com.bancoob.componentes.*"
+						xmlns:containers="br.com.bancoob.componentes.containers.*"
+						xmlns:renderes="br.com.bancoob.componentes.renderes.*"		
+						xmlns:componentesPlataforma="br.com.bancoob.componentes.botoes.*"
+						width="100%" height="100%" creationComplete="init()"
+						horizontalAlign="center" horizontalScrollPolicy="off"
+						implements="mx.controls.listClasses.IDropInListItemRenderer"
+						verticalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.BaseListData;
+			
+			import br.com.sicoob.sisbr.cca.vo.TabelaIRRFVO;
+			
+			[Bindable("dataChange")]
+			private var _listData:BaseListData;
+			
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = value;
+			}
+			
+			public function init():void {
+				btnExcluirItem.addEventListener(MouseEvent.CLICK, onClickExcluir);
+			}
+			
+			private function onClickExcluir(event:MouseEvent):void {
+				var vo:TabelaIRRFVO = (this.data as TabelaIRRFVO);
+				(this.parentDocument as CadastroTabelaIRRF).excluirItem(vo);
+			}
+		]]>
+	</mx:Script>
+	
+	<containers:HBoxBancoob width="100%" paddingLeft="3" paddingRight="3">
+		<mx:Image id="btnExcluirItem" source="@Embed('br/com/bancoob/imagens/deletesmall.png')" buttonMode="true" height="21" />
+	</containers:HBoxBancoob>
+	
+</containers:HBoxBancoob>

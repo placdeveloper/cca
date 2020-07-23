@@ -1,0 +1,25 @@
+CONFIGURAÇÕES DO JNDI.PROPERTIES:
+Arquivo			- jndi.properties (Blocos comentados)		
+JBOSS
+Provedor de TI		- java.naming.provider.url=jnp://10.221.1.41:1199
+Provedor de HOMOL	- java.naming.provider.url=jnp://jbsh110:1100
+Provedor de PROD 	- java.naming.provider.url=jnp://jbsp106:1099
+WAS
+Provedor de TI		- java.naming.provider.url=iiop://cca-processamento-was-ti:9139
+
+CATÁLOGO DE SAÍDAS - TWS:
+${MSG_CICLO_SUCESSO}
+${MSG_ERRO_COMUNICAR_SERVIDOR}
+${MSG_ERRO_LOCALIZAR_SERVICO}		
+${MSG_ERRO_NEGOCIAL}		
+${MSG_ERRO_INESPERADO}
+
+CONFIGURAÇÕES GERAIS:
+Arquivo: config.properties
+${CONFIG.PROPERTIES}
+
+CONTATOS GEPRO:
+Grupo Operacoes de TI Monitoracao: grupooperacoesdetimonitoracao@sicoob.com.br
+DCLinux: DCLinux@sicoob.com.br
+Danubio Alves Infra: Danubio.Alves@fornecedores.sicoob.com.br - 5773
+Erick Moreira Ferreira: Erick.Ferreira@fornecedores.sicoob.com.br - 8919

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:componentes="br.com.bancoob.componentes.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="750" height="280" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob x="0" y="0" width="100%">
+		<containers:VBoxBancoob width="100%" borderStyle="none">
+			<containers:CanvasBancoob width="100%">
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<titulo:SubtituloView texto="DOCUMENTAÇÃO" width="100%" />
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" paddingTop="25" y="0">
+					<grid:Grid width="100%" id="grid" height="50" verticalScrollPolicy="off">
+						<grid:columns>
+							<grid:ColunaGrid id="nome" headerText="Nome do Documento" dataField="nome" textAlign="left" width="200" />
+							<grid:ColunaGrid id="idUsuario" headerText="Usuário" dataField="idUsuario" textAlign="left" />
+							<grid:ColunaGrid id="dataHoraAtualizacao" headerText="Data" dataField="dataHoraAtualizacao" textAlign="left" />
+							<grid:ColunaGrid id="acao" headerText="Ação" textAlign="left" 
+											 itemRenderer="br.com.sicoob.sisbr.cca.cadastro.aprovacao.AcaoDocumentoAprovacaoRenderer">
+							</grid:ColunaGrid>
+						</grid:columns>
+					</grid:Grid>
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" paddingTop="25" y="0">
+					<containers:CanvasBancoob label="Documentos" id="tabDocumentos" tabEnabled="false" width="100%"></containers:CanvasBancoob>
+				</containers:HBoxBancoob>
+			</containers:CanvasBancoob>
+			
+		</containers:VBoxBancoob>
+	</containers:VBoxBancoob>
+</Modulo>

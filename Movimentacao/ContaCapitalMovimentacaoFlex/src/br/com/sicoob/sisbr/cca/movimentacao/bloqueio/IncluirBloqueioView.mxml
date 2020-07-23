@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	width="750" height="370" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="10" width="750" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="INSTITUIÇÃO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<nivelInstituicao:NivelInstituicao width="100%" id="compNivelInst" _bolInstCentral="true" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DADOS DO ASSOCIADO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Conta Capital:" width="100" />
+			<cca:ProcurarContaCapital id="procurarCCA" idSituacaoContaCapital="1" idSituacaoCadastro="2" exibeCpfCnpj="true" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="SALDO ATUAL DE CAPITAL" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<mx:HBox paddingLeft="10">
+			<Rotulo width="120" text="Valor Integralizado (R$):" />
+			<input:Texto width="120" id="vlrInteg" enabled="false" tipoEntrada="1" casasDecimais="2" maxChars="10" permitirValoreNegativos="false" text="0,00"/>
+			
+			<Rotulo width="120" text="Valor Bloqueado (R$):" />
+			<input:Texto width="120" id="vlrBloqueado" enabled="false" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true" text="0,00"/>
+			
+			<Rotulo width="90" text="Disponível (R$):" />
+			<input:Texto width="120" id="vlrDisponivel" enabled="false" tipoEntrada="1" casasDecimais="2" maxChars="9" permitirValoreNegativos="false" validarObrigatorio="true" text="0,00"/>
+		</mx:HBox>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DADOS DO BLOQUEIO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel paddingLeft="10">
+			<Rotulo text="Tipo de Bloqueio:" width="120"/>
+			<input:Combo id="cboTipoBloqueio" width="180" labelField="descListaItem" editable="false" enabled="false"/>
+			<Rotulo text="Data do Protocolo:" width="170" paddingLeft="50"/>
+			<input:Data id="dtProtocolo" width="100" height="24"/>
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel paddingLeft="10">
+			<Rotulo text="Nº do Protocolo:" width="120"/>
+			<input:Texto id="txtNumProtocolo" width="180" restrict="0-9" maxChars="30" />
+			<Rotulo text="Nº do Processo:" width="170" paddingLeft="50"/>
+			<input:Texto id="txtNumProcesso" width="180" restrict="^'" maxChars="30"/>
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel paddingLeft="10">
+			<Rotulo text="Valor do Bloqueio (R$):" width="120"/>
+			<input:Texto id="txtValorBloqueio" width="180" tipoEntrada="1" text="0,00" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true"/>
+		</validaveis:HBoxValidavel>
+		
+		<!-- Botoes -->			
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btOk" label="OK" width="130" />
+				<Botao id="btCancelar" label="CANCELAR" width="100" />
+				<Botao id="btFechar" label="FECHAR" width="100" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

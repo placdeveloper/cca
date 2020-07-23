@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*" 
+	width="570" height="300" layout="absolute"
+	>
+	
+	<titulo:SubtituloView x="0" y="0" texto="PROCURAR" />
+	<Rotulo x="0" y="30" text="Central:" />
+	<bancoobInput:Combo x="50" y="30" width="100" id="cmbCentral" name="cmbCentral" labelField="codListaItem"/>
+	<Rotulo x="190" y="30" text="Mês/Ano:"/>
+	<bancoobInput:Combo x="240" y="30" width="100" id="cmbAnoMesBase" name="cmbAnoMesBase"/>
+	
+	<painellista:BotaoProcurarView y="30" x="440" id="btnProcurar" label="Procurar"/>
+	
+	<titulo:SubtituloView x="0" y="70" texto="RESULTADO" />
+	<bancoobGrid:Grid x="0" y="100" width="550" id="grdParticipacaoCentral" tabIndex="1" doubleClickEnabled="true" tabEnabled="true"  height="145">
+		<bancoobGrid:columns>
+			<bancoobGrid:ColunaGrid id="idInstituicaoCentral" headerText="Central" dataField="idInstituicaoCentral" width="60" textAlign="left"/>
+			<bancoobGrid:ColunaGrid id="numAnoMesBase" headerText="Mês/Ano" dataField="numAnoMesBase" width="60" textAlign="left"/>
+			<bancoobGrid:ColunaGrid id="valorParticipacao" headerText="Valor" dataField="valorParticipacao" width="60" textAlign="left"/>
+		</bancoobGrid:columns>
+	</bancoobGrid:Grid>	
+	
+	<containers:HBoxBancoob height="32" width="100%" bottom="0" horizontalAlign="right" horizontalGap="8" verticalAlign="middle" right="0">
+		<Botao id="btIncluir" label="Incluir" width="86"/>
+		<Botao id="btAlterar" label="Alterar" width="86"/>
+		<Botao id="btFechar" label="Fechar" width="86"/>
+	</containers:HBoxBancoob>	
+	
+</Modulo>

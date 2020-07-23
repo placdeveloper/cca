@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*" 
+	width="700" height="400" layout="absolute"
+	>
+	
+	<titulo:SubtituloView x="0" y="0" texto="PROCURAR\FILTROS" />
+	<Rotulo x="0" y="30" text="Tipo Pesquisa:" />
+	<bancoobInput:Combo x="80" y="30" width="185" id="cmbTipoValor" name="cmbTipoValor" editable="false"/>
+	<bancoobInput:Texto x="275" y="30" width="420" id="txtPesquisa" restrict="0123456789.,\\"/>
+	<painellista:BotaoProcurarView y="60" x="600" id="btnConsultar" label="Consultar"/>	
+	
+	<titulo:SubtituloView x="0" y="90" texto="SELECIONE" />
+	<bancoobGrid:Grid x="0" y="130" width="700" id="grdParametro" tabIndex="1" doubleClickEnabled="true" tabEnabled="true"  height="200">
+		<bancoobGrid:columns>
+			<bancoobGrid:ColunaGrid id="idConfiguracaoCapital" headerText="Código" dataField="idConfiguracaoCapital" width="20" textAlign="left"/>
+			<bancoobGrid:ColunaGrid id="nomeConfiguracaoCapital" headerText="Nome" dataField="nomeConfiguracaoCapital" width="130" textAlign="left"/>
+			<bancoobGrid:ColunaGrid id="descTipoValorConfiguracaoCapital" headerText="Tipo Valor" dataField="descTipoValorConfiguracaoCapital" width="25" textAlign="left"/>
+			<bancoobGrid:ColunaGrid id="bolAtivo" headerText="Situação" dataField="bolAtivo" width="25" textAlign="left"/>
+			<bancoobGrid:ColunaGrid id="descPerfilConfiguracaoCapital" headerText="Adm. por" dataField="descPerfilConfiguracaoCapital" width="30" textAlign="left"/>
+		</bancoobGrid:columns>
+	</bancoobGrid:Grid>		
+	
+	<containers:HBoxBancoob height="32" width="100%" bottom="0" horizontalAlign="right" horizontalGap="8" verticalAlign="middle" right="0">
+		<Botao id="btIncluir" label="Incluir" width="86"/>
+		<Botao id="btAlterar" label="Alterar" width="86"/>
+		<Botao id="btCancelar" label="Cancelar" width="86"/>
+		<Botao id="btFechar" label="Fechar" width="86"/>
+	</containers:HBoxBancoob>	
+	
+</Modulo>

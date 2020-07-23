@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	width="780" height="600" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="750" id="containerTela">
+		
+		<mx:VBox id="lstCota" width="100%" height="100%" borderThickness="1" right="10" left="10" />
+		<mx:VBox id="lstCadastro" width="100%" height="100%" borderThickness="1" right="10" left="10" />
+		<mx:VBox id="lstSubscricao" width="100%" height="100%" borderThickness="1" right="10" left="10" />
+		<mx:VBox id="lstIntegralizacao" width="100%" height="100%" borderThickness="1" right="10" left="10" />
+		<mx:VBox id="lstDevolucao" width="100%" height="100%" borderThickness="1" right="10" left="10" />
+		<mx:VBox id="lstReadmissao" width="100%" height="100%" borderThickness="1" right="10" left="10" />
+		
+		<mx:VBox id="lstRelatorio" width="100%" height="100%" borderThickness="1" right="10" left="10" />
+	</containers:VBoxBancoob>
+	
+</Modulo>

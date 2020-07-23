@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<containers:HBoxBancoob xmlns:mx="http://www.adobe.com/2006/mxml"
+						xmlns:componentes="br.com.bancoob.componentes.*"
+						xmlns:containers="br.com.bancoob.componentes.containers.*"
+						xmlns:renderes="br.com.bancoob.componentes.renderes.*"		
+						xmlns:componentesPlataforma="br.com.bancoob.componentes.botoes.*"
+						width="100%" height="100%" 
+						horizontalAlign="center" horizontalScrollPolicy="off"
+						implements="mx.controls.listClasses.IDropInListItemRenderer"
+						verticalScrollPolicy="off">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.BaseListData;
+			
+			[Bindable("dataChange")]
+			private var _listData:BaseListData;
+			
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = value;
+			}
+			
+			public function verificarIcos():void {
+				icoSituacaoAtivo.visible = false;
+				icoSituacaoAtivo.includeInLayout = false;
+				icoSituacaoInativo.visible = false;
+				icoSituacaoInativo.includeInLayout = false;
+				
+				if (data.contaPrincipal) {
+					icoSituacaoAtivo.visible = true;
+					icoSituacaoAtivo.includeInLayout = true;
+				} else {
+					icoSituacaoInativo.visible = true;
+					icoSituacaoInativo.includeInLayout = true;
+				}
+			}
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+				if (data != null) {
+					verificarIcos();
+				}
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Image id="icoSituacaoAtivo" source="@Embed('br/com/bancoob/imagens/icos/ico_processado.png')" visible="false" includeInLayout="false" toolTip="Sim"/>
+	<mx:Image id="icoSituacaoInativo" source="@Embed('br/com/bancoob/imagens/icos/btMarcarTodos.png')" visible="false" includeInLayout="false" toolTip="Não"/>
+	
+</containers:HBoxBancoob>

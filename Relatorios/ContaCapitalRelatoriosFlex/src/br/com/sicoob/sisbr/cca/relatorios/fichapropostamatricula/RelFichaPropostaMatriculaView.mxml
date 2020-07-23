@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cmp="br.com.sicoob.sisbr.contaCapital.componentes.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	width="750" height="156" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="750" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="FILTROS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<nivelInstituicao:NivelInstituicao width="100%" id="compNivelInst" _bolInstCentral="true" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo width="80.2" height="18" text="Conta Capital:"/>
+			<cca:ProcurarContaCapital id="procurarCCA" idSituacaoCadastro="99" idSituacaoContaCapital="99" />
+		</containers:HBoxBancoob>
+		
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="35" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10" paddingTop="10">
+				<Botao id="btOk" label="OK" width="86" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+		
+	</containers:VBoxBancoob>
+</Modulo>

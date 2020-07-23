@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	width="750" height="340" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="10" width="750" id="containerTela">
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="INSTITUIÇÃO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Instituição Resp:" width="100" />
+			<input:Texto id="txtInstituicaoResp" width="100%" enabled="false"/>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Instituição:" width="100" />
+			<input:Texto id="txtInstituicao" width="100%" enabled="false"/>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DADOS DO ASSOCIADO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Conta Capital:" width="100" />
+			<input:Texto id="txtNumCCA" width="100" textAlign="right" paddingRight="5" enabled="false"/>
+			<Rotulo text="Nome:" width="100" />
+			<input:Texto id="txtNome" width="100%" enabled="false" paddingRight="4"/>
+			<Rotulo text="CPF/CNPJ:" width="60" />
+			<input:Texto id="txtCpfCnpj" width="120" enabled="false" paddingRight="4" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DADOS DO BLOQUEIO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel paddingLeft="10">
+			<Rotulo text="Tipo de Bloqueio:" width="120"/>
+			<input:Texto id="txtTipoBloqueio" width="180" enabled="false"/>
+			<Rotulo text="Data do Bloqueio:" width="170" paddingLeft="50"/>
+			<input:Texto id="txtDtBloqueio" width="100" enabled="false"/>
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel paddingLeft="10">
+			<Rotulo text="Valor do Bloqueio (R$):" width="120" />
+			<input:Texto id="txtValorBloqueio" width="180" enabled="false" textAlign="right" tipoEntrada="1" text="0,00" casasDecimais="2" maxChars="15" permitirValoreNegativos="false" />
+			<Rotulo id="rtDtProtocolo" text="Data do Protocolo:" width="170" paddingLeft="50" visible="false" includeInLayout="false"/>
+			<input:Texto id="txtDtProtocolo" width="100" enabled="false" visible="false" includeInLayout="false"/>
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel id="hboxNumerosJudiciais" visible="false" includeInLayout="false" paddingLeft="10">
+			<Rotulo text="Nº do Protocolo:" width="120"/>
+			<input:Texto id="txtNumProtocolo" width="180" enabled="false"/>
+			<Rotulo text="Nº do Processo:" width="170" paddingLeft="50"/>
+			<input:Texto id="txtNumProcesso" width="180" enabled="false"/>
+		</validaveis:HBoxValidavel>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="DADOS DO DESBLOQUEIO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<mx:HBox paddingLeft="10">
+			<Rotulo width="120" text="Tipo de Desbloqueio:" />
+			<bancoobInput:Radio groupName="optTipoDesbloqueio" id="optTipoDesbloqueioTotal" label="Total" selected="true" />
+			<bancoobInput:Radio groupName="optTipoDesbloqueio" id="optTipoDesbloqueioParcial" label="Parcial" />
+			
+			<Rotulo paddingLeft="100" width="240" text="Valor do Desbloqueio (R$):" />
+			<input:Texto id="txtValorDesbloqueio" width="180" tipoEntrada="1" text="0,00" casasDecimais="2" maxChars="12" permitirValoreNegativos="false" validarObrigatorio="true" enabled="false"/>
+			
+		</mx:HBox>
+		
+		<!-- Botoes -->			
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="30" bottom="0" horizontalAlign="right" verticalAlign="middle" right="10">
+				<Botao id="btOk" label="OK" width="130" />
+				<Botao id="btCancelar" label="CANCELAR" width="100" />
+				<Botao id="btFechar" label="FECHAR" width="100" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>
+	</containers:VBoxBancoob>
+	
+</Modulo>

@@ -1,0 +1,1402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE queries [
+	<!ELEMENT queries (query*)>
+	<!ELEMENT query (use-case+, description,paginacao?,command+, ordenacoes?)>
+	<!ELEMENT use-case    (#PCDATA)>
+	<!ELEMENT description (#PCDATA)>
+	<!ELEMENT command     (#PCDATA)>
+	<!ELEMENT parametros  (#PCDATA)>
+	<!ELEMENT paginar  (#PCDATA)>
+	<!ELEMENT paginacao (#PCDATA)>
+	<!ELEMENT colunaCodigo    (#PCDATA)>
+	<!ELEMENT colunaDescricao    (#PCDATA)>
+	<!ELEMENT numeroOcorrenciasPorPagina    (#PCDATA)>
+	<!ELEMENT primeiraCondicao    (#PCDATA)>
+	<!ELEMENT ascendente    (#PCDATA)>
+	<!ELEMENT ordenacoes (ordenacao+)>
+	<!ELEMENT ordenacao (#PCDATA)>
+	<!ELEMENT sql  (#PCDATA)>
+	<!ATTLIST ordenacao chave CDATA    #REQUIRED>
+	<!ATTLIST ordenacao default CDATA    #IMPLIED>
+	<!ATTLIST command parametros CDATA    #IMPLIED>
+	<!ATTLIST command paginar CDATA    #IMPLIED>
+	<!ATTLIST use-case name CDATA    #REQUIRED>
+	<!ATTLIST query name CDATA    #REQUIRED>
+	<!ATTLIST paginacao colunaCodigo CDATA    #REQUIRED>
+	<!ATTLIST paginacao colunaDescricao CDATA    #REQUIRED>
+	<!ATTLIST paginacao numeroOcorrenciasPorPagina CDATA    #REQUIRED>
+	<!ATTLIST paginacao primeiraCondicao CDATA    #REQUIRED>
+	<!ATTLIST paginacao ascendente CDATA    #REQUIRED>
+	<!ATTLIST paginacao hint CDATA    #REQUIRED>
+	<!ATTLIST paginacao hintAuxiliar CDATA   #IMPLIED>
+]>
+
+<queries>
+	<query name="OBTERPARCELAMENTOCONTACAPITAL">
+		<use-case name="OBTERPARCELAMENTOCONTACAPITAL"></use-case>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.Parcelamento parcelamento
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					AND parcelamento.id = ${criterios.filtro.id}
+				</j:if>	
+				<j:if test="${criterios.filtro.ContaCapital.id != null}">
+					AND parcelamento.contaCapital.id = ${criterios.filtro.ContaCapital.id}
+				</j:if>	
+				<j:if test="${criterios.filtro.ContaCapital.idInstituicao != null}">
+					AND parcelamento.contaCapital.idInstituicao = ${criterios.filtro.ContaCapital.idInstituicao}
+				</j:if>
+				<j:if test="${criterios.filtro.ContaCapital.numContaCapital != null}">
+					AND parcelamento.contaCapital.numContaCapital = ${criterios.filtro.ContaCapital.numContaCapital}
+				</j:if>	
+				<j:if test="${criterios.filtro.TipoParcelamento.id != null}">
+					AND parcelamento.tipoParcelamento.id = ${criterios.filtro.TipoParcelamento.id}
+				</j:if>
+				<j:if test="${criterios.filtro.TipoIntegralizacao.id != null}">
+					AND parcelamento.tipoIntegralizacao.id = ${criterios.filtro.TipoIntegralizacao.id}
+				</j:if>
+				<j:if test="${criterios.filtro.numParcela != null}">
+					AND parcelamento.numParcela = ${criterios.filtro.numParcela}
+				</j:if>	
+				<j:if test="${criterios.filtro.numParcelamento != null}">
+					AND parcelamento.numParcelamento = ${criterios.filtro.numParcelamento}
+				</j:if>	
+				<j:if test="${criterios.filtro.SituacaoParcelamento.id != null}">
+					AND parcelamento.situacaoParcelamento.id = ${criterios.filtro.SituacaoParcelamento.id}
+				</j:if>	
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERLANCAMENTOCONTACAPITAL">
+		<use-case name="OBTERLANCAMENTOCONTACAPITAL"></use-case>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.LancamentoContaCapital lancamentoContaCapital
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					AND lancamentoContaCapital.id = <bancoob:valorOql valor="${criterios.filtro.id}" tipo="Integer" /> 
+				</j:if>	
+				<j:if test="${criterios.filtro.idInstituicao != null}">
+					AND lancamentoContaCapital.idInstituicao = <bancoob:valorOql valor="${criterios.filtro.idInstituicao}" tipo="Integer" />
+				</j:if>				
+				<j:if test="${criterios.filtro.dataLancamento != null}">
+					AND lancamentoContaCapital.dataLancamento = <bancoob:valorOql valor="${criterios.filtro.dataLancamento}" tipo="DateTimeDB" />					
+				</j:if>
+				<j:if test="${criterios.filtro.TipoLote.id != null}">
+					AND lancamentoContaCapital.tipoLote.id = <bancoob:valorOql valor="${criterios.filtro.TipoLote.id}" tipo="Short" />
+				</j:if>
+				<j:if test="${criterios.filtro.numSeqLanc != null}">
+					AND lancamentoContaCapital.numSeqLanc = <bancoob:valorOql valor="${criterios.filtro.numSeqLanc}" tipo="Integer" />
+				</j:if>
+				<j:if test="${criterios.filtro.TipoHistoricoCCA.id != null}">
+					AND lancamentoContaCapital.tipoHistoricoCCA.id = <bancoob:valorOql valor="${criterios.filtro.TipoHistoricoCCA.id}" tipo="Short" />
+				</j:if>
+				<j:if test="${criterios.filtro.descOperacaoExterna != null}">
+					AND lancamentoContaCapital.descOperacaoExterna = <bancoob:valorOql valor="${criterios.filtro.descOperacaoExterna}" tipo="String" /> 
+				</j:if>
+				<j:if test="${criterios.filtro.ContaCapital.idPessoa != null}">
+					AND lancamentoContaCapital.contaCapital.idPessoa = <bancoob:valorOql valor="${criterios.filtro.ContaCapital.idPessoa}" tipo="Integer" />
+				</j:if>				
+				<j:if test="${criterios.filtro.ContaCapital.numContaCapital != null}">
+					AND lancamentoContaCapital.contaCapital.numContaCapital = <bancoob:valorOql valor="${criterios.filtro.ContaCapital.numContaCapital}" tipo="Integer" />
+				</j:if>				
+			]]>
+		</command>
+	</query>
+
+	<query name="OBTERHISTORICOLANCAMENTOCONTACAPITAL">
+		<use-case name="OBTERHISTORICOLANCAMENTOCONTACAPITAL"></use-case>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.HistoricoLancamentoCCA historicoLancamentoCCA
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					AND historicoLancamentoCCA.id = ${criterios.filtro.id}
+				</j:if>	
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARPARCELAMENTOCONTACAPITAL">
+		<use-case name="PESQUISARPARCELAMENTOCONTACAPITAL"></use-case>
+		<command>
+			<![CDATA[
+				SELECT
+				    PCC.IDCONTACAPITAL,
+				    CC.NUMCONTACAPITAL,    
+				    PCC.NUMPARCELAMENTO, 
+				    PCC.IDTIPOPARCELAMENTO,
+				    TP.DESCTIPOPARCELAMENTO,
+				   	(SELECT COUNT(IDPARCELAMENTOCONTACAPITAL) 
+				   		FROM CCA.PARCELAMENTOCONTACAPITAL P 
+				        WHERE P.NUMPARCELAMENTO = PCC.NUMPARCELAMENTO 
+				        AND P.IDTIPOPARCELAMENTO = PCC.IDTIPOPARCELAMENTO 
+				        AND P.IDCONTACAPITAL = PCC.IDCONTACAPITAL) AS QTDPARCELAS,
+					(SELECT COALESCE(SUM(VALORPARCELA),0) 
+						FROM CCA.PARCELAMENTOCONTACAPITAL P 
+				        WHERE P.NUMPARCELAMENTO = PCC.NUMPARCELAMENTO 
+				        AND P.IDTIPOPARCELAMENTO = PCC.IDTIPOPARCELAMENTO 
+				        AND P.IDCONTACAPITAL = PCC.IDCONTACAPITAL
+				        AND P.IDSITUACAOPARCELAMENTO != 6) AS VLRTOTAL,
+					(SELECT COALESCE(SUM(VALORPARCELA),0) 
+						FROM CCA.PARCELAMENTOCONTACAPITAL P 
+				        WHERE P.NUMPARCELAMENTO = PCC.NUMPARCELAMENTO 
+				        AND P.IDTIPOPARCELAMENTO = PCC.IDTIPOPARCELAMENTO 
+				        AND P.IDCONTACAPITAL = PCC.IDCONTACAPITAL
+				        AND P.IDSITUACAOPARCELAMENTO = 1) AS VLRTOTALABERTO					
+				FROM
+				    CCA.PARCELAMENTOCONTACAPITAL PCC
+				INNER JOIN CCA.CONTACAPITAL CC ON PCC.IDCONTACAPITAL = CC.IDCONTACAPITAL
+				INNER JOIN CCA.TIPOPARCELAMENTO TP ON PCC.IDTIPOPARCELAMENTO = TP.IDTIPOPARCELAMENTO
+				WHERE 1 = 1				
+				<j:if test="${IDCONTACAPITAL != null}">				        
+		        	AND PCC.IDCONTACAPITAL = ${IDCONTACAPITAL}
+				</j:if>
+				<j:if test="${IDTIPOPARCELAMENTO != null}">				        
+		        	AND PCC.IDTIPOPARCELAMENTO = ${IDTIPOPARCELAMENTO}
+				</j:if>
+				GROUP BY
+				    PCC.IDCONTACAPITAL,
+				    CC.NUMCONTACAPITAL,    
+				    PCC.NUMPARCELAMENTO, 
+				    PCC.IDTIPOPARCELAMENTO,
+				    TP.DESCTIPOPARCELAMENTO	
+ 				ORDER BY PCC.NUMPARCELAMENTO
+ 			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARCARGAGESTAOEMPRESARIAL">
+		<use-case name="PESQUISARCARGAGESTAOEMPRESARIAL"></use-case>
+		<command>
+			<![CDATA[
+				SELECT COUNT(*) FROM CCA.EXTRATOIRRF 
+				WHERE 1 = 1	
+				<j:if test="${idInstituicao != null}">
+					AND IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+				</j:if>	
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRGESTAOEMPRESARIAL">
+		<use-case name="INCLUIRGESTAOEMPRESARIAL"></use-case>
+		<command>
+			<![CDATA[
+				INSERT INTO CCA.EXTRATOIRRF 
+					(IDINSTITUICAO, NUMPAC, CODTIPOPESSOA, DATALOTE, VALORBASEIRRF, VALORIRRF)
+				VALUES
+					(<bancoob:valor valor="${IDINSTITUICAO}" />, <bancoob:valor valor="${NUMPAC}" />,
+					<bancoob:valor valor="${CODTIPOPESSOA}" />, <bancoob:valor valor="${DATALOTE}" />,
+					${VALORBASEIRRF}, ${VALORIRRF})
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARGESTAOEMPRESARIAL">
+		<use-case name="PESQUISARGESTAOEMPRESARIAL"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+					IDINSTITUICAO, NUMPAC, CODTIPOPESSOA, SUM(VALORBASEIRRF) VALORBASEIRRF, SUM(VALORIRRF) VALORIRRF
+				FROM CCA.EXTRATOIRRF 
+				WHERE 1 = 1	
+				<j:if test="${idInstituicao != null}">
+					AND IDINSTITUICAO IN ${idInstituicao.toString().replace('[', '(').replace(']', ')')} 
+				</j:if>	
+				<j:if test="${dataInicio != null and dataFim != null}">
+					AND DATALOTE BETWEEN '${dataInicio}' AND '${dataFim}'
+				</j:if>
+				
+				GROUP BY IDINSTITUICAO, NUMPAC, CODTIPOPESSOA
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERBLOQUEIOCAPITAL">
+		<use-case name="OBTERBLOQUEIOCAPITAL"></use-case>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.BloqueioCapital bloqueioCapital
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					AND bloqueioCapital.id = ${criterios.filtro.id}
+				</j:if>	
+				<j:if test="${criterios.filtro.ContaCapital.id != null}">
+					AND bloqueioCapital.contaCapital.id = ${criterios.filtro.ContaCapital.id}
+				</j:if>	
+				<j:if test="${criterios.filtro.OrigemBloqueioCapital.id != null}">
+					AND bloqueioCapital.idOrigemBloqueioCapital = ${criterios.filtro.OrigemBloqueioCapital.id}
+				</j:if>	
+				<j:if test="${criterios.filtro.bolAtivo.id != null}">
+					AND parcelamento.bolAtivo = ${criterios.filtro.bolAtivo}
+				</j:if>	
+			]]>
+		</command>
+	</query>	
+	
+	<query name="OBTERHISTBLOQUEIOCAPITAL">
+		<use-case name="OBTERHISTBLOQUEIOCAPITAL"></use-case>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.HistBloqueioCapital histBloqueioCapital
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id.idBloqueioCapital != null}">
+					AND histBloqueioCapital.id.idBloqueioCapital = ${criterios.filtro.id.idBloqueioCapital}
+				</j:if>	
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARQUADRODEBINDETERMINADO">
+		<use-case name="PESQUISARQUADRODEBINDETERMINADO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT  
+			        CASE WHEN PES.CODTIPOPESSOA = 0 THEN 'PF' ELSE 'PJ' END AS TIPO_PESSOA,
+			        SUM ( CASE WHEN DEB.IDDEBITOCONTACAPITAL IS NOT NULL THEN 1 END ) AS COM_DEB_IND,
+			        SUM ( CASE WHEN DEB.IDDEBITOCONTACAPITAL IS NULL THEN 1 END ) AS SEM_DEB_IND,
+			        COUNT(CCA.IDCONTACAPITAL) AS QTD_TOTAL
+		        FROM CCA.CONTACAPITAL CCA
+		                LEFT JOIN CCA.DEBITOCONTACAPITAL DEB ON CCA.IDCONTACAPITAL = DEB.IDCONTACAPITAL
+		                INNER JOIN CLI.PESSOA PES ON PES.IDPESSOA = CCA.IDPESSOA 
+                WHERE 
+                	CCA.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+                	AND CCA.IDSITUACAOCONTACAPITAL = 1
+	                GROUP BY PES.CODTIPOPESSOA
+		        WITH UR
+			]]>
+		</command>
+	</query>
+	<query name="PESQUISARDEBDIACCO">
+		<use-case name="PESQUISARDEBDIACCO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT
+		            DAY(DEB.DATAVENCIMENTODEBITO) DIA,
+		            COUNT(*) AS QTD,
+		            SUM(VALORDEBITO) SOMA
+	       		FROM
+	            	CCA.DEBITOCONTACAPITAL DEB
+	            	INNER JOIN CCA.CONTACAPITAL CCA ON CCA.IDCONTACAPITAL = DEB.IDCONTACAPITAL AND CCA.IDINSTITUICAO = DEB.IDINSTITUICAO
+	   			WHERE
+	   				DEB.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+		            AND DEB.IDTIPOINTEGRALIZACAO = 2
+		            AND DEB.IDTIPOPERIODODEBITO = 1
+	   				AND CCA.IDSITUACAOCONTACAPITAL = 1
+	       		GROUP BY
+	            	DAY(DEB.DATAVENCIMENTODEBITO)
+	       		ORDER BY
+	            	DAY(DEB.DATAVENCIMENTODEBITO)
+	            WITH UR
+			]]>
+		</command>
+	</query>
+	<query name="PESQUISARDEBINTERVALOCCO">
+		<use-case name="PESQUISARDEBINTERVALOCCO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT
+				    NUMPERIODO,
+				    COUNT(*) AS QTD,
+				    SUM(VALORDEBITO) SOMA
+				FROM
+			        CCA.DEBITOCONTACAPITAL DEB
+	        		INNER JOIN CCA.CONTACAPITAL CCA ON CCA.IDCONTACAPITAL = DEB.IDCONTACAPITAL AND CCA.IDINSTITUICAO = DEB.IDINSTITUICAO
+		        WHERE
+				    DEB.IDTIPOINTEGRALIZACAO = 2
+				    AND DEB.IDTIPOPERIODODEBITO = 0
+				    AND DEB.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+				    AND CCA.IDSITUACAOCONTACAPITAL = 1
+				GROUP BY
+				        NUMPERIODO
+				ORDER BY
+				        NUMPERIODO
+				WITH UR
+			]]>
+		</command>
+	</query>
+	<query name="PESQUISARDEBFOLHABANCO">
+		<use-case name="PESQUISARDEBFOLHABANCO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT
+					CASE DEB.IDTIPOVALORDEBITO
+			                WHEN 0 THEN 'VALOR FIXO' 
+			                WHEN 1 THEN '% RENDA SALARIAL' 
+			                WHEN 2 THEN '% SALÁRIO BASE' 
+			                WHEN 3 THEN 'QUANT. COTAS' 
+					END FORMA_CALCULO,
+			             COUNT(*) QTD
+					FROM
+						CCA.DEBITOCONTACAPITAL DEB
+						INNER JOIN CCA.CONTACAPITAL CCA ON CCA.IDCONTACAPITAL = DEB.IDCONTACAPITAL AND CCA.IDINSTITUICAO = DEB.IDINSTITUICAO
+					WHERE
+						DEB.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+						AND DEB.IDTIPOINTEGRALIZACAO IN (3, 6)
+						AND CCA.IDSITUACAOCONTACAPITAL = 1
+					GROUP BY
+			        DEB.IDTIPOVALORDEBITO
+				WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARDEBINDETERMINADO">
+		<use-case name="PESQUISARDEBINDETERMINADO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+					CCA.IDCONTACAPITAL,
+					CCA.NUMCONTACAPITAL,
+					PC.NOMECOMPLETO,
+					P.NUMCPFCNPJ,
+					DEB.IDTIPOVALORDEBITO,
+					DEB.IDTIPOINTEGRALIZACAO,
+					DEB.IDDEBITOCONTACAPITAL,
+					CASE P.CODTIPOPESSOA 
+						WHEN 0 THEN 'PF' ELSE 'PJ' 
+					END TIPOPESSOA,
+					CASE DEB.IDTIPOINTEGRALIZACAO 
+						WHEN 2 THEN 'CCO' 
+			            WHEN 3 THEN 'FOLHA' 
+			            WHEN 6 THEN 'BANCO'
+					END FORMADEBITO,
+					DEB.VALORDEBITO VALOR,
+					
+					CASE DEB.IDTIPOINTEGRALIZACAO 
+						WHEN 2 THEN 
+							CASE DEB.IDTIPOPERIODODEBITO 
+								WHEN 0 THEN DEB.NUMPERIODO || ' Dia(s)'  
+								WHEN 1 THEN 'Dia ' || DAY(DEB.DATAVENCIMENTODEBITO)  
+							END
+						WHEN 3 THEN 'Data Folha' 
+						WHEN 6 THEN 'Data Folha'
+					END DATAPERIODODEB
+				
+				FROM CCA.DEBITOCONTACAPITAL DEB 
+				
+				INNER JOIN CCA.CONTACAPITAL CCA ON CCA.IDCONTACAPITAL = DEB.IDCONTACAPITAL AND DEB.IDINSTITUICAO = CCA.IDINSTITUICAO
+				
+				INNER JOIN CLI.PESSOA P ON P.IDPESSOA = CCA.IDPESSOA
+		        INNER JOIN CLI.PESSOACOMPARTILHAMENTO PC ON P.IDPESSOA = PC.IDPESSOA
+		        INNER JOIN CLI.TRANSICAOPESSOA TP ON PC.IDPESSOACOMPARTILHAMENTO = TP.IDPESSOACOMPARTILHAMENTO AND TP.IDINSTITUICAO = CCA.IDINSTITUICAO
+
+				WHERE
+					CCA.IDINSTITUICAO = <bancoob:valor valor="${filtro.idInstituicao}" />
+					AND CCA.IDSITUACAOCONTACAPITAL = 1
+					
+					<j:if test="${filtro.idTipoPessoa != null}">
+						AND P.CODTIPOPESSOA = <bancoob:valor valor="${filtro.idTipoPessoa}" />
+					</j:if>
+					<j:if test="${filtro.idFormaDebito != null}">
+						AND DEB.IDTIPOINTEGRALIZACAO = <bancoob:valor valor="${filtro.idFormaDebito}" />
+					</j:if>
+					<j:if test="${filtro.valor != null}">
+						AND DEB.VALORDEBITO = <bancoob:valor valor="${filtro.valor}" />
+					</j:if>
+					<j:if test="${filtro.diaDebito != null}">
+						AND DAY(DEB.DATAVENCIMENTODEBITO) = <bancoob:valor valor="${filtro.diaDebito}" />
+						AND DEB.IDTIPOINTEGRALIZACAO NOT IN (3, 6)
+						AND DEB.IDTIPOPERIODODEBITO = 1 
+					</j:if>
+					<j:if test="${filtro.numContaCapital != null}">
+						AND CCA.NUMCONTACAPITAL = <bancoob:valor valor="${filtro.numContaCapital}" />
+					</j:if>
+					<j:if test="${filtro.nome != null and filtro.nome != ''}">
+						AND PC.NOMECOMPLETO like <bancoob:valor valor="${filtro.nome}%" /> 
+					</j:if>
+					<j:if test="${filtro.cpfCnpj != null and filtro.cpfCnpj != ''}">
+						AND P.NUMCPFCNPJ = <bancoob:valor valor="${filtro.cpfCnpj}" /> 
+					</j:if>
+				ORDER BY PC.NOMECOMPLETO
+				WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARDEBITOINDETERMINADO">
+		<use-case name="PESQUISARDEBITOINDETERMINADO"></use-case>
+		<command>
+			<![CDATA[
+		        SELECT * FROM CCA.DEBITOCONTACAPITAL DEB
+				WHERE DEB.IDCONTACAPITAL = :idContaCapital AND DEB.IDINSTITUICAO = :idInstituicao
+		        WITH UR
+			]]>
+		</command>
+	</query>
+	<query name="PESQUISARDEBITOINDETERMINADOPORNUMMATRICULA">
+		<use-case name="PESQUISARDEBITOINDETERMINADOPORNUMMATRICULA"></use-case>
+		<command>
+			<![CDATA[
+		       SELECT DB.* from CCA.DEBITOCONTACAPITAL DB 
+			  	INNER JOIN CCA.CONTACAPITAL C ON C.IDCONTACAPITAL = DB.IDCONTACAPITAL
+			  WHERE C.NUMCONTACAPITAL = :numMatricula
+			  AND c.IDINSTITUICAO = :idInstituicao
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARCCASEMDEBITOINDETERMINADO">
+		<use-case name="PESQUISARCCASEMDEBITOINDETERMINADO"></use-case>
+		<command>
+			<![CDATA[
+				WITH RESULTADO AS (
+				        SELECT 
+				                CCA.IDINSTITUICAO, CCA.IDPESSOA, CCA.IDCONTACAPITAL, CCA.NUMCONTACAPITAL, MIN(CCO.NUMCONTACORRENTE) NUMCONTACORRENTE
+				        FROM 
+				                CCA.CONTACAPITAL CCA
+				                INNER JOIN CCO.VIW_CONTACORRENTE CCO ON CCA.IDPESSOA = CCO.IDPESSOA AND CCA.IDINSTITUICAO = CCO.IDINSTITUICAO
+				                LEFT JOIN CCA.DEBITOCONTACAPITAL DEB ON CCA.IDINSTITUICAO = DEB.IDINSTITUICAO AND CCA.IDCONTACAPITAL = DEB.IDCONTACAPITAL
+				        WHERE CCA.IDINSTITUICAO = <bancoob:valor valor="${filtro.idInstituicao}" />  
+				                AND CCA.IDSITUACAOCONTACAPITAL = 1
+				                AND CCA.IDSITUACAOAPROVACAOCAPITAL = 2
+				                AND CCO.NUMORDEMTITULARIDADE = 1
+				                AND CCO.BOLATIVO = 1
+				                AND CCO.IDMODALIDADE = 1
+				                AND CCO.CODSITUACAOCCO IN (1, 2)
+				                AND CCO.DATAHORAENCERRAMENTO IS NULL 
+				                AND DEB.IDDEBITOCONTACAPITAL IS NULL
+				        GROUP BY CCA.IDINSTITUICAO, CCA.IDPESSOA, CCA.IDCONTACAPITAL, CCA.NUMCONTACAPITAL
+				        WITH UR               
+				) SELECT
+				        RES.IDCONTACAPITAL,
+				        RES.NUMCONTACAPITAL,
+				        P.NUMCPFCNPJ,
+				        PC.NOMECOMPLETO,
+				        CASE P.CODTIPOPESSOA WHEN 0 THEN 'PF' ELSE 'PJ'
+				        END TIPOPESSOA,
+				        RES.NUMCONTACORRENTE
+				FROM 
+				        RESULTADO RES
+				        INNER JOIN CLI.PESSOA P ON P.IDPESSOA = RES.IDPESSOA
+				        INNER JOIN CLI.PESSOACOMPARTILHAMENTO PC ON P.IDPESSOA = PC.IDPESSOA
+				        INNER JOIN CLI.TRANSICAOPESSOA TP ON PC.IDPESSOACOMPARTILHAMENTO = TP.IDPESSOACOMPARTILHAMENTO AND TP.IDINSTITUICAO = RES.IDINSTITUICAO
+				ORDER BY 
+				        PC.NOMECOMPLETO
+				WITH UR
+
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARCCASEMDEBITOINDETERMINADOFOLHABANCO">
+		<use-case name="PESQUISARCCASEMDEBITOINDETERMINADOFOLHABANCO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT
+				        DISTINCT
+				        PESEMP.NUMCPFCNPJ CNPJ,
+				        PESEMP.NOMECOMPLETO RAZAOSOCIAL,
+				        INF.NUMMATRICULA NUMMATRICULAFUNC,
+				        CCA.IDCONTACAPITAL,
+				        CCA.NUMCONTACAPITAL,
+				        DEB.IDDEBITOCONTACAPITAL,
+				        PES.NOMECOMPLETO
+				FROM 
+				        CCA.CONTACAPITAL CCA
+				        INNER JOIN CLI.VIW_PESSOA PES ON PES.IDPESSOA = CCA.IDPESSOA AND PES.IDINSTITUICAO = CCA.IDINSTITUICAO
+				        INNER JOIN CLI.INFORMACAOPROFISSIONAL INF ON INF.IDPESSOA = CCA.IDPESSOA AND INF.IDINSTITUICAO = CCA.IDINSTITUICAO
+				        INNER JOIN CLI.VIW_PESSOA PESEMP ON PESEMP.IDPESSOA = INF.IDPESSOAEMPREGADOR AND PESEMP.IDINSTITUICAO = CCA.IDINSTITUICAO 
+				        LEFT JOIN CCA.DEBITOCONTACAPITAL DEB ON CCA.IDINSTITUICAO = DEB.IDINSTITUICAO AND CCA.IDCONTACAPITAL = DEB.IDCONTACAPITAL
+				WHERE 
+				        CCA.IDINSTITUICAO = <bancoob:valor valor="${filtro.idInstituicao}" />
+				        AND CCA.IDSITUACAOCONTACAPITAL = 1 
+				        AND CCA.IDSITUACAOAPROVACAOCAPITAL = 2
+				        AND DEB.IDDEBITOCONTACAPITAL IS NULL
+				        AND PES.CODTIPOPESSOA = 0        
+				        AND PESEMP.CODTIPOPESSOA = 1
+				WITH UR   
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRDEBINDLOTE">
+		<use-case name="INCLUIRDEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				INSERT INTO CCA.DEBITOCONTACAPITAL
+		        (IDCONTACAPITAL, IDINSTITUICAO, IDTIPOINTEGRALIZACAO, IDTIPOVALORDEBITO, IDTIPOPERIODODEBITO, IDUSUARIO,
+        			NUMPERIODO, VALORDEBITO, DATAVENCIMENTODEBITO, DATAHORADEBITO, NUMCONTACORRENTE, DESCMATRICULAFUNC)
+				VALUES
+        		(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISAIDULTIMODEBIND">
+		<use-case name="PESQUISAIDULTIMODEBIND"></use-case>
+		<command>
+			<![CDATA[
+                SELECT MAX(IDDEBITOCONTACAPITAL) FROM CCA.DEBITOCONTACAPITAL WHERE IDINSTITUICAO = ? 
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRHISTDEBINDLOTE">
+		<use-case name="INCLUIRHISTDEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+        		INSERT INTO CCA.HISTDEBITOCONTACAPITAL 
+	                SELECT 
+		                "IDDEBITOCONTACAPITAL", "DATAHORADEBITO", "IDCONTACAPITAL", "IDINSTITUICAO", "IDTIPOINTEGRALIZACAO", "IDTIPOVALORDEBITO", "IDTIPOPERIODODEBITO",
+		                "IDUSUARIO", "NUMPERIODO", "VALORDEBITO", "DATAVENCIMENTODEBITO", "NUMCONTACORRENTE", "DESCMATRICULAFUNC"
+	                FROM CCA.DEBITOCONTACAPITAL 
+	                WHERE CCA.DEBITOCONTACAPITAL.IDDEBITOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXCLUIRDEBINDLOTE">
+		<use-case name="EXCLUIRDEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+        		DELETE FROM CCA.DEBITOCONTACAPITAL 
+                WHERE IDDEBITOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="ALTERARVALORDEBINDLOTE">
+		<use-case name="ALTERARVALORDEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE CCA.DEBITOCONTACAPITAL 
+					SET
+					VALORDEBITO = ?,
+					DATAHORADEBITO = ?,
+					IDUSUARIO = ?
+				WHERE IDDEBITOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	<query name="ALTERARVALORPERCENTUALDEBINDLOTE">
+		<use-case name="ALTERARVALORPERCENTUALDEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE CCA.DEBITOCONTACAPITAL 
+					SET
+					VALORDEBITO = (VALORDEBITO + (VALORDEBITO / 100 * CAST(? AS DECIMAL))),
+					DATAHORADEBITO = ?,
+					IDUSUARIO = ?
+				WHERE IDDEBITOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="ALTERARDATADEBINDLOTE">
+		<use-case name="ALTERARDATADEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE CCA.DEBITOCONTACAPITAL 
+					SET
+					DATAVENCIMENTODEBITO = ?,
+					DATAHORADEBITO = ?,
+					IDUSUARIO = ?
+				WHERE IDDEBITOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="ALTERARVALORDATADEBINDLOTE">
+		<use-case name="ALTERARVALORDATADEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE CCA.DEBITOCONTACAPITAL 
+					SET
+					VALORDEBITO = ?,
+					DATAVENCIMENTODEBITO = ?,
+					DATAHORADEBITO = ?,
+					IDUSUARIO = ?
+				WHERE IDDEBITOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	<query name="ALTERARVALORPERCENTUALDATADEBINDLOTE">
+		<use-case name="ALTERARVALORPERCENTUALDATADEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE CCA.DEBITOCONTACAPITAL 
+					SET
+					VALORDEBITO = (VALORDEBITO + (VALORDEBITO / 100 * CAST(? AS DECIMAL))),
+					DATAVENCIMENTODEBITO = ?,
+					DATAHORADEBITO = ?,
+					IDUSUARIO = ?
+				WHERE IDDEBITOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBLOQUEIOS">
+		<use-case name="CONSULTARBLOQUEIOS"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+					CCA.IDCONTACAPITAL,
+					CCA.IDINSTITUICAO,
+					CCA.NUMCONTACAPITAL,
+					PES.NOMECOMPLETO,
+					PES.NUMCPFCNPJ,
+					BLO.IDBLOQUEIOCAPITAL,
+					BLO.VALORBLOQUEIO,
+					BLO.DATAINICIOBLOQUEIO,
+					BLO.DATAFIMBLOQUEIO,
+					BLO.BOLATIVO,
+					BLO.DATAPROTOCOLO,
+					BLO.NUMPROTOCOLO,
+					BLO.NUMPROCESSO,
+					OBL.IDORIGEMBLOQUEIOCAPITAL,
+					OBL.NOMEORIGEMBLOQUEIO
+				
+				FROM CCA.BLOQUEIOCAPITAL BLO 
+				
+				INNER JOIN CCA.CONTACAPITAL CCA ON CCA.IDCONTACAPITAL = BLO.IDCONTACAPITAL
+				
+				INNER JOIN CLI.VIW_PESSOA PES ON PES.IDPESSOA = CCA.IDPESSOA AND PES.IDINSTITUICAO = CCA.IDINSTITUICAO
+				
+				INNER JOIN CCA.ORIGEMBLOQUEIOCAPITAL OBL ON OBL.IDORIGEMBLOQUEIOCAPITAL = BLO.IDORIGEMBLOQUEIOCAPITAL
+
+				WHERE
+				
+					CCA.IDINSTITUICAO = <bancoob:valor valor="${filtro.idInstituicao}" />
+					AND CCA.IDSITUACAOCONTACAPITAL = 1
+					
+					<j:if test="${filtro.idBloqueio != null}">
+		            	AND BLO.IDBLOQUEIOCAPITAL = <bancoob:valor valor="${filtro.idBloqueio}" />
+		            </j:if>
+					
+					<j:if test="${filtro.numContaCapital != null and filtro.numContaCapital > 0}">
+		            	AND CCA.NUMCONTACAPITAL = <bancoob:valor valor="${filtro.numContaCapital}" />
+		            </j:if>
+		            
+		            <j:if test="${filtro.cpfCnpj != null and filtro.cpfCnpj != ''}">
+		            	 AND PES.NUMCPFCNPJ = <bancoob:valor valor="${filtro.cpfCnpj}" /> 
+		            </j:if>
+		            
+		            <j:if test="${filtro.nomePessoa != null and filtro.nomePessoa != ''}">
+		            	 AND PES.NOMECOMPLETO like <bancoob:valor valor="${filtro.nomePessoa}%" /> 
+		            </j:if>
+		            
+		            <j:if test="${filtro.numProtocolo != null and filtro.numProtocolo != ''}">
+		            	 AND BLO.NUMPROTOCOLO = <bancoob:valor valor="${filtro.numProtocolo}" /> 
+		            </j:if>
+		            
+		            <j:if test="${filtro.codTipoBloqueio != null}">
+		            	 AND BLO.IDORIGEMBLOQUEIOCAPITAL = <bancoob:valor valor="${filtro.codTipoBloqueio}" /> 
+		            </j:if>
+		            
+		            <j:if test="${filtro.numProcesso != null and filtro.numProcesso != ''}">
+		            	 AND BLO.NUMPROCESSO = <bancoob:valor valor="${filtro.numProcesso}" /> 
+		            </j:if>
+		            
+		            <j:if test="${filtro.codSituacaoBloqueio != null}">
+		            	<j:if test="${filtro.codSituacaoBloqueio == 1}">
+			            	 AND BLO.BOLATIVO = 1
+			            	 AND (
+			            	 	BLO.DATAFIMBLOQUEIO IS NULL 
+			            	 	OR VARCHAR_FORMAT(BLO.DATAFIMBLOQUEIO, 'YYYY-MM-DD') &gt; <bancoob:valor valor="${dataProduto}" />
+			            	 	) 
+		            	</j:if>
+		            	<j:if test="${filtro.codSituacaoBloqueio == 0}">
+		            		AND (
+		            			BLO.BOLATIVO = 0
+			            		OR ( 
+			            			BLO.DATAFIMBLOQUEIO IS NOT NULL
+			            	 		AND VARCHAR_FORMAT(BLO.DATAFIMBLOQUEIO, 'YYYY-MM-DD') &lt;= <bancoob:valor valor="${dataProduto}" />
+			            	 		)
+			            	 	)
+		            	</j:if>
+		            </j:if>
+		            
+				ORDER BY BLO.DATAINICIOBLOQUEIO DESC	
+				WITH UR
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARVALORBLOQUEADO">
+		<use-case name="CONSULTARVALORBLOQUEADO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+					BLO.VALORBLOQUEIO, BLO.IDORIGEMBLOQUEIOCAPITAL
+				FROM 
+					CCA.BLOQUEIOCAPITAL BLO 
+				WHERE 
+					BLO.IDCONTACAPITAL = <bancoob:valor valor="${idContaCapital}" />
+					AND BLO.BOLATIVO = 1
+			            	 AND (
+			            	 	BLO.DATAFIMBLOQUEIO IS NULL 
+			            	 	OR VARCHAR_FORMAT(BLO.DATAFIMBLOQUEIO, 'YYYY-MM-DD') &gt; <bancoob:valor valor="${dataProduto}" />
+			            	 	) 
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRLANCAMENTOLOTE">
+		<use-case name="INCLUIRLANCAMENTOLOTE"></use-case>
+		<command>
+			<![CDATA[
+				INSERT INTO CCA.LANCAMENTOCONTACAPITAL
+		        (IDTIPOHISTORICO, IDTIPOHISTORICOESTORNO, IDTIPOLOTE, IDCONTACAPITAL, IDINSTITUICAO, IDUSUARIO, DATALANCAMENTO, DESCNUMDOCUMENTO, 
+		        	VALORLANCAMENTO, DATAHORAATUALIZACAO, BOLPROCESSADO, NUMSEQLANC, DESCOPERACAOEXTERNA)
+				VALUES
+        		(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRHISTLANCAMENTOLOTE">
+		<use-case name="INCLUIRHISTLANCAMENTOLOTE"></use-case>
+		<command>
+			<![CDATA[
+        		INSERT INTO CCA.HISTLANCAMENTOCONTACAPITAL
+	                SELECT 
+		                IDLANCAMENTOCONTACAPITAL, IDLANCAMENTOCONTACAPITALESTORNO, IDTIPOHISTORICO, IDTIPOLOTE, IDCONTACAPITAL, IDINSTITUICAO,
+						IDUSUARIO, DATALANCAMENTO, DESCNUMDOCUMENTO, VALORLANCAMENTO, DATAHORAATUALIZACAO, IDTIPOSUBSCRICAO, NUMSEQLANC, IDTIPOHISTORICOESTORNO
+	                FROM CCA.LANCAMENTOCONTACAPITAL 
+	                WHERE CCA.LANCAMENTOCONTACAPITAL.IDLANCAMENTOCONTACAPITAL = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISAIDULTIMOLANCAMENTOLOTE">
+		<use-case name="PESQUISAIDULTIMOLANCAMENTOLOTE"></use-case>
+		<command>
+			<![CDATA[
+                SELECT MAX(IDLANCAMENTOCONTACAPITAL) FROM CCA.LANCAMENTOCONTACAPITAL WHERE IDTIPOLOTE = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERCONTACORRENTEVIEW">
+		<use-case name="OBTERCONTACORRENTEVIEW"></use-case>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.ContaCorrenteView cco
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					AND cco.id = <bancoob:valorOql valor="${criterios.filtro.id}" tipo="Integer" /> 
+				</j:if>	
+				<j:if test="${criterios.filtro.idInstituicao != null}">
+					AND cco.idInstituicao = <bancoob:valorOql valor="${criterios.filtro.idInstituicao}" tipo="Integer" /> 
+				</j:if>
+				<j:if test="${criterios.filtro.numContaCorrente != null}">
+					AND cco.numContaCorrente = <bancoob:valorOql valor="${criterios.filtro.numContaCorrente}" tipo="Integer" /> 
+				</j:if>	
+				<j:if test="${criterios.filtro.idPessoa != null}">
+					AND cco.idPessoa = <bancoob:valorOql valor="${criterios.filtro.idPessoa}" tipo="Integer" /> 
+				</j:if>
+				<j:if test="${criterios.filtro.codSituacaoCCO != null}">
+					AND cco.codSituacaoCCO = <bancoob:valorOql valor="${criterios.filtro.codSituacaoCCO}" tipo="Integer" />
+				</j:if>	
+			]]>
+		</command>
+	</query>
+	
+	<query name="PESQUISARDATALOTEEXTRATOIRRF">
+		<use-case name="PESQUISARDATALOTEEXTRATOIRRF"></use-case>
+		<command>
+			<![CDATA[
+                SELECT MAX(DATALOTE) AS DATALOTE FROM CCA.EXTRATOIRRF WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARESTORNORATEIO">
+		<use-case name="CONSULTARESTORNORATEIO"></use-case>
+		<command>
+			<![CDATA[
+                SELECT 
+				        CCA.IDCONTACAPITAL, CCA.IDINSTITUICAO, CCA.IDSITUACAOCONTACAPITAL, CCA.NUMCONTACAPITAL,
+				        LANC.IDTIPOHISTORICO, LANC.VALORLANCAMENTO, LANC.DESCNUMDOCUMENTO, LANC.DESCOPERACAOEXTERNA
+				FROM 
+				        CCA.LANCAMENTOCONTACAPITAL LANC
+				        INNER JOIN CCA.CONTACAPITAL CCA ON LANC.IDCONTACAPITAL = CCA.IDCONTACAPITAL
+				WHERE
+				        LANC.DATALANCAMENTO = <bancoob:valor valor="${data}" />
+				        AND LANC.IDTIPOLOTE = 9003
+				        AND LANC.DESCOPERACAOEXTERNA = <bancoob:valor valor="${lancamento.descOperacaoExterna}" />
+				        AND LANC.IDINSTITUICAO = <bancoob:valor valor="${lancamento.idInstituicao}" />
+				        AND LANC.IDTIPOHISTORICO IN (108,208)
+			]]>
+		</command>
+	</query>
+	
+	<query name="VERIFICARESTORNOREALIZADO">
+		<use-case name="VERIFICARESTORNOREALIZADO"></use-case>
+		<command>
+			<![CDATA[
+                SELECT 
+				        COUNT(*) AS QTD
+				FROM 
+				        CCA.LANCAMENTOCONTACAPITAL LANC
+				WHERE
+				        LANC.IDTIPOLOTE = 9003
+				        AND LANC.DESCOPERACAOEXTERNA = <bancoob:valor valor="${lancamento.descOperacaoExterna}" />
+				        AND LANC.IDINSTITUICAO = <bancoob:valor valor="${lancamento.idInstituicao}" />
+				        AND LANC.IDTIPOHISTORICO IN (199,299)
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARLANCAMENTOSDIACCA">
+		<use-case name="CONSULTARLANCAMENTOSDIACCA"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+				        LANC.IDLANCAMENTOCONTACAPITAL, LANC.IDTIPOHISTORICO, LANC.IDTIPOLOTE, LANC.IDCONTACAPITAL,
+				        LANC.IDINSTITUICAO, LANC.VALORLANCAMENTO, LANC.NUMSEQLANC, TH.CODNATUREZAOPERACAO, TH.IDGRUPOHISTORICO,
+				        LANC.IDTIPOHISTORICOESTORNO, THE.CODNATUREZAOPERACAO
+				FROM
+				        CCA.LANCAMENTOCONTACAPITAL LANC
+				        INNER JOIN CCA.TIPOHISTORICOCCA TH ON LANC.IDTIPOHISTORICO = TH.IDTIPOHISTORICO
+				        LEFT JOIN CCA.TIPOHISTORICOCCA THE ON LANC.IDTIPOHISTORICOESTORNO = THE.IDTIPOHISTORICO
+				WHERE
+				        LANC.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}" /> 
+				        AND LANC.DATALANCAMENTO = <bancoob:valor valor="${data}" />
+				        AND LANC.IDCONTACAPITAL = <bancoob:valor valor="${idContaCapital}" />
+				        AND LANC.BOLPROCESSADO = 0           
+			]]>
+		</command>
+	</query>
+	
+	<query name="VALIDARCCASEMSALDOESTORNO">
+		<use-case name="VALIDARCCASEMSALDOESTORNO"></use-case>
+		<command>
+			<![CDATA[
+				WITH 
+				TEMPCOTA
+				AS (
+				        SELECT 
+				                (SELECT COALESCE(CONF.VALORCONFIGURACAO,0) FROM CCA.VALORCONFIGURACAOCAPITAL CONF WHERE CONF.IDCONFIGURACAOCAPITAL = 1575 AND CONF.IDINSTITUICAO = <bancoob:valor valor="${lancamento.idInstituicao}" />) AS COTA,
+				                (SELECT COALESCE(CONF.VALORCONFIGURACAO,0) FROM CCA.VALORCONFIGURACAOCAPITAL CONF WHERE CONF.IDCONFIGURACAOCAPITAL = 1576 AND CONF.IDINSTITUICAO = <bancoob:valor valor="${lancamento.idInstituicao}" />) AS QTDMINPF,
+				                (SELECT COALESCE(CONF.VALORCONFIGURACAO,0) FROM CCA.VALORCONFIGURACAOCAPITAL CONF WHERE CONF.IDCONFIGURACAOCAPITAL = 1577 AND CONF.IDINSTITUICAO = <bancoob:valor valor="${lancamento.idInstituicao}" />) AS QTDMINPJ      
+				        FROM
+				                SYSIBM.DUAL
+				),
+				TEMPCCA
+				AS (
+				        SELECT  
+				                C.IDCONTACAPITAL,
+				                C.NUMCONTACAPITAL,
+				                C.IDSITUACAOCONTACAPITAL,
+				                CASE WHEN P.CODTIPOPESSOA = 0 THEN TEMPCOTA.COTA*TEMPCOTA.QTDMINPF ELSE TEMPCOTA.COTA*TEMPCOTA.QTDMINPJ END AS VALORCOTA ,
+				                COALESCE(C.VALORSALDOSUBSC,0) AS VALORSALDOSUBSC,
+				                COALESCE(C.VALORSALDOINTEG,0) AS VALORSALDOINTEG,
+				                COALESCE(C.VALORSALDODEVOL,0) AS VALORSALDODEVOL,
+				                COALESCE(C.VALORSALDOBLOQ,0) AS VALORSALDOBLOQ,
+				                SUM(COALESCE(L.VALORLANCAMENTO,0)) AS VALORRATEIO                
+				        FROM
+				                CCA.LANCAMENTOCONTACAPITAL L 
+				                INNER JOIN CCA.CONTACAPITAL C ON C.IDCONTACAPITAL = L.IDCONTACAPITAL AND C.IDINSTITUICAO = L.IDINSTITUICAO        
+				                INNER JOIN CLI.PESSOA P ON P.IDPESSOA = C.IDPESSOA
+				                INNER JOIN TEMPCOTA ON 1=1
+				        WHERE
+				                L.IDINSTITUICAO = <bancoob:valor valor="${lancamento.idInstituicao}" />
+				                AND L.DATALANCAMENTO = <bancoob:valor valor="${data}" />    
+				                AND L.IDTIPOLOTE = 9003                
+				                AND L.DESCOPERACAOEXTERNA = <bancoob:valor valor="${lancamento.descOperacaoExterna}" />
+				                AND L.IDTIPOHISTORICO IN (108,208)
+				        GROUP BY                
+				                C.IDCONTACAPITAL,
+				                C.NUMCONTACAPITAL,
+				                C.IDSITUACAOCONTACAPITAL,
+				                P.CODTIPOPESSOA,
+				                VALORSALDOSUBSC,
+				                VALORSALDOINTEG,
+				                VALORSALDODEVOL,
+				                VALORSALDOBLOQ,
+				                TEMPCOTA.COTA,
+				                TEMPCOTA.QTDMINPF,
+				                TEMPCOTA.QTDMINPJ
+				        WITH UR
+				),
+				TEMPLANCDIA
+				AS (
+				        SELECT 
+				               LDIA.IDINSTITUICAO,
+				               LDIA.IDCONTACAPITAL,
+				               TH.IDGRUPOHISTORICO,
+				               SUM(CASE TH.CODNATUREZAOPERACAO 
+				                       WHEN  'C' THEN LDIA.VALORLANCAMENTO 
+				                       WHEN  'D' THEN LDIA.VALORLANCAMENTO * -1
+				                       WHEN  'E' THEN 
+				                                CASE THE.CODNATUREZAOPERACAO
+				                                        WHEN  'C' THEN LDIA.VALORLANCAMENTO * -1
+				                                        WHEN  'D' THEN LDIA.VALORLANCAMENTO 
+				                                END
+				                        ELSE 0 
+				                END) AS VALORLANCDIA
+				        FROM 
+				                CCA.LANCAMENTOCONTACAPITAL LDIA
+				                INNER JOIN CCA.TIPOHISTORICOCCA TH ON TH.IDTIPOHISTORICO = LDIA.IDTIPOHISTORICO         
+				                LEFT  JOIN CCA.TIPOHISTORICOCCA THE ON THE.IDTIPOHISTORICO = LDIA.IDTIPOHISTORICOESTORNO
+				        WHERE
+				                LDIA.IDINSTITUICAO = <bancoob:valor valor="${lancamento.idInstituicao}" />
+				                AND LDIA.DATALANCAMENTO = <bancoob:valor valor="${data}" />    
+				                AND TH.IDGRUPOHISTORICO IN (1,2,3) 
+				        GROUP BY
+				               LDIA.IDINSTITUICAO,
+				               LDIA.IDCONTACAPITAL,
+				               TH.IDGRUPOHISTORICO        
+				),
+				TEMPBLOQ AS(
+				        SELECT 
+				                B.IDCONTACAPITAL,
+				                SUM(B.VALORBLOQUEIO) AS VALORBLOQUEIO
+				        FROM 
+				                CCA.BLOQUEIOCAPITAL B
+				        WHERE 
+				                B.BOLATIVO = 1
+				                AND (
+				                        B.DATAFIMBLOQUEIO IS NULL 
+				                        OR VARCHAR_FORMAT(B.DATAFIMBLOQUEIO, 'YYYY-MM-DD') &gt; <bancoob:valor valor="${data}" />
+				                ) 
+				        GROUP BY 
+				                B.IDCONTACAPITAL
+				)
+				SELECT
+				        'SUBSC' AS GRUPOHISTORICO, TEMPCCA.NUMCONTACAPITAL
+				FROM 
+				        TEMPCCA
+				        LEFT JOIN TEMPLANCDIA ON TEMPLANCDIA.IDCONTACAPITAL = TEMPCCA.IDCONTACAPITAL AND TEMPLANCDIA.IDGRUPOHISTORICO = 1 
+				        LEFT JOIN TEMPBLOQ ON TEMPBLOQ.IDCONTACAPITAL = TEMPCCA.IDCONTACAPITAL
+				WHERE
+				        TEMPCCA.IDSITUACAOCONTACAPITAL = 1
+				        AND 
+				        (
+				                COALESCE(TEMPCCA.VALORRATEIO,0) > (COALESCE(TEMPCCA.VALORSALDOSUBSC,0) + COALESCE(TEMPLANCDIA.VALORLANCDIA,0) - (COALESCE(TEMPCCA.VALORSALDOBLOQ,0) + COALESCE(TEMPBLOQ.VALORBLOQUEIO,0)) - TEMPCCA.VALORCOTA) 
+				        )
+				UNION        
+				SELECT
+				        'INTEG' AS GRUPOHISTORICO, TEMPCCA.NUMCONTACAPITAL
+				FROM 
+				        TEMPCCA
+				        LEFT JOIN TEMPLANCDIA ON TEMPLANCDIA.IDCONTACAPITAL = TEMPCCA.IDCONTACAPITAL AND TEMPLANCDIA.IDGRUPOHISTORICO = 2 
+				        LEFT JOIN TEMPBLOQ ON TEMPBLOQ.IDCONTACAPITAL = TEMPCCA.IDCONTACAPITAL
+				WHERE
+				        TEMPCCA.IDSITUACAOCONTACAPITAL = 1
+				        AND 
+				        (
+				                COALESCE(TEMPCCA.VALORRATEIO,0) > (COALESCE(TEMPCCA.VALORSALDOINTEG,0) + COALESCE(TEMPLANCDIA.VALORLANCDIA,0) - (COALESCE(TEMPCCA.VALORSALDOBLOQ,0) + COALESCE(TEMPBLOQ.VALORBLOQUEIO,0))) 
+				        )
+				UNION        
+				SELECT
+				        'DEVOL' AS GRUPOHISTORICO, TEMPCCA.NUMCONTACAPITAL
+				FROM 
+				        TEMPCCA
+				        LEFT JOIN TEMPLANCDIA ON TEMPLANCDIA.IDCONTACAPITAL = TEMPCCA.IDCONTACAPITAL AND TEMPLANCDIA.IDGRUPOHISTORICO = 3 
+				WHERE
+				        TEMPCCA.IDSITUACAOCONTACAPITAL != 1 
+				        AND 
+				        (
+				                 COALESCE(TEMPCCA.VALORRATEIO,0) > (COALESCE(TEMPCCA.VALORSALDODEVOL,0) + COALESCE(TEMPLANCDIA.VALORLANCDIA,0))
+				        )
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTAPARCABERTASVIACAIXA">
+		<use-case name="CONSULTAPARCABERTASVIACAIXA"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+				        P.IDPARCELAMENTOCONTACAPITAL, P.NUMPARCELAMENTO, P.NUMPARCELA, P.VALORPARCELA, P.DATAVENCPARCELA, P.IDSITUACAOPARCELAMENTO, P.IDTIPOINTEGRALIZACAO, P.IDTIPOPARCELAMENTO
+				FROM
+				        CCA.PARCELAMENTOCONTACAPITAL P
+				WHERE 
+				        P.IDINSTITUICAO = <bancoob:valor valor="${dto.idInstituicao}" />
+				        AND P.IDCONTACAPITAL = (SELECT IDCONTACAPITAL FROM CCA.CONTACAPITAL 
+				        						WHERE NUMCONTACAPITAL = <bancoob:valor valor="${dto.numContaCapital}" /> AND IDINSTITUICAO = <bancoob:valor valor="${dto.idInstituicao}" />)
+				        AND P.IDTIPOPARCELAMENTO = <bancoob:valor valor="${dto.idTipoParcelamento}" />
+				        AND P.DATAVENCPARCELA &lt;= CURRENT_DATE
+    					<j:if test="${dto.idSituacaoParcelamento != null}">
+				        	AND P.IDSITUACAOPARCELAMENTO = <bancoob:valor valor="${dto.idSituacaoParcelamento}" />
+				        </j:if>	
+				        <j:if test="${dto.idTipoIntegralizacao != null}">
+				        	AND P.IDTIPOINTEGRALIZACAO = <bancoob:valor valor="${dto.idTipoIntegralizacao}" />
+				        </j:if>	
+				        <j:if test="${dto.numParcelamento != null}">
+					        AND P.NUMPARCELAMENTO = <bancoob:valor valor="${dto.numParcelamento}" />
+				        </j:if>
+				        <j:if test="${dto.numParcela != null}">
+					        AND P.NUMPARCELA = <bancoob:valor valor="${dto.numParcela}" />
+				        </j:if>
+			]]>
+		</command>
+	</query>
+	
+	<query name="ATUALIZARPARCELAMENTOS">
+		<use-case name="ATUALIZARPARCELAMENTOS"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE CCA.PARCELAMENTOCONTACAPITAL 
+				SET IDSITUACAOPARCELAMENTO = <bancoob:valor valor="${idSituacaoParcelamento}" />, DATASITUACAOPARCELA = <bancoob:valor valor="${dataSituacaoParcela}" />
+				WHERE IDPARCELAMENTOCONTACAPITAL IN (${idsParcelamento})
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERPARTICIPACAOCENTRALBANCOOB">
+		<use-case name="OBTERPARTICIPACAOCENTRALBANCOOB"></use-case>
+		<description>Consulta a Entidade ParticipacaoCentralBancoob</description>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.ParticipacaoCentralBancoob
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					<j:if test="${criterios.filtro.id.idInstituicaoCentral != null}">
+						AND IDINSTITUICAOCENTRAL = ${criterios.filtro.id.idInstituicaoCentral}
+					</j:if>
+					<j:if test="${criterios.filtro.id.numAnoMesBase != null}">
+						AND ANOMESBASE = ${criterios.filtro.id.numAnoMesBase}
+					</j:if>
+				</j:if>			
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERHISTPARTICIPACAOCENTRALBANCOOB">
+		<use-case name="OBTERHISTPARTICIPACAOCENTRALBANCOOB"></use-case>
+		<description>Consulta a Entidade HistParticipacaoCentralBancoob</description>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.HistParticipacaoCentralBancoob
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					<j:if test="${criterios.filtro.id.idInstituicaoCentral != null}">
+						AND IDINSTITUICAOCENTRAL = ${criterios.filtro.id.idInstituicaoCentral}
+					</j:if>
+					<j:if test="${criterios.filtro.id.numAnoMesBase != null}">
+						AND ANOMESBASE = ${criterios.filtro.id.numAnoMesBase}
+					</j:if>
+				</j:if>			
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERPARTICIPACAOINDIRETABANCOOB">
+		<use-case name="OBTERPARTICIPACAOINDIRETABANCOOB"></use-case>
+		<description>Consulta a Entidade ParticipacaoIndiretaBancoob</description>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.cca.entidades.negocio.entidades.ParticipacaoIndiretaBancoob
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.id != null}">
+					<j:if test="${criterios.filtro.id.idInstituicaoCentral != null}">
+						AND IDINSTITUICAOCENTRAL = ${criterios.filtro.id.idInstituicaoCentral}
+					</j:if>
+					<j:if test="${criterios.filtro.id.idInstituicaoSingular != null}">
+						AND IDINSTITUICAOSINGULAR = ${criterios.filtro.id.idInstituicaoSingular}
+					</j:if>
+					<j:if test="${criterios.filtro.id.numAnoMesBase != null}">
+						AND ANOMESBASE = ${criterios.filtro.id.numAnoMesBase}
+					</j:if>
+				</j:if>			
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXCLUIRBLOQUEIO">
+		<use-case name="EXCLUIRBLOQUEIO"></use-case>
+		<command>
+			<![CDATA[
+				DELETE FROM CCA.HISTBLOQUEIOCAPITAL WHERE IDBLOQUEIOCAPITAL = <bancoob:valor valor="${idBloqueioCapital}" />;
+				DELETE FROM CCA.BLOQUEIOCAPITAL WHERE IDBLOQUEIOCAPITAL = <bancoob:valor valor="${idBloqueioCapital}" />;
+			]]>
+		</command>
+	</query>
+	
+		<query name="INCLUICARGASALDOCONTACAPITAL">
+		<use-case name="INCLUICARGASALDOCONTACAPITAL"></use-case>
+		<description>Gerar Carga no Saldo Conta Capital</description>
+		<command>
+			<![CDATA[
+				INSERT INTO CCA.SALDOCONTACAPITAL(
+						    IDCONTACAPITAL,
+						    IDINSTITUICAO,
+						    DATASALDO,
+						    VALORSALDOINTEG,
+						    VALORSALDOSUBSC,
+						    VALORSALDODEVOL,
+						    VALORSALDOBLOQ)
+				   SELECT 
+					        IDCONTACAPITAL,
+					        IDINSTITUICAO,
+					        <bancoob:valor valor="${DATAANTERIORPRODUTO}" /> AS DATASALDO,
+					        VALORSALDOINTEG,
+					        VALORSALDOSUBSC,
+					        VALORSALDODEVOL,
+					        VALORSALDOBLOQ
+					FROM 
+					        CCA.CONTACAPITAL
+					WHERE        
+							IDINSTITUICAO =  <bancoob:valor valor="${IDINSTITUICAO}" />
+							AND DATAMATRICULA &lt;= <bancoob:valor valor="${DATAANTERIORPRODUTO}" />
+					WITH UR     
+			]]>
+		</command>
+	</query>
+	<query name="VALIDARDATAJADADOCARGA">
+		<use-case name="VALIDARDATAJADADOCARGA"></use-case>
+		<command>
+			<![CDATA[
+				SELECT COUNT(*) FROM CCA.SALDOCONTACAPITAL 
+				WHERE 1 = 1	
+				<j:if test="${IDINSTITUICAO != null}">
+					AND IDINSTITUICAO = <bancoob:valor valor="${IDINSTITUICAO}" />
+				</j:if>	
+				<j:if test="${DATAANTERIORPRODUTO != null}">
+					AND DATASALDO = <bancoob:valor valor="${DATAANTERIORPRODUTO}"/>
+				</j:if>		
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTAPARCABERTASVIACCO">
+		<use-case name="CONSULTAPARCABERTASVIACCO"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+				        P.IDPARCELAMENTOCONTACAPITAL, 
+				        P.IDCONTACAPITAL, 
+				        P.NUMPARCELAMENTO, 
+				        P.NUMPARCELA, 
+				        P.VALORPARCELA, 
+				        P.DATAVENCPARCELA, 
+				        P.IDSITUACAOPARCELAMENTO, 
+				        P.IDTIPOINTEGRALIZACAO, 
+				        P.IDTIPOPARCELAMENTO,
+				        P.NUMCONTACORRENTE,
+				        C.NUMCONTACAPITAL				        
+				FROM
+				        CCA.PARCELAMENTOCONTACAPITAL P
+		        INNER JOIN CCA.CONTACAPITAL C ON P.IDCONTACAPITAL = C.IDCONTACAPITAL
+				WHERE 
+				        P.IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}"/>
+	        	AND 	P.IDSITUACAOPARCELAMENTO = 1				        
+		        AND 	P.DATAVENCPARCELA &lt;= <bancoob:valor valor="${dataAtualProduto}"/>			        	
+	        	AND 	P.IDTIPOINTEGRALIZACAO = 2	        	
+			]]>
+		</command>
+	</query>
+	<query name="ALTERARPARCELAMENTOLOTE">
+		<use-case name="ALTERARPARCELAMENTOLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE CCA.PARCELAMENTOCONTACAPITAL 
+				SET   
+					IDSITUACAOPARCELAMENTO = ?,   
+					DATASITUACAOPARCELA = ?  			
+				WHERE IDCONTACAPITAL   = ?  
+				AND NUMPARCELAMENTO  = ?  
+				AND NUMPARCELA   = ?  
+				AND IDTIPOPARCELAMENTO = ?   
+				AND IDSITUACAOPARCELAMENTO = 1  										
+			]]>
+		</command>
+	</query>		
+	<query name="INCLUIRPARCELAMENTOLOTE">
+		<use-case name="ALTERARPARCELAMENTOLOTE"></use-case>
+		<command>
+			<![CDATA[
+				INSERT INTO CCA.PARCELAMENTOCONTACAPITAL (
+					IDCONTACAPITAL,
+					NUMPARCELAMENTO,
+					NUMPARCELA,
+					IDTIPOPARCELAMENTO,
+					IDMOTIVODEVOLUCAO,
+					IDSITUACAOPARCELAMENTO,
+					IDTIPOINTEGRALIZACAO,
+					DATAVENCPARCELA,
+					DATASITUACAOPARCELA,
+					VALORPARCELA,
+					NUMCONTACORRENTE,
+					DESCMATRICULAFUNC,
+					DESCOBSERVACAO,
+					IDCANAL,
+					IDINSTITUICAO
+				)
+				VALUES(
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?										
+				)														
+			]]>
+		</command>
+	</query>
+	<query name="ATUALIZARMOVIMENTOLANCAMENTOS">
+		<use-case name="ATUALIZARMOVIMENTOLANCAMENTOS"></use-case>
+		<command>
+			<![CDATA[
+				
+				UPDATE CCA.CONTACAPITAL SET 
+					VALORSALDOSUBSC = VALORSALDOSUBSC + VALORSUBSCLANCDIA,
+			        VALORSALDOINTEG = VALORSALDOINTEG + VALORINTEGLANCDIA,
+			        VALORSALDODEVOL = VALORSALDODEVOL + VALORDEVOLLANCDIA,
+			        VALORSALDOBLOQ = VALORSALDOBLOQ + VALORBLOQLANCDIA
+				FROM
+				(
+				SELECT
+				        IDINSTITUICAO,
+				        IDCONTACAPITAL,                
+				        SUM(VALORSUBSCLANCDIA) VALORSUBSCLANCDIA,
+				        SUM(VALORINTEGLANCDIA) VALORINTEGLANCDIA,
+				        SUM(VALORDEVOLLANCDIA) VALORDEVOLLANCDIA,
+				        SUM(VALORBLOQLANCDIA) VALORBLOQLANCDIA
+				FROM (                                                
+				        SELECT
+				                LDIA.IDINSTITUICAO,
+				                LDIA.IDCONTACAPITAL,
+				                TH.IDGRUPOHISTORICO,
+				                CASE TH.IDGRUPOHISTORICO WHEN 1 THEN             
+				                        SUM(
+				                                CASE TH.CODNATUREZAOPERACAO 
+				                                WHEN 'C' THEN LDIA.VALORLANCAMENTO
+				                                WHEN 'D' THEN LDIA.VALORLANCAMENTO * -1
+				                                WHEN 'E' THEN
+				                                        CASE THE.CODNATUREZAOPERACAO
+				                                        WHEN 'C' THEN LDIA.VALORLANCAMENTO * -1
+				                                        WHEN 'D' THEN LDIA.VALORLANCAMENTO
+				                                        ELSE 0
+				                                        END
+				                                ELSE 0
+				                                END
+				                        ) 
+				                ELSE 0 END AS VALORSUBSCLANCDIA,
+				                CASE TH.IDGRUPOHISTORICO WHEN 2 THEN             
+				                        SUM(
+				                                CASE TH.CODNATUREZAOPERACAO 
+				                                WHEN 'C' THEN LDIA.VALORLANCAMENTO
+				                                WHEN 'D' THEN LDIA.VALORLANCAMENTO * -1
+				                                WHEN 'E' THEN
+				                                        CASE THE.CODNATUREZAOPERACAO
+				                                        WHEN 'C' THEN LDIA.VALORLANCAMENTO * -1
+				                                        WHEN 'D' THEN LDIA.VALORLANCAMENTO
+				                                        ELSE 0
+				                                        END
+				                                ELSE 0
+				                                END
+				                        )                         
+				                ELSE 0 END AS VALORINTEGLANCDIA,
+				                CASE TH.IDGRUPOHISTORICO WHEN 3 THEN
+				                        SUM(
+				                                CASE TH.CODNATUREZAOPERACAO 
+				                                WHEN 'C' THEN LDIA.VALORLANCAMENTO
+				                                WHEN 'D' THEN LDIA.VALORLANCAMENTO * -1
+				                                WHEN 'E' THEN
+				                                        CASE THE.CODNATUREZAOPERACAO
+				                                        WHEN 'C' THEN LDIA.VALORLANCAMENTO * -1
+				                                        WHEN 'D' THEN LDIA.VALORLANCAMENTO
+				                                        ELSE 0
+				                                        END
+				                                ELSE 0
+				                                END
+				                        ) 
+				                ELSE 0 END AS VALORDEVOLLANCDIA,                                      
+				                CASE WHEN LDIA.IDTIPOHISTORICO IN (113, 63) THEN
+				                        SUM(
+				                                CASE TH.CODNATUREZAOPERACAO 
+				                                WHEN 'C' THEN LDIA.VALORLANCAMENTO
+				                                WHEN 'D' THEN LDIA.VALORLANCAMENTO * -1
+				                                WHEN 'E' THEN
+				                                        CASE THE.CODNATUREZAOPERACAO
+				                                        WHEN 'C' THEN LDIA.VALORLANCAMENTO * -1
+				                                        WHEN 'D' THEN LDIA.VALORLANCAMENTO
+				                                        ELSE 0
+				                                        END
+				                                ELSE 0
+				                                END
+				                        ) 
+				                ELSE 0 END AS VALORBLOQLANCDIA                                        
+				
+				        FROM
+				                CCA.LANCAMENTOCONTACAPITAL LDIA
+				        INNER JOIN
+				                CCA.TIPOHISTORICOCCA TH ON TH.IDTIPOHISTORICO = LDIA.IDTIPOHISTORICO
+				        LEFT JOIN
+				                CCA.TIPOHISTORICOCCA THE ON THE.IDTIPOHISTORICO = LDIA.IDTIPOHISTORICOESTORNO
+				        WHERE
+				                LDIA.IDINSTITUICAO =  <bancoob:valor valor="${idInstituicao}"/>         
+				                AND LDIA.DATALANCAMENTO = <bancoob:valor valor="${dataAtualProduto}"/>        
+				                AND TH.IDGRUPOHISTORICO IN (1,2,3)
+				                AND (LDIA.VALORLANCAMENTO &gt; 0 OR LDIA.VALORLANCAMENTO &lt; 0)				                
+                				AND LDIA.BOLPROCESSADO = 0
+				        GROUP BY
+				                LDIA.IDINSTITUICAO,
+				                LDIA.IDCONTACAPITAL,                    
+				                LDIA.IDTIPOHISTORICO,
+				                TH.IDGRUPOHISTORICO
+				        ) TB
+				GROUP BY 
+				        IDINSTITUICAO,IDCONTACAPITAL
+				) MOV
+				WHERE CCA.CONTACAPITAL.IDINSTITUICAO = MOV.IDINSTITUICAO 
+				AND CCA.CONTACAPITAL.IDCONTACAPITAL = MOV.IDCONTACAPITAL		
+			
+			]]>
+		</command>
+	</query>			
+	<query name="ATUALIZARLANCAMENTOSMOVIMENTO">
+		<use-case name="ATUALIZARLANCAMENTOSMOVIMENTO"></use-case>
+		<command>
+			<![CDATA[				
+			
+				UPDATE CCA.LANCAMENTOCONTACAPITAL SET BOLPROCESSADO = 1 
+				WHERE IDINSTITUICAO = <bancoob:valor valor="${idInstituicao}"/> 
+				AND DATALANCAMENTO = <bancoob:valor valor="${dataAtualProduto}"/>	
+			
+			]]>
+		</command>
+	</query>				
+	<query name="CONSULTARLANCAMENTOINTEGRALIZACAOJAREALIZADA">
+		<use-case name="CONSULTARLANCAMENTOINTEGRALIZACAOJAREALIZADA"></use-case>
+		<command>
+			<![CDATA[
+				SELECT 
+					COUNT(*) AS QTD
+				FROM 
+					CCA.LANCAMENTOCONTACAPITAL 
+				WHERE 
+					IDINSTITUICAO = <bancoob:valor valor="${IDINSTITUICAO}" />
+					
+					<j:if test="${DATALANCAMENTO != null}">					
+						AND DATALANCAMENTO = <bancoob:valor valor="${DATALANCAMENTO}" />
+					</j:if>
+
+					<j:if test="${IDCONTACAPITAL != null}">															 
+						AND IDCONTACAPITAL = <bancoob:valor valor="${IDCONTACAPITAL}" />
+					</j:if>
+
+					<j:if test="${IDTIPOLOTE != null}">										 
+						AND IDTIPOLOTE = <bancoob:valor valor="${IDTIPOLOTE}" />
+					</j:if>
+
+					<j:if test="${IDTIPOHISTORICO != null}">
+						AND IDTIPOHISTORICO = <bancoob:valor valor="${IDTIPOHISTORICO}" />
+					</j:if>
+
+					<j:if test="${DESCOPERACAOEXTERNA != null}">										
+						AND DESCOPERACAOEXTERNA = <bancoob:valor valor="${DESCOPERACAOEXTERNA}" />
+					</j:if>							
+			]]>
+		</command>
+	</query>	
+	
+</queries>

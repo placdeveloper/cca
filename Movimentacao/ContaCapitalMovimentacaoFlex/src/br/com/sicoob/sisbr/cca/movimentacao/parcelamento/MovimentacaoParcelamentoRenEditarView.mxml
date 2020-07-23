@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	xmlns:renderes1="br.com.sicoob.sisbr.cca.renderes.*"	
+	width="800" height="420" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import br.com.bancoob.componentes.tabelapaginada.TabelaPaginadaUtils;
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob x="0" y="0" width="800" height="356" paddingTop="10">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="PARCELAMENTO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+			<Rotulo width="150" height="18" text="Conta Capital:"/>
+			<Rotulo width="150"  id="numContaCapital" />	
+			
+			<Rotulo width="150" height="18" text="Qtd Parcelas em Aberto:"/>
+			<Rotulo width="150"  id="qtdParcelas" />	
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+			<Rotulo width="150" height="18" text="Tipo Parcelamento:"/>
+			<Rotulo width="150"  id="descTipoParcelamento" />	
+			
+			<Rotulo width="150" height="18" text="Valor Total em Aberto (R$):"/>
+			<Rotulo width="150"  id="valorAberto" />	
+		</validaveis:HBoxValidavel>
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="40">
+			<Rotulo width="150" height="18" text="Número:"/>
+			<Rotulo width="150"  id="numParcelamento" />	
+			
+			<Rotulo width="150" height="18" text="Valor a Parcelar (R$):"/>
+			<Rotulo width="150"  id="valorParcelar" />	
+		</validaveis:HBoxValidavel>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="PARCELAS EM ABERTO" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="800" height="207" paddingLeft="10" paddingRight="10">
+			<grid:Grid id="gridParcelas" width="780" height="203" editable="false" tabEnabled="true">
+				<grid:columns>
+					<grid:ColunaGrid dataField = "selecionado" id="selecionado" headerText="" textAlign="center" width="40" >
+						<grid:itemRenderer>
+							<mx:Component>
+								<renderes1:ParcelamentoCheckBoxRenderer/>
+							</mx:Component>
+						</grid:itemRenderer>
+					</grid:ColunaGrid>				
+					<grid:ColunaGrid id="numParcela" headerText="Parcela" dataField="numParcela" textAlign="left" width="55" />
+					<grid:ColunaGrid id="dataVencimento" headerText="Data de Vencimento" dataField="dataVencimento" textAlign="left" width="100"/>
+					<grid:ColunaGrid id="valorParcela" headerText="Valor Parcela (R$)" labelFunction="{TabelaPaginadaUtils.defaultValorRealLabelFunction}" dataField="valorParcela" textAlign="left" width="90"/>
+					<grid:ColunaGrid id="dataSituacao" headerText="Data Situação" dataField="dataSituacao" textAlign="left" width="85"/>
+					<grid:ColunaGrid id="descSituacao" headerText="Situação" dataField="descSituacao" textAlign="left" width="80"/>
+					<grid:ColunaGrid id="descFormaPagamento" headerText="Forma de Pagamento" dataField="descFormaPagamento" textAlign="left" width="125"/>
+					<grid:ColunaGrid visible="false" id="idTipoInteg" headerText="Forma Pagamento" dataField="idTipoInteg" textAlign="left" width="100"/>				
+					<grid:ColunaGrid visible="false" id="dataVencimentoOrdenacao" headerText="Ordenacao" dataField="dataVencimentoOrdenacao" textAlign="left" width="100"/>
+					<grid:ColunaGrid visible="false" id="numContaCorrente" headerText="numContaCorrente" dataField="numContaCorrente" textAlign="left" width="100"/>
+					<grid:ColunaGrid visible="false" id="descNumMatriculaFunc" headerText="descNumMatriculaFunc" dataField="descNumMatriculaFunc" textAlign="left" width="100"/>
+					<grid:ColunaGrid visible="false" id="idParcelamento" headerText="idParcelamento" dataField="idParcelamento" textAlign="left" width="100"/>				
+					<grid:ColunaGrid visible="false" id="idSituacaoParcelamento" headerText="idSituacaoParcelamento" dataField="idSituacaoParcelamento" textAlign="left" width="100"/>				
+				</grid:columns>
+			</grid:Grid>
+		</containers:HBoxBancoob>	
+	</containers:VBoxBancoob>
+	<!-- Botoes -->
+	<containers:CanvasBancoob x="0" y="364" width="800" height="47">
+		<containers:HBoxBancoob right="0" bottom="0" width="575" height="46" horizontalAlign="right"
+								paddingLeft="10" paddingRight="10" verticalAlign="middle">
+			<Botao id="btIncluir" label="INCLUIR PARCELA" width="130" />
+			<Botao id="btEcluir" label="EXCLUIR PARCELA" width="130" />
+			<Botao id="btOK" label="OK" width="130" />
+			<Botao id="btFechar" label="FECHAR" width="130" />
+		</containers:HBoxBancoob>
+	</containers:CanvasBancoob>
+	
+	<input:Check x="31" y="146" id="chkSelecionaTodos"/>
+	
+</Modulo>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:navegacao="br.com.bancoob.componentes.navegacao.*"
+	xmlns:procurarPessoaExterno="br.com.sicoob.capes.corporativo.componentes.procurarPessoaExterno.*"
+	xmlns:selecaoCco="br.com.bancoob.sisbr.selecaoContaCorrente.*"
+	xmlns:componentes="br.com.bancoob.componentes.*"
+	xmlns:grid="br.com.bancoob.componentes.grid.*"
+	height="650" width="600">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob x="5" y="5" width="100%" height="100%">
+		
+		<containers:HBoxBancoob width="590" paddingLeft="5" paddingRight="5">
+			
+			<containers:VBoxBancoob width="100%">
+				<titulo:SubtituloView texto="DETALHE REPLICAÇÃO" width="100%" paddingLeft="10" paddingRight="10" />
+				
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<componentes:Rotulo x="10" width="140" text="Coop:" />
+					<componentes:Rotulo width="150" id="numCoop" />
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<componentes:Rotulo x="10" width="140" text="Tabela:" />
+					<componentes:Rotulo width="150" id="tabela" />
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<componentes:Rotulo x="10" width="140" text="Ação:" />
+					<componentes:Rotulo width="150" id="acao" />
+				</containers:HBoxBancoob>
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<componentes:Rotulo x="10" width="140" text="Data Replicação:" />
+					<componentes:Rotulo width="150" id="dtReplicacao" />
+				</containers:HBoxBancoob>
+				
+				<containers:VBoxBancoob id="detalheCCA" width="100%">
+					<titulo:SubtituloView texto="CONTA CAPITAL" width="100%" paddingLeft="10" paddingRight="10" />
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Matrícula:" />
+						<componentes:Rotulo width="150" id="numMatricula" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="ID Conta capital:" />
+						<componentes:Rotulo width="150" id="idContaCapital" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Data Matrícula:" />
+						<componentes:Rotulo width="150" id="dtMatricula" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Cliente:" />
+						<componentes:Rotulo width="150" id="numCliente" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Situação CCA:" />
+						<componentes:Rotulo width="150" id="situacaoCCA" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Saldo Integralizado:" />
+						<componentes:Rotulo width="150" id="valorSaldoAtuInteg" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Saldo Subscrito:" />
+						<componentes:Rotulo width="150" id="valorSaldoAtuSubs" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Valor a Devolver:" />
+						<componentes:Rotulo width="150" id="valorDevolver" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Valor Bloqueado:" />
+						<componentes:Rotulo width="150" id="valorBloq" />
+					</containers:HBoxBancoob>
+				</containers:VBoxBancoob>
+				
+				<containers:VBoxBancoob id="detalhePAR" width="100%">
+					<titulo:SubtituloView texto="PARCELAMENTO" width="100%" paddingLeft="10" paddingRight="10" />
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Matrícula:" />
+						<componentes:Rotulo width="150" id="numMatriculaPar" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="ID Parcelamento:" />
+						<componentes:Rotulo width="150" id="idParcelamentoContaCapital" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Nº Parcelamento:" />
+						<componentes:Rotulo width="150" id="numParcelamento" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Nº Parcela:" />
+						<componentes:Rotulo width="150" id="numParcela" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Tipo Parcelamento:" />
+						<componentes:Rotulo width="150" id="tipoParcelamento" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">	
+						<componentes:Rotulo x="10" width="140" text="Data de Vencimento:" />
+						<componentes:Rotulo width="150" id="dataVencParcela" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Situação da Parcela:" />
+						<componentes:Rotulo width="150" id="situacaoParcela" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Valor da Parcela:" />
+						<componentes:Rotulo width="150" id="vlrParcela" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Data da Situação:" />
+						<componentes:Rotulo width="150" id="dataSituacaoParcela" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Tipo Lançamento:" />
+						<componentes:Rotulo width="150" id="tipoLancamento" />
+					</containers:HBoxBancoob>	
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Motivo Devolução:" />
+						<componentes:Rotulo width="150" id="motivoDevolucao" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Nº Conta Corrente:" />
+						<componentes:Rotulo width="150" id="numContaCorrente" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="UID Trabalha:" />
+						<componentes:Rotulo width="220" id="uIDTrabalha" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Observação:" />
+						<componentes:Rotulo width="150" id="descObservacao" />
+					</containers:HBoxBancoob>
+				</containers:VBoxBancoob>
+				
+				<containers:VBoxBancoob id="detalheLAN" width="100%">
+					<titulo:SubtituloView texto="LANÇAMENTO" width="100%" paddingLeft="10" paddingRight="10" />
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Matrícula:" />
+						<componentes:Rotulo width="150" id="numMatriculaLan" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Date Lote:" />
+						<componentes:Rotulo width="150" id="dataLote" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Sequencial:" />
+						<componentes:Rotulo width="150" id="numSeqLanc" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Valor Lançamento:" />
+						<componentes:Rotulo width="150" id="valorLanc" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Documento:" />
+						<componentes:Rotulo width="150" id="descNumDocumento" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Tipo Histórico:" />
+						<componentes:Rotulo width="150" id="idTipoHistoricoLanc" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Lote Lanc:" />
+						<componentes:Rotulo width="150" id="numLoteLanc" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Data Inclusão:" />
+						<componentes:Rotulo width="150" id="dataHoraInclusao" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Usuário:" />
+						<componentes:Rotulo width="150" id="idUsuarioResp" />
+					</containers:HBoxBancoob>
+					<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+						<componentes:Rotulo x="10" width="140" text="Atualizado:" />
+						<componentes:Rotulo width="150" id="bolAtualizado" />
+					</containers:HBoxBancoob>
+				</containers:VBoxBancoob>
+				
+				<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+					<componentes:Rotulo x="10" width="140" text="Mensagem:" />
+					<bancoobInput:TextoArea width="400" height="70" id="mensagem" editable="false" />
+				</containers:HBoxBancoob>	
+				
+				<containers:HBoxBancoob height="32" width="100%" bottom="0" horizontalAlign="center" verticalAlign="middle" paddingLeft="10" paddingRight="10">
+					<Botao id="btFechar" label="Fechar" width="100" />
+				</containers:HBoxBancoob>
+			</containers:VBoxBancoob>
+		</containers:HBoxBancoob>
+		
+	</containers:VBoxBancoob>
+</Modulo>

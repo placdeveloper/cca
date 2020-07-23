@@ -1,0 +1,22 @@
+DECLARE @DataProduto DATETIME = (SELECT DataAtualProd FROM Produto WHERE IDProduto = 2)
+DECLARE @NumLoteLanc INT = 0000
+
+UPDATE 
+	CapaLoteCapital 
+SET 
+	ValorTotalLoteApu = Valor,
+	ValorTotalLoteInf = Valor, 
+	QtdLancApu = Qtd,
+	QtdLancInf = Qtd
+FROM
+	(SELECT 
+		Valor = SUM(Valorlanc), Qtd = COUNT(*) 
+	FROM
+		LancamentosCCapital 
+	WHERE 
+		DataLote = @DataProduto
+		and NumLoteLanc = @NumLoteLanc
+	) AS A
+WHERE 
+	DataLote = @DataProduto
+	and NumLoteLanc = @NumLoteLanc

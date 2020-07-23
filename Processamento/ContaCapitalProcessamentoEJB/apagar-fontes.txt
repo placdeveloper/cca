@@ -1,0 +1,2 @@
+src/br/com/sicoob/sisbr/cca/processamento/negocio/servicos/ejb/LancamentoContabilStepServicoEJB.java
+src/br/com/sicoob/sisbr/cca/processamento/negocio/servicos/ejb/LancamentoSingularStepServicoEJB.java

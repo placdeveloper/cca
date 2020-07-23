@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:nivelInstituicao="br.com.sicoob.sisbr.cca.comum.nivelinstituicao.*"
+	xmlns:cmp="br.com.sicoob.sisbr.contaCapital.componentes.*"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:cca="br.com.sicoob.sisbr.cca.comum.pesquisa.*"
+	width="700" height="260" layout="absolute">
+	
+	<containers:VBoxBancoob x="0" y="0" width="700" id="containerTela">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="Parâmetros" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Período Inicial:" width="120" />
+			<input:Data id="periodoInicial" width="100" height="24"/>
+			<Rotulo text="Período Final" width="230" paddingLeft="120" />
+			<input:Data id="periodoFinal" width="100" height="24" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="PA:" width="120" />
+			<input:Combo width="250" id="cboPac" labelField="descListaItem" editable="false" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Situação:" width="120" />
+			<input:Combo width="250" labelField="descListaItem"  id="cboSituacao" editable="false" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Situação Cadastro:" width="120" />
+			<input:Check name="situacaoCadastro" id="chkSituacaoCadastro" selected="true" x="74" y="144" label="Apenas Cadastros Aprovados"/>
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<titulo:SubtituloView texto="Ordenação" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10">
+			<Rotulo text="Ordenar por:" width="120" />
+			<input:Combo width="250" id="cboOrdenacao" labelField="descListaItem" editable="false" />
+		</containers:HBoxBancoob>
+		<containers:CanvasBancoob width="100%">
+			<containers:HBoxBancoob height="35" bottom="0" horizontalAlign="right" verticalAlign="middle" right="0" paddingTop="10">
+				<Botao id="btOk" label="OK" width="86" />
+				<Botao id="btFechar" label="FECHAR" width="86" />
+			</containers:HBoxBancoob>
+		</containers:CanvasBancoob>	
+	</containers:VBoxBancoob>
+</Modulo>

@@ -1,0 +1,13 @@
+<?xml	version="1.0"?>
+<sisbrweb>
+
+	<aplicativo id="MDICCAWEB" visivel="1"  ativo="1">
+		<nome>CONTA CAPITAL</nome>
+		<icone>br/com/bancoob/imagens/icos/ListaAplicativos/contacorrente_</icone>
+		<descricao>SICOOB - CONTA CAPITAL</descricao>
+		<destino>servicosJavaCCARen</destino>
+		<destinoArquivos>destinoArquivosCCARen</destinoArquivos>
+	</aplicativo>
+	
+</sisbrweb>
+

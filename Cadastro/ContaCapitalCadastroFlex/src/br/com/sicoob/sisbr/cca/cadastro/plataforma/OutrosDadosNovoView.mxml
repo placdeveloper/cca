@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:input="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:validaveis="br.com.bancoob.componentes.containers.validaveis.*" 
+	width="500" height="300" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			
+		]]>
+	</mx:Script>
+	
+	<containers:VBoxBancoob width="100%" height="100%" borderStyle="none" paddingTop="10" paddingBottom="10">
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="70">
+			<titulo:SubtituloView texto="DADOS DO ASSOCIADO" width="100%" />
+		</containers:HBoxBancoob>
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="100">
+			<Rotulo text="Conta Capital:" width="100" />
+			<Rotulo id="numMatricula" width="100"  paddingLeft="10"/>
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="130">
+			<Rotulo text="Nome:" width="100"/>
+			<Rotulo id="nome" width="100%"  paddingLeft="10"/>
+		</containers:HBoxBancoob>		
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="160">
+			<titulo:SubtituloView texto="OUTROS DADOS" width="100%" />
+		</containers:HBoxBancoob>
+		
+		<containers:HBoxBancoob width="100%" paddingLeft="10" paddingRight="10" y="190">
+			<Rotulo id="labelCco" width="100%" height="18" x="0" text="Nº Conta Corrente (rateio, juros ao capital e déb. indeterminado):"/>
+		</containers:HBoxBancoob>		
+		
+		<validaveis:HBoxValidavel width="100%" paddingLeft="10" y="220">
+			<input:Combo id="cboCco" visible="true" width="150" labelField="descListaItem"/>			
+		</validaveis:HBoxValidavel>
+				
+		<validaveis:HBoxValidavel x="0" y="260" width="100%"  paddingLeft="10" >
+			<input:Check x="0" id="chkParticipaRateio"/>			
+			<Rotulo width="200" x="100" text="Participante Rateio"/>
+		</validaveis:HBoxValidavel>
+		<validaveis:HBoxValidavel x="0" y="290" width="100%" paddingLeft="10" >
+			<input:Check x="0" id="chkRestricaoRateio" />			
+			<Rotulo width="200" x="100" text="Restrição para destinação do rateio"/>
+		</validaveis:HBoxValidavel>			
+		<validaveis:HBoxValidavel x="0" y="320" width="100%" paddingLeft="10" >		
+			<input:Check x="0" id="chkDireitoVoto" />
+			<Rotulo width="200" x="100" text="Direito a voto" />
+		</validaveis:HBoxValidavel>
+		
+		<!-- Botoes -->
+		<containers:HBoxBancoob bottom="0" horizontalAlign="right" verticalAlign="middle" right="10" width="100%">
+			<Botao id="btOk" label="OK" width="86" />
+			<Botao id="btFechar" label="FECHAR" width="86" />
+		</containers:HBoxBancoob>
+		
+	</containers:VBoxBancoob>
+</Modulo>

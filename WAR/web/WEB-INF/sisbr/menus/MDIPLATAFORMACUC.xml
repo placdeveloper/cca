@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<sisbrweb>
+	<MDIPLATAFORMACUC>
+		<grupo id="MNUGRUPOCAPITAL" label="CAPITAL" icone="br/com/bancoob/imagens/icos/Capital.png">
+			<item id="MNUCONTACAPITALPLAT" label="Conta Capital" swf="/AplicativoContaCapital/Renovacao/swf/cadastrocontacapitalatendimento" destinoArquivos="{destinoArquivos:destinoArquivosCCARen}" destino="servicosJavaCCARen" mdi="MDIPLATAFORMACUC" />
+			<item id="MNUPARCCCAPLAT" label="Parcelamento" swf="/AplicativoContaCapital/Renovacao/swf/parcelamentorenatendimento"  destinoArquivos="{destinoArquivos:destinoArquivosCCARen}" destino="servicosJavaCCARen" mdi="MDIPLATAFORMACUC" />
+		</grupo>
+	</MDIPLATAFORMACUC>
+</sisbrweb>

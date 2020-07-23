@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*" 
+	width="505" height="285" layout="absolute"
+	>
+	<mx:Canvas id="containerInvestimento" visible="true" includeInLayout="{containerInvestimento.visible}" height="160" width="500" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="10" y="10">
+		<titulo:SubtituloView x="0" y="0" texto="DADOS" />
+		<Rotulo x="0" y="30" text="Central:" />
+		<bancoobInput:Combo x="50" y="30" width="100" id="cmbCentral" name="cmbCentral" labelField="codListaItem" enabled="false"/>
+		<Rotulo x="0" y="70" text="Mês/Ano:"/>
+		<bancoobInput:Combo x="50" y="70" width="100" id="cmbAnoMesBase" name="cmbAnoMesBase" enabled="false"/>
+		
+		<Rotulo x="0" y="110" text="Valor:"/>
+		<bancoobInput:Texto x="50" y="110" width="178" id="valorParticipacao" tipoEntrada="1" casasDecimais="2" maxChars="12"/>								
+	</mx:Canvas>	
+	<containers:HBoxBancoob height="110" width="460" x="10" y="180" horizontalAlign="right" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<Botao id="btOK" label="OK" width="89"/>
+		<Botao id="btCancelar" label="Cancelar" width="89"/>
+		<Botao id="btFechar" label="Fechar" width="89"/>
+	</containers:HBoxBancoob>	
+</Modulo>

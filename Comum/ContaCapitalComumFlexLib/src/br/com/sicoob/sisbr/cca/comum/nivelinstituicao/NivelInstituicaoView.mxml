@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentes:Modulo xmlns:mx="http://www.adobe.com/2006/mxml"
+					xmlns:containers="br.com.bancoob.componentes.containers.*"
+					xmlns:componentes="br.com.bancoob.componentes.*"
+					xmlns:input="br.com.bancoob.componentes.input.*"
+					width="100%"
+					height="55">
+	
+	<containers:VBoxBancoob x="0" y="0" width="100%">
+		<containers:HBoxBancoob width="100%">
+			<componentes:Rotulo id="rtlCentral" x="10" y="0" width="80" text="Instituição Resp:"/>
+			<input:Combo x="90" y="0" width="450" id="cmbCentral" enabled="false" name="cmbCentral" labelField="descListaItem"/>
+		</containers:HBoxBancoob>
+	
+		<containers:HBoxBancoob width="100%">
+			<componentes:Rotulo id="rtlSingular" x="10" y="15" width="80" text="Instituição:"/>
+			<input:Combo x="90" y="15" width="450" id="cmbSingular" enabled="false" name="cmbSingular" labelField="descListaItem"/>
+		</containers:HBoxBancoob>
+	</containers:VBoxBancoob>
+	
+	
+</componentes:Modulo>

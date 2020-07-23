@@ -1,0 +1,3317 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE queries [
+<!ELEMENT queries (query*)>
+<!ELEMENT query (use-case+, description,paginacao?,command+, projecao?, ordenacoes?)>
+<!ELEMENT use-case    (#PCDATA) >
+<!ELEMENT description (#PCDATA) >
+<!ELEMENT command     (#PCDATA) >
+<!ELEMENT parametros  (#PCDATA) >
+<!ELEMENT projecao (#PCDATA) >
+<!ELEMENT paginar  (#PCDATA) >
+<!ELEMENT paginacao (#PCDATA) >
+<!ELEMENT colunaCodigo    (#PCDATA) >
+<!ELEMENT colunaDescricao    (#PCDATA) >
+<!ELEMENT numeroOcorrenciasPorPagina    (#PCDATA) >
+<!ELEMENT primeiraCondicao    (#PCDATA) >
+<!ELEMENT ascendente    (#PCDATA) >
+<!ELEMENT ordenacoes (ordenacao+)>
+<!ELEMENT ordenacao (#PCDATA)>
+
+<!ELEMENT sql  (#PCDATA) >
+
+<!ATTLIST ordenacao chave CDATA    #REQUIRED >
+<!ATTLIST ordenacao default CDATA    #IMPLIED >
+
+<!ATTLIST command parametros CDATA    #IMPLIED  >
+<!ATTLIST command paginar CDATA    #IMPLIED  >
+
+<!ATTLIST use-case name CDATA    #REQUIRED >
+
+<!ATTLIST query name CDATA    #REQUIRED >
+
+<!ATTLIST paginacao colunaCodigo CDATA    #REQUIRED>
+<!ATTLIST paginacao colunaDescricao CDATA    #REQUIRED>
+<!ATTLIST paginacao numeroOcorrenciasPorPagina CDATA    #REQUIRED>
+<!ATTLIST paginacao primeiraCondicao CDATA    #REQUIRED>
+<!ATTLIST paginacao ascendente CDATA    #REQUIRED>
+<!ATTLIST paginacao hint CDATA    #REQUIRED>
+<!ATTLIST paginacao hintAuxiliar CDATA   #IMPLIED >
+]>
+
+<queries>	
+
+<query name="OBTERCONTACAPITAL">
+	<use-case name="OBTERCONTACAPITAL"></use-case>
+	<description>Consulta a Entidade Conta Capital por Matricula ou Cliente</description>
+	<command>
+		<![CDATA[
+			FROM br.com.sicoob.sisbr.cca.legado.negocio.entidades.ContaCapitalLegado cca
+			WHERE 1 = 1	
+			<j:if test="${criterios.filtro != null}">
+				<j:if test="${criterios.filtro.id != null}">
+					AND cca.id = ${criterios.filtro.id}
+				</j:if>
+				<j:if test="${criterios.filtro.numCliente != null}">
+					AND cca.numCliente = ${criterios.filtro.numCliente}
+				</j:if>
+			</j:if>			
+		]]>
+	</command>
+</query>
+
+<query name="OBTERLANCAMENTOSCCAPITAL">
+	<use-case name="OBTERLANCAMENTOSCCAPITAL"></use-case>
+	<description>Consulta a Entidade Lancamentosccapital</description>
+	<command>
+		<![CDATA[
+			FROM br.com.sicoob.sisbr.cca.legado.negocio.entidades.LancamentosCCapitalLegado l
+			WHERE 1 = 1	
+			<j:if test="${criterios.filtro != null}">
+				<j:if test="${criterios.filtro.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.dataLote != null}">
+					AND l.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.dataLote = <bancoob:valorOql valor="${criterios.filtro.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.dataLote}" tipo="DateTimeDB" /> 
+				</j:if>
+				<j:if test="${criterios.filtro.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.numLoteLanc != null}">
+					AND l.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.numLoteLanc = <bancoob:valorOql valor="${criterios.filtro.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.numLoteLanc}" tipo="Integer" />					
+				</j:if>
+				<j:if test="${criterios.filtro.lancamentosCCapitalLegadoPK.numSeqLanc != null}">
+					AND l.lancamentosCCapitalLegadoPK.numSeqLanc = <bancoob:valorOql valor="${criterios.filtro.lancamentosCCapitalLegadoPK.numSeqLanc}" tipo="Integer" />
+				</j:if>				
+				<j:if test="${criterios.filtro.iDTipoHistoricoLanc != null}">
+					AND l.iDTipoHistoricoLanc = <bancoob:valorOql valor="${criterios.filtro.iDTipoHistoricoLanc}" tipo="Integer" />
+				</j:if>
+				<j:if test="${criterios.filtro.contaCapitalLegado.numMatricula != null}">
+					AND l.contaCapitalLegado.numMatricula = <bancoob:valorOql valor="${criterios.filtro.contaCapitalLegado.numMatricula}" tipo="Integer" />
+				</j:if>				
+				<j:if test="${criterios.filtro.descOperacaoExterna != null}">
+					AND l.descOperacaoExterna = <bancoob:valorOql valor="${criterios.filtro.descOperacaoExterna}" tipo="String" />
+				</j:if>	
+			</j:if>			
+		]]>
+	</command>
+</query>
+
+<query name="OBTERULTIMAMATRICULA">
+	<use-case name="OBTERULTIMAMATRICULA"></use-case>
+	<description>Retorna a ultima matricula da entidade conta capital</description>
+	<command>
+		<![CDATA[
+			select isnull(max(cca.numMatricula),0) FROM ContaCapital cca
+		]]>
+	</command>
+</query>
+
+
+<query name="OBTERULTIMONUMSEQLANC">
+	<use-case name="OBTERULTIMONUMSEQLANC"></use-case>
+	<description>Retorna a ultimo seqlanc</description>
+	<command>
+		<![CDATA[
+				SELECT isnull(max(l.lancamentosCCapitalLegadoPK.numSeqLanc),0)
+				FROM br.com.sicoob.sisbr.cca.legado.negocio.entidades.LancamentosCCapitalLegado l					 
+				WHERE l.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.dataLote = :dataLote
+				AND l.lancamentosCCapitalLegadoPK.capaLoteCapitalLegado.capaLoteCapitalLegadoPK.numLoteLanc = :numLoteLanc
+		]]>
+	</command>
+</query>
+
+<query name="OBTERDADOSTRABALHA">
+	<use-case name="OBTERDADOSTRABALHA"></use-case>
+	<description>Consulta os dados da Tabela Trabalha filtrando por pessoa fisica</description>
+	<command>
+		<![CDATA[
+
+		SELECT 
+			T.UIDTrabalha,
+			T.DescMatriculaFunc,
+			T.DescEmpresaTrabalha,
+			T.DescOcupacaoProfissional,
+			T.DataAdmissao,
+			T.NumPessoaFisica,
+			T.NumPessoaJuridica
+		FROM 
+			dbo.Trabalha T 
+			INNER Join dbo.LancFolhaPJ LF On 
+				T.NumPessoaJuridica = LF.NumPessoaJuridica 
+			Left Join OrgaoLancFolha Org on
+				Org.NumPessoaJuridica = T.NumPessoaJuridica And 
+				Org.CodOrgao = T.CodOrgao 
+			LEFT JOIN dbo.Pessoa PJur ON
+				PJur.NumPessoa = T.NumPessoaJuridica
+			WHERE 
+			T.NumPessoaFisica = ${numPessoa} AND 
+			DescMatriculaFunc IS NOT NULL AND 
+			T.NumPessoaJuridica IS NOT NULL AND
+			T.CodSitFuncionario = 0
+		]]>
+	</command>
+</query>
+
+<query name="OBTERDADOSTRABALHAMATRICULA">
+	<use-case name="OBTERDADOSTRABALHAMATRICULA"></use-case>
+	<description>Consulta os dados da Tabela Trabalha filtrando por matricula</description>
+	<command>
+		<![CDATA[
+
+		SELECT 
+			T.UIDTrabalha,
+			T.DescMatriculaFunc,
+			T.DescEmpresaTrabalha,
+			T.DescOcupacaoProfissional,
+			T.DataAdmissao,
+			T.NumPessoaFisica,
+			T.NumPessoaJuridica
+		FROM 
+			dbo.Trabalha T 
+			INNER Join dbo.LancFolhaPJ LF On 
+				T.NumPessoaJuridica = LF.NumPessoaJuridica 
+			Left Join OrgaoLancFolha Org on
+				Org.NumPessoaJuridica = T.NumPessoaJuridica And 
+				Org.CodOrgao = T.CodOrgao 
+			LEFT JOIN dbo.Pessoa PJur ON
+				PJur.NumPessoa = T.NumPessoaJuridica
+			WHERE 
+			T.DescMatriculaFunc = '${descMatriculaFunc}' AND 
+			DescMatriculaFunc IS NOT NULL AND 
+			T.NumPessoaJuridica IS NOT NULL AND
+			T.CodSitFuncionario = 0
+		]]>
+	</command>
+</query>
+
+<query name="OBTERDADOSVALORCOTAS">
+	<use-case name="OBTERDADOSVALORCOTAS"></use-case>
+	<description>Consulta o valor da ultima cota cadastrada e numero minimo de cotas obrigatorias para o conta capital</description>
+	<command>
+		<![CDATA[
+			SELECT TOP 1 ValorCota, NumMinCotasInteg 
+			From dbo.ValorCotas 
+			WHERE DataInicialCota &lt;= Convert(DateTime, GetDate(), 102)
+			ORDER BY DataInicialCota DESC 			
+		]]>
+	</command>
+</query>
+
+
+<query name="OBTERDADOSCONCILIACAOCONTABIL">
+	<use-case name="OBTERDADOSCONCILIACAOCONTABIL"></use-case>
+	<description>Consulta os dados da conciliacao contabil</description>
+	<command>
+		<![CDATA[
+			SELECT 
+				DataProduto AS DataContabilizacao,
+				NumContaBACEN,
+				ValorSaldo AS SaldoTotal
+			FROM 
+				ConciliacaoContabilCCA WITH (NOLOCK)
+			WHERE 
+				BolProcessado = 0	
+		]]>
+	</command>
+</query>
+<query name="ATUALIZARCONCILIACAOCONTABIL">
+	<use-case name="ATUALIZARCONCILIACAOCONTABIL"></use-case>
+	<description>ATUALIZARCONCILIACAOCONTABIL</description>	
+	<command>
+		<![CDATA[
+			UPDATE  
+				ConciliacaoContabilCCA 
+			SET BolProcessado = 1 
+			WHERE DataProduto = '${dataContabilizacao}' AND NumContaBACEN = '${numContaBACEN}'
+		]]>
+	</command>
+</query>
+<query name="OBTERSALDOCAPITALSINGULARES">
+	<use-case name="OBTERSALDOCAPITALSINGULARES"></use-case>
+	<description>Consulta o saldo capital das singulares nas centrais e dos clientes nao cooperativas que sao da central</description>
+	<command>
+		<![CDATA[
+			SELECT c.NumCooperativa as numCoop, numAnoRef, numMesRef, sum(i.valoracumulado) as valor
+				FROM infacumulada i
+					INNER JOIN pessoa p on p.NumPessoa = i.NumCliente
+					INNER JOIN cooperativa c on c.NumCNPJ = p.NumCGC_CPF 
+				WHERE idproduto = 2 
+					AND NumAnoRef = ${anoReferencia}
+					AND NumMesRef = ${mesReferencia}
+					AND c.numCooperativa in (${numCooperativas}) 
+					AND c.numPac = 0
+					AND IDTipoInfoAcumulo = 6
+				GROUP BY c.NumCooperativa, NumAnoRef, NumMesRef
+				UNION
+				SELECT c.NumCooperativa as numCoop, numAnoRef, numMesRef, sum(i.valoracumulado) as valor
+				FROM infacumulada i
+					INNER JOIN pessoa p on p.NumPessoa = i.NumCliente
+					LEFT JOIN cooperativa c on c.NumCNPJ = p.NumCGC_CPF 
+				WHERE idproduto = 2 
+					AND NumAnoRef = ${anoReferencia}
+					AND NumMesRef = ${mesReferencia}
+					AND IDTipoInfoAcumulo = 6
+					AND c.numCooperativa IS NULL					
+				GROUP BY c.NumCooperativa, NumAnoRef, NumMesRef				
+		]]>
+	</command>
+</query>
+
+	<query name="OBTERSNAPSHOTSINGULARES">
+		<use-case name="OBTERSNAPSHOTSINGULARES"></use-case>
+		<description>Consulta snapshot das singulares pela central</description>
+		<command>
+			<![CDATA[
+				SELECT c.NumCooperativa as numCoop
+					FROM pessoa p 
+					INNER JOIN cooperativa c on c.NumCNPJ = p.NumCGC_CPF 
+					INNER JOIN InfAcumulada i on p.NumPessoa = i.NumCliente
+					WHERE c.numCoopPai = ${numCoopCentral} 
+						AND c.numPac = 0
+						AND i.NumAnoRef = ${anoReferencia}
+						AND i.NumMesRef = ${mesReferencia}
+						AND i.IDTipoInfoAcumulo = 6
+						AND idproduto = 2 
+			]]>
+		</command>
+	</query>
+
+	<query name="GERAR_REL_FICHA_MATRIC">
+		<use-case name="Gerar relatorio ficha Matricula"></use-case>
+		<description>Obter dados ficha Matricula</description>
+		<command>
+			<![CDATA[
+				SELECT ContaCapital.ValorSaldoAtuInteg, ValorLancInteg = (SELECT ValorLanc = SUM(V.ValorLanc) FROM dbo.Viw_CCA_Extrato AS V WHERE V.NumMatricula = ContaCapital.NumMatricula AND  V.CodGrupoHist = ${COD_GRUPO_HIST_INTEGRALIZACAO} And V.BolAtualizado = 0 GROUP BY V.NumMatricula),  
+					ContaCapital.ValorSaldoAtuSubsc, ValorLancSubsc = (SELECT ValorLanc = SUM(V.ValorLanc) FROM dbo.Viw_CCA_Extrato AS V WHERE V.NumMatricula = ContaCapital.NumMatricula AND  V.CodGrupoHist = ${COD_GRUPO_HIST_SUBSCRICAO} And V.BolAtualizado = 0 GROUP BY V.NumMatricula),  
+					Pessoa.DescNomePessoa,   PessoaFisica.DataNascimento, PessoaFisica.DescNacionalidade,  
+					PessoaFisica.DescNaturalidade, PessoaFisica.NumRG, PessoaFisica.DescOrgaoExpRG,  
+					PessoaFisica.DescUfOrgExpRG, PessoaFisica.DataEmissaoRG, PessoaFisica.CodEstadoCivil,  
+					PessoaFisica.CodTipoSexo, PessoaFisica.codprofissao, ListaItem.desclistaitem, EnderecoPessoa.CodTipoEndereco,  
+					EnderecoResidencial = (ISNULL(tl.DescLogradouro, '') +' '+ (SELECT TOP 1 DescEndereco + CASE ISNULL(DescNumero, '') WHEN '' THEN '' ELSE ' ' + DescNumero END + CASE ISNULL(DescComplemento, '') WHEN '' THEN '' ELSE ' ' + DescComplemento END FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa )) ,  
+					BairroResidencial=(SELECT TOP 1 NomeBairro FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa ),  
+					CidadeResidencial= (SELECT TOP 1 NomeCidade FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa ),  
+					UFResidencial=(SELECT TOP 1 DescUF FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa ),  
+					CepResidencial=(SELECT TOP 1 SUBSTRING(RIGHT('00000000' + LTRIM(Str(NumCep)),8),1,2)  + '.' + SUBSTRING(RIGHT('00000000' + LTRIM(Str(NumCEP)),8),3,3)  + '-' + SUBSTRING(RIGHT('00000000' + LTRIM(Str(NumCEP)),8),6,8) FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa ),  
+					DDDResidencial =(SELECT TOP 1 NumDDD FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa ),  
+					NumTelefoneResidencial = (SELECT TOP 1 NumTelefone FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa ),  
+					RamalResidencial = (SELECT TOP 1 NumRamal FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa ),  
+					EnderecoComercial = (SELECT TOP 1 DescEndereco + CASE ISNULL(DescNumero, '') WHEN '' THEN '' ELSE ' ' + DescNumero END + CASE ISNULL(DescComplemento, '') WHEN '' THEN '' ELSE ' ' + DescComplemento END FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=1 and NumPessoa = Pessoa.NumPessoa ),  
+					BairroComercial=(SELECT TOP 1 NomeBairro FROM dbo.EnderecoPessoa WHERE CodtipoEndereco=1 and NumPessoa = Pessoa.NumPessoa ),  
+					CidadeComercial= (SELECT TOP 1 NomeCidade FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=1 and numpessoa = Pessoa.NumPessoa ),  
+					UFComercial=(SELECT TOP 1 DescUF FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=1 and numpessoa = Pessoa.NumPessoa ),  
+					CepComercial=(SELECT TOP 1 SUBSTRING(RIGHT('00000000' + LTrim(STR(NumCep)),8),1,2)  + '.' + SUBSTRING(RIGHT('00000000' + LTRIM(Str(NumCEP)),8),3,3)  + '-' + SUBSTRING(RIGHT('00000000' + LTRIM(Str(NumCEP)),8),6,8) FROM dbo.EnderecoPessoa WHERE CodTipoEndereco=1 and NumPessoa = Pessoa.NumPessoa),  
+					DDDComercial =(SELECT TOP 1 NumDDD FROM dbo.EnderecoPessoa WHERE CodTipoEndereco = 1 and NumPessoa = Pessoa.NumPessoa),  
+					NumTelefoneComercial = (SELECT TOP 1 NumTelefone FROM dbo.EnderecoPessoa WHERE CodTipoEndereco = 1 and NumPessoa = Pessoa.NumPessoa),  
+					Ramalcomercial = (SELECT TOP 1 NumRamal FROM dbo.EnderecoPessoa WHERE CodTipoEndereco = 1 and NumPessoa = Pessoa.NumPessoa), 
+					EnderecoPessoa.BolEnvioCorrespondencia, Pessoa.DescApelidoPessoa,  
+					NumCGC_CPF = CASE CodPF_PJ  WHEN ${COD_TIPO_PES_FISICA} THEN  SUBSTRING(NumCGC_CPF,1,3) + '.' + SUBSTRING(NumCGC_CPF,4,3) + '.' + SUBSTRING(NumCGC_CPF,7,3) + '-' + SUBSTRING(NumCGC_CPF,10,2)  WHEN  ${COD_TIPO_PES_JURIDICA} THEN  SUBSTRING(NumCGC_CPF,1,2) + '.' + SUBSTRING(NumCGC_CPF,3,3) + '.' + SUBSTRING(NumCGC_CPF,6,3) + '/' + SUBSTRING(NumCGC_CPF,9,4) + '-' + SUBSTRING(NumCGC_CPF,13,2) END,  
+					Pessoa.NumPessoa,  sNumPessoa = CASE LEN(CONVERT(CHAR(10),Pessoa.Numpessoa)) WHEN 0 THEN  RTRIM(CONVERT(CHAR(10),Pessoa.NumPessoa)) ELSE  RTRIM(left(CONVERT(CHAR(10),Pessoa.NumPessoa), LEN(RTRIM(CONVERT(CHAR(10),pessoa.NumPessoa)))-1) + '-' +  RIGHT(RTRIM(CONVERT(CHAR(10),Pessoa.numPessoa)),1)) END,  
+					PessoaJuridica.NumInscEstadual, PessoaJuridica.DataConstituicao, Pessoa.CodPF_PJ,  
+					ParcelamentoCCA.NumParcelamento, ParcelamentoCCA.NumParcela, ParcelamentoCCA.DataVencParcela, ParcelamentoCCA.ValorParcela,  
+					ModoLanc = CASE ParcelamentoCCA.CodModoLanc  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_CAIXA} THEN CONVERT(VARCHAR(40), 'Via Caixa')  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_FOLHA} THEN CONVERT(VARCHAR(40), 'Via Folha' +  
+									CASE WHEN ParcelamentoCCA.UIDTrabalha IS NULL THEN '' 
+									Else ': ' + (SELECT DescMatriculaFunc FROM dbo.Trabalha WHERE Trabalha.UIDTrabalha = ParcelamentoCCA.UIDTrabalha) 
+									END)  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_COBRANCA} THEN CONVERT(VARCHAR(40), 'Via Cobrança')  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_MIGRACAO} THEN CONVERT(VARCHAR(40), 'Via Migração')  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_BANCO_CHADMIN} THEN CONVERT(VARCHAR(40), 'Via Banco/Chq. Adm.')  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_RATEIO} THEN CONVERT(VARCHAR(40), 'Via Rateio')  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_RESERVA} THEN CONVERT(VARCHAR(40), 'Via Reserva')  
+						WHEN ${COD_MODO_LANCAMENTO_VIA_CONTA} THEN  
+						   CASE WHEN LEN(LTRIM(STR(ParcelamentoCCA.NumContaCorrente))) &lt; 5 THEN  CONVERT(VARCHAR(40), 'Via Conta Corrente: ' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 7, 3) + '-' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 10, 1) )  
+								WHEN LEN(LTRIM(STR(ParcelamentoCCA.NumContaCorrente))) &gt; 4 AND LEN(LTRIM(STR(ParcelamentoCCA.NumContaCorrente))) &lt; 8 THEN CONVERT(VARCHAR(40), 'Via Conta Corrente: ' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 4, 3) + '.' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 7, 3) + '-' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 10, 1) )  
+						ELSE CONVERT(VARCHAR(40), 'Via Conta Corrente: ' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 1, 3) + '.' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 4, 3) + '.' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 7, 3) + '-' + SUBSTRING(STR(ParcelamentoCCA.NumContaCorrente), 10, 1) ) END END,
+					Situacao = CASE ParcelamentoCCA.CodSituacaoParcela  
+						WHEN ${COD_PARCELA_GERADA} THEN CONVERT(VARCHAR(30), 'Em Aberto')  
+						WHEN ${COD_PARCELA_PAGA_VIA_CAIXA} THEN CONVERT(VARCHAR(30), 'Paga Via Caixa')  
+						WHEN ${COD_PARCELA_PAGA_VIA_CONTA} THEN CONVERT(VARCHAR(30), 'Paga Via Conta')  
+						WHEN ${COD_PARCELA_CANCELADA} THEN CONVERT(VARCHAR(30), 'Cancelada')  
+						WHEN ${COD_PARCELA_PAGA_VIA_CHADMIN} THEN CONVERT(VARCHAR(30), 'Paga Via Ch. Admin.')  
+						WHEN ${COD_PARCELA_EXCLUIDA} THEN CONVERT(VARCHAR(30), 'Excluída')  
+						WHEN ${COD_PARCELA_PAGA_VIA_FOLHA} THEN CONVERT(VARCHAR(30), 'Paga Via Folha')  
+						WHEN ${COD_PARCELA_PAGA_VIA_COBRANCA} THEN CONVERT(VARCHAR(30), 'Paga Via Cobrança') 
+						WHEN ${COD_PARCELA_PAGA_VIA_RATEIO} THEN CONVERT(VARCHAR(30), 'Paga Via Rateio') 
+						WHEN ${COD_PARCELA_PAGA_VIA_RESERVA} THEN CONVERT(VARCHAR(30), 'Paga Via Reserva') 
+						WHEN ${COD_PARCELA_PAGA_ANTES_MIGRACAO} THEN CONVERT(VARCHAR(30), 'Paga Antes da Migração') END  
+					,CondicaoAssociacao.DescCondicaoAssociacao,
+					ISNULL(EC.DESCLISTAITEM, '') AS descEstadoCivil
+		
+				FROM dbo.ContaCapital  
+					LEFT JOIN dbo.ParcelamentoCCA ON ContaCapital.NumMatricula = ParcelamentoCCA.NumMatricula AND CodTipoParcelamento = 1  
+					INNER JOIN dbo.Pessoa ON Pessoa.NumPessoa = ContaCapital.NumCliente  
+					INNER JOIN dbo.Cliente ON ContaCapital.NumCliente = Cliente.NumCliente  
+					lEFT JOIN dbo.PessoaFisica ON Pessoa.NumPessoa = PessoaFisica.NumPessoa  
+					INNER JOIN  dbo.EnderecoPessoa ON Pessoa.NumPessoa = EnderecoPessoa.NumPessoa
+					LEFT JOIN dbo.TipoLogradouro AS tl ON EnderecoPessoa.IdTipoLogradouro = tl.IdTipoLogradouro 
+					LEFT Join dbo.PessoaJuridica ON dbo.pessoa.NumPessoa = PessoaJuridica.NumPessoa  
+					LEFT JOIN  dbo.CondicaoAssociacao ON ContaCapital.IDCondicaoAssociacao = CondicaoAssociacao.IDCondicaoAssociacao  
+					LEFT JOIN dbo.listaitem on listaitem.idlista = ${LST_TIPO_PROFISSAO} and listaitem.codlistaitem = PessoaFisica.codprofissao
+					LEFT JOIN dbo.ListaItem AS ec ON ec.IdLista = ${LST_TIPO_ESTADO_CIVIL} and ec.codlistaitem = PessoaFisica.CodEstadoCivil 
+				WHERE dbo.ContaCapital.NumMatricula = ${matricula}
+										  
+				ORDER BY EnderecoPessoa.BolEnvioCorrespondencia, ParcelamentoCCA.NumParcelamento, ParcelamentoCCA.NumParcela
+
+			]]>
+		</command>
+	</query>
+	<query name="GERAR_REL_FICHA_ADMISSAO">
+		<use-case name="Gerar relatorio ficha Admissao"></use-case>
+		<description>Obter dados ficha Admissao</description>
+		<command>
+			<![CDATA[
+				SELECT Pessoa.DescNomePessoa, PessoaFisica.DataNascimento, PessoaFisica.DescNacionalidade, 
+						PessoaFisica.DescNaturalidade, PessoaFisica.NumRG, PessoaFisica.DescOrgaoExpRG, 
+						PessoaFisica.DescUfOrgExpRG, PessoaFisica.DataEmissaoRG, PessoaFisica.CodEstadoCivil, 
+						PessoaFisica.CodTipoSexo, PessoaFisica.codprofissao, ListaItem.desclistaitem, EnderecoPessoa.CodTipoEndereco, 
+						EnderecoResidencial = (ISNULL(tl.DescLogradouro, '') +' '+ (Select top 1 DescEndereco + CASE ISNULL(DescNumero, '') WHEN '' THEN '' ELSE ' ' + DescNumero END + CASE ISNULL(DescComplemento, '') WHEN '' THEN '' ELSE ' ' + DescComplemento END From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa =Pessoa.NumPessoa )) , 
+						BairroResidencial=(Select top 1 NomeBairro From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa), 
+						CidadeResidencial= (Select top 1 NomeCidade From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa), 
+						UFResidencial=(Select top 1 DescUF From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa), 
+						CepResidencial=(Select top 1 SubString(Right('00000000' + LTrim(Str(NumCep)),8),1,2) + '.' + SubString(Right('00000000' + LTrim(Str(NumCEP)),8),3,3) + '-' + SubString(Right('00000000' + LTrim(Str(NumCEP)),8),6,8) From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa), 
+						DDDResidencial =(Select top 1 NumDDD From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa), 
+						NumTelefoneResidencial = (Select top 1 NumTelefone From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa), 
+						RamalResidencial = (Select top 1 NumRamal From dbo.EnderecoPessoa Where CodTipoEndereco=0 and NumPessoa = Pessoa.NumPessoa), 
+						EnderecoComercial = (Select top 1 DescEndereco + CASE ISNULL(DescNumero, '') WHEN '' THEN '' ELSE ' ' + DescNumero END + CASE ISNULL(DescComplemento, '') WHEN '' THEN '' ELSE ' ' + DescComplemento END From dbo.EnderecoPessoa Where CodTipoEndereco=1 and NumPessoa = Pessoa.NumPessoa) , 
+						BairroComercial=(Select top 1 NomeBairro From dbo.EnderecoPessoa Where CodtipoEndereco=1 and NumPessoa = Pessoa.NumPessoa), 
+						CidadeComercial= (Select top 1 NomeCidade From dbo.EnderecoPessoa Where CodTipoEndereco=1 and numpessoa = Pessoa.NumPessoa), 
+						UFComercial=(Select top 1 DescUF From dbo.EnderecoPessoa Where CodTipoEndereco=1 and numpessoa = Pessoa.NumPessoa), 
+						CepComercial=(Select top 1 SubString(Right('00000000' + LTrim(Str(NumCep)),8),1,2) + '.' + SubString(Right('00000000' + LTrim(Str(NumCEP)),8),3,3) + '-' + SubString(Right('00000000' + LTrim(Str(NumCEP)),8),6,8) From dbo.EnderecoPessoa Where CodTipoEndereco=1 and NumPessoa = Pessoa.NumPessoa), 
+						DDDComercial =(Select top 1 NumDDD From dbo.EnderecoPessoa Where CodTipoEndereco=1 and NumPessoa = Pessoa.NumPessoa), 
+						NumTelefoneComercial = (Select top 1 NumTelefone From dbo.EnderecoPessoa Where CodTipoEndereco=1 and NumPessoa = Pessoa.NumPessoa), 
+						Ramalcomercial = (Select top 1 NumRamal From dbo.EnderecoPessoa Where CodTipoEndereco=1 and NumPessoa = Pessoa.NumPessoa), 
+						EnderecoPessoa.BolEnvioCorrespondencia, Pessoa.DescApelidoPessoa, Pessoa.NumPessoa, 
+						
+						NumCGC_CPF = CASE CodPF_PJ 
+										WHEN ${COD_TIPO_PES_FISICA} THEN SUBSTRING(NumCGC_CPF,1,3) + '.' + SUBSTRING(NumCGC_CPF,4,3) + '.' + SUBSTRING(NumCGC_CPF,7,3) + '-' + SUBSTRING(NumCGC_CPF,10,2) 
+										WHEN ${COD_TIPO_PES_JURIDICA} THEN SUBSTRING(NumCGC_CPF,1,2) + '.' + SUBSTRING(NumCGC_CPF,3,3) + '.' + SUBSTRING(NumCGC_CPF,6,3) + '/' + SUBSTRING(NumCGC_CPF,9,4) + '-' + SUBSTRING(NumCGC_CPF,13,2) END, 
+						sNumPessoa = CASE LEN(convert(char(10),Pessoa.Numpessoa)) 
+											WHEN 0 THEN RTRIM(convert(char(10),Pessoa.NumPessoa)) 
+											ELSE RTRIM(left(convert(char(10),Pessoa.NumPessoa), LEN(RTRIM(convert(char(10),pessoa.NumPessoa)))-1) + '-' + RIGHT(RTRIM(convert(char(10),Pessoa.numPessoa)),1)) END, 
+						PessoaJuridica.NumInscEstadual, PessoaJuridica.DataConstituicao, Pessoa.CodPF_PJ 
+						, CondicaoAssociacao.DescCondicaoAssociacao,
+						ISNULL(EC.DESCLISTAITEM, '') AS descEstadoCivil
+					FROM dbo.Pessoa 
+						INNER JOIN dbo.Cliente ON Pessoa.NumPessoa = Cliente.NumCliente 
+						LEFT JOIN dbo.PessoaFisica ON Pessoa.NumPessoa = PessoaFisica.NumPessoa 
+						INNER JOIN dbo.EnderecoPessoa ON Pessoa.NumPessoa = EnderecoPessoa.NumPessoa 
+						LEFT JOIN dbo.TipoLogradouro AS tl ON EnderecoPessoa.IdTipoLogradouro = tl.IdTipoLogradouro
+						LEFT JOIN dbo.PessoaJuridica on dbo.pessoa.NumPessoa =PessoaJuridica.NumPessoa 
+						LEFT JOIN dbo.CondicaoAssociacao ON CodAplicacaoPessoa = Pessoa.CodPF_PJ OR CodAplicacaoPessoa = ${COD_TIPO_AMBAS}
+						LEFT JOIN dbo.listaitem on listaitem.idlista = ${LST_TIPO_PROFISSAO} and listaitem.codlistaitem = PessoaFisica.codprofissao 
+						LEFT JOIN dbo.ListaItem AS ec ON ec.IdLista = ${LST_TIPO_ESTADO_CIVIL} and ec.codlistaitem = PessoaFisica.CodEstadoCivil  
+					WHERE Pessoa.NumPessoa = ${numPessoa}
+					 AND CondicaoAssociacao.CodAplicacaoCooperativa &gt; ${iAplicCoopDif}
+					ORDER BY EnderecoPessoa.BolEnvioCorrespondencia 
+			]]>
+		</command>
+	</query>
+		
+	<query name="INCLUIROPERACAOFINANCEIRA">
+		<use-case name="INCLUIROPERACAOFINANCEIRA"></use-case>
+		<description>Inclui operacao financeira</description>
+		<command>
+			<![CDATA[
+				
+				INSERT INTO dbo.OperacaoFinanceira 
+				(
+					IDOpFinanceira, IDOperacao, IDProduto, DataOpFinanceira, DataProcessamento, CodStatusOpFin, CodTipoMovimento, CodSubRelCont, CodTipoContabilizacao,
+					BolContabilizaCoop, BolOpProcessada, NumPac, NumCoopRecebedora, NumCliente,IDModalidadeProduto
+				) 
+				VALUES 
+				(
+					${operacaoFinanceira.idOperacaoFinanceira}, ${operacaoFinanceira.idOperacao}, ${operacaoFinanceira.idProduto}, '${operacaoFinanceira.dataOpFinanceiraFormatado}',
+					'${operacaoFinanceira.dataProcessamentoFormatado}', ${operacaoFinanceira.codStatusOpFin}, ${operacaoFinanceira.codTipoMovimento}, 
+					${operacaoFinanceira.codSubRelCont}, ${operacaoFinanceira.codTipoContabilizacao}, ${operacaoFinanceira.BolContabilizaCoop},
+					${operacaoFinanceira.bolOpProcessada}, ${operacaoFinanceira.numPac}, ${operacaoFinanceira.numCoopRecebedora}, 
+					<j:if test="${operacaoFinanceira.numCliente != null}">
+						${operacaoFinanceira.numCliente}
+					</j:if>
+					<j:if test="${operacaoFinanceira.numCliente == null}">
+						NULL
+					</j:if>,
+					${operacaoFinanceira.idModalidadeProduto}		
+				)
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRVALOROPERACAOFINANCEIRA">
+		<use-case name="INCLUIROPERACAOFINANCEIRA"></use-case>
+		<description>Inclui operacao financeira</description>
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.ValorOpFin 
+				(
+					IDOpFinanceira, IDTipoValorCont, IDProduto, ValorArgumento
+				) 
+				VALUES 
+				(
+					${operacaoFinanceira.idOperacaoFinanceira}, ${operacaoFinanceira.idTipoValorCont}, ${operacaoFinanceira.idProduto}, ${operacaoFinanceira.valor}
+				)
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCLIENTECOOPERATIVA">
+		<use-case name="CONSULTARCLIENTECOOPERATIVA"></use-case>
+		<description>Consulta cliente por cooperativa</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					p.numpessoa as numcliente 
+				FROM 
+					Cooperativa c
+					INNER JOIN Pessoa p on c.NumCNPJ = p.NumCGC_CPF
+					INNER JOIN Cliente cli on cli.Numcliente = p.numpessoa
+				WHERE 
+					c.numcooperativa = ${numCoop}
+					and c.NumPac = ${numPac}					
+			]]>
+		</command>
+	</query>
+	
+	<query name="ULTIMOIDOPERACAOFINANCEIRA">
+		<use-case name="ULTIMOIDOPERACAOFINANCEIRA"></use-case>
+		<description>Consulta ultimo id</description>
+		<command>
+			<![CDATA[
+				SELECT MAX(IDOpFinanceira) as IDOpFinanceira FROM dbo.OperacaoFinanceira
+			]]>
+		</command>
+	</query>
+	
+	<query name="VALORESTORNOPARTINDIRETA">
+		<use-case name="VALORESTORNOPARTINDIRETA"></use-case>
+		<description>VALORESTORNOPARTINDIRETA</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+				       TOP 1 
+				       ISNULL(VOP.ValorArgumento,0) ValorEstorno
+				FROM 
+				       dbo.OperacaoFinanceira OPF with (nolock)
+				       INNER JOIN dbo.ValorOpFin VOP with (nolock) ON OPF.IDOpFinanceira = VOP.IDOpFinanceira
+				WHERE 
+				       OPF.IDProduto = ${idProduto} 
+				       AND OPF.IDOperacao = ${idOperacao}
+				       AND OPF.DataProcessamento BETWEEN '${dataPrimeiroFechamento}' AND getdate()
+				       AND OPF.CodStatusOpFin = ${codStatusOpFin}
+				       AND VOP.IDTipoValorCont = ${idTipoValorCont}
+				ORDER BY 
+				       OPF.IDOpFinanceira DESC
+				       
+			]]>
+		</command>
+	</query>
+	
+	<query name="VERIFICASEDEBINDFOLHACLIENTE">
+		<use-case name="VERIFICASEDEBINDFOLHACLIENTE"></use-case>
+		<description>Verifica se o cliente informado tiver débito indeterminado via folha cadastrado</description>
+		<command>
+			<![CDATA[
+			
+				SELECT CC.NumMatricula  
+				FROM dbo.ContaCapital  CC
+				WHERE CC.BolDebIndeterminado = 1 
+				AND CC.CodSituacao = 1 
+				AND CC.CodFormadeb in ( ${COD_MODO_LANCAMENTO_VIA_FOLHA}, ${COD_MODO_LANCAMENTO_VIA_BANCO_CHADMIN} )  
+				<j:if test="${numCliente != null}">				
+					AND CC.NumCliente =  ${numCliente}
+				</j:if>
+				<j:if test="${NumMatricula != null}">				
+					AND CC.NumMatricula != ${numMatricula}
+					AND CC.NumCliente in (SELECT NumCliente FROM dbo.ContaCapital WHERE NumMatricula = ${numMatricula}) 
+				</j:if>
+							
+			]]>
+		</command>
+	</query>
+		
+	<query name="VERIFICARPARCELAVIAFOLHACLIENTE">
+		<use-case name="VERIFICARPARCELAVIAFOLHACLIENTE"></use-case>
+		<description>Verifica se o cliente informado possua parcelas via folha em aberto em uma outra matrícula</description>
+		<command>
+			<![CDATA[
+			
+				SELECT CCA.NumMatricula  
+				FROM dbo.ParcelamentoCCA P  
+				INNER JOIN dbo.ContaCapital CCA ON CCA.NumMatricula = P.NumMatricula 
+				WHERE P.CodSituacaoParcela in ( ${COD_PARCELA_GERADA} , ${COD_PARCELA_AGUARDA_RETORNO})  
+				AND P.CodModoLanc = ${COD_MODO_LANCAMENTO_VIA_FOLHA} 
+				AND P.CodTipoParcelamento =  ${COD_TIPO_PARCELAMENTO_INTEGRAL}  				
+				<j:if test="${numCliente != null}">				
+					AND CCA.NumCliente =  ${numCliente}
+				</j:if>
+				<j:if test="${numCliente == null}">				
+					AND CCA.NumCliente in (SELECT NumCliente FROM dbo.ContaCapital WHERE NumMatricula = ${numMatricula}) 
+				</j:if>
+							
+			]]>
+		</command>
+	</query>
+	
+	<query name="VERIFICARSEPREPREMESSA">
+		<use-case name="VERIFICARSEPREPREMESSA"></use-case>
+		<description>Verificar se a empresa onde o cooperado trabalha já teve ou não preparação de Remessas</description>
+		<command>
+			<![CDATA[
+			
+				SELECT T.NumPessoaJuridica  
+				FROM dbo.Trabalha T  
+				INNER JOIN dbo.COR_FolhaRemessa FR ON FR.NumPessoaJuridica = T.NumPessoaJuridica  AND AnoRef = ${AnoRef} AND MesRef = ${MesRef} 
+				WHERE T.UIDTrabalha = '${UIDTrabalha}'
+	
+			]]>
+		</command>
+	</query>
+	
+	<query name="VERIFICARSEMATRICULATRABALHAVALIDA">
+		<use-case name="VERIFICARSEMATRICULATRABALHAVALIDA"></use-case>
+		<description>Verificar se a matricula existente na tabela trabalha é do cliente. 0 é ativo não fique surpreso</description>
+		<command>
+			<![CDATA[			
+				SELECT 
+					T.DescMatriculaFunc  
+				FROM 
+					dbo.Trabalha T  
+				WHERE 
+					T.NumPessoaFisica = ${numCliente}
+					AND T.UIDTrabalha = '${UIDTrabalha}'
+					AND T.CodSitFuncionario = 0	
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTA_OPERACAO_FINANCEIRA_PI">
+		<use-case name="CONSULTA_OPERACAO_FINANCEIRA_PI"></use-case>
+		<description>Verifica se a operacao financeira de particição indireta esta cadastrada</description>
+		<command>
+			<![CDATA[
+				SELECT count(*) FROM dbo.Operacao O WHERE O.IDOperacao = ${idOperacao} and O.IDProduto = ${idProduto}
+			]]>
+		</command>
+	</query>
+	<query name="VALORPARTICIPACAOCENTRALPORANOMES">
+		<use-case name="VALORPARTICIPACAOCENTRALPORANOMES"></use-case>
+		<description>Valor de participacao da central</description>
+		<command>
+			<![CDATA[
+				SELECT 
+			       SC.DATASALDO,
+			       CASE WHEN (PC.IDNATUREZACONTABIL = 1 OR PC.IDNATUREZACONTABIL = 2 OR PC.IDNATUREZACONTABIL = 3) 
+			                    THEN ISNULL(SC.SALDOCONTA,0) * -1 
+			                    ELSE ISNULL(SC.SALDOCONTA,0) 
+			       END SALDOCONTA                       
+				FROM 
+				       DBO.SALDOCONTABIL SC WITH (NOLOCK) 
+				       INNER JOIN DBO.PLANOCONTABIL PC WITH (NOLOCK) ON PC.NUMCONTA = SC.NUMCONTA AND PC.IDINSTITUICAO = 1
+				WHERE 
+				       SC.NUMCONTA = ('${numConta}') AND 
+				       SC.DATASALDO = (SELECT MAX(DATAFIMPERIODO)
+	                                      FROM PERIODOCONTABIL WITH (NOLOCK)
+	                                      WHERE IDSITPERIODOCONTABIL = 'F' AND
+	                                             YEAR(DATAFIMPERIODO) = YEAR(<bancoob:valor valor="${anoMes}"/>) AND
+	                                             MONTH(DATAFIMPERIODO) = MONTH(<bancoob:valor valor="${anoMes}"/>))
+			]]>
+		</command>
+	</query>
+	<query name="GERAR_CCA_EXTRATO">
+		<use-case name="Obter Extrato"></use-case>
+		<description>executar spCcaExtrato</description>
+		<command>
+			<![CDATA[
+				spu_CCA_Extrato ${numMatricula}, 
+					${numMatricula}, 
+					'${dataInicio}', 
+					'${dataFim}', 
+					-1, 
+					0, 
+					0, 
+					0, 
+					0,
+					0,
+					1,
+					1,
+					1,
+					1
+			]]>
+		</command>
+	</query>	
+	
+	
+	<query name="OBTERVALORCOTALEGADO">
+		<use-case name="OBTERVALORCOTALEGADO"></use-case>
+		<description>OBTERVALORCOTALEGADO</description>		
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.sisbr.cca.legado.negocio.entidades.ValorCotaLegado valorCotaLegado
+				WHERE 1 = 1	
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRVALORCOTA">
+		<use-case name="INCLUIRVALORCOTA"></use-case>
+		<description>Inclui valor cota legado</description>
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.ValorCotas 
+				(
+					DataInicialCota, DataCadastroCota, ValorCota, NumMinCotasInteg, PercMinIntegralizacao, 
+					ValorSalarioBase, BolLimIntegralCapConsignado, ValorLimiteIntegralMinimo, ValorLimiteIntegralMaximo
+				) 
+				VALUES 
+				(
+					CONVERT(DATE, GETDATE(), 102), CONVERT(DATE, GETDATE(), 102), ${vc.valorCota}, ${vc.numMinCotasInteg}, ${vc.percMinIntegralizacao},
+					${vc.valorSalarioBase}, '${vc.bolLimIntegralCapConsignado}', ${vc.valorLimiteIntegralMinimo}, ${vc.valorLimiteIntegralMaximo}
+				)
+			]]>
+		</command>
+	</query>
+	
+	<query name="ALTERARVALORCOTA">
+		<use-case name="ALTERARVALORCOTA"></use-case>
+		<description>Altera valor cota legado</description>
+		<command>
+			<![CDATA[
+				UPDATE dbo.ValorCotas
+					SET 
+						ValorCota = ${vc.valorCota},
+						NumMinCotasInteg = ${vc.numMinCotasInteg},
+						PercMinIntegralizacao = ${vc.percMinIntegralizacao}
+						
+					WHERE DataInicialCota = '${dataInicioCota}'
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERVALORCOTAVIGENTE">
+		<use-case name="OBTERVALORCOTAVIGENTE"></use-case>
+		<description>altera valor cota legado</description>
+		<command>
+			<![CDATA[
+				SELECT top 1 * FROM dbo.ValorCotas ORDER BY DataInicialCota DESC
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRCONTACAPITALLEGADO">
+		<use-case name="INCLUIRCONTACAPITALLEGADO"></use-case>
+		<description>Inclui conta capital legado</description>
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.ContaCapital 
+				(
+					NumMatricula, DataMatricula, DataSaida, NumCliente ,NumContaCorrente,
+					UIDTrabalha, ValorSaldoAtuInteg, ValorSaldoAtuSubsc, ValorSaldoAtuDevolver, DataSaldoAnterior,
+           			ValorSaldoAntInteg, ValorSaldoAntSubsc, ValorSaldoAntDevolver, ValorSaldoMedRealAcu, ValorSaldoMedPosAcu,
+           			ValorSaldoAtuDivs, ValorSaldoAntDivs, CodSituacao, BolDebIndeterminado, ValorDeb,
+           			CodFormaDeb, DataVencimentoDeb, PeriodoProxDeb, TipoPeriodoDeb, BolParticipaRateio,
+           			CodTipoValorDebito, IDCondicaoAssociacao, BolDireitoVoto, BolRestricaoRateio, ObsRestricao,
+           			ValorSaldoMedADevAcu, ValorSaldoBloqInt, ValorSaldoIntegralDispAcum, DataAlteracao,IDCONTACAPITAL
+				) 
+				VALUES 
+				(
+					${obj.numMatricula}, '${dataMatriculaFMT}', NULL, ${obj.numCliente}, NULL,
+					NULL, ${obj.valorSaldoAtuInteg}, ${obj.valorSaldoAtuSubsc}, ${obj.valorSaldoAtuDevolver}, CONVERT(DATE, GETDATE(), 102),
+					${obj.valorSaldoAntInteg}, ${obj.valorSaldoAntSubsc}, ${obj.valorSaldoAntDevolver}, ${obj.valorSaldoMedRealAcu}, ${obj.valorSaldoMedPosAcu},
+					${obj.valorSaldoAtuDivs}, ${obj.valorSaldoAntDivs}, ${obj.codSituacao}, '${obj.bolDebIndeterminado}', ${obj.valorDeb},
+					NULL, NULL, NULL, NULL, '${obj.bolParticipaRateio}',
+					NULL, NULL, '${obj.bolDireitoVoto}', '${obj.bolRestricaoRateio}', NULL,
+					${obj.valorSaldoMedADevAcu}, ${obj.valorSaldoBloqInt}, ${obj.valorSaldoIntegralDispAcum}, CONVERT(DATE, GETDATE(), 102), ${obj.idContaCapital}
+				)
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRHISTCONTACAPITALLEGADO">
+		<use-case name="INCLUIRHISTCONTACAPITALLEGADO"></use-case>
+		<description>Inclui historico conta capital legado</description>
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.HistContaCapital 
+				(
+					NumMatricula, DataOcorrencia, CodSituacao, BolAtualizado
+				) 
+				VALUES 
+				(
+					${obj.histContaCapitalLegadoPK.contaCapitalLegado.numMatricula}, GETDATE(), ${obj.codSituacao}, 1 
+				)
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERCONTACAPITALMATRICULA">
+		<use-case name="OBTERCONTACAPITALMATRICULA"></use-case>
+		<description>Conta Capital por matricula</description>
+		<command>
+			<![CDATA[
+				SELECT COUNT(*) FROM dbo.ContaCapital WHERE NumMatricula = <bancoob:valor valor="${numMatricula}" />
+			]]>
+		</command>
+	</query>
+	<query name="OBTERPROXIMOPARCELAMENTO">
+		<use-case name="OBTERPROXIMOPARCELAMENTO"></use-case>
+		<description>Retorna o proximo numero do parcelamento</description>
+		<command>
+			<![CDATA[
+			
+				select isnull(max(p.numParcelamento),0)+1 as numParcelamento FROM ParcelamentoCCA p
+					where p.numMatricula =  ${numMatricula} 
+					and p.codTipoParcelamento =  ${codTipoParcelamento} 	
+			]]>
+		</command>
+	</query>	
+	<query name="VERIFICARPARCELASEMABERTO">
+		<use-case name="VERIFICARPARCELASEMABERTO"></use-case>
+		<description>Retorna o proximo numero do parcelamento</description>
+		<command>
+			<![CDATA[
+			
+				select count(p.numMatricula) qtdParcelas FROM ParcelamentoCCA p
+					where p.numMatricula =  ${numMatricula} 
+					and p.codTipoParcelamento =  ${codTipoParcelamento} 	
+					and p.codSituacaoParcela = 1
+			]]>
+		</command>
+	</query>	
+	
+	<query name="PESQUISA_EMPRESTIMO">
+		<use-case name="PESQUISA_EMPRESTIMO"></use-case>
+		<description>Pesquisa emprestimos ativos</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					DISTINCT PROD.DescProduto AS DESCPRODUTO,
+					MODPRO.DescModalidadeProduto AS DESCMODALIDADEPRODUTO,
+					CCD.DataVencOpCred as DATAVENCOPCRED,
+					CCD.DataOperacao as DataOperacao,
+					CCD.ValorContratoOpCred as ValorContrato,
+					CCD.SaldoDevedorContabil, CCD.CODSITUACAOOPCRED AS CODSITUACAOOPCRED,
+					CCD.IDModalidadeProduto AS IDMODALIDADEPRODUTO, 
+					CCD.NumContratoCredito AS NUMCONTRATOCREDITO
+				FROM 
+					dbo.CONTRATOCREDITO CCD 
+					INNER JOIN MODALIDADEPRODUTO MODPRO ON CCD.IDPRODUTO = MODPRO.IDPRODUTO  AND CCD.IDMODALIDADEPRODUTO = MODPRO.IDMODALIDADEPRODUTO
+					INNER JOIN PRODUTO PROD ON PROD.IDPRODUTO = MODPRO.IDPRODUTO 
+					INNER JOIN ModalidadeOpCredito MODOP ON	CCD.IdProduto = MODOP.IdProduto AND	CCD.IdModalidadeProduto = MODOP.IdModalidadeProduto
+				WHERE                
+					CCD.CodSituacaoOpCred NOT IN (2, 5, 7) AND
+					CCD.IDProduto = 7 AND 
+				    MODOP.CodCarteira NOT IN (4) AND	
+					MODOP.CodCarteira != 13 AND 
+					CCD.NumCliente = <bancoob:valor valor="${numCliente}" /> AND 
+				    CCD.NumContaLcto = <bancoob:valor valor="${numCco}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="QTDINATIVACAOCCA">
+		<use-case name="QTDINATIVACAOCCA"></use-case>
+		<description>QTDINATIVACAOCCA</description>
+		<command>
+			<![CDATA[
+				SELECT COUNT(*) FROM DBO.HISTCONTACAPITAL 
+				WHERE CODSITUACAO <> 1 AND NUMMATRICULA = :numMatricula
+			]]>
+		</command>
+	</query>
+
+	<query name="OBTERCONFIGURACAOREPLICACAOCCA">
+		<use-case name="OBTERCONFIGURACAOREPLICACAOCCA"></use-case>
+		<description>Consulta uma configuracao de replicacao</description>		
+		<command>
+			<![CDATA[
+				SELECT DescConfiguracaoReplicacao FROM ConfiguracaoReplicacaoCCA WHERE  IdConfiguracaoReplicacaoCCA = <bancoob:valor valor="${idConfiguracaoReplicacaoCCA}" />
+			]]>
+		</command>
+	</query>
+
+	<query name="OBTERLISTACONFIGURACAOREPLICACAOCCA">
+		<use-case name="OBTERLISTACONFIGURACAOREPLICACAOCCA"></use-case>
+		<description>
+			Consulta a lista de configuracao de replicacao,
+			NUNCA COLOCAR WITH (NOLOCK) NESSA CONSULTA!!!!!!!!!
+		</description>		
+		<command>
+			<![CDATA[
+				SELECT * FROM ConfiguracaoReplicacaoCCA
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERDADOSREPLICACAOCCA">
+		<use-case name="OBTERDADOSREPLICACAOCCA"></use-case>
+		<description>
+		Consulta as replicacoes a serem realizadas do sql para o db2
+		NUNCA COLOCAR WITH (NOLOCK) NESSA CONSULTA!!!!!!!!!		
+		</description>		
+		<command>
+			<![CDATA[
+				SELECT TOP ${quantidadeRegistros} * FROM ReplicacaoCCA WHERE DataHoraReplicacao IS NULL AND IdSituacaoReplicacaoCCA  = 0 ORDER BY  IdReplicacaoCCA
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERDADOSMONITORCCA">
+		<use-case name="OBTERDADOSMONITORCCA"></use-case>
+		<description>Monta Monitor de Replicação CCA</description>		
+		<command>
+			<![CDATA[
+				SELECT rep.IdTabelaReplicadaCCA, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 0 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_AGUAR, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 4 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_INVAL, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 1 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_REPL, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 2 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_ERRO 
+				INTO #TBTMPREPLICACAOCCA
+				FROM dbo.ReplicacaoCCA rep WITH (NOLOCK)
+				WHERE 1=1
+				
+				<j:if test="${numCoop != null}">
+					AND rep.NumCooperativa = <bancoob:valor valor="${numCoop}" />
+				</j:if>
+				<j:if test="${cooperativas != null}">
+					<j:if test="${cooperativas != ''}">
+						AND rep.NumCooperativa IN (${cooperativas})
+					</j:if>
+				</j:if>
+				<j:if test="${situacao != null}">
+					AND rep.IdSituacaoReplicacaoCCA in (${situacao})
+				</j:if>
+				<j:if test="${data != null}">
+					AND convert(varchar(8), rep.DataHoraCadastro, 112) = <bancoob:valor valor="${data}" />
+				</j:if>
+				<j:if test="${periodoDe != null and periodoAte != null}">
+					AND convert(varchar(8), rep.DataHoraCadastro, 112) &gt;= <bancoob:valor valor="${periodoDe}" />
+					AND convert(varchar(8), rep.DataHoraCadastro, 112) &lt;= <bancoob:valor valor="${periodoAte}" />
+				</j:if>
+				 
+				GROUP BY rep.IdTabelaReplicadaCCA, rep.IdSituacaoReplicacaoCCA
+				
+				SELECT tabRep.NomeTabelaReplicada, 
+					SUM(QTD_AGUAR) QTD_AGUAR, SUM(QTD_INVAL) QTD_INVAL, SUM(QTD_REPL) QTD_REPL, SUM(QTD_ERRO) QTD_ERRO
+				FROM #TBTMPREPLICACAOCCA
+					inner join dbo.TabelaReplicadaCCA tabRep WITH (NOLOCK) on #TBTMPREPLICACAOCCA.IdTabelaReplicadaCCA = tabRep.IdTabelaReplicadaCCA
+				GROUP BY tabRep.NomeTabelaReplicada
+				
+				DROP TABLE #TBTMPREPLICACAOCCA
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERDADOSMONITORCOOPERATIVASCCA">
+		<use-case name="OBTERDADOSMONITORCOOPERATIVASCCA"></use-case>
+		<description>Monta Monitor de cooperativas de Replicação CCA</description>		
+		<command>
+			<![CDATA[
+				SELECT rep.NumCooperativa, rep.IdTabelaReplicadaCCA, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 0 AND rep.IdTabelaReplicadaCCA = 1 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_AGUAR_CCA, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 4 AND rep.IdTabelaReplicadaCCA = 1 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_INVAL_CCA, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 1 AND rep.IdTabelaReplicadaCCA = 1 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_REPL_CCA, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 2 AND rep.IdTabelaReplicadaCCA = 1 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_ERRO_CCA,
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 0 AND rep.IdTabelaReplicadaCCA = 2 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_AGUAR_PARC, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 4 AND rep.IdTabelaReplicadaCCA = 2 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_INVAL_PARC, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 1 AND rep.IdTabelaReplicadaCCA = 2 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_REPL_PARC, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 2 AND rep.IdTabelaReplicadaCCA = 2 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_ERRO_PARC,
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 0 AND rep.IdTabelaReplicadaCCA = 3 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_AGUAR_LANC, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 4 AND rep.IdTabelaReplicadaCCA = 3 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_INVAL_LANC, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 1 AND rep.IdTabelaReplicadaCCA = 3 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_REPL_LANC, 
+					CASE WHEN rep.IdSituacaoReplicacaoCCA = 2 AND rep.IdTabelaReplicadaCCA = 3 THEN COUNT(rep.IdSituacaoReplicacaoCCA) ELSE 0 END AS QTD_ERRO_LANC 
+				INTO #TBTMPREPLICACAOCCA2
+				FROM dbo.ReplicacaoCCA rep WITH (NOLOCK)
+				WHERE 1=1
+				
+				<j:if test="${numCoop != null}">
+					AND rep.NumCooperativa = <bancoob:valor valor="${numCoop}" />
+				</j:if>
+				<j:if test="${cooperativas != null}">
+					<j:if test="${cooperativas != ''}">
+						AND rep.NumCooperativa IN (${cooperativas})
+					</j:if>
+				</j:if>
+				<j:if test="${situacao != null}">
+					AND rep.IdSituacaoReplicacaoCCA in (${situacao})
+				</j:if>
+				<j:if test="${data != null}">
+					AND convert(varchar(8), rep.DataHoraCadastro, 112) = <bancoob:valor valor="${data}" />
+				</j:if>
+				<j:if test="${periodoDe != null and periodoAte != null}">
+					AND convert(varchar(8), rep.DataHoraCadastro, 112) &gt;= <bancoob:valor valor="${periodoDe}" />
+					AND convert(varchar(8), rep.DataHoraCadastro, 112) &lt;= <bancoob:valor valor="${periodoAte}" />
+				</j:if>
+				 
+				GROUP BY rep.NumCooperativa, rep.IdTabelaReplicadaCCA, rep.IdSituacaoReplicacaoCCA
+				
+				SELECT NumCooperativa, 
+					SUM(QTD_AGUAR_CCA) QTD_AGUAR_CCA, SUM(QTD_INVAL_CCA) QTD_INVAL_CCA, SUM(QTD_REPL_CCA) QTD_REPL_CCA, SUM(QTD_ERRO_CCA) QTD_ERRO_CCA,
+					SUM(QTD_AGUAR_PARC) QTD_AGUAR_PARC, SUM(QTD_INVAL_PARC) QTD_INVAL_PARC, SUM(QTD_REPL_PARC) QTD_REPL_PARC, SUM(QTD_ERRO_PARC) QTD_ERRO_PARC,
+					SUM(QTD_AGUAR_LANC) QTD_AGUAR_LANC, SUM(QTD_INVAL_LANC) QTD_INVAL_LANC, SUM(QTD_REPL_LANC) QTD_REPL_LANC, SUM(QTD_ERRO_LANC) QTD_ERRO_LANC
+				FROM #TBTMPREPLICACAOCCA2
+				GROUP BY NumCooperativa
+				
+				DROP TABLE #TBTMPREPLICACAOCCA2
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERDADOSREPLICACAOCCAPORCOOP">
+		<use-case name="OBTERDADOSREPLICACAOCCAPORCOOP"></use-case>
+		<description>Consulta as replicacoes a serem realizadas do sql para o db2 por cooperativa</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					TOP ${quantidadeRegistros} * 
+				FROM 
+					ReplicacaoCCA 
+				WHERE 
+					DataHoraReplicacao IS NULL  
+					AND IdSituacaoReplicacaoCCA  = 0 
+					<j:if test="${cooperativas != null}">
+						<j:if test="${cooperativas != ''}">
+							AND NumCooperativa IN (${cooperativas})
+						</j:if>									
+					</j:if>					 
+					
+				ORDER BY  IdReplicacaoCCA
+			]]>
+		</command>
+	</query>	
+	
+	
+	<query name="OBTERDADOSREPLICACAOCCAERROPROCESSAMENTO">
+		<use-case name="OBTERDADOSREPLICACAOCCAERROPROCESSAMENTO"></use-case>
+		<description>Consulta as replicacoes a serem realizadas do sql para o db2 que deram erros</description>		
+		<command>
+			<![CDATA[
+				SELECT * FROM ReplicacaoCCA WHERE IdSituacaoReplicacaoCCA  = 2 ORDER BY  IdReplicacaoCCA
+			]]>
+		</command>
+	</query>	
+	
+	<query name="OBTERDADOSTABELACONTACAPITALREPLICACAO">
+		<use-case name="OBTERDADOSTABELACONTACAPITALREPLICACAO"></use-case>
+		<description>Consulta a linha da tabela contacapital para replicar</description>		
+		<command>
+			<![CDATA[
+				SELECT * FROM ContaCapital WHERE NumMatricula = <bancoob:valor valor="${numMatricula}" />
+			]]>
+		</command>
+	</query>
+	
+	
+	<query name="OBTERDADOSTABELAPARCELAMENTOCCAREPLICACAO">
+		<use-case name="OBTERDADOSTABELAPARCELAMENTOCCAREPLICACAO"></use-case>
+		<description>Consulta a linha da tabela ParcelamentoCCA para replicar</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					* 
+				FROM 
+					ParcelamentoCCA 
+				WHERE  
+					NumMatricula = <bancoob:valor valor="${numMatricula}" /> AND 
+					NumParcelamento = <bancoob:valor valor="${numParcelamento}" /> AND 
+					NumParcela = <bancoob:valor valor="${numParcela}" />  AND
+					CodTipoParcelamento = <bancoob:valor valor="${codTipoParcelamento}" />
+			]]>
+		</command>
+	</query>	
+
+	<query name="OBTERDADOSTABELALANCAMENTOSCCAPITALREPLICACAO">
+		<use-case name="OBTERDADOSTABELACONTACAPITALREPLICACAO"></use-case>
+		<description>Consulta a linha da tabela LancamentosCCapital para replicar</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					* 
+				FROM 
+					LancamentosCCapital 
+				WHERE  
+					DataLote = <bancoob:valor valor="${dataLote}" />  AND
+					NumLoteLanc = <bancoob:valor valor="${numLoteLanc}" /> AND 
+					NumSeqLanc = <bancoob:valor valor="${numSeqLanc}" />
+				
+			]]>
+		</command>
+	</query>
+	<query name="ATUALIZARDADOSREPLICACAOCCA">
+		<use-case name="ATUALIZARDADOSREPLICACAOCCA"></use-case>
+		<description>Atualiza os campos da tabela de replicacao no sicoob integração</description>		
+		<command>
+			<![CDATA[
+			UPDATE  
+				ReplicacaoCCA 
+			SET 	
+				<j:if test="${objDadosReplicacao.descChaveReplicacaoDB2  != null}">
+					DescChaveReplicacaoDB2  = <bancoob:valor valor="${objDadosReplicacao.descChaveReplicacaoDB2}" />,								
+				</j:if>
+				DataHoraReplicacao = getdate(),
+				IdSituacaoReplicacaoCCA  = <bancoob:valor valor="${objDadosReplicacao.idSituacaoReplicacaoCCA}" />,
+				DescMensagemReplicacao = <bancoob:valor valor="${objDadosReplicacao.descMensagemReplicacao}" />				 
+ 			WHERE 
+				 IdReplicacaoCCA =  <bancoob:valor valor="${objDadosReplicacao.idReplicacaoCCA}" /> 
+			]]>
+		</command>
+	</query>	
+
+	<query name="ATUALIZARCHAVECONTACAPITALREPLICACAOCCA">
+		<use-case name="ATUALIZARCHAVECONTACAPITALREPLICACAOCCA"></use-case>
+		<description>Atualiza a chave do db2 na tabela do sql, tabela contacapital</description>		
+		<command>
+			<![CDATA[
+			UPDATE  
+				ContaCapital 
+			SET 	
+				idContaCapital = <bancoob:valor valor="${objDadosContaCapital.idContaCapital}" />				 
+ 			WHERE 
+				numMatricula = <bancoob:valor valor="${objDadosContaCapital.numMatricula}" />				
+				
+			]]>
+		</command>
+	</query>	
+	
+	<query name="ATUALIZARCHAVEPARCELAMENTOCCAREPLICACAOCCA">
+		<use-case name="ATUALIZARCHAVEPARCELAMENTOCCAREPLICACAOCCA"></use-case>
+		<description>Atualiza a chave do db2 na tabela do sql, tabela parcelamentocca</description>		
+		<command>
+			<![CDATA[
+			UPDATE  
+				ParcelamentoCCA 
+			SET 	
+				idParcelamentoContaCapital = <bancoob:valor valor="${objDadosParcelamento.idParcelamentoContaCapital}" />				
+			WHERE  
+				NumMatricula = <bancoob:valor valor="${objDadosParcelamento.numMatricula}" /> AND 
+				NumParcelamento = <bancoob:valor valor="${objDadosParcelamento.numParcelamento}" /> AND 
+				NumParcela = <bancoob:valor valor="${objDadosParcelamento.numParcela}" />  AND
+				CodTipoParcelamento = <bancoob:valor valor="${objDadosParcelamento.codTipoParcelamento}" />
+			]]>
+		</command>
+	</query>	
+	
+	<query name="ATUALIZARCHAVELANCAMENTOSCCAPITALREPLICACAOCCA">
+		<use-case name="ATUALIZARCHAVELANCAMENTOSCCAPITALREPLICACAOCCA"></use-case>
+		<description>Atualiza a chave do db2 na tabela do sql, tabela lancamentosccapital</description>	
+		<command>
+			<![CDATA[
+			UPDATE  
+				LancamentosCCapital 
+			SET 	
+				idLancamentoContaCapital = <bancoob:valor valor="${objDadosLancamento.idLancamentoContaCapital}" />					
+			WHERE  
+				DataLote = <bancoob:valor valor="${objDadosLancamento.dataLote}" />  AND
+				NumLoteLanc = <bancoob:valor valor="${objDadosLancamento.numLoteLanc}" /> AND 
+				NumSeqLanc = <bancoob:valor valor="${objDadosLancamento.numSeqLanc}" />				
+			]]>			
+		</command>
+	</query>	
+	
+	<query name="OBTERDADOSREPLICACAOCCA">
+		<use-case name="OBTERDADOSREPLICACAOCCA"></use-case>
+		<description>Consulta as replicacoes a serem realizadas do sql para o db2</description>		
+		<command>
+			<![CDATA[
+				SELECT TOP ${quantidadeRegistros} * FROM ReplicacaoCCA WHERE DataHoraReplicacao IS NULL AND IdSituacaoReplicacaoCCA  = 0 ORDER BY  IdReplicacaoCCA
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERDADOSMONITORACAOREPLICACAOCCA">
+		<use-case name="OBTERDADOSMONITORACAOREPLICACAOCCA"></use-case>
+		<description>Consulta as replicacoes para monitoracao</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					NumCooperativa,
+					IdTabelaReplicadaCCA,
+					IdSituacaoReplicacaoCCA,
+					COUNT(*) Total
+				FROM
+					ReplicacaoCCA WITH (NOLOCK)
+				GROUP BY
+					NumCooperativa,
+					IdTabelaReplicadaCCA,
+					IdSituacaoReplicacaoCCA
+				ORDER BY
+					NumCooperativa,
+					IdTabelaReplicadaCCA,
+					IdSituacaoReplicacaoCCA				
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXTRATOIRRF">
+		<use-case name="EXTRATOIRRF"></use-case>
+		<description>Extrato de IRRF</description>	
+		<command>
+			<![CDATA[
+				DECLARE @IDInstituicao AS INT
+				SET @IDInstituicao = (SELECT IDInstituicao FROM Cooperativa WHERE NumPac = 0 AND NumCooperativa IN (SELECT NumCooperativa FROM Instituicao))
+				
+				SELECT 
+					C.NumPac,
+					P.CodPF_PJ,
+					L.DataLote,
+					CASE WHEN (L.IDTipoHistoricoLanc IN (107,207)) THEN
+						SUM(ValorLanc)
+					END AS BaseIRRF,
+					CASE WHEN (L.IDTipoHistoricoLanc IN (117,217)) THEN
+						SUM(ValorLanc)
+					END AS ValorIRRF
+				INTO #TBTEMPCCA 
+				FROM 
+					ContaCapital CCA WITH (NOLOCK)
+					INNER JOIN Pessoa P WITH (NOLOCK) ON CCA.NumCliente = P.NumPessoa
+					INNER JOIN Cliente C WITH (NOLOCK) ON P.NumPessoa = C.NumCliente 
+					INNER JOIN LancamentosCCapital L WITH (NOLOCK) ON L.NumMatricula = CCA.NumMatricula
+				WHERE
+					L.IDTipoHistoricoLanc IN 
+					(
+						107,207,--JUROS
+						117,217--IRRF
+					)
+					<j:if test="${dataInicio != null}">
+						AND L.DataLote >= '${dataInicio}'
+					</j:if>
+				GROUP BY
+					C.NumPac,
+					P.CodPF_PJ,
+					L.DataLote,
+					L.IDTipoHistoricoLanc
+				
+				SELECT 
+					@IDInstituicao AS Instituicao,
+					NumPac,
+					CodPF_PJ,
+					DataLote,
+					SUM(BaseIRRF) AS BaseIRRF,
+					SUM(ValorIRRF) AS ValorIRRF
+				FROM 
+					#TBTEMPCCA
+				GROUP BY
+					NumPac,
+					CodPF_PJ,
+					DataLote
+				
+				DROP TABLE #TBTEMPCCA		
+			]]>			
+		</command>
+	</query>		
+	
+	<query name="NOVOSLANCAMENTOSIRRF">
+		<use-case name="NOVOSLANCAMENTOSIRRF"></use-case>
+		<description>Extrato de IRRF</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					count(*)
+				FROM 
+					ContaCapital CCA WITH (NOLOCK) 
+					INNER JOIN Pessoa P WITH (NOLOCK) ON CCA.NumCliente = P.NumPessoa 
+					INNER JOIN Cliente C WITH (NOLOCK) ON P.NumPessoa = C.NumCliente 
+					INNER JOIN LancamentosCCapital L WITH (NOLOCK) ON L.NumMatricula = CCA.NumMatricula 
+				WHERE 
+					L.IDTipoHistoricoLanc IN 
+					(
+						107,207,--JUROS
+						117,217--IRRF
+					)
+				AND L.DataLote >= '${dataInicio}'
+			]]>			
+		</command>
+	</query>
+	
+	<query name="LIBERARBLOQUEAREXECUCAO">
+		<use-case name="LIBERARBLOQUEAREXECUCAO"></use-case>
+		<description>Libera ou Bloqueia a execução da replicacao</description>		
+		<command>
+			<![CDATA[
+			UPDATE  
+				ConfiguracaoReplicacaoCCA 
+			SET 	
+				DescConfiguracaoReplicacao = <bancoob:valor valor="${operacao}" />				 
+ 			WHERE 
+				IdConfiguracaoReplicacaoCCA = 5				
+			]]>
+		</command>
+	</query>		
+	
+	<query name="ALTERARCONFIGURACAOREPLICACAOCCA">
+		<use-case name="ALTERARCONFIGURACAOREPLICACAOCCA"></use-case>
+		<description>Alterar um item de configuração para a replicação</description>		
+		<command>
+			<![CDATA[
+			UPDATE  
+				ConfiguracaoReplicacaoCCA 
+			SET 	
+				DescConfiguracaoReplicacao = <bancoob:valor valor="${objReplicacaoConfiguracaoLegadoDTO.descConfiguracaoReplicacao}" />				 
+ 			WHERE 
+				IdConfiguracaoReplicacaoCCA = <bancoob:valor valor="${objReplicacaoConfiguracaoLegadoDTO.idConfiguracaoReplicacaoCCA}" />				
+			]]>
+		</command>
+	</query>			
+	
+	<query name="OBTERERROSMONITORCCA">
+		<use-case name="OBTERERROSMONITORCCA"></use-case>
+		<description>Erros de replicação de conta capital</description>		
+		<command>
+			<![CDATA[
+				SELECT TOP ${obj.qtdRegistros} 
+					IdReplicacaoCCA,
+					IdTabelaReplicadaCCA,
+					IdSituacaoReplicacaoCCA,
+					CodAcao,
+					DescChaveReplicacaoSQL,
+					DescChaveReplicacaoDB2,
+					DataHoraCadastro,
+					DataHoraReplicacao,
+					NumCooperativa,
+					IdInstituicao,
+					DescMensagemReplicacao
+				FROM 
+					dbo.ReplicacaoCCA WITH (NOLOCK)
+				WHERE 
+				
+				<j:if test="${obj.situacao == null}">
+					IdSituacaoReplicacaoCCA = 2
+				</j:if>
+				<j:if test="${obj.situacao != null}">
+					IdSituacaoReplicacaoCCA in (${obj.situacao})
+				</j:if>
+				
+				<j:if test="${obj.tabela != null}">
+					AND idTabelaReplicadaCCA = <bancoob:valor valor="${obj.tabela}" />
+				</j:if>
+				<j:if test="${obj.acao != null}">
+					AND CodAcao = <bancoob:valor valor="${obj.acao}" />
+				</j:if>
+					
+				<j:if test="${obj.numCooperativa != null}">
+					AND NumCooperativa = <bancoob:valor valor="${obj.numCooperativa}" />
+				</j:if>
+				<j:if test="${cooperativas != null}">
+					<j:if test="${cooperativas != ''}">
+						AND NumCooperativa IN (${cooperativas})
+					</j:if>
+				</j:if>
+				<j:if test="${data != null}">
+					AND convert(varchar(8), DataHoraCadastro, 112) = <bancoob:valor valor="${data}" />
+				</j:if>
+				<j:if test="${obj.dataCadastro != null}">
+					AND convert(varchar(8), DataHoraCadastro, 112) = <bancoob:valor valor="${obj.dataCadastro}" />
+				</j:if>
+				<j:if test="${obj.dataReplicacao != null}">
+					AND convert(varchar(8), DataHoraReplicacao, 112) = <bancoob:valor valor="${obj.dataReplicacao}" />
+				</j:if>
+				<j:if test="${periodoDe != null and periodoAte != null}">
+					AND convert(varchar(8), DataHoraCadastro, 112) &gt;= <bancoob:valor valor="${periodoDe}" />
+					AND convert(varchar(8), DataHoraCadastro, 112) &lt;= <bancoob:valor valor="${periodoAte}" />
+				</j:if>
+				
+				ORDER BY IdReplicacaoCCA desc
+			]]>
+		</command>
+	</query>
+	
+	<query name="LOGREPLICACAOCCA">
+		<use-case name="LOGREPLICACAOCCA"></use-case>
+		<description>LOG de replicação de conta capital</description>		
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.ReplicacaoCCALog 
+					(IdReplicacaoCCA, IdTabelaReplicacaoCCA, CodAcao, DescChaveReplicacaoSQL, DataHoraCadastro, DataHoraReplicacao,
+					NumCooperativa, IdInstituicao, DescMensagemReplicacao, IDUsuarioResp, DataHoraJustificativa, DescJustificativa)
+
+				(SELECT IdReplicacaoCCA, IdTabelaReplicadaCCA, CodAcao, DescChaveReplicacaoSQL, DataHoraCadastro, DataHoraReplicacao,
+						NumCooperativa, IdInstituicao, DescMensagemReplicacao, '${IDUsuarioResp}', GETDATE(), '${DescJustificativa}' 
+					FROM dbo.ReplicacaoCCA WITH (NOLOCK) 
+				WHERE IdReplicacaoCCA = ${IdReplicacaoCCA})
+			]]>
+		</command>
+	</query>
+	
+	
+	
+	<query name="REPROCESSARREPLICACAO">
+		<use-case name="REPROCESSARREPLICACAO"></use-case>
+		<description>Marca para reprocessar (registros da replicacao)</description>		
+		<command>
+			<![CDATA[
+				UPDATE dbo.ReplicacaoCCA SET IdSituacaoReplicacaoCCA = 0, DescChaveReplicacaoDB2 = null, DataHoraReplicacao = null, DescMensagemReplicacao = null 
+				WHERE IdReplicacaoCCA IN ${ids.toString().replace('[', '(').replace(']', ')')}
+			]]>
+		</command>
+	</query>
+	<query name="INVALIDARREPLICACAO">
+		<use-case name="INVALIDARREPLICACAO"></use-case>
+		<description>Marca como invalidos (registros da replicacao)</description>		
+		<command>
+			<![CDATA[
+				UPDATE dbo.ReplicacaoCCA SET IdSituacaoReplicacaoCCA = 4 WHERE IdReplicacaoCCA IN ${ids.toString().replace('[', '(').replace(']', ')')}
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERCONTACAPITALCLIENTE">
+		<use-case name="OBTERCONTACAPITALCLIENTE"></use-case>
+		<description>Consulta a Conta Capital no legado pelo cliente e situacao</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					* 
+				FROM 
+					ContaCapital cca
+				WHERE
+					cca.numCliente =  <bancoob:valor valor="${numCliente}" /> 	
+					<j:if test="${situacao != null}">
+						<j:if test="${situacao == 1}">
+							AND cca.codSituacao = 1
+						</j:if>	
+						<j:if test="${situacao != 1}">
+							AND cca.codSituacao != 1
+						</j:if>						
+					</j:if>	
+				ORDER BY numMatricula ASC
+			]]>
+		</command>
+	</query>
+	<query name="EXCLUIRCADASTROCONTACAPITAL">
+		<use-case name="EXCLUIRCADASTROCONTACAPITAL"></use-case>
+		<description>Exclusao de conta capital e historico</description>		
+		<command>
+			<![CDATA[
+				DELETE FROM dbo.HistContaCapital WHERE NUMMATRICULA = <bancoob:valor valor="${numMatricula}" />
+				UPDATE dbo.ContaCapital SET IDCONTACAPITAL = <bancoob:valor valor="${idContaCapitalNaoReplica}" /> WHERE NUMMATRICULA = <bancoob:valor valor="${numMatricula}" />
+				DELETE FROM dbo.ContaCapital WHERE NUMMATRICULA = <bancoob:valor valor="${numMatricula}" />	
+			]]>
+		</command>
+	</query>
+	
+	<query name="NOVAMATRICULALEGADO">
+		<use-case name="NOVAMATRICULALEGADO"></use-case>
+		<description>Consulta os espacos vazios entre as matriculas</description>		
+		<command>
+			<![CDATA[
+				select TOP 1 SEQ as MATRICULA from (select NumMatricula, ROW_NUMBER() OVER (ORDER BY NumMatricula) AS SEQ from ContaCapital) AS TMP
+				where NumMatricula != SEQ
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTER_ULTIMA_MATRICULA">
+		<use-case name="Recupera ultima matricula"></use-case>
+		<description>Recupera ultima matricula</description>
+		<command>
+			<![CDATA[
+				SELECT MAX(NumMatricula) As Matricula FROM dbo.ContaCapital		
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTER_DATA_PRODUTO_SQL">
+		<use-case name="Recupera data atual do produto"></use-case>
+		<description>Obtem data atual do produto SQL</description>
+		<command>
+			<![CDATA[
+				SELECT DataAtualProd FROM dbo.Produto WHERE IdProduto = <bancoob:valor valor="${idProduto}" />
+			]]>
+		</command>
+	</query>		
+	
+	<query name="OBTER_DATA_ANT_PRODUTO_SQL">
+		<use-case name="Recupera data anterior do produto"></use-case>
+		<description>Obtem data anterior do produto SQL</description>
+		<command>
+			<![CDATA[
+				SELECT DataAntProd FROM dbo.Produto WHERE IdProduto = <bancoob:valor valor="${idProduto}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTER_DATAS_PRODUTO_SQL">
+		<use-case name="Recupera as datas para um produto"></use-case>
+		<description>Recupera as datas para um produto</description>
+		<command>
+			<![CDATA[
+				SELECT IDProduto,DataAntProd,DataProxProd,DataAtualProd FROM dbo.Produto WHERE IdProduto = <bancoob:valor valor="${idProduto}" />
+			]]>
+		</command>
+	</query>	
+	
+	<query name="GERAR_PLD_CCA">
+		<use-case name="GERAR_PLD_CCA"></use-case>
+		<description>Gera PLD Conta Capital</description>
+		<command>
+			<![CDATA[
+				 spu_CCA_GerarPLD '${dataLancamento}'
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERPARCELAMENTOCCA">
+		<use-case name="OBTERPARCELAMENTOCCA"></use-case>
+		<description>Obtem parcelamentos legados</description>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.sisbr.cca.legado.negocio.entidades.ParcelamentoCCALegado p
+				WHERE 1 = 1	
+				<j:if test="${criterios.filtro.ParcelamentoCCALegadoPK.ContaCapitalLegado.numMatricula != null}">
+					AND p.parcelamentoCCALegadoPK.contaCapitalLegado.numMatricula = <bancoob:valorOql valor="${criterios.filtro.parcelamentoCCALegadoPK.contaCapitalLegado.numMatricula}" tipo="Integer" />
+				</j:if>
+				<j:if test="${criterios.filtro.ParcelamentoCCALegadoPK.codTipoParcelamento != null}">
+					AND p.parcelamentoCCALegadoPK.codTipoParcelamento = <bancoob:valorOql valor="${criterios.filtro.parcelamentoCCALegadoPK.codTipoParcelamento}" tipo="Integer" />
+				</j:if>
+				<j:if test="${criterios.filtro.codSituacaoParcela != null}">
+					AND p.codSituacaoParcela = <bancoob:valorOql valor="${criterios.filtro.codSituacaoParcela}" tipo="Integer" /> 
+				</j:if>
+				<j:if test="${criterios.filtro.codModoLanc != null}">
+					AND p.codModoLanc = <bancoob:valorOql valor="${criterios.filtro.codModoLanc}" tipo="Integer" /> 
+				</j:if>
+				<j:if test="${criterios.filtro.codCanal != null}">
+					<j:choose>
+						<j:when test="${criterios.filtro.codCanal == -1}">
+							AND p.codCanal IS NOT NULL
+						</j:when>
+						<j:otherwise>
+							AND p.codCanal = <bancoob:valorOql valor="${criterios.filtro.codCanal}" tipo="Integer" />
+						</j:otherwise>
+					</j:choose>
+				</j:if>
+			]]>
+		</command>
+	</query>
+	
+	<query name="ATUALIZARCAPALOTE">
+		<use-case name="ATUALIZARCAPALOTE"></use-case>
+		<description>Atualiza a capa lote de acordo com o total de lançamentos do dia</description>
+		<command>
+			<![CDATA[
+				UPDATE
+				    CapaLoteCapital
+				SET
+				    ValorTotalLoteApu = Valor,
+				    ValorTotalLoteInf = Valor,
+				    QtdLancApu = Qtd,
+				    QtdLancInf = Qtd
+				FROM
+				    (
+				        SELECT
+				            Valor = SUM(Valorlanc),
+				            Qtd = COUNT(*)
+				        FROM
+				            LancamentosCCapital
+				        WHERE
+				            DataLote = <bancoob:valor valor="${dataLote}" />
+				        AND NumLoteLanc = <bancoob:valor valor="${numLote}" /> ) AS A
+				WHERE
+				    DataLote = <bancoob:valor valor="${dataLote}" />
+				AND NumLoteLanc = <bancoob:valor valor="${numLote}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXPURGARREPLICACAO">
+		<use-case name="EXPURGARREPLICACAO"></use-case>
+		<description>Expurgar registros da replicacao</description>		
+		<command>
+			<![CDATA[
+				DELETE dbo.ReplicacaoCCA 
+				WHERE IdSituacaoReplicacaoCCA = <bancoob:valor valor="${idSituacaoReplicacaoCCA}" />
+				<j:if test="${numCooperativa != null}">
+					AND NumCooperativa = <bancoob:valor valor="${numCooperativa}" />
+				</j:if>				
+				<j:if test="${dataExpurgo != null}">
+					AND convert(varchar(8), DataHoraCadastro, 112) &lt;= <bancoob:valor valor="${dataExpurgo}" />
+				</j:if>				
+			]]>
+		</command>
+	</query>
+	<query name="CONSULTARQUANTREGREPLICACAOCCA">
+		<use-case name="CONSULTARQUANTREGREPLICACAOCCA"></use-case>
+		<description>consultar quantidade de registros da replicacao</description>		
+		<command>
+			<![CDATA[
+				select count(*) from dbo.ReplicacaoCCA 
+			]]>
+		</command>
+	</query>	
+	
+	<query name="OBTERVALORSALARIOBASE">
+		<use-case name="OBTERVALORSALARIOBASE"></use-case>
+		<description>Obtem valor salario base da cooperativa</description>
+		<command>
+			<![CDATA[
+				 SELECT TOP 1 VALORSALARIOBASE FROM VALORCOTAS ORDER BY DATAINICIALCOTA DESC
+			]]>
+		</command>
+	</query>
+	
+	<query name="VERIFICARPARCELASEMABERTOPELOSCANAIS">
+		<use-case name="VERIFICARPARCELASEMABERTOPELOSCANAIS"></use-case>
+		<description>Obtem a quantidade de parcelas abertas pelos canais para a determinada matricula</description>
+		<command>
+			<![CDATA[
+				SELECT count(*) FROM ParcelamentoCCA p
+					WHERE p.numMatricula = <bancoob:valor valor="${numMatricula}"/>
+					AND p.codTipoParcelamento = <bancoob:valor valor="${codTipoParcelamento}"/>
+					AND p.codModoLanc = <bancoob:valor valor="${codModoLanc}"/>
+					AND p.codSituacaoParcela = <bancoob:valor valor="${codSituacaoParcela}"/>
+					AND p.idCanal IN (4,6)
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXCLUIRDEBINDEMLOTE">
+		<use-case name="EXCLUIRDEBINDEMLOTE"></use-case>
+		<description>Excluir debito indeterminado</description>
+		<command>
+			<![CDATA[
+					UPDATE dbo.ContaCapital SET BolDebIndeterminado = 0, DataAlteracao = GETDATE() WHERE NumMatricula = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="ALTERARDEBINDEMLOTE">
+		<use-case name="ALTERARDEBINDEMLOTE"></use-case>
+		<description>Altera debito indeterminado</description>
+		<command>
+			<![CDATA[
+				UPDATE dbo.ContaCapital 
+					SET 
+						BolDebIndeterminado = ?,
+						ValorDeb = ?,
+						DataVencimentoDeb = ?,
+						CodFormaDeb = ?,
+						PeriodoProxDeb = ?,
+						TipoPeriodoDeb = ?,
+						CodTipoValorDebito = ?,
+						NumContaCorrente = ?,
+						DataAlteracao = GETDATE()
+				WHERE NumMatricula = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="PREPARARCOOPERATIVAPILOTO_REPLICACAO">
+		<use-case name="PREPARARCOOPERATIVAPILOTO_REPLICACAO"></use-case>
+		<description>Prepara a cooperativa piloto na base INTEGRACAO</description>		
+		<command>
+			<![CDATA[
+				DELETE FROM dbo.ReplicacaoCCA WHERE NumCooperativa = <bancoob:valor valor="${numCooperativa}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="PREPARARCOOPERATIVAPILOTO_IDS">
+		<use-case name="PREPARARCOOPERATIVAPILOTO_IDS"></use-case>
+		<description>Prepara a cooperativa piloto</description>		
+		<command>
+			<![CDATA[
+				UPDATE dbo.ContaCapital SET IdContaCapital = null WHERE IdContaCapital IS NOT NULL;
+				UPDATE dbo.ParcelamentoCCA SET IdParcelamentoContaCapital = null WHERE IdParcelamentoContaCapital IS NOT NULL;
+				UPDATE dbo.LancamentosCCapital SET IDLANCAMENTOCONTACAPITAL = null WHERE IDLANCAMENTOCONTACAPITAL IS NOT NULL;
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRLANCAMENTOLEGADOLOTE">
+		<use-case name="INCLUIRLANCAMENTOLEGADOLOTE"></use-case>
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.LancamentosCCapital (DataLote, NumLoteLanc, NumSeqLanc, DescNumDocumento, ValorLanc, BolAtualizado, NumMatricula,
+					IDProduto, IDTipoHistoricoLanc, IDTipoHistoricoEstorno, IDUsuarioResp, DataHoraInclusao, DescObsDevolucao, IDLANCAMENTOCONTACAPITAL, DESCOPERACAOEXTERNA)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCOOPERATIVAPILOTO_REPLICACAO">
+		<use-case name="CONSULTARCOOPERATIVAPILOTO_REPLICACAO"></use-case>
+		<description>Consulta a cooperativa piloto na base INTEGRACAO</description>		
+		<command>
+			<![CDATA[
+				SELECT COUNT(*) FROM dbo.ReplicacaoCCA WHERE NumCooperativa = <bancoob:valor valor="${numCooperativa}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCOOPERATIVAPILOTO_IDS">
+		<use-case name="CONSULTARCOOPERATIVAPILOTO_IDS"></use-case>
+		<description>Consulta a cooperativa piloto</description>		
+		<command>
+			<![CDATA[
+				SELECT 'ContaCapital' TABELA, COUNT(*) QUANTIDADE FROM dbo.ContaCapital WHERE IdContaCapital IS NOT NULL UNION
+				SELECT 'ParcelamentoCCA', COUNT(*) FROM dbo.ParcelamentoCCA WHERE IdParcelamentoContaCapital IS NOT NULL UNION
+				SELECT 'LancamentosCCapital', COUNT(*) FROM dbo.LancamentosCCapital WHERE IDLANCAMENTOCONTACAPITAL IS NOT NULL
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBATIMENTOSSQL_CONTACAPITAL">
+		<use-case name="CONSULTARBATIMENTOSSQL_CONTACAPITAL"></use-case>
+		<description>Consulta batimentos DB2 - CONTACAPITAL</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					'SQL' AS TABELA,
+					COUNT(*) as TOTAL,
+					SUM(VALORSALDOATUSUBSC) as VALORSALDOATUSUBSC,
+					SUM(VALORSALDOATUINTEG) as VALORSALDOATUINTEG,
+					SUM(VALORSALDOATUDEVOLVER) as VALORSALDOATUDEVOLVER,
+					SUM(VALORSALDOBLOQINT) as VALORSALDOBLOQ	
+				FROM 
+					CONTACAPITAL  WITH (NOLOCK)
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBATIMENTOSSQL_PARCELAMENTOS">
+		<use-case name="CONSULTARBATIMENTOSSQL_PARCELAMENTOS"></use-case>
+		<description>Consulta batimentos DB2 - PARCELAMENTOS</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					'SQL' AS TABELA,
+					CASE WHEN P.CodTipoParcelamento = 1 THEN 'INTEGRALIZAÇÃO' ELSE 'DEVOLUÇÃO' END AS TIPOPARCELAMENTO ,
+					LSituacao.DescListaItem AS SITUACAOPARCELAMENTO, 
+					COUNT(*) AS TOTAL, 
+					SUM(ValorParcela) AS VALORPARCELA
+				FROM 
+					ParcelamentoCCA P  WITH (NOLOCK) 
+					INNER JOIN listaitem LSituacao ON LSituacao.idlista = 880 AND P.CodSituacaoParcela = LSituacao.CodListaItem
+					GROUP BY P.CodTipoParcelamento,LSituacao.DescListaItem
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBATIMENTOSSQL_LANCAMENTOS">
+		<use-case name="CONSULTARBATIMENTOSSQL_LANCAMENTOS"></use-case>
+		<description>Consulta batimentos DB2 - LANCAMENTOS</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					'SQL' AS TABELA,
+					BolAtualizado AS BOLATUALIZADO,
+					COUNT(*) AS TOTAL,
+					SUM(ValorLanc) AS VALORLANC	
+				FROM LancamentosCCapital L  WITH (NOLOCK) 
+				WHERE DATALOTE &gt;= '20141201' 
+				GROUP BY BolAtualizado
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCOOPERATIVAS_CONCILIACAO">
+		<use-case name="CONSULTARCOOPERATIVAS_CONCILIACAO"></use-case>
+		<description>Consulta todas as cooperativas para conciliacao</description>		
+		<command>
+			<![CDATA[
+				select v.NumCooperativa from viw_banco_servidor v
+					inner join cooperativa c on v.NumCooperativa = c.NumCooperativa
+				where c.numpac = 0 and c.CodSituacao = 1 and c.DataSituacaoEspecial is null
+					and c.NumCoopPai not in (9999, 1, 300, 302)
+					and c.NumCooperativa &gt; 0 and c.NumCooperativa &lt; 6000
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_LANCAMENTOS">
+		<use-case name="CONSULTARCONCILIACAO_LANCAMENTOS"></use-case>
+		<description>Consulta conciliacao - lancamentos nao atualizados</description>		
+		<command>
+			<![CDATA[
+				DECLARE @NumCooperativa AS INT = (SELECT NumCooperativa FROM Instituicao)
+				DECLARE @DataProduto DATETIME = (SELECT DataAtualProd FROM Produto WHERE IDProduto = 2)
+				
+				SELECT 
+					@NumCooperativa AS Cooperativa,
+					CAST(DataLote AS DATE),
+					NumLoteLanc,
+					NumSeqLanc,
+					ValorLanc,
+					NumMatricula,
+					IDTipoHistoricoLanc,
+					CONVERT(DATETIME,DataHoraInclusao,121) as DataHoraInclusao
+				FROM 
+					LancamentosCCapital  WITH (NOLOCK)
+				WHERE 
+					BolAtualizado = 0 
+					AND DataLote != CAST(@DataProduto as DATE)
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_PARCSEMSUBS">
+		<use-case name="CONSULTARCONCILIACAO_PARCSEMSUBS"></use-case>
+		<description>Consulta conciliacao - parcela sem subscricao</description>		
+		<command>
+			<![CDATA[
+				DECLARE @NumCooperativa AS INT = (SELECT NumCooperativa FROM Instituicao)
+				DECLARE @DataProduto DATETIME = (SELECT DataAtualProd FROM Produto WHERE IDProduto = 2)
+				
+				SET NOCOUNT ON	
+					
+				--INTEGRALIZADO MAIOR QUE SUBSCRITO + PARCELAS EM ABERTO
+				SELECT 
+					nummatricula,sum(valorparcela) as ValorParcela
+				INTO #TBP
+				FROM 
+					ParcelamentoCCA P  WITH (NOLOCK)
+				WHERE  
+					CodTipoParcelamento = 1 and 
+					codsituacaoparcela = 1
+				GROUP BY 
+					NumMatricula                      
+				
+				--LANCAMENTOS DE SUBSCRIÇÃO PARA A DATA DE HOJE
+				SELECT 
+					nummatricula,sum(V.ValorLanc) as ValorLanc
+				INTO #TBLancSubsc
+				FROM 
+					VIW_CCA_EXTRATO V   WITH (NOLOCK) 
+				WHERE  
+					CodGrupoHist = 1
+					and Data = cast(@DataProduto as date)
+				GROUP BY 
+					NumMatricula
+				
+				--LANCAMENTOS DE INTEGRALIZAÇÃO PARA A DATA DE HOJE
+				SELECT 
+					nummatricula,sum(V.ValorLanc) as ValorLanc
+				INTO #TBLancInteg
+				FROM 
+					VIW_CCA_EXTRATO V  WITH (NOLOCK)
+				WHERE  
+					CodGrupoHist = 2
+					and Data = cast(@DataProduto as date)
+				GROUP BY 
+					NumMatricula
+				
+				--VALORES DE SUBSCRIÇÃO PENDENTES DE LANÇAMENTOS
+				SELECT 
+					CAST(@NumCooperativa AS VARCHAR) AS NumCooperativa,
+					CCA.NumMatricula,
+					ValorSaldoAtuSubsc,
+					ISNULL(#TBLancSubsc.ValorLanc,0) as LancSubscDoDia,
+					ValorSaldoAtuInteg,
+					ISNULL(#TBP.ValorParcela,0) as ValorParcEmAberto,
+					ISNULL(#TBLancInteg.ValorLanc,0) as LancIntegDoDia,
+					(ISNULL(#TBLancInteg.ValorLanc,0)+ ISNULL(#TBP.ValorParcela,0) + ValorSaldoAtuInteg) - (ISNULL(#TBLancSubsc.ValorLanc,0)+ ValorSaldoAtuSubsc) AS [Diferença],
+					'INSERT INTO dbo.#TBSUBSC VALUES('+CAST(@NumCooperativa AS VARCHAR)+',2,'+CAST(CCA.NumMatricula AS VARCHAR(10))+' ,1,''AJ SUBSC'',''GRI XXXX'','+CAST((ISNULL(#TBLancInteg.ValorLanc,0)+ ISNULL(#TBP.ValorParcela,0) + ValorSaldoAtuInteg) - (ISNULL(#TBLancSubsc.ValorLanc,0)+ ValorSaldoAtuSubsc) AS VARCHAR(12))+')' AS Script
+				FROM 
+					ContaCapital CCA  WITH (NOLOCK)
+					LEFT JOIN #TBP on #TBP.NumMatricula = CCA.NumMatricula
+					LEFT JOIN #TBLancSubsc on #TBLancSubsc.NumMatricula = CCA.NumMatricula
+					LEFT JOIN #TBLancInteg on #TBLancInteg.NumMatricula = CCA.NumMatricula
+				WHERE  
+					(ISNULL(#TBLancInteg.ValorLanc,0)+ ISNULL(#TBP.ValorParcela,0) + ValorSaldoAtuInteg) &gt; (ISNULL(#TBLancSubsc.ValorLanc,0)+ ValorSaldoAtuSubsc)
+				
+				DROP TABLE #TBP
+				DROP TABLE #TBLancSubsc
+				DROP TABLE #TBLancInteg
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_SUBSSEMPARC">
+		<use-case name="CONSULTARCONCILIACAO_SUBSSEMPARC"></use-case>
+		<description>Consulta conciliacao - subscricao sem parcela</description>		
+		<command>
+			<![CDATA[
+				DECLARE @NumCooperativa AS INT = (SELECT NumCooperativa FROM Instituicao)
+				DECLARE @DataProduto DATETIME = (SELECT DataAtualProd FROM Produto WHERE IDProduto = 2)
+				
+				SET NOCOUNT ON	
+				
+				SELECT 
+					nummatricula,sum(valorparcela) as ValorParcela
+				INTO #TBP
+				FROM 
+					ParcelamentoCCA P  WITH (NOLOCK)
+				WHERE  
+					CodTipoParcelamento = 1 and 
+					codsituacaoparcela = 1
+				GROUP BY 
+					NumMatricula                      
+				
+				--LANCAMENTOS DE SUBSCRIÇÃO PARA A DATA DE HOJE
+				SELECT 
+					nummatricula,sum(V.ValorLanc) as ValorLanc
+				INTO #TBLancSubsc
+				FROM 
+					VIW_CCA_EXTRATO V   WITH (NOLOCK)
+				WHERE  
+					CodGrupoHist = 1
+					and Data = cast(@DataProduto as date)
+				GROUP BY 
+					NumMatricula
+				
+				--LANCAMENTOS DE INTEGRALIZAÇÃO PARA A DATA DE HOJE
+				SELECT 
+					nummatricula,sum(V.ValorLanc) as ValorLanc
+				INTO #TBLancInteg
+				FROM 
+					VIW_CCA_EXTRATO V  WITH (NOLOCK)
+				WHERE  
+					CodGrupoHist = 2
+					and Data = cast(@DataProduto as date)
+				GROUP BY 
+					NumMatricula
+				
+				--VALORES DE SUBSCRIÇÃO PENDENTES DE LANÇAMENTOS
+				SELECT 
+					CAST(@NumCooperativa AS VARCHAR) AS NumCooperativa,
+					CCA.NumMatricula,
+					ValorSaldoAtuSubsc,
+					ISNULL(#TBLancSubsc.ValorLanc,0) as LancSubscDoDia,
+					ValorSaldoAtuInteg,
+					ISNULL(#TBP.ValorParcela,0) as ValorParcEmAberto,
+					ISNULL(#TBLancInteg.ValorLanc,0) as LancIntegDoDia,
+					((ISNULL(#TBLancSubsc.ValorLanc,0)+ ValorSaldoAtuSubsc) - (ISNULL(#TBLancInteg.ValorLanc,0)+ ValorSaldoAtuInteg)) - ISNULL(#TBP.ValorParcela,0) AS [Diferença],
+					'INSERT INTO dbo.#TBSUBSC VALUES('+CAST(@NumCooperativa AS VARCHAR)+',2,'+CAST(CCA.NumMatricula AS VARCHAR(10))+' ,7,''CANC SUBSC'',''GRI XXXX'','+CAST(((ISNULL(#TBLancSubsc.ValorLanc,0)+ ValorSaldoAtuSubsc) - (ISNULL(#TBLancInteg.ValorLanc,0)+ ValorSaldoAtuInteg)) - ISNULL(#TBP.ValorParcela,0) AS VARCHAR(12))+')' AS Script
+				FROM 
+					ContaCapital CCA  WITH (NOLOCK)
+					LEFT JOIN #TBP on #TBP.NumMatricula = CCA.NumMatricula
+					LEFT JOIN #TBLancSubsc on #TBLancSubsc.NumMatricula = CCA.NumMatricula
+					LEFT JOIN #TBLancInteg on #TBLancInteg.NumMatricula = CCA.NumMatricula
+				WHERE 
+						((ISNULL(#TBLancSubsc.ValorLanc,0)+ ValorSaldoAtuSubsc) - (ISNULL(#TBLancInteg.ValorLanc,0)+ ValorSaldoAtuInteg)) - ISNULL(#TBP.ValorParcela,0) &gt; 0 
+				ORDER BY 
+					CCA.NUMMATRICULA
+				
+				DROP TABLE #TBP
+				DROP TABLE #TBLancSubsc
+				DROP TABLE #TBLancInteg
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_CAPALOTE">
+		<use-case name="CONSULTARCONCILIACAO_CAPALOTE"></use-case>
+		<description>Consulta conciliacao - capa lote</description>		
+		<command>
+			<![CDATA[
+				DECLARE @DataProduto DATETIME = (SELECT DataAtualProd FROM Produto WHERE IDProduto = 2)	
+				SET NOCOUNT ON
+				
+				--CAPALOTECAPITAL
+				SELECT 		
+					NumLoteLanc,
+					ValorTotalLoteInf as Valor, 
+					QtdLancInf as Qtd
+				INTO #TBCAPALOTE
+				FROM
+					CapaLoteCapital
+				WHERE 
+					DataLote = @DataProduto
+				    
+				--LANCAMENTOSCCAPITAL
+				SELECT 
+					NumLoteLanc,
+					Valor = SUM(Valorlanc), 
+					Qtd = COUNT(*) 
+				INTO #TBLANC
+				FROM
+					LancamentosCCapital 
+				WHERE 
+					DataLote = @DataProduto
+				GROUP BY 
+					DataLote,
+					NumLoteLanc
+				
+				SELECT 
+					cl.NumLoteLanc, cl.Valor as LOTE_VALOR, cl.Qtd as LOTE_QTD, l.Valor as LANC_VALOR, l.Qtd as LANC_QTD
+				FROM
+					#TBCAPALOTE cl
+					INNER JOIN #TBLANC l on cl.NumLoteLanc = l.NumLoteLanc
+				WHERE 
+					cl.Qtd &lt;&gt; l.Qtd OR cl.Valor &lt;&gt; l.Valor
+				
+				DROP TABLE #TBCAPALOTE
+				DROP TABLE #TBLANC
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARREPLICACAOEXPURGO">
+		<use-case name="CONSULTARREPLICACAOEXPURGO"></use-case>
+		<description>Consulta a quantidade de registros para expurgo por cooperativa</description>		
+		<command>
+			<![CDATA[
+				select NumCooperativa, IdInstituicao, count(*) as Quantidade
+				from ReplicacaoCCA
+				where IdSituacaoReplicacaoCCA = 0
+				<j:if test="${numCooperativa != null}">
+					and NumCooperativa = <bancoob:valor valor="${numCooperativa}"/> 
+				</j:if>
+				<j:if test="${cooperativasPiloto != null}">
+					<j:if test="${cooperativasPiloto != ''}">
+						and NumCooperativa not in (${cooperativasPiloto})
+					</j:if>									
+				</j:if>	
+				group by NumCooperativa, IdInstituicao
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERIRRFANOBASE">
+		<use-case name="OBTERIRRFANOBASE"></use-case>
+		<description>Consulta IRRF por Ano Base</description>
+		<command>
+			<![CDATA[
+				SELECT * FROM dbo.BASECALCULOIR WHERE 1 = 1 
+				<j:if test="${anoBase != null}">
+					AND ANOBASE = <bancoob:valor valor="${anoBase}" />
+				</j:if>
+				ORDER BY ANOBASE, PERCALIQUOTA
+			]]>
+		</command>
+	</query>
+	
+	<query name="INCLUIRTABELAIRRF">
+		<use-case name="INCLUIRTABELAIRRF"></use-case>
+		<description>Inclui Tabela IRRF</description>
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.BASECALCULOIR 
+				(
+					ANOBASE, PERCALIQUOTA, VALORBASEINICIAL, VALORBASEFINAL, VALORPARCELADEDUCAO
+				)
+				VALUES 
+				(
+					<bancoob:valor valor="${dto.anoBase}" />, <bancoob:valor valor="${dto.percAliquota}" />, <bancoob:valor valor="${dto.valorBaseInicial}" />,
+					<bancoob:valor valor="${dto.valorBaseFinal}" />, <bancoob:valor valor="${dto.valorParcelaDeducao}" />
+				)
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXCLUIRTABELAIRRFANO">
+		<use-case name="EXCLUIRTABELAIRRFANO"></use-case>
+		<description>Exclui Tabela IRRF por Ano</description>
+		<command>
+			<![CDATA[
+				DELETE FROM dbo.BASECALCULOIR WHERE ANOBASE = <bancoob:valor valor="${anoBase}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXCLUIRTABELAIRRF">
+		<use-case name="EXCLUIRTABELAIRRF"></use-case>
+		<description>Exclui Tabela IRRF por Ano e Aliquota</description>
+		<command>
+			<![CDATA[
+				DELETE FROM dbo.BASECALCULOIR WHERE ANOBASE = <bancoob:valor valor="${dto.anoBase}" /> AND PERCALIQUOTA = <bancoob:valor valor="${dto.percAliquota}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_DUPLICIDADE">
+		<use-case name="CONSULTARCONCILIACAO_DUPLICIDADE"></use-case>
+		<description>Consulta conciliacao - duplicidade</description>		
+		<command>
+			<![CDATA[
+				SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+				
+				DECLARE @NumCooperativa AS INT
+				SET @NumCooperativa = (SELECT NumCooperativa FROM Instituicao)
+			
+				DECLARE @numcentral		INT = (SELECT NumCoopPai		FROM cooperativa WHERE NumPac = 0 and NumCooperativa = @numcooperativa )
+			
+				SELECT 
+					CCA.NumCliente,
+					COUNT(*) Total
+				INTO #TBDuplicidade
+				FROM
+					ContaCapital CCA
+				WHERE
+					CCA.CodSituacao = 1
+				GROUP BY
+					CCA.NumCliente
+				HAVING 
+					COUNT(*) > 1
+			
+				SELECT 
+					@numcentral NumCentral,
+					@numcooperativa NumCooperativa,
+					CCA.NumCliente,
+					CCA.NumMatricula,
+					CONVERT(Char(10),CCA.DataMatricula,103) as DataMatricula,
+					CCA.ValorSaldoAtuInteg,
+					CCA.ValorSaldoAtuSubsc,
+					CCA.ValorSaldoAtuDevolver,
+					CCA.ValorSaldoBloqInt
+				FROM
+					#TBDuplicidade
+					INNER JOIN ContaCapital CCA ON #TBDuplicidade.NumCliente = CCA.NumCliente
+				WHERE
+					CCA.CodSituacao = 1
+				ORDER BY
+					CCA.NumCliente,
+					CCA.NumMatricula
+			
+				DROP TABLE #TBDuplicidade
+			]]>
+		</command>
+	</query>
+	
+	<query name="ALTERARJSONREPLICACAO">
+		<use-case name="ALTERARJSONREPLICACAO"></use-case>
+		<description>Altera o JSON de um registro de replicacao</description>
+		<command>
+			<![CDATA[
+				UPDATE dbo.ReplicacaoCCA 
+				SET DescChaveReplicacaoSQL = <bancoob:valor valor="${json}" />
+				WHERE IdReplicacaoCCA = <bancoob:valor valor="${idReplicacaoCCA}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERREPLICACAOIDSCCA">
+		<use-case name="OBTERREPLICACAOIDSCCA"></use-case>
+		<description>Replicação de conta capital por IDs</description>		
+		<command>
+			<![CDATA[
+				SELECT  
+					IdReplicacaoCCA,
+					IdTabelaReplicadaCCA,
+					IdSituacaoReplicacaoCCA,
+					CodAcao,
+					DescChaveReplicacaoSQL,
+					DescChaveReplicacaoDB2,
+					DataHoraCadastro,
+					DataHoraReplicacao,
+					NumCooperativa,
+					IdInstituicao,
+					DescMensagemReplicacao
+				FROM 
+					dbo.ReplicacaoCCA WITH (NOLOCK)
+				WHERE 
+					IdReplicacaoCCA &gt;= <bancoob:valor valor="${idInicial}" />
+					and IdReplicacaoCCA &lt;= <bancoob:valor valor="${idFinal}" />
+				ORDER BY IdReplicacaoCCA desc
+			]]>
+		</command>
+	</query>
+	
+	<query name="VERIFICARLANCAMENTOEXISTENTE">
+		<use-case name="VERIFICARLANCAMENTOEXISTENTE"></use-case>
+		<description>Verifica se existe lancamento para a matricula e idOperacao parametrizadas</description>		
+		<command>
+			<![CDATA[
+				SELECT 1 FROM dbo.LancamentosCCapital 
+				WHERE NumMatricula = <bancoob:valor valor="${numMatricula}" />
+					and DESCOPERACAOEXTERNA = <bancoob:valor valor="${descOperacaoExterna}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARBATIMENTOSSQL_SALDOS">
+		<use-case name="CONSULTARBATIMENTOSSQL_SALDOS"></use-case>
+		<description>Consulta batimentos DB2 - CONTACAPITAL</description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					NumMatricula, ValorSaldoAtuInteg, ValorSaldoAtuSubsc, 
+					ValorSaldoAtuDevolver, ValorSaldoBloqInt	
+				FROM 
+					ContaCapital WITH (nolock)
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_SALDOSNEGATIVOS">
+		<use-case name="CONSULTARCONCILIACAO_SALDOSNEGATIVOS"></use-case>
+		<description>Consulta conciliacao - saldos negativos</description>		
+		<command>
+			<![CDATA[
+				declare @DataLote DateTime = (select dataatualprod from produto where IDProduto = 2)
+				
+				select
+				       nummatricula,
+				       codgrupohist,
+				       sum(valorlanc) as total
+				from
+				       VIW_CCA_EXTRATO  (nolock)
+				where
+				       nummatricula in (select nummatricula from lancamentosccapital (nolock) where datalote = @DataLote)
+				group by
+				       nummatricula,
+				       codgrupohist
+				       having sum(valorlanc) &lt; 0
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_PARCELAMENTO_DEVOLUCAO_SEM_SALDO">
+		<use-case name="CONSULTARCONCILIACAO_PARCELAMENTO_DEVOLUCAO_SEM_SALDO"></use-case>
+		<description>Consulta conciliacao - parcelamento de devolucao sem saldo</description>		
+		<command>
+			<![CDATA[
+				SET NOCOUNT ON	
+				
+				--PARCELAS EM ABERTO DE DEVOLUCAO
+				SELECT 
+					nummatricula,sum(valorparcela) as ValorParcela
+				INTO #TBP
+				FROM 
+					ParcelamentoCCA P 
+				WHERE  
+					CodTipoParcelamento = 2 and 
+					codsituacaoparcela = 1
+				GROUP BY 
+					NumMatricula                      
+				
+				--LANCAMENTOS DE DEVOLUCAO PARA A DATA DE HOJE
+				SELECT 
+					nummatricula,sum(V.ValorLanc) as ValorLanc
+				INTO #TBLancDev
+				FROM 
+					VIW_CCA_EXTRATO V  
+				WHERE  
+					CodGrupoHist = 3
+					and Data = cast(getdate() as date)
+				GROUP BY 
+					NumMatricula
+				
+				--TENHO MAIS PARCELAS DO QUE VALOR A DEVOLVER
+				SELECT 
+					CCA.NumMatricula,
+					ISNULL(#TBP.ValorParcela,0) as ValorParcEmAberto,
+					'-' as [-],		
+					'(' as [(],		
+					ValorSaldoAtuDevolver,
+					'+' as [+],		
+					ISNULL(#TBLancDev.ValorLanc,0) as LancDevDoDia,
+					')' as [)],		
+					'=' [=],
+					(ISNULL(#TBP.ValorParcela,0) - (ValorSaldoAtuDevolver + ISNULL(#TBLancDev.ValorLanc,0))) AS [Diferença]
+				FROM 
+					ContaCapital CCA 
+					LEFT JOIN #TBP on #TBP.NumMatricula = CCA.NumMatricula
+					LEFT JOIN #TBLancDev on #TBLancDev.NumMatricula = CCA.NumMatricula
+				WHERE  
+					--CCA.CodSituacao =1 AND
+					(ISNULL(#TBP.ValorParcela,0) - (ValorSaldoAtuDevolver + ISNULL(#TBLancDev.ValorLanc,0))) &gt; 0
+				
+				DROP TABLE #TBP
+				DROP TABLE #TBLancDev
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTARCONCILIACAO_DEVOLUCAO_SEM_PARC_ATIVOS">
+		<use-case name="CONSULTARCONCILIACAO_DEVOLUCAO_SEM_PARC_ATIVOS"></use-case>
+		<description>Consulta conciliacao - devolucao sem parcelamento para ativos</description>		
+		<command>
+			<![CDATA[
+				SET NOCOUNT ON	
+				
+				--PARCELAS EM ABERTO DE DEVOLUCAO
+				SELECT 
+					nummatricula,sum(valorparcela) as ValorParcela
+				INTO #TBP
+				FROM 
+					ParcelamentoCCA P 
+				WHERE  
+					CodTipoParcelamento = 2 and 
+					codsituacaoparcela = 1
+				GROUP BY 
+					NumMatricula                      
+				
+				--LANCAMENTOS DE DEVOLUCAO PARA A DATA DE HOJE
+				SELECT 
+					nummatricula,sum(V.ValorLanc) as ValorLanc
+				INTO #TBLancDev
+				FROM 
+					VIW_CCA_EXTRATO V  
+				WHERE  
+					CodGrupoHist = 3
+					and Data = cast(getdate() as date)
+				GROUP BY 
+					NumMatricula
+				
+				--TENHO MAIS VALOR A DEVOLVER QUE PARCELAS 
+				SELECT 
+					CCA.NumMatricula,
+					'(' as [(],		
+					ValorSaldoAtuDevolver,
+					'+' as [+],		
+					ISNULL(#TBLancDev.ValorLanc,0) as LancDevDoDia,
+					')' as [)],		
+					'-' as [-],		
+					ISNULL(#TBP.ValorParcela,0) as ValorParcEmAberto,
+					'=' [=],
+					((ValorSaldoAtuDevolver + ISNULL(#TBLancDev.ValorLanc,0)) - ISNULL(#TBP.ValorParcela,0)) AS [Diferença]
+				FROM 
+					ContaCapital CCA 
+					LEFT JOIN #TBP on #TBP.NumMatricula = CCA.NumMatricula
+					LEFT JOIN #TBLancDev on #TBLancDev.NumMatricula = CCA.NumMatricula
+				WHERE  
+					CCA.CodSituacao = 1 AND
+					((ValorSaldoAtuDevolver + ISNULL(#TBLancDev.ValorLanc,0)) - ISNULL(#TBP.ValorParcela,0)) &gt; 0
+				
+				DROP TABLE #TBP
+				DROP TABLE #TBLancDev
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTA_LANC_FOLHA_PJ">
+		<use-case name="CONSULTA_LANC_FOLHA_PJ"></use-case>
+		<description></description>		
+		<command>
+			<![CDATA[
+				SELECT 
+					NumCGC_CPF,
+					NumPessoaJuridica, 
+					DescNomePessoa, 
+					DiaRodaFolha, 
+					QtdeDiasGeraInf 
+				FROM 
+				dbo.LancFolhaPJ WITH (NOLOCK)
+				INNER JOIN dbo.Pessoa ON NumPessoa = NumPessoaJuridica
+				WHERE 1=1 
+				<j:if test="${filtro.numCGC_CPF != null and filtro.numCGC_CPF != ''}">
+					AND NumCGC_CPF = <bancoob:valor valor="${filtro.numCGC_CPF}" />
+				</j:if>
+				<j:if test="${filtro.descNomePessoa != null and filtro.descNomePessoa != ''}">
+					AND DescNomePessoa like '${filtro.descNomePessoa}%'
+				</j:if>
+			]]>
+		</command>
+	</query>
+	
+	<query name="EXCLUIR_PARC_DEVOL_CAIXA_CCA_ATIVA">
+		<use-case name="EXCLUIR_PARC_DEVOL_CAIXA_CCA_ATIVA"></use-case>
+		<description></description>		
+		<command>
+			<![CDATA[
+			
+				if exists(select p.* from ContaCapital c 
+					inner join ParcelamentoCCA p on c.NumMatricula = p.NumMatricula
+					inner join Produto pr on pr.idProduto = 2
+					where c.NumMatricula = <bancoob:valor valor="${numMatricula}" /> and c.CodSituacao = 1
+					and p.CodTipoParcelamento = 2 and p.CodSituacaoParcela = 1 and p.CodModoLanc = 1 and p.CodMotivoDevolucao in (2,3,4)
+					and p.DataSituacaoParcela = pr.DataAtualMovimento)
+				begin
+					delete from ParcelamentoCCA where NumMatricula = <bancoob:valor valor="${numMatricula}" /> and CodTipoParcelamento = 2 and CodSituacaoParcela = 1 and CodModoLanc = 1 and CodMotivoDevolucao in (2,3,4)
+						and DataSituacaoParcela = (select DataAtualMovimento from Produto where idProduto = 2)
+				end
+			]]>
+		</command>
+	</query>
+	
+	<query name="ALTERARVALORDEBINDLOTE">
+		<use-case name="ALTERARVALORDEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE ContaCapital 
+					SET
+					ValorDeb = ?,
+					DataAlteracao = ?
+				WHERE NumMatricula = ?
+			]]>
+		</command>
+	</query>
+	<query name="ALTERARVALORPERCENTUALDEBINDLOTE">
+		<use-case name="ALTERARVALORPERCENTUALDEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE ContaCapital 
+					SET
+					ValorDeb = (ValorDeb + (ValorDeb / 100 * CAST(? AS DECIMAL))),
+					DataAlteracao = ?
+				WHERE NumMatricula = ?
+			]]>
+		</command>
+	</query>
+	<query name="ALTERARDATADEBINDLOTE">
+		<use-case name="ALTERARDATADEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE ContaCapital
+					SET
+					DataVencimentoDeb = ?,
+					DataAlteracao = ?
+				WHERE NumMatricula = ?
+			]]>
+		</command>
+	</query>
+	<query name="ALTERARVALORDATADEBINDLOTE">
+		<use-case name="ALTERARVALORDATADEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE ContaCapital
+					SET
+					ValorDeb = ?,
+					DataVencimentoDeb = ?,
+					DataAlteracao = ?
+				WHERE NumMatricula = ?
+			]]>
+		</command>
+	</query>
+	<query name="ALTERARVALORPERCENTUALDATADEBINDLOTE">
+		<use-case name="ALTERARVALORPERCENTUALDATADEBINDLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE ContaCapital
+					SET
+					ValorDeb = (ValorDeb + (ValorDeb / 100 * CAST(? AS DECIMAL))),
+					DataVencimentoDeb = ?,
+					DataAlteracao = ?
+				WHERE NumMatricula = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTEM_LISTA_BANCOS">
+		<use-case name="OBTEM_LISTA_BANCOS"></use-case>
+		<description>OBTEM_LISTA_BANCOS</description>
+		<command>
+			<![CDATA[
+				SELECT
+				    NumBanco,
+				    DescBanco = REPLICATE('0', 3 - LEN(CONVERT(VARCHAR(3), NumBanco))) + RTrim(CONVERT(VARCHAR(3), NumBanco)) + ' - ' + DescBanco
+				FROM
+				    DBO.BancoCaf
+				WHERE
+				    BOLATIVIDADE = 1
+				    AND BOLPARTICIPACOMPE = 1
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTAR_FAVORECIDOS_INTEG_OUTROS_BANCOS">
+		<use-case name="CONSULTAR_FAVORECIDOS_INTEG_OUTROS_BANCOS"></use-case>
+		<description>CONSULTAR_FAVORECIDOS_INTEG_OUTROS_BANCOS</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					rcf.NumCliente, rcf.NumMatricula, p.DescNomePessoa, p.NumCGC_CPF, 
+					rcc.NumBanco, rcc.NumAgencia, rcc.NumDVAgencia, rcc.NumContaCorrente, rcc.NumDVContaCorrente,
+					rcf.NumBancoFavorecido, rcf.NumAgenciaFavorecido, rcf.NumContaFavorecido, rcf.NumDVAgenciaFavorecido,
+					DescBanco = REPLICATE('0', 3 - LEN(CONVERT(VARCHAR(3), b.NumBanco))) + RTrim(CONVERT(VARCHAR(3), b.NumBanco)) + ' - ' + b.DescBanco
+				FROM 
+					RateioContaFavorecida rcf
+					inner join RateioContaConvenio rcc on rcf.IdRateioContaConvenio = rcc.IdRateioContaConvenio
+					inner join ContaCapital cca on cca.NumMatricula = rcf.NumMatricula and cca.CodSituacao = 1
+					inner join Pessoa p on rcf.NumCliente = p.NumPessoa
+					inner join BancoCaf b on rcf.NumBancoFavorecido = b.NumBanco
+				WHERE rcf.BolContaPrincipalCapital = 1
+				<j:if test="${filtro.numBancoFavorecido != null and filtro.numBancoFavorecido > 0}">
+					AND b.NumBanco = <bancoob:valor valor="${filtro.numBancoFavorecido}" /> 
+				</j:if>
+				<j:if test="${filtro.numMatricula != null and filtro.numMatricula > 0}">
+					AND rcf.NumMatricula = <bancoob:valor valor="${filtro.numMatricula}" /> 
+				</j:if>
+			]]>
+		</command>
+	</query>
+	
+	<query name="ENVIAR_OUTROS_BANCOS">
+		<use-case name="ENVIAR_OUTROS_BANCOS"></use-case>
+		<description>ENVIAR_OUTROS_BANCOS</description>
+		<command>
+			<![CDATA[
+				INSERT INTO BancoConvCapital 
+					(NumCliente, IdNegocio, IDProduto, IDCapitalCred,
+					NumBanco, NumAgencia, NumDVAgencia, NumContaCorrente, NumDVContaCorrente,
+					NumAgenciaFavorecido, NumDVAgenciaFavorecido, NumBancoFavorecido, NumContaFavorecido,
+					CodTipoEnvio, ValorParcelaEnvio, ValorLiquido, CodSituacao, DataHoraLiberacao, NumParcela)
+				VALUES (?, ?, 2, 0,
+						?, ?, ?, ?, ?,
+						?, ?, ?, ?,
+						'D', ?, ?, 0, getdate(), 1)
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTAR_CONTAS_FAVORECIDOS">
+		<use-case name="CONSULTAR_CONTAS_FAVORECIDOS"></use-case>
+		<description>CONSULTAR_CONTAS_FAVORECIDOS</description>
+		<command>
+			<![CDATA[
+				SELECT
+				       A.IdRateioContaFavorecida, A.NumMatricula, A.NumCliente, P.DescNomePessoa, P.NumCGC_CPF, 
+				       A.NumBancoFavorecido, A.NumAgenciaFavorecido, A.NumDVAgenciaFavorecido, A.NumContaFavorecido, 
+				       A.BolContaPrincipalCapital
+				FROM 
+				       dbo.RateioContaFavorecida A
+				       INNER JOIN ContaCapital cca on cca.NumMatricula = A.NumMatricula and cca.CodSituacao = 1
+				       INNER JOIN dbo.Pessoa P ON P.NumPessoa = A.numCliente
+				       INNER JOIN (
+				             Select NumCliente, Quant = Count(NumCliente) from dbo.RateioContaFavorecida
+				             Group By NumCliente
+				             
+				            <j:if test="${tipoSituacao != null and tipoSituacao == 1}">
+					             Having Count(NumCliente) &gt;  1
+             				</j:if>
+             				<j:if test="${tipoSituacao != null and tipoSituacao == 2}">
+					             Having Count(NumCliente) =  1
+             				</j:if>
+             				 
+				       ) B ON A.NumCliente = B.NumCliente
+			    WHERE 1=1
+	            		<j:if test="${filtro.numMatricula != null and filtro.numMatricula > 0}">
+		            		AND A.NumMatricula = <bancoob:valor valor="${filtro.numMatricula}" /> 
+          				</j:if>
+        				<j:if test="${filtro.numBancoFavorecido != null and filtro.numBancoFavorecido > 0}">
+		            		AND A.NumBancoFavorecido = <bancoob:valor valor="${filtro.numBancoFavorecido}" /> 
+         				</j:if>
+        				<j:if test="${filtro.contaPrincipal != null and filtro.contaPrincipal}">
+		            		AND A.BolContaPrincipalCapital = 1
+          				</j:if>
+				ORDER BY A.NumCliente
+			]]>
+		</command>
+	</query>
+	
+	<query name="ATUALIZAR_CONTAS_FAVORECIDOS">
+		<use-case name="ATUALIZAR_CONTAS_FAVORECIDOS"></use-case>
+		<description>ATUALIZAR_CONTAS_FAVORECIDOS</description>
+		<command>
+			<![CDATA[
+				EXEC dbo.spu_RAT_VerificarNovasContasFavorecidas
+			]]>
+		</command>
+	</query>
+	
+	<query name="DEFINIR_CONTA_FAVORECIDO_PRINCIPAL">
+		<use-case name="DEFINIR_CONTA_FAVORECIDO_PRINCIPAL"></use-case>
+		<description>DEFINIR_CONTA_FAVORECIDO_PRINCIPAL</description>
+		<command>
+			<![CDATA[
+				UPDATE
+					RateioContaFavorecida
+				SET
+					BolContaPrincipalCapital = 1
+				WHERE
+					IdRateioContaFavorecida = ?
+					
+				UPDATE
+					RateioContaFavorecida
+				SET
+					BolContaPrincipalCapital = 0
+				WHERE
+					NumCliente = ?
+					AND IdRateioContaFavorecida <> ?
+					
+				INSERT INTO 
+					HistRateioContaFavorecida 
+						(IdRateioContaFavorecida, BolContaPrincipal, BolContaPrincipalCapital, 
+							IdUsuario, IdProduto, DataHoraAtualizacao, CodSituacaoContaFavorecida)
+				SELECT IdRateioContaFavorecida, BolContaPrincipal, BolContaPrincipalCapital,
+					?, 2, CURRENT_TIMESTAMP, 1
+				FROM RateioContaFavorecida WHERE IdRateioContaFavorecida = ?	
+
+				INSERT INTO 
+					HistRateioContaFavorecida 
+						(IdRateioContaFavorecida, BolContaPrincipal, BolContaPrincipalCapital, 
+							IdUsuario, IdProduto, DataHoraAtualizacao, CodSituacaoContaFavorecida)
+				SELECT IdRateioContaFavorecida, BolContaPrincipal, BolContaPrincipalCapital,
+					?, 2, CURRENT_TIMESTAMP, 2
+				FROM RateioContaFavorecida WHERE NumCliente = ? AND IdRateioContaFavorecida <> ?												
+			]]>
+		</command>
+	</query>
+	
+	<query name="ENVIAR_INTEG_BANCOS">
+		<use-case name="ENVIAR_INTEG_BANCOS"></use-case>
+		<description>ENVIAR_INTEG_BANCOS</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.SP_DEBITOOUTROSBANCOS_GERARARQUIVOS 2, <bancoob:valor valor="${idUsuario}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTAR_REMESSA_INTEG_BANCOS">
+		<use-case name="CONSULTAR_REMESSA_INTEG_BANCOS"></use-case>
+		<description>CONSULTAR_REMESSA_INTEG_BANCOS</description>
+		<command>
+			<![CDATA[				
+				EXEC DBO.SPU_CCA_REMESSAINTEGRALIZACAOOUTROSBANCOS	
+					<bancoob:valor valor="${filtro.anoMes}"/>, 
+					<bancoob:valor valor="${filtro.numBanco}"/>,
+					0, 
+					<bancoob:valor valor="${filtro.numMatricula}"/>,
+					0,
+					1
+					
+			]]>
+		</command>
+	</query>	
+	
+	<query name="CONSULTAR_REMESSA_ENV_DETALHE_INTEG_BANCOS">
+		<use-case name="CONSULTAR_REMESSA_ENV_DETALHE_INTEG_BANCOS"></use-case>
+		<description>CONSULTAR_REMESSA_ENV_DETALHE_INTEG_BANCOS</description>
+		<command>
+			<![CDATA[	
+			
+				EXEC DBO.SPU_CCA_REMESSAINTEGRALIZACAOOUTROSBANCOS	
+					<bancoob:valor valor="${filtro.anoMes}"/>, 
+					<bancoob:valor valor="${filtro.numBanco}"/>,
+					0, 
+					<bancoob:valor valor="${filtro.numMatricula}"/>,
+					<bancoob:valor valor="${filtro.sequencialArquivo}" />,
+					2
+														  		
+			]]>
+		</command>
+	</query>	
+		
+	<query name="CONSULTAR_RETORNO_REMESSA_INTEG_BANCOS">
+		<use-case name="CONSULTAR_RETORNO_REMESSA_INTEG_BANCOS"></use-case>
+		<description>CONSULTAR_RETORNO_REMESSA_INTEG_BANCOS</description>
+		<command>
+			<![CDATA[		
+				EXEC DBO.SPU_CCA_REMESSAINTEGRALIZACAOOUTROSBANCOS	
+					<bancoob:valor valor="${filtro.anoMes}"/>, 
+					<bancoob:valor valor="${filtro.numBanco}"/>,
+					0, 
+					<bancoob:valor valor="${filtro.numMatricula}"/>,
+					0,
+					3					
+	
+			]]>
+		</command>
+	</query>			
+	
+	<query name="CONSULTAR_DETALHE_RETORNO_REMESSA_INTEG_BANCOS">
+		<use-case name="CONSULTAR_DETALHE_RETORNO_REMESSA_INTEG_BANCOS"></use-case>
+		<description>CONSULTAR_DETALHE_RETORNO_REMESSA_INTEG_BANCOS</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.SPU_CCA_REMESSAINTEGRALIZACAOOUTROSBANCOS	
+					<bancoob:valor valor="${filtro.anoMes}"/>, 
+					<bancoob:valor valor="${filtro.numBanco}"/>,
+					0, 
+					<bancoob:valor valor="${filtro.numMatricula}"/>,
+					<bancoob:valor valor="${filtro.sequencialArquivo}" />,
+					4
+			]]>
+		</command>
+	</query>	
+	
+	<query name="UPDATE_INTEG_OUTROS_BANCOS">
+		<use-case name="UPDATE_INTEG_OUTROS_BANCOS"></use-case>
+		<description>UPDATE_INTEG_OUTROS_BANCOS</description>
+		<command>
+			<![CDATA[
+				UPDATE BancoConvArquivoRetornoCapDetalhe SET BolIntegralizadoCapital = 1 
+				WHERE 
+					NumBanco = ?
+					AND NumAgencia = ?
+					AND NumSequencialArquivo = ?
+					AND NomeArquivo = ?
+					AND NumSequencialDetalhe = ?
+					AND NumParcela = ?
+					AND NumMatriculaContaCapital = ?
+			]]>
+		</command>
+	</query>
+	
+	<query name="CONSULTAR_RETORNO_INTEG_OUTROS_BANCOS">
+		<use-case name="CONSULTAR_RETORNO_INTEG_OUTROS_BANCOS"></use-case>
+		<description>CONSULTAR_RETORNO_INTEG_OUTROS_BANCOS</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					BAR.NumBanco,
+					BAR.NumAgencia,
+					BAR.SequencialArquivo,
+					BAR.NomeArquivo,
+					BAR.SequencialDetalhe,
+					BAR.NumParcela,
+					BAR.NumMatriculaContaCapital,
+					BAR.ValorPago,
+					BAR.BolIntegralizadoCapital	
+				FROM BancoConvArquivoRetornoCapDetalhe BAR WITH (NOLOCK)
+				INNER JOIN ContaCapital cca ON BAR.NumMatriculaContaCapital = cca.NumMatricula
+				WHERE BAR.BolIntegralizadoCapital = 0
+				AND BAR.IDproduto = 2
+				AND cca.CodSituacao = 1;
+			]]>
+		</command>
+	</query>	
+	
+	<query name="PESQUISARECOLHIMENTOIRRFDESTINACAOJUROS">
+		<use-case name="PESQUISARECOLHIMENTOIRRFDESTINACAOJUROS"></use-case>
+		<description>PESQUISARECOLHIMENTOIRRFDESTINACAOJUROS</description>
+		<command>
+		<![CDATA[
+		SELECT 
+			       dp.NumMatricula NUMCONTACAPITAL,
+			       p.DescNomePessoa NOMECLIENTE,
+			       dp.NumContaCorrente NUMCONTACORRENTE,
+			       dp.ValorDestCCO VALORCONTACORRENTE,
+			       dp.ValorDestCCA VALORCONTACAPITAL,
+			       (dp.ValorDestCCO + dp.ValorDestCCA) VALORTOTAL,
+			       dp.ValorDestIR VALORIRRF,
+			       c.NumPac NUMPAC,
+			       coop.DescSiglaCoop DESCPA
+			FROM 
+			       DestinoProvisao dp
+			       inner join ContaCapital cca on dp.NumMatricula = cca.NumMatricula
+			       inner join Pessoa p on p.NumPessoa = cca.NumCliente
+			       inner join Cliente c on c.NumCliente = p.NumPessoa
+			       inner join Cooperativa coop on coop.NumPac = c.NumPac and coop.NumCooperativa = c.NumCooperativa
+			WHERE
+					year(dp.DataDestinacao) = <bancoob:valor valor="${filtro.anoBase}"/>  
+			        <j:if test="${ ( !filtro.todos ) and (filtro.numContaCapital != null and filtro.numContaCapital > 0)}">
+			        	AND dp.NumMatricula = <bancoob:valor valor="${filtro.numContaCapital}"/>
+			        </j:if>
+			       <j:if test="${filtro.numPac != null and filtro.numPac >= 0}">
+			       		AND c.NumPac = <bancoob:valor valor="${filtro.numPac}"/>
+			       </j:if>
+			ORDER BY 
+				<j:if test="${filtro.agruparPorPA}">
+					c.NumPac,	
+			   	</j:if>	
+				<j:if test="${filtro.ordenacao == 1}">
+					dp.NumMatricula
+			   	</j:if>	
+			   	<j:if test="${filtro.ordenacao == 2}">
+					p.DescNomePessoa
+			   	</j:if>				
+		]]>
+		</command>
+	</query>
+
+	<query name="CONSULTAPARCABERTASVIACCO">
+		<use-case name="CONSULTAPARCABERTASVIACCO"></use-case>
+		<description>CONSULTAPARCABERTASVIACCO</description>
+		<command>
+			<![CDATA[				  
+				SELECT   
+					P.NumMatricula, 
+					P.NumParcelamento,  
+					P.NumParcela,  
+					P.CodTipoParcelamento, 
+					P.DataVencParcela, 
+					P.ValorParcela,   
+					P.CodModoLanc, 
+					P.CodSituacaoParcela, 
+					P.NumContaCorrente, 
+					DescOcorrencia = '',   
+					TipoHistoricoCCO = CASE WHEN P.CodTipoParcelamento = 1 THEN 172   
+						ELSE 
+							CASE WHEN C.CodSituacao = 1 THEN 671   
+							ELSE 670   
+							END  
+						END,  
+					DescNumDocumento = CASE WHEN P.CodTipoParcelamento = 1 THEN CONVERT(Varchar(10),P.NumMatricula)   
+						ELSE 'DOC.'   
+						END,  
+					NumOcorrencia = 0 
+				FROM dbo.ParcelamentoCCA P WITH (NOLOCK)
+				INNER JOIN dbo.ContaCapital C WITH (NOLOCK) ON P.NumMatricula = C.NumMatricula   
+				WHERE P.CodSituacaoParcela = 1  
+				AND P.CodModoLanc = 2  
+				AND convert(varchar(8), P.DataVencParcela, 112) &lt;=  <bancoob:valor valor="${dataAtualProduto}" /> 
+				ORDER BY     
+					P.NumContaCorrente,   
+					TipoHistoricoCCO,   
+					P.ValorParcela,   
+					P.DataVencParcela,   
+					P.NumParcelamento,   
+					P.NumParcela,   
+					P.NumMatricula  				
+			]]>
+		</command>
+	</query>		
+	<query name="ALTERARPARCELAMENTOLEGADOLOTE">
+		<use-case name="ALTERARPARCELAMENTOLEGADOLOTE"></use-case>
+		<command>
+			<![CDATA[
+				UPDATE ParcelamentoCCA 
+				SET   
+					CodSituacaoParcela = ?,   
+					DataSituacaoParcela = ?,
+					IdParcelamentoContaCapital = ?  			
+				WHERE NumMatricula   = ?  
+				AND NumParcelamento  = ?  
+				AND NumParcela   = ?  
+				AND CodTipoParcelamento = ?   
+				AND CodSituacaoParcela = 1  										
+			]]>
+		</command>
+	</query>	
+	<query name="CONSULTALANCVIACCO">
+		<use-case name="CONSULTALANCVIACCO"></use-case>
+		<description>CONSULTALANCVIACCO</description>
+		<command>
+			<![CDATA[				  
+				SELECT 
+					L.DATALOTE,
+					L.NUMLOTELANC,
+					L.NUMSEQLANC,
+					L.DESCNUMDOCUMENTO,
+					L.VALORLANC,
+					L.BOLATUALIZADO,
+					L.NUMMATRICULA,
+					L.IDPRODUTO,
+					L.IDTIPOHISTORICOLANC,
+					L.IDPRODUTOEST,
+					L.IDTIPOHISTORICOESTORNO,
+					L.IDUSUARIORESP,
+					L.DATAHORAINCLUSAO,
+					L.CODMOTIVODEVOLUCAO,
+					L.DESCOBSDEVOLUCAO,
+					L.IDTIPOSUBSCRICAO,
+					L.IDLANCAMENTOCONTACAPITAL,
+					L.DESCOPERACAOEXTERNA
+				FROM LancamentosCCapital L WITH (NOLOCK)
+				WHERE convert(varchar(8), L.DataLote, 112) =  <bancoob:valor valor="${dataAtualProduto}" /> 
+				AND L.NumLoteLanc = 9001 				
+				AND LEFT(L.DESCOPERACAOEXTERNA,6) = 'VIACCO'
+			]]>
+		</command>
+	</query>			
+
+	<query name="OBTERPRODUTOLEGADO">
+		<use-case name="OBTERPRODUTOLEGADO"></use-case>
+		<description>Consulta a Entidade Produto Legado</description>
+		<command>
+			<![CDATA[
+				FROM br.com.sicoob.sisbr.cca.legado.negocio.entidades.ProdutoLegado p
+				WHERE 1=1
+				<j:if test="${criterios.filtro != null}">
+					<j:if test="${criterios.filtro.id != null}">
+						AND p.idProduto = ${criterios.filtro.id}
+					</j:if>
+				</j:if>
+			]]>
+		</command>
+	</query>
+	
+	<query name="FECHAMENTOMECANISMOCONTABIL">
+		<use-case name="FECHAMENTOMECANISMOCONTABIL"></use-case>
+		<description>Fechamento Mecanismo Contabil Legado</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.sp_FechaCTBMecanismoContabilInterno <bancoob:valor valor="${idProduto}" />
+			]]>
+		</command>
+	</query>
+		
+	<query name="FECHAMENTOPROCESSAROPERACOESFINANCEIRASCONTABILIZACAO">
+		<use-case name="FECHAMENTOPROCESSAROPERACOESFINANCEIRASCONTABILIZACAO"></use-case>
+		<description>Fechamento Processar Operacoes Financeiras Contabilizacao</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.spu_CCA_FechProcOpFinContabil <bancoob:valor valor="${idUsuario}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERVALORPARAMETRO">
+		<use-case name="OBTERVALORPARAMETRO"></use-case>
+		<description>Obter Valor Parametro por id</description>
+		<command>
+			<![CDATA[
+			SELECT 
+				ValorParametro.ValorPar
+            FROM 
+            	Parametro 
+            INNER JOIN 
+            	ValorParametro 
+            ON
+               Parametro.IDParametro =  ValorParametro.IDParametro
+            WHERE 
+            	Parametro.IDParametro = <bancoob:valor valor="${idParametro}" />
+			]]>
+		</command>
+	</query>
+	
+	<query name="OBTERCOUNTFECHORDEMPROCESSO">
+		<use-case name="OBTERCOUNTFECHORDEMPROCESSO"></use-case>
+		<description>Checa se h� FechOrdemProcesso para o IDParametro e IDProduto na DataAntProd</description>
+		<command>
+			<![CDATA[
+				SELECT 
+					TOP 1 DataProcessamento 
+				FROM
+					FechOrdemProcesso 
+				WHERE 
+					idProduto = <bancoob:valor valor="${idProduto}" />
+				AND 
+					OrdemProduto = (
+									SELECT 
+										ValorPar
+									FROM 
+										Parametro 
+									INNER JOIN 
+										ValorParametro 
+									ON 
+										Parametro.IDParametro =  ValorParametro.IDParametro
+									WHERE (Parametro.IDParametro = <bancoob:valor valor="${idParametro}" /> )
+									)
+				AND 
+					DataProcessamento >= (SELECT DataAntProd FROM Produto where IDProduto = <bancoob:valor valor="${idProduto}" />)
+			]]>
+		</command>
+	</query>
+	
+	<query name="FECHAMENTOGERARINFOCALCULOVARLEGADO">
+		<use-case name="FECHAMENTOGERARINFOCALCULOVARLEGADO"></use-case>
+		<description>Fechamento Gerar Info Calculo Var Legado</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.spu_CONTACAP_VAR
+			]]>
+		</command>
+	</query>
+	
+	<query name="FECHGRAVACAOSALDOCAPSOCIALINTEGRALIZADO">
+		<use-case name="FECHAMENTOGRAVACAOSALDOCAPSOCIALINTEGRALIZADO"></use-case>
+		<description>Fechamento Gravacao Saldo Cap Social Integralizado</description>
+		<command>
+			<![CDATA[
+				INSERT INTO dbo.SaldoCliente(DataSaldo, NumCliente, IDProduto, IDModalidadeProduto, CodTipoValor, ValorSaldo, IdentNegocio)
+                ( 
+	                  (
+		                SELECT 
+		                	<bancoob:valor valor="${dataAtualProd}" /> , 
+		                	CCA.NumCliente,
+		                	<bancoob:valor valor="${idProduto}" />,
+		                	1,
+		                	<bancoob:valor valor="${codSaldoContaCapital}" />,
+		                	CCA.ValorSaldoAtuInteg,
+		                	CCA.NumMatricula
+			            FROM dbo.ContaCapital CCA
+			          ) 
+           		  UNION ALL  
+		              (
+		              	SELECT 
+			              	<bancoob:valor valor="${dataAtualProd}" />,
+			              	CCA.NumCliente,
+			              	<bancoob:valor valor="${idProduto}" />,
+			              	1,
+			              	<bancoob:valor valor="${codSaldoContaCapitalSubscrito}" />,
+			              	CCA.ValorSaldoAtuSubsc,
+			              	CCA.NumMatricula
+		              	FROM dbo.ContaCapital CCA
+		              )
+	              UNION ALL 
+		              (
+		              	SELECT 
+			              	<bancoob:valor valor="${dataAtualProd}" />,
+			              	CCA.NumCliente,
+			              	<bancoob:valor valor="${idProduto}" />,
+			              	1,
+			              	<bancoob:valor valor="${codSaldoContaCapitalADevolver}" />,
+			              	CCA.ValorSaldoAtuDevolver,
+			              	CCA.NumMatricula 
+		              	FROM dbo.ContaCapital CCA where CCA.ValorSaldoAtuDevolver &lt;&gt; 0
+		              )
+		         )
+			]]>
+		</command>
+	</query>
+
+	<query name="FECHGERARINFOACUMULADASLEGADO">
+		<use-case name="FECHGERARINFOACUMULADASLEGADO"></use-case>
+		<description>Fechamento Gerar Info Acumuladas Legado</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.spu_CCA_FechGerarInfoAcumuladas
+			]]>
+		</command>
+	</query>
+	<query name="CONSULTADEBINDET">
+		<use-case name="CONSULTADEBINDET"></use-case>
+		<description>CONSULTADEBINDET</description>
+		<command>
+			<![CDATA[				  
+							
+				DECLARE 
+					@HISTDEBCCO SMALLINT,  
+					@DATAATUALPROD DATETIME,  
+					@DATAINICIAL DATETIME, --ULTIMO DIA PROCESSADO + 1 (OU SEJA, SE A DATA ULTIMO PROCESSAMENTO IGUAL A 03 E DATA ATUAL � 06, ENT�O DATA INICIAL SER� 04  
+					@DIAS SMALLINT --QTD DE DIAS ENTRE A DATA INICIAL E A DO PRODUTO  
+
+				SET NOCOUNT ON	
+											  
+				SET @HISTDEBCCO		= 172 --DEB.PARCELAS SUBSC./INTEGR.  
+				SET @DATAINICIAL    = (SELECT DATEADD(DAY,1, DataAntProd) FROM dbo.Produto WHERE IdProduto = 2) --ULTIMO DIA PROCESSADO + 1, PEGA FDS  
+				SET @DATAATUALPROD  = (SELECT DataAtualProd FROM dbo.Produto WHERE IdProduto = 2)  
+				SET @DIAS			= (SELECT DATEDIFF(DAY, @DATAINICIAL, @DATAATUALPROD) + 1)  
+				
+				--#DATAS - INTERVALO DE DIAS EM QUE DEVEM SER VERIFICADAS PARCELAS VENCIDAS, TRATA OS CASOS DE FERIADOS E FDS
+				
+				CREATE TABLE #Datas(
+					data	DATETIME
+				)
+				--#DATAS
+				DECLARE @CONT INT = 0
+				
+				WHILE @CONT &lt; @DIAS 
+				BEGIN
+					INSERT INTO #Datas VALUES(DATEADD(DAY, @CONT, @DATAINICIAL))
+					SET  @CONT = @CONT +1
+				END 
+				
+				SET NOCOUNT OFF	
+				
+				SELECT 
+					NumMatricula,  
+					NumParcelamento = (SELECT MAX(P.NumParcelamento)+1 FROM ParcelamentoCCA P WITH (NOLOCK) WHERE CodTipoParcelamento = 1 AND P.NumMatricula = C.NumMatricula), 
+					NumParcela = 0,  
+					CodTipoParcelamento = 1, 
+					DataParcela = data, 
+					DataSituacaoParcela = @DATAATUALPROD,
+					ValorParcela = ValorDeb,   
+					CodModoLanc = 2, 
+					CodSituacaoParcela = 1,
+					NumContaCorrente, 
+					TipoHistoricoCCO = @HISTDEBCCO,   
+					DescNumDocumento = CONVERT(VARCHAR(10),NumMatricula)
+				FROM 
+					dbo.ContaCapital C 
+					INNER JOIN #Datas ON 
+						(
+							(TipoPeriodoDeb = 0 AND DATEDIFF(DAY,DataVencimentoDeb, data) % PeriodoProxDeb = 0 ) 
+						)
+				WHERE 
+					CodSituacao = 1 
+					AND BolDebIndeterminado = 1 
+					AND ValorDeb &gt; 0 
+					AND CodFormaDeb = 2 
+					AND DataVencimentoDeb &lt;= @DATAATUALPROD				
+				
+				UNION ALL
+						
+				SELECT 
+					NumMatricula,  
+					NumParcelamento = (SELECT MAX(P.NumParcelamento)+1 FROM ParcelamentoCCA P WITH (NOLOCK) WHERE CodTipoParcelamento = 1 AND P.NumMatricula = C.NumMatricula), 
+					NumParcela = 0,  
+					CodTipoParcelamento = 1, 
+					DataParcela = data, 
+					DataSituacaoParcela = @DATAATUALPROD,
+					ValorParcela = ValorDeb,   
+					CodModoLanc = 2, 
+					CodSituacaoParcela = 1,
+					NumContaCorrente, 
+					TipoHistoricoCCO = @HISTDEBCCO,   
+					DescNumDocumento = CONVERT(VARCHAR(10),NumMatricula)
+				FROM 
+					dbo.ContaCapital C 
+					INNER JOIN #Datas ON 
+						(
+							(TipoPeriodoDeb = 1 AND CONVERT(VARCHAR(8),DATEADD(MONTH, DATEDIFF(MONTH,DataVencimentoDeb, data),DataVencimentoDeb),112) = CONVERT(VARCHAR(8),data,112) )
+						)
+				WHERE 
+					CodSituacao = 1 
+					AND BolDebIndeterminado = 1 
+					AND ValorDeb &gt; 0 
+					AND CodFormaDeb = 2 
+					AND DataVencimentoDeb &lt;= @DATAATUALPROD		
+
+											
+			]]>
+		</command>
+	</query>		
+	
+	<query name="INCLUIR_PARCELAMENTO_LOTE">
+		<use-case name="INCLUIR_PARCELAMENTO_LOTE"></use-case>
+		<description>INCLUIR_PARCELAMENTO_LOTE</description>
+		<command>
+			<![CDATA[				  
+			
+				INSERT INTO ParcelamentoCCA(
+					NumMatricula,
+					NumParcelamento,
+					NumParcela,
+					CodTipoParcelamento,
+					DataVencParcela,
+					DataSituacaoParcela,
+					ValorParcela,
+					CodModoLanc,
+					CodSituacaoParcela,
+					NumContaCorrente,
+					DataEnvioCob,
+					UIDTrabalha,
+					CodMotivoDevolucao,
+					DescObservacao,
+					IdParcelamentoContaCapital,
+					IDCANAL		   
+				)
+				VALUES(
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?,
+					?			   
+				)
+				
+			]]>
+		</command>
+	</query>			
+	<query name="CONSULTALANCDEBINDET">
+		<use-case name="CONSULTALANCDEBINDET"></use-case>
+		<description>CONSULTALANCDEBINDET</description>
+		<command>
+			<![CDATA[				  
+				SELECT 
+					L.DATALOTE,
+					L.NUMLOTELANC,
+					L.NUMSEQLANC,
+					L.DESCNUMDOCUMENTO,
+					L.VALORLANC,
+					L.BOLATUALIZADO,
+					L.NUMMATRICULA,
+					L.IDPRODUTO,
+					L.IDTIPOHISTORICOLANC,
+					L.IDPRODUTOEST,
+					L.IDTIPOHISTORICOESTORNO,
+					L.IDUSUARIORESP,
+					L.DATAHORAINCLUSAO,
+					L.CODMOTIVODEVOLUCAO,
+					L.DESCOBSDEVOLUCAO,
+					L.IDTIPOSUBSCRICAO,
+					L.IDLANCAMENTOCONTACAPITAL,
+					L.DESCOPERACAOEXTERNA
+				FROM LancamentosCCapital L WITH (NOLOCK)
+				WHERE convert(varchar(8), L.DataLote, 112) =  <bancoob:valor valor="${dataAtualProduto}" /> 
+				AND L.NumLoteLanc = 9001 				
+				AND LEFT(L.DESCOPERACAOEXTERNA,11) = 'VIADEBINDET'
+			]]>
+		</command>
+	</query>		
+	<query name="FECHAMENTOGERARCALCULOPROVISAOJUROS">
+		<use-case name="FECHAMENTOGERARCALCULOPROVISAOJUROS"></use-case>
+		<description>FECHAMENTOGERARCALCULOPROVISAOJUROS</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.spu_CCA_FechCalcularProvisao
+			]]>
+		</command>
+	</query>
+	<query name="FECHAMENTOGERARLANCPROVISAOJUROS">
+		<use-case name="FECHAMENTOGERARLANCPROVISAOJUROS"></use-case>
+		<description>FECHAMENTOGERARLANCPROVISAOJUROS</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.spu_CCA_FechGerarLancProvisaoLegado <bancoob:valor valor="${idUsuario}" />
+			]]>
+		</command>
+	</query>			
+	<query name="FECHAMENTOGERARLANCDESTINACAOJUROS">
+		<use-case name="FECHAMENTOGERARLANCDESTINACAOJUROS"></use-case>
+		<description>FECHAMENTOGERARLANCDESTINACAOJUROS</description>
+		<command>
+			<![CDATA[
+				EXEC DBO.spu_CCA_DestinacaoJurosCapitalLegado <bancoob:valor valor="${idUsuario}" />
+			]]>
+		</command>
+	</query>			
+	<query name="CONSULTALANCDESTINACAOJUROS">
+		<use-case name="CONSULTALANCDESTINACAOJUROS"></use-case>
+		<description>CONSULTALANCDESTINACAOJUROS</description>
+		<command>
+			<![CDATA[				  
+				SELECT 
+					L.DATALOTE,
+					L.NUMLOTELANC,
+					L.NUMSEQLANC,
+					L.DESCNUMDOCUMENTO,
+					L.VALORLANC,
+					L.BOLATUALIZADO,
+					L.NUMMATRICULA,
+					L.IDPRODUTO,
+					L.IDTIPOHISTORICOLANC,
+					L.IDPRODUTOEST,
+					L.IDTIPOHISTORICOESTORNO,
+					L.IDUSUARIORESP,
+					L.DATAHORAINCLUSAO,
+					L.CODMOTIVODEVOLUCAO,
+					L.DESCOBSDEVOLUCAO,
+					L.IDTIPOSUBSCRICAO,
+					L.IDLANCAMENTOCONTACAPITAL,
+					L.DESCOPERACAOEXTERNA
+				FROM LancamentosCCapital L WITH (NOLOCK)
+				WHERE convert(varchar(8), L.DataLote, 112) =  <bancoob:valor valor="${dataAtualProduto}" />
+				AND L.NumLoteLanc IN(9002,9901) 				
+				AND L.IDLANCAMENTOCONTACAPITAL = -1
+			]]>
+		</command>
+	</query>	
+	<query name="ATUALIZARMOVIMENTOLANCAMENTOS">
+		<use-case name="ATUALIZARMOVIMENTOLANCAMENTOS"></use-case>
+		<description>ATUALIZARMOVIMENTOLANCAMENTOS</description>
+		<command>
+			<![CDATA[				  
+			
+				DECLARE @DataAtualProduto DateTime
+				SELECT @DataAtualProduto = DataAtualProd from dbo.Produto where idProduto = 2  
+								
+				UPDATE dbo.ContaCapital SET 
+					ValorSaldoAtuSubsc = ValorSaldoAtuSubsc + B.valorSubsc,  
+					ValorSaldoAtuInteg = ValorSaldoAtuInteg + B.valorInteg,  
+					ValorSaldoAtuDevolver = ValorSaldoAtuDevolver + B.valorDevol,  
+					ValorSaldoBloqInt = ValorSaldoBloqInt + B.valorBloq,
+					IdContaCapital = -1
+				FROM
+				(
+					SELECT 
+						A.NumMatricula, 
+						ISNULL(SUM(A.valorSubsc),0) AS valorSubsc, 
+						ISNULL(SUM(A.valorInteg),0) AS valorInteg, 
+						ISNULL(SUM(A.valorDevol),0) AS valorDevol, 
+						ISNULL(SUM(A.valorBloq),0) AS valorBloq 
+					FROM(
+						SELECT  
+							L.NumMatricula,   
+							CASE T.CodGrupoHist WHEN 1 THEN 
+							ISNULL(SUM(  
+								CASE T.CodNaturezaOp  
+									WHEN 'D' THEN L.ValorLanc * -1  
+									WHEN 'C' THEN L.ValorLanc   
+									WHEN 'E' THEN   
+								CASE TE.CodNaturezaOp   
+									WHEN 'C' THEN L.ValorLanc * -1   
+									WHEN 'D' THEN L.ValorLanc   
+									ELSE 0   
+									END  
+								WHEN '*' THEN L.ValorLanc  
+									ELSE 0   
+								END
+							),0)
+							END valorSubsc,
+							CASE T.CodGrupoHist WHEN 2 THEN 
+							ISNULL(SUM(  
+								CASE T.CodNaturezaOp  
+									WHEN 'D' THEN L.ValorLanc * -1  
+									WHEN 'C' THEN L.ValorLanc   
+									WHEN 'E' THEN   
+								CASE TE.CodNaturezaOp   
+									WHEN 'C' THEN L.ValorLanc * -1   
+									WHEN 'D' THEN L.ValorLanc   
+									ELSE 0   
+									END  
+								WHEN '*' THEN L.ValorLanc  
+									ELSE 0   
+								END
+							),0)
+							END valorInteg,
+							CASE T.CodGrupoHist WHEN 3 THEN 
+							ISNULL(SUM(  
+								CASE T.CodNaturezaOp  
+									WHEN 'D' THEN L.ValorLanc * -1  
+									WHEN 'C' THEN L.ValorLanc   
+									WHEN 'E' THEN   
+								CASE TE.CodNaturezaOp   
+									WHEN 'C' THEN L.ValorLanc * -1   
+									WHEN 'D' THEN L.ValorLanc   
+									ELSE 0   
+									END  
+								WHEN '*' THEN L.ValorLanc  
+									ELSE 0   
+								END
+							),0)
+							END valorDevol,			
+							CASE WHEN L.IDTipoHistoricoLanc IN (113, 63)  THEN 
+							ISNULL(SUM(  
+								CASE T.CodNaturezaOp  
+									WHEN 'D' THEN L.ValorLanc * -1  
+									WHEN 'C' THEN L.ValorLanc   
+									WHEN 'E' THEN   
+								CASE TE.CodNaturezaOp   
+									WHEN 'C' THEN L.ValorLanc * -1   
+									WHEN 'D' THEN L.ValorLanc   
+									ELSE 0   
+									END  
+								WHEN '*' THEN L.ValorLanc  
+									ELSE 0   
+								END
+							),0)
+							END valorBloq
+						FROM dbo.LancamentosCCapital L WITH (NOLOCK)
+						INNER JOIN dbo.TipoHistorico T ON L.IDProduto = T.IDProduto AND L.IDTipoHistoricoLanc = T.IDTipoHistorico   
+						LEFT JOIN dbo.TipoHistorico TE ON L.IDTipoHistoricoEstorno = TE.IDTipoHistorico AND L.IDProdutoEst = TE.IDProduto   
+						WHERE L.DataLote = @DataAtualProduto 
+						AND L.BolAtualizado = 0
+						AND (L.ValorLanc &gt; 0 OR L.ValorLanc &lt; 0)
+						AND T.CodGrupoHist IN(1,2,3)
+						GROUP BY L.NumMatricula, T.CodGrupoHist, L.IDTipoHistoricoLanc
+					) AS A
+					GROUP BY 
+						A.NumMatricula
+				) B
+				WHERE ContaCapital.NumMatricula = B.NumMatricula
+				
+				UPDATE dbo.LancamentosCCapital SET BolAtualizado = 1, IDLANCAMENTOCONTACAPITAL = -1 WHERE DataLote = @DataAtualProduto 
+				UPDATE dbo.CapaLoteCapital SET BolAtualizado = 1 WHERE DataLote = @DataAtualProduto 
+
+			]]>
+		</command>
+	</query>					
+	<query name="FECHRELLANCAMENTOCONTABIL">
+		<use-case name="FECHRELLANCAMENTOCONTABIL"></use-case>
+		<description>Relatorio de fechamento para lancamentos contabeis</description>
+		<command>
+			<![CDATA[				  
+				EXEC spu_CCA_BuscarDadosRelLancContabilFechamento 2
+			]]>
+		</command>
+	</query>
+	
+	
+	<query name="PESQUISA_RELATORIO_CONCILIACAO_CONTABIL">
+		<use-case name="Relat�rio de Concilia��o Cont�bil"></use-case>
+		<description>Relat�rio de Concilia��o Cont�bil</description>
+		<command>
+			<![CDATA[				  
+				SELECT 
+			    	LANCAMENTO.DATALOTE,
+			     	LANCAMENTO.IDTIPOHISTORICOLANC, 
+			     	LANCAMENTO.IDTIPOHISTORICOESTORNO, 
+			     	CASE HISTORICO.CODNATUREZAOP 
+			        	WHEN 'E' THEN HISTORICOESTORNO.DESCESTORNOHIST Else HISTORICO.DESCHISTORICO
+			     	END DESCRICAOHISTORICO,
+			     	CASE HISTORICO.CODGRUPOHIST 
+			        	WHEN 1 THEN 'SUBSCRI��O' 
+			        	WHEN 2 THEN 'INTEGRALIZA��O' 
+			        	WHEN 3 THEN 'DEVOLU��O' 
+			        	WHEN 4 THEN 'OUTROS VALORES'
+			        	WHEN 9 THEN 'N�O SENS. SALDO' 
+			     	END GRUPOHISTORICO,
+			     	COUNT(LANCAMENTO.IDTIPOHISTORICOLANC) QUANTIDADELANCAMENTOS,
+			     	SUM(LANCAMENTO.VALORLANC) VALORTOTAL
+				FROM 
+			    	LANCAMENTOSCCAPITAL LANCAMENTO
+			    	INNER JOIN CONTACAPITAL CONTA ON CONTA.NUMMATRICULA = LANCAMENTO.NUMMATRICULA 
+			    	LEFT JOIN TIPOHISTORICO AS HISTORICO ON LANCAMENTO.IDPRODUTO = HISTORICO.IDPRODUTO AND LANCAMENTO.IDTIPOHISTORICOLANC = HISTORICO.IDTIPOHISTORICO 
+			    	LEFT JOIN TIPOHISTORICO AS HISTORICOESTORNO ON LANCAMENTO.IDPRODUTO = HISTORICOESTORNO.IDPRODUTO AND LANCAMENTO.IDTIPOHISTORICOESTORNO = HISTORICOESTORNO.IDTIPOHISTORICO 
+				WHERE 
+					LANCAMENTO.DATALOTE BETWEEN <bancoob:valor valor="${dataInicial}" /> AND <bancoob:valor valor="${dataFinal}" />
+					AND
+					(
+			 			(HISTORICO.CODNATUREZAOP = 'E' AND HISTORICOESTORNO.IDOPERACAOESTORNO IN (SELECT IDOPERACAO FROM PERFILCONTABILOPERACAO WHERE IDPRODUTO = 2))
+			 			OR
+			 			(HISTORICO.CODNATUREZAOP &lt;&gt; 'E' AND HISTORICO.IDOPERACAO IN (SELECT IDOPERACAO FROM PERFILCONTABILOPERACAO WHERE IDPRODUTO = 2))
+					)
+				GROUP BY 
+				   LANCAMENTO.DATALOTE,
+				   LANCAMENTO.IDTIPOHISTORICOLANC, 
+				   LANCAMENTO.IDTIPOHISTORICOESTORNO,
+				   HISTORICO.CODNATUREZAOP,
+				   HISTORICO.DescHistorico,
+				   HISTORICOESTORNO.DESCESTORNOHIST,
+				   HISTORICO.CODGRUPOHIST	
+			]]>
+		</command>
+	</query>	
+	
+	
+	
+				
+</queries>

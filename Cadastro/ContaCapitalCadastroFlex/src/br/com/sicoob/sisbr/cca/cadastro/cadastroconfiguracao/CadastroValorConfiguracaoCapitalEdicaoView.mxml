@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Modulo 
+	xmlns="br.com.bancoob.componentes.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:titulo="br.com.bancoob.componentes.titulo.*" styleName="ModuloSemEstilo"
+	xmlns:bancoobInput="br.com.bancoob.componentes.input.*"
+	xmlns:containers="br.com.bancoob.componentes.containers.*"
+	xmlns:painellista="br.com.bancoob.componentes.painellista.*" 
+	xmlns:bancoobGrid="br.com.bancoob.componentes.grid.*" 
+	xmlns:input="br.com.bancoob.componentes.input.*" 
+	xmlns:renderes="br.com.bancoob.componentes.renderes.*"		
+	xmlns:componentes="br.com.sicoob.sisbr.smartConcept.componentes.*"
+	width="700" height="504" layout="absolute"
+	>	
+	
+	<titulo:SubtituloView x="0" y="0" texto="PARÂMETRO" />
+	<Rotulo x="5" y="30" text="Código:" />
+	<Rotulo x="65" y="30" id="idConfiguracaoCapital" />	
+	<Rotulo x="5" y="60" text="Nome:"/>
+	<mx:Text x="65" y="60" id="nomeConfiguracaoCapital" width="615" />
+	<Rotulo x="5" y="90" text="Descrição:"/>
+	
+	<containers:VBoxBancoob habilitaAutoScroll="true" height="40" width="600" x="65" y="89" verticalScrollPolicy="off">
+		<mx:TextArea id="descConfiguracaoCapital" verticalScrollPolicy="auto"
+			width="100%" height="100%" wordWrap="true" editable="false"  />
+	</containers:VBoxBancoob>
+	
+	<Rotulo x="5" y="140" text="Tipo Valor:"/>
+	<Rotulo x="65" y="140" id="descTipoValorConfiguracaoCapital" />	
+	<Rotulo x="145" y="140" text="Ativo:"/>
+	<Rotulo x="185" y="140" id="bolAtivo" />	
+	<Rotulo x="235" y="140" text="Administrado por:"/>
+	<Rotulo x="345.5" y="140" id="descPerfilConfiguracaoCapital" />		
+
+	<titulo:SubtituloView x="0" y="160" texto="INSTITUIÇÃO" />			
+	
+	<mx:Tree id="trPermissions" x="0" y="190" width="690" height="200" backgroundAlpha="0"
+			 borderStyle="none" defaultLeafIcon="{null}" folderClosedIcon="{null}"
+			 folderOpenIcon="{null}"
+			 itemRenderer="br.com.sicoob.sisbr.cca.render.ParametroTreeItemRenderer"
+			 labelField="@DESCNOMECOOP" mouseEnabled="false" paddingTop="5" showRoot="false"
+			 verticalScrollPolicy="auto"/>
+	
+	<titulo:SubtituloView x="0" y="400" texto="Valor" />	
+	<Rotulo x="5" y="430" text="Valor Parâmetro:"/>
+	<bancoobInput:Texto x="105" y="430" id="txtValorParametro" width="200" maxChars="200" />
+	<bancoobInput:Combo x="100" y="430" width="200" id="cmbValorParametroLogico" name="cmbSituacao" visible="false" editable="false" />
+	<input:Data x="100" y="430" width="108" id="dtValorParametroData" visible="false"/>	
+	
+	
+	<Botao id="btRelatorio" x="5" y="470" width="150" label="VISUALIZAR HISTÓRICO"/>
+	
+	<containers:HBoxBancoob height="35" width="380" x="290" y="470" horizontalAlign="right" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<Botao id="btOK" x="406" y="491" width="86" label="OK"/>
+		<Botao id="btCancelar" x="498" y="493" width="86" label="Cancelar"/>
+		<Botao id="btFechar" x="590" y="493" width="86" label="Fechar"/>		
+	</containers:HBoxBancoob>	
+
+</Modulo>

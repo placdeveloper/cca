@@ -1,0 +1,216 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>br.com.sicoob.cca</groupId>
+		<artifactId>cca-api</artifactId>
+		<version>1.1.70.38</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>cca-api-contacapital-restfull</artifactId>
+	<packaging>war</packaging>
+	<name>CCA - Conta Capital Renovacao - APIContaCapitalRestFull</name>
+
+	<properties>
+		<swagger-maven-plugin-version>3.1.8</swagger-maven-plugin-version>
+	</properties>
+	
+	<build>
+		<finalName>cca-api</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.12</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>2.12</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>**/*.class</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>${swagger-maven-plugin-version}</version>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<springmvc>false</springmvc>
+							<locations>
+								<location>br.com.sicoob.sisbr.cca.apirest</location>
+							</locations>
+							<schemes>
+								<scheme>http</scheme>
+								<scheme>https</scheme>
+							</schemes>
+							<host>localhost:9080</host>
+							<basePath>/cca-api</basePath>
+							<info>
+								<title>CCA - Conta Capital</title>
+								<version>v1</version>
+								<description>O Conta Capital - CCA é um aplicativo que controla o cadastro dos associados de uma cooperativa de crédito, assim como o capital integralizado de cada associado. Esse capital de cada associado é o que compõe o capital social da cooperativa.</description>
+								<termsOfService>
+									https://developers.sicoob.com.br
+								</termsOfService>
+								<license>
+									<url>http://api.sicoob.com.br</url>
+									<name>Licença de uso Sicoob</name>
+								</license>
+							</info>
+							<swaggerDirectory>${project.basedir}/src/main/resources/swagger/</swaggerDirectory>
+							<attachSwaggerArtifact>true</attachSwaggerArtifact>
+							<outputFormats>json,yaml</outputFormats>
+						</apiSource>
+					</apiSources>
+					<!-- <enabledObjectMapperFeatures> <feature>com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING</feature> 
+						<feature>com.fasterxml.jackson.core.JsonParser$Feature.ALLOW_NUMERIC_LEADING_ZEROS</feature> 
+						</enabledObjectMapperFeatures> -->
+					<disabledObjectMapperFeatures>
+						<feature>com.fasterxml.jackson.databind.SerializationFeature.FAIL_ON_EMPTY_BEANS</feature>
+					</disabledObjectMapperFeatures>
+				</configuration>
+				<!-- 
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				 -->
+			</plugin>			
+			
+		</plugins>
+	</build>
+
+	<dependencies>
+		
+		<!-- Sicoob -->
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-java</artifactId>		
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-was9</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-rest</artifactId>
+		</dependency>		
+	
+		<!-- CCA -->
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-integracao-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>			
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-integracao-contacapital-legado-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>			
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-relatorios-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>			
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-movimentacao-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>			
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-api-contacapital</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>			
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-comum-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>			
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-entidades-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>			
+		</dependency>
+			
+		<!-- Externos -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-jaxrs</artifactId>
+		</dependency>
+
+
+		<!-- JavaEE -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>			
+		</dependency>
+
+		<!-- Testes -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

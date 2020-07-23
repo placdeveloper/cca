@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>br.com.sicoob.cca</groupId>
+		<artifactId>cca-integracao</artifactId>
+		<version>1.1.70.38</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>cca-integracao-contacapital-ejb</artifactId>
+	<packaging>ejb</packaging>
+	<name>CCA - Conta Capital Renovacao - ContaCapitalIntegracaoEJB</name>
+
+
+	<dependencies>
+
+		<!-- JavaEE -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>br.com.sicoob.cca</groupId>
+			<artifactId>cca-comum-contacapital-ejb</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Sicoob -->
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.framework</groupId>
+			<artifactId>sicoob-was9</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.sci</groupId>
+			<artifactId>sci-cadastro-instituicao-integracao-ejb</artifactId>
+			<classifier>client</classifier>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.sisbr.ctb</groupId>
+			<artifactId>ctb-integracao-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.capes</groupId>
+			<artifactId>capes-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.adm</groupId>
+			<artifactId>adm-api-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cco</groupId>
+			<artifactId>cco-api-ejb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cco</groupId>
+			<artifactId>cco-movimentacao-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.cta</groupId>
+			<artifactId>cta-entidade</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.loc</groupId>
+			<artifactId>localidade-api</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>br.com.sicoob.sisbr.captacaoremunerada</groupId> -->
+<!-- 			<artifactId>captacaoremunerada-integracao-ejb</artifactId> -->
+<!-- 		</dependency> -->
+		<dependency>
+            <groupId>br.com.sicoob.sisbr.capremrenovacao</groupId>
+            <artifactId>capremrenovacao-api</artifactId>
+            <classifier>client</classifier>
+		</dependency>
+		<dependency>
+			<groupId>br.com.sicoob.ged</groupId>
+			<artifactId>ged-api</artifactId>
+		</dependency>
+		<dependency> 
+			<groupId>br.com.sicoob.cru</groupId>
+			<artifactId>cru-lca-api</artifactId>
+		</dependency>
+
+		<!-- Externos -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.common</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+
+		<!-- Testes -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-easymock</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+		</dependency>
+		
+	</dependencies>
+</project>
