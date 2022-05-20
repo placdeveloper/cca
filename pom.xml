@@ -97,7 +97,7 @@
 		<!-- Externos -->
 		<swagger.version>1.5.4</swagger.version>		
 		<jackson.version>2.7.4</jackson.version>
-		<gson.version>1.7.1</gson.version>
+		<gson.version>2.8.9</gson.version>
 		<joda-time.version>2.9.4</joda-time.version>
 		<log4j.version>1.2.14</log4j.version>
 		<hibernate.version>3.2.6</hibernate.version>
