@@ -102,7 +102,7 @@
 		<log4j.version>1.2.14</log4j.version>
 		<hibernate.version>3.2.6</hibernate.version>
 		<hibernate-annotations.version>3.5.6-Final</hibernate-annotations.version>
-		<hibernate.was.version>5.0.10.Final</hibernate.was.version>
+		<hibernate.was.version>5.3.20.Final</hibernate.was.version>
 		<hibernate-annotations.was.version>5.0.1.Final</hibernate-annotations.was.version>
 		<commons-collections.version>3.2.1</commons-collections.version>
 		<commons-lang.version>2.0</commons-lang.version>
